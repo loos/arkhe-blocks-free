@@ -1,0 +1,36 @@
+// ブロック追加ボタン
+
+
+.arkb-columns > .block-editor-block-list__layout,
+.ark-block-accordion,
+.ark-block-step,
+.ark-block-dl,
+.ark-block-faq {
+
+	& > .block-list-appender {
+		flex-basis: 100% !important;
+		padding: 8px;
+	}
+}
+
+.arkb-columns > .block-editor-block-list__layout > .block-list-appender {
+	margin-top: 0;
+}
+
+.ark-block-accordion,
+.ark-block-step,
+.ark-block-dl,
+.ark-block-faq {
+
+	&:not(.is-selected):not(.has-child-selected) > .block-list-appender {
+		display: none;
+	}
+}
+
+
+.arkb-columns:not(.is-selected):not(.has-child-selected) {
+
+	& > .block-editor-block-list__layout > .block-list-appender {
+		display: none;
+	}
+}

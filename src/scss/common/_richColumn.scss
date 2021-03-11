@@ -1,0 +1,58 @@
+.arkb-columns {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-right: -.75rem;
+	margin-bottom: -1.5rem;
+	margin-left: -.75rem;
+
+	&.alignfull {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+	&[data-valign="top"] {
+		align-items: flex-start;
+	}
+
+	&[data-valign="center"] {
+		align-items: center;
+	}
+
+	&[data-valign="bottom"] {
+		align-items: flex-end;
+	}
+
+}
+
+.arkb-columns__item {
+
+	// flex-basis だと redized画像がエディターでだけはみ出るので、 width使う
+	width: calc(var(--arkb-fb, 100%) - 1.5rem);
+	// flex-grow: 0;
+	margin: 0 .75rem 1.5rem;
+
+	@include tab {
+		width: calc(var(--arkb-fb_tab, 50%) - 1.5rem);
+	}
+
+	@include pc {
+		width: calc(var(--arkb-fb_pc, 50%) - 1.5rem);
+	}
+
+	&[data-valign="top"] {
+		align-self: flex-start;
+	}
+
+	&[data-valign="center"] {
+		align-self: center;
+	}
+
+	&[data-valign="bottom"] {
+		align-self: flex-end;
+	}
+
+	&.is-breadk-all {
+		word-break: break-all;
+	}
+}
