@@ -1,0 +1,101 @@
+{
+    "apiVersion": 2,
+    "name": "arkhe-blocks/slider-item",
+    "title": "Step item",
+    "category": "arkhe-blocks",
+    "supports": {
+        "className": false,
+        "reusable": false,
+        "customClassName": false,
+        "html": false
+    },
+    "parent": [
+        "arkhe-blocks/slider"
+    ],
+    "attributes": {
+        "variation": {
+            "type": "string",
+            "default": ""
+        },
+        "paddingPC": {
+            "type": "object",
+            "default": {
+                "top": "2em",
+                "left": "2em",
+                "right": "2em",
+                "bottom": "2em"
+            }
+        },
+        "paddingSP": {
+            "type": "object",
+            "default": {
+                "top": "2em",
+                "left": "2em",
+                "right": "2em",
+                "bottom": "2em"
+            }
+        },
+        "widthPC": {
+            "type": "string",
+            "default": "100%"
+        },
+        "widthSP": {
+            "type": "string",
+            "default": "100%"
+        },
+        "bgColor": {
+            "type": "string",
+            "default": ""
+        },
+        "bgGradient": {
+            "type": "string",
+            "default": "linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%)"
+        },
+        "opacity": {
+            "type": "number",
+            "default": 20
+        },
+        "textColor": {
+            "type": "string",
+            "default": ""
+        },
+        "filter": {
+            "type": "string",
+            "default": "off"
+        },
+        "alt": {
+            "type": "string",
+            "default": ""
+        },
+        "media": {
+            "type": "object",
+            "default": {
+                "id": 0,
+                "url": "",
+                "type": "",
+                "size": "full"
+            }
+        },
+        "mediaSP": {
+            "type": "object",
+            "default": {
+                "id": 0,
+                "url": "",
+                "type": "",
+                "size": "full"
+            }
+        },
+        "focalPoint": {
+            "type": "object"
+        },
+        "focalPointSP": {
+            "type": "object"
+        },
+        "contentPosition": {
+            "type": "string",
+            "default": "center center"
+        }
+    },
+    "editorScript": "file:../../../../dist/gutenberg/blocks/slider-item/index.js",
+    "textdomain": "arkhe-blocks"
+}

@@ -20,6 +20,10 @@ class Data {
 	const MENU_PAGE_PREFIX  = 'arkb_menu_page_';
 	const MENU_GROUP_PREFIX = 'arkb_menu_group_';
 
+	// version
+	public static $version  = '';
+	public static $file_ver = '';
+
 	// 設定データを保持する変数
 	protected static $data     = [];
 	protected static $defaults = [];
@@ -28,7 +32,10 @@ class Data {
 	public static $menu_tabs = [];
 
 	// JSの読み込みを制御する変数
-	// public static $use_swiper = false;
+	public static $use = [];
+
+	// スライダーのサムネイル生成に使用する
+	public static $slide_images = [];
 
 	// 外部からインスタンス化させない
 	private function __construct() {}

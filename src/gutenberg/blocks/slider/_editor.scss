@@ -1,0 +1,370 @@
+// Gutenberg
+[data-type="arkhe-blocks/slider"] {
+
+	--arkb-slide-width: 100%;
+	--arkb-slide-space: 0px;
+
+	position: relative;
+	padding: 8px 8px;
+	border: dashed 1px $color_guide;
+
+
+	.block-editor-block-variation-picker__variations > li {
+		width: 112px;
+
+		svg {
+			width: 56px;
+			height: 56px;
+		}
+
+	}
+
+
+	[data-type="arkhe-blocks/slider-item"] {
+		max-width: 100%;
+
+		.block-editor-default-block-appender__content {
+			text-align: inherit;
+		}
+	}
+
+	// .__body {
+	// 	margin-left: calc(0 - var(--arkb-slide-space, 0px)) !important;
+	// }
+
+	// &[data-is-center="true"] > .ark-block-slider__inner > .ark-block-slider__slide:first-child {
+	// 	margin-left: calc((100% - var(--arkb-slide-width, 100%)) / 2) !important;
+	// }
+
+	.ark-block-slider__slide {
+		flex-grow: 0;
+		flex-shrink: 0;
+		max-width: 100%;
+
+		.wp-block {
+			max-width: 100%;
+		}
+	}
+
+
+	[data-direction="horizontal"] {
+
+		--arkb-slide-offset-width: calc(50% - var(--arkb-slide-width, 0px) / 2);
+		--arkb-slide-offset-height: auto;
+
+		.ark-block-slider__inner {
+			position: relative;
+			display: flex;
+			justify-content: flex-start;
+			overflow-x: scroll;
+			scroll-behavior: smooth;
+			// scroll-snap-type: x mandatory;
+		}
+
+		.ark-block-slider__slide {
+			width: calc(var(--arkb-slide-width, 100%) - var(--arkb-slide-space, 0px) / 2);
+			margin: 0 var(--arkb-slide-space, 0px) 0 0 !important;
+		}
+	}
+
+	[data-direction="vertical"] {
+
+		--arkb-slide-offset-width: 100%;
+		--arkb-slide-offset-height: calc(50% - var(--arkb-slide-width, 0px) / 2);
+
+		.ark-block-slider__inner {
+			position: relative;
+			overflow-y: scroll;
+			scroll-behavior: smooth;
+		}
+
+		.ark-block-slider__slide {
+			height: calc(var(--arkb-slide-width, 100%) - var(--arkb-slide-space, 0px) / 2);
+			margin: 0 0 var(--arkb-slide-space, 0px) 0 !important;
+		}
+	}
+
+
+	// センター表示時の余白合わせ
+	&[data-is-center="true"] {
+
+		.ark-block-slider__inner::before,
+		.ark-block-slider__inner::after {
+			display: block;
+			flex-grow: 0;
+			flex-shrink: 0;
+			align-self: stretch;
+			width: var(--arkb-slide-offset-width);
+			height: var(--arkb-slide-offset-height);
+			margin: 0 !important;
+			// background-color: rgba(0, 0, 0, .1);
+			background-image: linear-gradient(-45deg, rgba(#555, .1) 0%, rgba(#555, .1) 25%, transparent 25%, transparent 50%, rgba(#555, .1) 50%, rgba(#555, .1) 75%, transparent 75%, transparent 100%);
+			background-size: 6px 6px;
+			content: "";
+		}
+	}
+
+
+	&.has-child-selected,
+	&.is-selected {
+
+		.ark-block-slider__bodyInner {
+			border: dashed 1px $color_guide;
+		}
+
+	}
+
+	.__blockNavigations {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 8px;
+
+		.components-button {
+			display: block;
+			width: 32px;
+			min-width: unset;
+			height: 32px;
+			margin: 4px;
+			padding: 4px;
+		}
+
+		.__add {
+			// margin-left: 16px;
+
+			.components-button {
+				display: flex;
+				align-items: center;
+				width: auto;
+				padding-right: 8px;
+
+				span {
+					font-size: .9em;
+				}
+
+				svg {
+					display: block;
+					margin-right: 2px;
+				}
+			}
+		}
+	}
+
+	.__effectHelper {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+		z-index: 20;
+		display: flex;
+		align-items: center;
+		padding: 2px 4px;
+		color: #fff;
+		font-size: 12px;
+		letter-spacing: .5px;
+		background-color: rgba(#163e58, .5);
+		border-radius: 2px;
+
+		svg {
+			margin-top: -1px;
+			margin-right: 2px;
+			fill: currentColor;
+		}
+	}
+
+	.__thumbSlider {
+		display: flex;
+		height: 80px;
+		margin: 4px -4px;
+
+		.__thumb {
+			display: block;
+			flex: 1;
+			height: 100%;
+			margin: 4px;
+			padding: 0;
+			background-color: #ccc;
+			border: none;
+			border-radius: 0;
+			box-shadow: 0;
+			cursor: pointer;
+			opacity: .4;
+
+			&.is-active {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.ark-block-slider {
+	position: relative;
+
+	// 矢印ボタン
+	.__arrowBtns {
+		position: absolute;
+		z-index: 10;
+		display: flex;
+		justify-content: space-between;
+		pointer-events: none;
+
+		&[data-show="false"] {
+
+			opacity: .4;
+
+			.ark-block-slider__nav {
+				border: dashed 1px var(--arkb-slide-color, #000);
+			}
+		}
+
+		.ark-block-slider__nav.components-button {
+			position: relative;
+			display: block;
+			width: var(--swiper-navigation-size);
+			min-width: 0;
+			height: var(--swiper-navigation-size);
+			min-height: 0;
+			padding: 0;
+			border-radius: 50%;
+			pointer-events: auto;
+
+			svg {
+				display: block;
+				width: 100%;
+				height: 100%;
+				fill: var(--arkb-slide-color, #000);
+			}
+
+			&.-off {
+				opacity: .3;
+				pointer-events: none;
+			}
+		}
+	}
+
+
+	// ページネーション
+	.__pagination {
+		position: absolute;
+		left: 0;
+		z-index: 10;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+
+		&.-fraction {
+			bottom: 10px;
+		}
+
+		&.-progressbar {
+			background: rgba(0, 0, 0, .25);
+
+			span {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--arkb-slide-color, #000);
+				transform: scale(0);
+				transform-origin: left top;
+				transition-duration: 1200ms;
+			}
+		}
+
+		&.-bullets {
+			bottom: 10px;
+
+			span {
+				width: 8px;
+				height: 8px;
+				margin: 4px;
+				background: #000;
+				border-radius: 50%;
+				opacity: .2;
+			}
+
+			[data-active="true"] {
+				background: var(--arkb-slide-color, #000);
+				opacity: 1;
+			}
+
+			&[data-dynamic="true"] [data-active="false"] {
+				transform: scale(.66);
+			}
+		}
+	}
+
+	// 向きによって変える
+	&[data-direction="horizontal"] {
+
+		.__arrowBtns {
+			top: 50%;
+			left: 0;
+			width: 100%;
+			transform: translateY(-50%);
+		}
+
+		.__pagination.-progressbar {
+			top: 0;
+			width: 100%;
+			height: 4px;
+
+			span {
+				transform: translate3d(0px, 0px, 0px) scaleX(var(--arkb-progressbar-scaleX)) scaleY(1);
+			}
+		}
+	}
+
+	&[data-direction="vertical"] {
+
+		.__arrowBtns {
+			top: 0;
+			left: 50%;
+			flex-direction: column;
+			height: 100%;
+			transform: translateX(-50%);
+		}
+
+		.__pagination.-bullets {
+			top: 0;
+			right: 10px;
+			left: auto;
+			flex-direction: column;
+			width: auto;
+			height: 100%;
+		}
+
+		.__pagination.-fraction {
+			justify-content: flex-end;
+			padding-right: 8px;
+		}
+
+		.__pagination.-progressbar {
+			top: 0;
+			right: auto;
+			left: 0;
+			width: 4px;
+			height: 100%;
+
+			span {
+				transform: translate3d(0px, 0px, 0px) scaleY(var(--arkb-progressbar-scaleX)) scaleX(1);
+			}
+		}
+	}
+
+}
+
+.arkb-toolBtn--deleteSlide {
+
+	svg {
+		margin-right: 0 !important;
+	}
+}
+
+.arkb-panel--slideHeight {
+
+	.components-base-control {
+		margin-bottom: 8px;
+	}
+
+}

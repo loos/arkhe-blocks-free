@@ -4,10 +4,24 @@
 	pointer-events: none;
 }
 
+// マージンを少なくするコントロール
+.arkb-ctrl--mb--s {
+	margin-bottom: 16px !important;
+}
+
+.arkb-ctrl--mb--xs {
+	margin-bottom: 8px !important;
+}
+
+.arkb-ctrl--mt--s {
+	margin-top: 16px !important;
+}
+
 
 // トグルコントロールが集まったエリア
 .arkb-toggles {
 
+	.components-base-control__label,
 	.components-base-control {
 		margin-bottom: 12px;
 	}
@@ -21,7 +35,17 @@
 
 // メディアボタン & 削除ボタン
 .arkb-btns--media {
-	margin-bottom: 24px;
+	// margin-bottom: 24px;
+	display: flex;
+
+	.components-button {
+		text-align: center;
+	}
+
+	.is-primary {
+		display: block;
+		flex-basis: 100%;
+	}
 
 	.__delete {
 		margin-left: 8px;
@@ -53,6 +77,10 @@
 		text-align: right;
 	}
 
+	&.-colmun .css-uojzqi-ActionRightWrapper {
+		margin-top: 4px;
+	}
+
 	.components-range-control__reset {
 		height: auto !important;
 		min-height: 0 !important;
@@ -82,7 +110,12 @@
 // サイドバーのタブパネル
 .arkb-tabPanel {
 
+	.components-panel__body-title + & {
+		margin-top: -4px;
+	}
+
 	.components-tab-panel__tabs {
+		border-bottom: 1px solid #e0e0e0;
 
 		.components-button {
 			display: flex;
@@ -94,11 +127,19 @@
 			}
 		}
 	}
+
+	.components-tab-panel__tabs-item {
+		height: 40px;
+		padding-top: 0;
+	}
+
+	.components-tab-panel__tab-content {
+		padding-top: 16px;
+	}
 }
 
 
 .arkb-imgPreview {
-	width: 160px;
 	max-width: 100%;
 	// margin: 0 auto;
 	margin-bottom: 8px;
@@ -107,15 +148,132 @@
 
 	img {
 		display: block;
+		width: 100%;
 		max-width: 100%;
+		max-height: 160px;
+		object-fit: contain;
 	}
 
 	&.-noimage {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 
 		svg {
 			margin: 0 8px;
 		}
+	}
+}
+
+
+// UnitControl
+.arkb-ctrl--unit {
+
+	.components-input-control__container {
+		max-width: 80px;
+	}
+
+	.components-unit-control__select {
+		text-transform: unset !important;
+	}
+
+}
+
+.arkb-ctrl--paddings {
+	position: relative;
+	display: grid;
+	grid-template-areas:
+		"top top top"
+		"left center right"
+		"bottom bottom bottom";
+	grid-template-rows: auto auto auto;
+	grid-template-columns: 1fr 64px 1fr;
+	// margin: 16px 0 !important;
+	padding: 8px;
+	border: solid 1px #ededed;
+
+	.components-input-control__container {
+		max-width: 64px;
+	}
+
+	.components-flex.components-unit-control {
+		border-radius: 0;
+	}
+
+	.components-input-control__backdrop {
+		border: solid 1px #ededed !important;
+	}
+
+	.arkb-ctrl--unit {
+		margin: 0 auto;
+	}
+
+	.__link {
+		position: absolute;
+		top: 0;
+		right: 0;
+		// grid-area: center;
+	}
+
+	.__center {
+		grid-area: center;
+		margin: auto;
+		padding: 4px;
+		border: solid 1px #ededed;
+		border-radius: 2px;
+	}
+
+	.__icon {
+		position: relative;
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin: auto;
+		// grid-area: center;
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 4px;
+			display: block;
+			width: 12px;
+			height: 100%;
+			border-top: 1px solid #333;
+			border-bottom: 1px solid #333;
+			content: "";
+		}
+
+		&::after {
+			position: absolute;
+			top: 4px;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 12px;
+			border-right: 1px solid #333;
+			border-left: 1px solid #333;
+			content: "";
+		}
+	}
+
+	.__left {
+		grid-area: left;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	.__right {
+		grid-area: right;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	.__top {
+		grid-area: top;
+		padding-bottom: 4px;
+	}
+
+	.__bottom {
+		grid-area: bottom;
+		padding-top: 4px;
 	}
 }

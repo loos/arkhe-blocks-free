@@ -7,15 +7,42 @@ defined( 'ABSPATH' ) || exit;
 /**
  * フロントで読み込むファイル
  */
-add_action( 'wp_enqueue_scripts', '\Arkhe_Blocks\hook_wp_enqueue_scripts', 20 );
+add_action( 'wp_enqueue_scripts', '\Arkhe_Blocks\hook_wp_enqueue_scripts' );
 function hook_wp_enqueue_scripts() {
-	wp_enqueue_style( 'arkhe-blocks-front', ARKHE_BLOCKS_URL . 'dist/css/front.css', [], ARKHE_BLOCKS_VERSION );
-	wp_enqueue_script( 'arkhe-blocks-front', ARKHE_BLOCKS_URL . 'dist/js/front.js', [], ARKHE_BLOCKS_VERSION, true );
+	wp_enqueue_style( 'arkhe-blocks-front', ARKHE_BLOCKS_URL . 'dist/css/front.css', [], \Arkhe_Blocks::$file_ver );
 
 	// カスタムフォーマット用CSS
 	$custom_format_css = \Arkhe_Blocks::get_data( 'format', 'custom_format_css' );
 	if ( $custom_format_css ) {
 		wp_add_inline_style( 'arkhe-blocks-front', $custom_format_css );
+	}
+
+}
+
+
+/**
+ * フロントで読み込むファイル (at footer)
+ */
+add_action( 'wp_footer', '\Arkhe_Blocks\hook_enqueue_footer', 1 );
+function hook_enqueue_footer() {
+
+	if ( \Arkhe_Blocks::is_use( 'ol_start' ) ) {
+		wp_enqueue_script( 'arkhe-blocks-ol-start', ARKHE_BLOCKS_URL . 'dist/js/ol_start.js', [], \Arkhe_Blocks::$file_ver, true );
+	}
+
+	// swiper
+	if ( \Arkhe_Blocks::is_use( 'swiper' ) ) {
+		wp_enqueue_style( 'arkhe-blocks-swiper', ARKHE_BLOCKS_URL . 'assets/css/swiper.min.css', [], \Arkhe_Blocks::$file_ver );
+		wp_enqueue_script( 'arkhe-blocks-swiper', ARKHE_BLOCKS_URL . 'assets/js/swiper.min.js', [], \Arkhe_Blocks::$file_ver, true );
+		wp_enqueue_script( 'arkhe-blocks-slider-swiper', ARKHE_BLOCKS_URL . 'dist/gutenberg/blocks/slider/script.js', ['arkhe-blocks-swiper' ], \Arkhe_Blocks::$file_ver, true );
+	}
+
+	// memo: ハンドル名はblock.jsonでの自動読み込み時と同じにしてる
+	if ( \Arkhe_Blocks::is_use( 'tab' ) ) {
+		wp_enqueue_script( 'arkhe-blocks-tab-script', ARKHE_BLOCKS_URL . 'dist/gutenberg/blocks/tab/script.js', [], \Arkhe_Blocks::$file_ver, true );
+	}
+	if ( \Arkhe_Blocks::is_use( 'accordion' ) ) {
+		wp_enqueue_script( 'arkhe-blocks-accordion-script', ARKHE_BLOCKS_URL . 'dist/gutenberg/blocks/accordion/script.js', [], \Arkhe_Blocks::$file_ver, true );
 	}
 }
 
@@ -29,7 +56,7 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 	$dist_url = ARKHE_BLOCKS_URL . 'dist/';
 
 	// ブロック用CSS
-	wp_enqueue_style( 'arkhe-blocks-editor', $dist_url . 'css/blocks.css', [], ARKHE_BLOCKS_VERSION );
+	wp_enqueue_style( 'arkhe-blocks-editor', $dist_url . 'css/blocks.css', [], \Arkhe_Blocks::$file_ver );
 
 	// カスタムフォーマット用CSS
 	$custom_format_css = \Arkhe_Blocks::get_data( 'format', 'custom_format_css' );
@@ -40,6 +67,9 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 	// 基本スクリプト
 	$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/index.asset.php';
 	wp_enqueue_script( 'arkhe-blocks-editor', $dist_url . 'gutenberg/index.js', $asset['dependencies'], $asset['version'], true );
+	wp_localize_script( 'arkhe-blocks-editor', 'arkbVars', [
+		'isArkhe' => IS_ARKHE_THEME,
+	] );
 
 	// @FontAwesom
 	$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/fa.asset.php';
@@ -70,7 +100,7 @@ function hook_admin_enqueue_scripts( $hook_suffix ) {
 
 	// Arkhe Blocks設定ページのみ
 	if ( $is_arkb_page ) {
-		wp_enqueue_style( 'arkhe-blocks-menu', ARKHE_BLOCKS_URL . 'dist/css/menu.css', [], ARKHE_BLOCKS_VERSION );
+		wp_enqueue_style( 'arkhe-blocks-menu', ARKHE_BLOCKS_URL . 'dist/css/menu.css', [], \Arkhe_Blocks::$file_ver );
 
 		wp_dequeue_style( 'arkhe-toolkit-menu' );
 
@@ -120,7 +150,6 @@ function hook_admin_head() {
 	$output_code = get_admin_head_code();
 	if ( ! $output_code ) return;
 
-	// エディター側の<html>に[data-sidebar]を付与( 投稿リストブロック用 )
 	echo PHP_EOL . '<!-- Arkhe Blocks -->' . PHP_EOL;
 	echo $output_code; // phpcs:ignore
 	echo '<!-- / Arkhe Blocks -->' . PHP_EOL;
@@ -164,6 +193,7 @@ function get_admin_head_code() {
 		$show_sidebar = \Arkhe::get_setting( $side_key ) ? 'on' : 'off';
 	}
 
+	// エディター側の<html>に[data-sidebar]を付与( 投稿リストブロック用 )
 	$output_code .= '<script>document.documentElement.setAttribute("data-sidebar", "' . $show_sidebar . '");</script>' . PHP_EOL;
 
 	return $output_code;

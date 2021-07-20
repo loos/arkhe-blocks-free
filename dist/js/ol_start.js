@@ -1,0 +1,1 @@
+"use strict";document.addEventListener("DOMContentLoaded",function(){!function(){for(var t=document.querySelectorAll("ol[start]"),e=0;e<t.length;e++){var r=t[e],n=r.getAttribute("start"),o=r.getAttribute("reversed");r.style.counterReset="arkb-ct ".concat(null===o?parseInt(n)-1:parseInt(n)+1)}}()});

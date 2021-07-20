@@ -13,8 +13,10 @@ $args = array_merge([
 	'is_newtab'    => false,
 	'rel'          => '',
 	'type'         => '',
+	'anchor'       => '',
 	'class'        => '',
 	'show_excerpt' => 'both',
+	'show_image'   => true,
 ], $args );
 
 $url    = $args['url'];
@@ -31,14 +33,21 @@ if ( 'external' === $args['type'] ) {
 	$favicon = $args['icon'] ? esc_url( $args['icon'] ) : 'https://www.google.com/s2/favicons?domain_url=' . esc_url( $url );
 }
 
-$add_class     = $args['class'] ? ' ' . $args['class'] : '';
 $excerpt_class = 'both' !== $args['show_excerpt'] ? ' u-only-' . $args['show_excerpt'] : '';
+
+// ブロックの属性値
+$add_class   = $args['class'] ? ' ' . $args['class'] : '';
+$block_props = 'class="ark-block-blogCard arkb-boxLink' . esc_attr( $add_class ) . '"';
+if ( $args['anchor'] ) {
+	$block_props .= ' id="' . esc_attr( $args['anchor'] ) . '"';
+}
+
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
-<div class="ark-block-blogCard arkb-boxLink<?=esc_attr( $add_class )?>">
+<div <?=$block_props?>>
 	<a href="<?=esc_url( $url )?>" class="arkb-boxLink__inner" data-type="<?=$args['type']?>"<?=$target . $rel?>>
-		<?php if ( $args['thumb_url'] ) : ?>
+		<?php if ( $args['show_image'] && $args['thumb_url'] ) : ?>
 			<div class="arkb-boxLink__figure c-postThumb">
 				<figure class="c-postThumb__figure">
 					<img src="<?=esc_url( $args['thumb_url'] )?>" alt="" class="<?=esc_attr( $img_class )?>">

@@ -3,7 +3,9 @@
  * Plugin Name: Arkhe Blocks
  * Plugin URI: https://arkhe-theme.com
  * Description: A plugin that extends Gutenberg, optimized for the "Arkhe" theme.
- * Version: 1.3.0
+ * Version: 1.4.0
+ * Requires at least: 5.6
+ * Requires PHP: 7.0
  * Author: LOOS,Inc.
  * Author URI: https://loos.co.jp/
  * License: GPL2 or later
@@ -17,13 +19,15 @@
 defined( 'ABSPATH' ) || exit;
 
 
-// 5.0以下のエラー回避
-if ( ! function_exists( 'register_block_type' ) ) return;
-
-// 定数定義
-define( 'ARKHE_BLOCKS_VERSION', ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? date_i18n( 'mdGis' ) : '1.3.0' );
-define( 'ARKHE_BLOCKS_URL', plugins_url( '/', __FILE__ ) );
-define( 'ARKHE_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
+/**
+ * 定数定義 ( PRO版と2つ有効になった時にエラーにならないようにdefined )
+ */
+if ( ! defined( 'ARKHE_BLOCKS_URL' ) ) {
+	define( 'ARKHE_BLOCKS_URL', plugins_url( '/', __FILE__ ) );
+}
+if ( ! defined( 'ARKHE_BLOCKS_PATH' ) ) {
+	define( 'ARKHE_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
+}
 
 
 /**
@@ -52,9 +56,21 @@ if ( ! class_exists( 'Arkhe_Blocks' ) ) {
 	class Arkhe_Blocks extends \Arkhe_Blocks\Data {
 
 		use \Arkhe_Blocks\Admin_Menu;
-		use \Arkhe_Blocks\Template_Parts;
+		use \Arkhe_Blocks\Parts;
+		use \Arkhe_Blocks\Utility;
 
 		public function __construct() {
+
+			// WPバージョンチェック
+			global $wp_version;
+			$is_wp56 = ( version_compare( $wp_version, '5.6.RC1' ) >= 0 );
+
+			if ( ! $is_wp56 ) return;
+
+			// プラグインのバージョン情報
+			$file_data      = get_file_data( __FILE__, [ 'version' => 'Version' ] );
+			self::$version  = $file_data['version'];
+			self::$file_ver = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? wp_date( 'mdGis' ) : self::$version;
 
 			// テーマチェック : IS_ARKHE_THEME は Arkheプラグインで共通
 			if ( ! defined( 'IS_ARKHE_THEME' ) ) {
@@ -84,6 +100,7 @@ if ( ! class_exists( 'Arkhe_Blocks' ) ) {
 
 			// Gutennerg
 			require_once ARKHE_BLOCKS_PATH . 'inc/gutenberg.php';
+			require_once ARKHE_BLOCKS_PATH . 'inc/render_block.php';
 
 			// 管理メニュー
 			require_once ARKHE_BLOCKS_PATH . 'inc/admin_toolbar.php';
