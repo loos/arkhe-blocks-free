@@ -4,8 +4,6 @@
     "title": "Q&A",
     "category": "arkhe-blocks",
     "keywords": [
-        "arkhe",
-        "faq",
         "qa"
     ],
     "supports": {
@@ -14,5 +12,6 @@
     },
     "attributes": {},
     "editorScript": "file:../../../../dist/gutenberg/blocks/faq/index.js",
+    "style": "arkhe-blocks-faq-style",
     "textdomain": "arkhe-blocks"
 }

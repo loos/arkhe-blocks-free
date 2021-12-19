@@ -42,10 +42,14 @@ import { ArkheMarginControl } from '@components/ArkheMarginControl';
 import classnames from 'classnames';
 
 /**
+ * style
+ */
+import './scss/index.scss';
+
+/**
  * metadata
  */
 const blockName = 'ark-block-heading';
-const { apiVersion, name, category, keywords, supports } = metadata;
 
 /**
  * 設定項目
@@ -64,19 +68,13 @@ const subPositions = [
 /**
  * 通知ブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Section Heading', 'arkhe-blocks'),
 	// description: __('Create content that is prominently emphasized.', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	keywords,
-	supports,
-	// styles: [],
-	attributes: metadata.attributes,
 	example,
 	transforms: {
 		from: [
@@ -85,7 +83,7 @@ registerBlockType(name, {
 				type: 'block',
 				blocks: ['core/paragraph'],
 				transform: (attributes) => {
-					return createBlock(name, { content: attributes.content });
+					return createBlock(metadata.name, { content: attributes.content });
 				},
 			},
 		],
@@ -255,7 +253,7 @@ registerBlockType(name, {
 							if (!value) {
 								return createBlock('core/paragraph');
 							}
-							return createBlock(name, {
+							return createBlock(metadata.name, {
 								...attributes,
 								content: value,
 							});

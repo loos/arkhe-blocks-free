@@ -40,7 +40,6 @@ registerBlockType(metadata.name, {
 	//     "arkhe-block/accordion/iconOpened": "iconOpened",
 	//     "arkhe-block/accordion/iconClosed": "iconClosed"
 	// },
-	attributes: metadata.attributes,
 	example,
 	edit: ({ attributes, setAttributes }) => {
 		const blockProps = useBlockProps({

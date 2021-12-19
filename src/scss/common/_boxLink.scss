@@ -1,9 +1,13 @@
 @charset "utf-8";
 
 // ボックスリンク
-// .arkb-boxLink {}
+.arkb-boxLink {
+	position: relative;
+}
+
 
 .arkb-boxLink__title {
+	display: block;
 	font-weight: bold;
 }
 
@@ -18,23 +22,6 @@
 	transition: box-shadow .25s;
 }
 
-.arkb-boxLink__link {
-	z-index: 1;
-
-	span {
-		visibility: hidden;
-	}
-}
-
-// リンクホバー時
-a.arkb-boxLink__inner:hover {
-	box-shadow: 0 4px 32px -8px rgba(0, 0, 0, .1);
-
-	.arkb-boxLink__more__svg {
-		transform: translateX(4px);
-	}
-}
-
 .arkb-boxLink__figure {
 	position: relative;
 	margin: 0;
@@ -46,6 +33,17 @@ a.arkb-boxLink__inner:hover {
 	display: block;
 	width: 100%;
 }
+
+[data-arkb-linkbox]:hover > .arkb-boxLink__inner,
+a.arkb-boxLink__inner:hover {
+
+	box-shadow: 0 4px 32px -8px rgba(0, 0, 0, .1);
+
+	.arkb-boxLink__more__svg {
+		transform: translateX(4px);
+	}
+}
+
 
 .arkb-boxLink__figure.is-fixed-ratio {
 	// padding-top: var(--ark-thumb_ratio, 56.25%);

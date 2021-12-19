@@ -38,87 +38,22 @@
 	}
 }
 
-// ----------------------------------------
-// メディアと文章ブロックのスタイル
-// ----------------------------------------
-// カード型
-.is-style-ark-card {
-
-	// 詳細度
-	&.wp-block-media-text {
-		color: #333;
-		background: #fff;
-		box-shadow: var(--arkb-shadow);
-	}
-
-	& > .wp-block-media-text__media {
-		height: 100%;
-
-		& > img {
-			height: 100%;
-			object-fit: cover;
-			font-family: "object-fit: cover;";
-		}
-	}
-
-	& > .wp-block-media-text__content {
-		padding: 1.75em 2em;
-	}
-}
-
-
-// ブロークン
-.is-style-ark-broken {
-
-	// ブロークングリッド
-	& > .wp-block-media-text__content {
-		z-index: 1;
-		padding: 2em 0;
-	}
-
-	&:not(.has-media-on-the-right) .wp-block-media-text__content {
-		margin-left: -4em;
-	}
-
-	&.has-media-on-the-right .wp-block-media-text__content {
-		margin-right: -4em;
-	}
-
-	// モバイル縦並びの時
-	&.is-stacked-on-mobile {
-
-		@media (max-width: 600px) {
-
-			.wp-block-media-text__content {
-				margin: -4em 0 0;
-				padding: 0 1em;
-			}
-		}
-	}
-}
-
 
 // ----------------------------------------
 // listブロックのスタイル
 // ----------------------------------------
 [class*="is-style-ark-list-"] {
 	padding-left: 0 !important;
-	list-style: none !important;
 
-	ul,
-	ol {
-		padding-left: 0 !important;
-		list-style: none !important;
-	}
-
-	li {
+	> li {
 		position: relative;
+		list-style: none !important;
 	}
 }
 
 [class*="is-style-ark-list-icon"] {
 
-	li {
+	> li {
 		padding-left: 1.75em;
 
 		&::before {
@@ -134,17 +69,13 @@
 			-moz-osx-font-smoothing: grayscale;
 		}
 
-		// 子リストは薄く表示
-		li::before {
-			opacity: .8;
-		}
 	}
 }
 
 .is-style-ark-list-icon--check {
 	--arkb-list_color_icon: #7dd872;
 
-	li::before {
+	> li::before {
 		content: "\e900";
 	}
 }
@@ -152,7 +83,7 @@
 .is-style-ark-list-icon--good {
 	--arkb-list_color_icon: #7dd872;
 
-	li::before {
+	> li::before {
 		content: "\e902";
 	}
 }
@@ -160,7 +91,7 @@
 .is-style-ark-list-icon--bad {
 	--arkb-list_color_icon: #ef6b6b;
 
-	li::before {
+	> li::before {
 		content: "\e901";
 	}
 }
@@ -172,7 +103,7 @@
 		opacity: .8;
 	}
 
-	li {
+	> li {
 		padding-left: 1em;
 
 		&::before {
@@ -204,8 +135,10 @@ ol.is-style-ark-list-note {
 	counter-reset: arkb-ct;
 
 	li {
+		position: relative;
 		padding-left: 2em;
-		line-height: 1.8;
+		line-height: 1.8 !important;
+		list-style: none !important;
 
 		&::before {
 			position: absolute;
@@ -217,7 +150,7 @@ ol.is-style-ark-list-note {
 			height: 1.8em;
 			padding: 0;
 			color: #fff;
-			line-height: 1.8;
+			line-height: inherit;
 			text-align: center;
 			background-color: var(--arkb-list_color_num);
 			border-radius: 50%;
@@ -240,6 +173,7 @@ ol.is-style-ark-list-note {
 
 
 	ol {
+		padding-left: 0 !important;
 		counter-reset: arkb-ct2;
 
 		// 子要素は塗り潰しではなくボーダー
@@ -265,6 +199,7 @@ ol.is-style-ark-list-note {
 	}
 
 	ul {
+		padding-left: 0 !important;
 
 		li {
 			padding-left: 1.25em;

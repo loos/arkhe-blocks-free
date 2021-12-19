@@ -25,10 +25,12 @@ if ( $the_query->have_posts() ) :
 			<li class="p-postList__item">
 				<a href="<?php the_permalink( $the_id ); ?>" class="p-postList__link">
 					<?php
-						\Arkhe::get_part( 'post_list/item/thumb', [
-							'post_id'     => $the_id,
-							'sizes'   => '(min-width: 600px) 400px, 100vw',
-						] );
+						if ( 'simple' !== $list_type ) :
+							\Arkhe::get_part( 'post_list/item/thumb', [
+								'post_id' => $the_id,
+								'sizes'   => '(min-width: 600px) 400px, 100vw',
+							] );
+						endif;
 					?>
 					<div class="p-postList__body">
 						<?php
@@ -48,7 +50,7 @@ if ( $the_query->have_posts() ) :
 	</ul>
 <?php else : ?>
 	<p>
-		<?php echo 'Not found.'; ?>
+		<?php echo esc_html__( 'Page not found.', 'arkhe-blocks' ); ?>
 	</p>
 <?php
 endif;

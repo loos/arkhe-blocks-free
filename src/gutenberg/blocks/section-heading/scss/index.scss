@@ -1,8 +1,8 @@
-.ark-block-heading {
+@import "../../../../scss/mixin/media";
 
+.ark-block-heading {
 	margin-top: var(--ark-mt--h);
 	text-align: center;
-
 
 	.ark-block-heading__main {
 		margin-top: 0;

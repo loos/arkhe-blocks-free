@@ -20,33 +20,26 @@ import { iconColor } from '@blocks/config';
 import { ArkheMarginControl } from '@components/ArkheMarginControl';
 
 /**
- * @Others dependencies
+ * style
  */
-// import classnames from 'classnames';
+import './scss/index.scss';
 
 /**
  * metadata
  */
 const blockName = 'ark-block-faq';
-const { apiVersion, name, category, keywords, supports } = metadata;
 
 /**
  * Q&Aブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: 'Q&A',
 	description: __('Create Q & A format content.', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	keywords,
-	supports,
-	// styles: [],
 	example,
-	attributes: metadata.attributes,
 	edit: ({ attributes, setAttributes }) => {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,

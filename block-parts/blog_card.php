@@ -42,18 +42,19 @@ if ( $args['anchor'] ) {
 	$block_props .= ' id="' . esc_attr( $args['anchor'] ) . '"';
 }
 
-
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
-<div <?=$block_props?>>
-	<a href="<?=esc_url( $url )?>" class="arkb-boxLink__inner" data-type="<?=$args['type']?>"<?=$target . $rel?>>
+<div <?=$block_props?> data-arkb-linkbox>
+	<div class="arkb-boxLink__inner" data-type="<?=$args['type']?>">
 		<?php if ( $args['show_image'] && $args['thumb_url'] ) : ?>
 			<figure class="arkb-boxLink__figure is-fixed-ratio">
 				<img src="<?=esc_url( $args['thumb_url'] )?>" alt="" class="<?=esc_attr( $img_class )?>">
 			</figure>
 		<?php endif; ?>
 		<div class="arkb-boxLink__body">
-			<div class="arkb-boxLink__title"><?=esc_html( $args['title'] )?></div>
+			<a href="<?=esc_url( $url )?>" class="arkb-boxLink__title" data-arkb-link<?=$target . $rel?>>
+				<?=esc_html( $args['title'] )?>
+			</a>
 			<?php if ( 'none' !== $args['show_excerpt'] ) : ?>
 				<div class="arkb-boxLink__content<?=esc_attr( $excerpt_class )?>">
 					<?=esc_html( $args['excerpt'] )?>
@@ -68,5 +69,5 @@ if ( $args['anchor'] ) {
 				</div>
 			<?php endif; ?>
 		</div>
-	</a>
+	</div>
 </div>

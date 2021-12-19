@@ -74,7 +74,6 @@ registerBlockType(metadata.name, {
 		{ name: 'stronger', label: __('Stronger', 'arkhe-blocks') },
 		{ name: 'simple', label: __('Simple', 'arkhe-blocks') },
 	],
-	attributes: metadata.attributes,
 	example,
 	transforms: {
 		from: [

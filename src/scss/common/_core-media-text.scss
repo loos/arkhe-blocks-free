@@ -1,0 +1,70 @@
+// ----------------------------------------
+// メディアと文章ブロックのスタイル
+// ----------------------------------------
+
+// カード型
+.is-style-ark-card {
+
+	// 詳細度
+	&.wp-block-media-text {
+		--ark-mediatext--gap: 0; // gapなし
+		--ark-mediatext--offsetX: 0; // 全幅時の左右マージンなし
+		--ark-mediatext--offsetY: 0; // 上下マージンなし
+
+		// スマホでの余白感を少しだけ広く
+		@media (max-width: 600px) {
+			--ark-mediatext--space: 1.25rem;
+		}
+
+		color: #333;
+		background: #fff;
+		box-shadow: var(--arkb-shadow);
+	}
+
+	> .wp-block-media-text__media {
+		height: 100%;
+
+		> img {
+			height: 100%;
+			object-fit: cover;
+			font-family: "object-fit: cover;";
+		}
+	}
+
+	> .wp-block-media-text__content {
+		padding: var(--ark-mediatext--space);
+	}
+}
+
+
+// ブロークン
+.is-style-ark-broken {
+
+	&.wp-block-media-text {
+		--ark-mediatext--gap: 0; // gapなし
+		--ark-mediatext--lap: -5rem;
+	}
+
+	> .wp-block-media-text__content {
+		z-index: 1;
+	}
+
+	&:not(.has-media-on-the-right) .wp-block-media-text__content {
+		margin-left: var(--ark-mediatext--lap);
+	}
+
+	&.has-media-on-the-right .wp-block-media-text__content {
+		margin-right: var(--ark-mediatext--lap);
+	}
+
+	// モバイル縦並びの時
+	&.is-stacked-on-mobile {
+
+		@media (max-width: 600px) {
+
+			.wp-block-media-text__content {
+				margin: var(--ark-mediatext--lap) 0 0;
+			}
+		}
+	}
+}

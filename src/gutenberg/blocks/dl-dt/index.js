@@ -3,12 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	RichText,
-	// InnerBlocks,
-	useBlockProps,
-	// __experimentalUseInnerBlocksProps as useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * @Internal dependencies
@@ -18,30 +13,19 @@ import blockIcon from './_icon';
 import metadata from './block.json';
 
 /**
- * @Others dependencies
- */
-// import classnames from 'classnames';
-
-/**
  * metadata
  */
 const blockName = 'ark-block-dl';
-const { apiVersion, name, category, supports, parent } = metadata;
 
 /**
  * DT ブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Term', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	parent,
-	supports,
-	attributes: metadata.attributes,
 	edit: (props) => {
 		const { attributes, setAttributes } = props;
 		const blockProps = useBlockProps({

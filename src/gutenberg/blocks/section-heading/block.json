@@ -4,7 +4,6 @@
     "title": "Notice",
     "category": "arkhe-blocks",
     "keywords": [
-        "heading",
         "title"
     ],
     "supports": {
@@ -54,5 +53,6 @@
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/section-heading/index.js",
+    "style": "arkhe-blocks-section-heading-style",
     "textdomain": "arkhe-blocks"
 }

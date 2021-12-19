@@ -45,7 +45,6 @@ registerBlockType(metadata.name, {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	attributes: metadata.attributes,
 	// usesContext: ['arkhe-block/accordion/iconOpened', 'arkhe-block/accordion/iconClosed'],
 	edit: ({ attributes, setAttributes }) => {
 		// const iconOpened = context['arkhe-block/accordion/iconOpened'];

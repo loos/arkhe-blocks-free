@@ -17,30 +17,19 @@ import blockIcon from './_icon';
 import metadata from './block.json';
 
 /**
- * @Others dependencies
- */
-// import classnames from 'classnames';
-
-/**
  * metadata
  */
 const blockName = 'ark-block-dl';
-const { apiVersion, name, category, supports, parent } = metadata;
 
 /**
  * DD ブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Description', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	parent,
-	supports,
-	attributes: metadata.attributes,
 	edit: () => {
 		const blockProps = useBlockProps({
 			className: `${blockName}__dd ark-keep-mt--s`,

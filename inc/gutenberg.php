@@ -22,13 +22,29 @@ function register_blocks() {
 
 	register_arkhe_blocks();
 	register_arkhe_dynamic_blocks();
+	register_arkhe_block_styles();
+}
 
-	// style切り分けてるブロック
+
+/**
+ * スタイルの登録
+ */
+function register_arkhe_block_styles() {
+	// style切り分け済みのブロック
 	$blocks = [
 		'accordion',
 		'blog-card',
 		'box-links',
+		'columns',
+		'dl',
+		'faq',
 		'notice',
+		'section',
+		'section-heading',
+		'slider',
+		'step',
+		'tab',
+		'timeline',
 	];
 	$deps   = is_admin() ? 'arkhe-blocks-editor' : 'arkhe-blocks-front';
 	foreach ( $blocks as $name ) {

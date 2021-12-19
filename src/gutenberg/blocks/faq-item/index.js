@@ -18,30 +18,19 @@ import blockIcon from './_icon';
 import { iconColor } from '@blocks/config';
 
 /**
- * @Others dependencies
- */
-// import classnames from 'classnames';
-
-/**
  * metadata
  */
 const blockName = 'ark-block-faq';
-const { apiVersion, name, category, supports, parent } = metadata;
 
 /**
  * Q&A項目ブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Q&A item', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	parent,
-	supports,
-	attributes: metadata.attributes,
 	edit: (props) => {
 		const { attributes, setAttributes } = props;
 

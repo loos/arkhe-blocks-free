@@ -1,0 +1,34 @@
+[data-type="arkhe-blocks/dl"] {
+
+	.ark-block-dl__dd {
+		margin-top: 0;
+	}
+
+	.ark-block-dl__div {
+		margin-top: 0;
+
+		> .block-editor-block-list__layout > .block-list-appender {
+			margin-top: 0 !important;
+		}
+	}
+}
+
+
+[data-type="arkhe-blocks/dl-dt"] {
+
+	.rich-text {
+		display: block;
+		width: 100%;
+		min-width: 4em;
+	}
+}
+
+[data-type="arkhe-blocks/dl-div"] {
+
+	&.has-child-selected {
+
+		[data-type="arkhe-blocks/dl-dd"] {
+			min-width: 20%;
+		}
+	}
+}

@@ -20,36 +20,26 @@ import example from './_example';
 import { ArkheMarginControl } from '@components/ArkheMarginControl';
 
 /**
- * @Others dependencies
+ * style
  */
-// import classnames from 'classnames';
+import './scss/index.scss';
 
 /**
  * metadata
  */
 const blockName = 'ark-block-dl';
-const { apiVersion, name, category, keywords, supports } = metadata;
 
 /**
  * registerBlockType
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Description list', 'arkhe-blocks'),
 	description: __('Create a description list using the "dl" tag.', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	keywords,
-	supports,
 	example,
-	// styles: [
-	// 	{ name: 'default', label: 'デフォルト', isDefault: true },
-	// 	{ name: 'float', label: '横並び' },
-	// ],
-	attributes: {},
 	edit: ({ attributes, setAttributes }) => {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,

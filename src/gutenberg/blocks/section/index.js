@@ -2,7 +2,7 @@
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useMemo, useCallback, RawHTML } from '@wordpress/element';
 import {
@@ -16,7 +16,6 @@ import {
 } from '@wordpress/block-editor';
 
 import { ToolbarButton } from '@wordpress/components';
-// import { Icon, fullscreen } from '@wordpress/icons';
 
 /**
  * @Internal dependencies
@@ -39,7 +38,12 @@ import classnames from 'classnames';
 // import hexToRgba from 'hex-to-rgba';
 
 /**
- * registerBlockType
+ * style
+ */
+import './scss/index.scss';
+
+/**
+ * Register Block
  */
 const blockName = 'ark-block-section';
 registerBlockType(metadata.name, {
@@ -50,7 +54,18 @@ registerBlockType(metadata.name, {
 		src: blockIcon.block,
 	},
 	example,
-	attributes: metadata.attributes,
+	transforms: {
+		from: [
+			//どのブロックタイプから変更できるようにするか
+			{
+				type: 'block',
+				blocks: ['core/group'],
+				transform: (attributes, content) => {
+					return createBlock(metadata.name, {}, content);
+				},
+			},
+		],
+	},
 	edit: ({ attributes, setAttributes, isSelected, clientId }) => {
 		const {
 			align,
@@ -61,6 +76,7 @@ registerBlockType(metadata.name, {
 			svgBottom,
 			contentPosition,
 			filter,
+			tag,
 		} = attributes;
 
 		const { updateBlockAttributes } = useDispatch('core/block-editor');
@@ -145,6 +161,7 @@ registerBlockType(metadata.name, {
 		const BlockAlignmentMatrixControl =
 			__experimentalBlockAlignmentMatrixControl || __experimentalBlockAlignmentMatrixToolbar;
 
+		const OuterTag = tag || 'div';
 		return (
 			<>
 				<BlockControls group='block'>
@@ -182,7 +199,7 @@ registerBlockType(metadata.name, {
 						isSelected={isSelected}
 					/>
 				</InspectorControls>
-				<div {...blockProps}>
+				<OuterTag {...blockProps}>
 					{bgMedia}
 					<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
 					{'off' !== filter && (
@@ -196,7 +213,7 @@ registerBlockType(metadata.name, {
 					</div>
 					<SectionSVG position='top' svgData={svgDataTop} />
 					<SectionSVG position='bottom' svgData={svgDataBottom} />
-				</div>
+				</OuterTag>
 			</>
 		);
 	},
@@ -211,6 +228,7 @@ registerBlockType(metadata.name, {
 			contentPosition,
 			filter,
 			isRepeat,
+			tag,
 		} = attributes;
 
 		// styleデータ
@@ -241,8 +259,9 @@ registerBlockType(metadata.name, {
 			'data-inner': innerSize || null,
 		});
 
+		const OuterTag = tag || 'div';
 		return (
-			<div {...blockProps}>
+			<OuterTag {...blockProps}>
 				{media.url && !isRepeat && <RawHTML>{'<!-- media -->'}</RawHTML>}
 				<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
 				{'off' !== filter && (
@@ -258,7 +277,7 @@ registerBlockType(metadata.name, {
 				</div>
 				<SectionSVG position='top' svgData={svgDataTop} />
 				<SectionSVG position='bottom' svgData={svgDataBottom} />
-			</div>
+			</OuterTag>
 		);
 	},
 	deprecated,

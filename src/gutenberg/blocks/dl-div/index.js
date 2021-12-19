@@ -25,22 +25,16 @@ import metadata from './block.json';
  * metadata
  */
 const blockName = 'ark-block-dl';
-const { apiVersion, name, category, supports, parent } = metadata;
 
 /**
  * DD ブロック
  */
-registerBlockType(name, {
-	apiVersion,
+registerBlockType(metadata.name, {
 	title: __('Side-by-side items', 'arkhe-blocks'), // 横並び項目
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	category,
-	parent,
-	supports,
-	attributes: metadata.attributes,
 	edit: () => {
 		const blockProps = useBlockProps({
 			className: `${blockName}__div`,

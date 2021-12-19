@@ -15,12 +15,10 @@ class Get_OGP_InWP {
 	 * Default value of the argument passed to wp_remote_get()
 	 */
 	public static $default_fetch_args = [
-		'timeout'     => 15,
+		'timeout'     => 10,
 		'redirection' => 3,
 		'sslverify'   => false,
-		// 'user-agent'  => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ),
 	];
-
 
 	/**
 	 * Default value of the array that specifies the information you want to get
@@ -49,15 +47,18 @@ class Get_OGP_InWP {
 	 */
 	public static function get( $url, $fetch_args = null, $targets = null ) {
 
+		// Return empty when requesting WordPress. (Avoiding request loops)
+		if ( self::is_wp_request() ) return [];
+
 		if ( false === strpos( $url, '//' ) ) {
 			$url = 'https://' . $url;
 		}
 
 		$fetch_args = $fetch_args ?: self::$default_fetch_args;
-		$targets    = $targets ?: self::$default_targets;
+		$response   = self::fetch( $url, $fetch_args );
+		if ( ! $response ) return [];
 
-		$response = self::fetch( $url, $fetch_args );
-		if ( false === $response ) return [];
+		$targets = $targets ?: self::$default_targets;
 
 		return self::parse( $response, $targets );
 	}
@@ -208,5 +209,15 @@ class Get_OGP_InWP {
 			'thumbnail'   => $thumbnail,
 			'icon'        => $icon,
 		];
+	}
+
+
+	/**
+	 * Check if the request is from WordPress.
+	 */
+	public static function is_wp_request() {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) return false;
+		$user_agent = wp_unslash( $_SERVER['HTTP_USER_AGENT'] );
+		return 0 === strpos( $user_agent, 'WordPress' );
 	}
 }
