@@ -1,4 +1,3 @@
-/* eslint @wordpress/no-global-event-listener: 0 */
 document.addEventListener('DOMContentLoaded', function () {
 	/**
 	 * olのstart属性に対応する

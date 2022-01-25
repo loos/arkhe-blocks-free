@@ -183,7 +183,7 @@ ol.is-style-ark-list-note {
 			box-shadow: inset 0 0 0 1px currentColor;
 		}
 
-		& > li::before {
+		> li::before {
 			content: counter(arkb-ct2);
 			counter-increment: arkb-ct2;
 		}
@@ -191,7 +191,7 @@ ol.is-style-ark-list-note {
 		ol {
 			counter-reset: arkb-ct3;
 
-			& > li::before {
+			> li::before {
 				content: counter(arkb-ct3);
 				counter-increment: arkb-ct3;
 			}

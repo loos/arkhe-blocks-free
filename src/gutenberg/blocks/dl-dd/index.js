@@ -6,7 +6,8 @@ import { registerBlockType } from '@wordpress/blocks';
 import {
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
@@ -15,6 +16,11 @@ import {
 import { iconColor } from '@blocks/config';
 import blockIcon from './_icon';
 import metadata from './block.json';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * metadata
@@ -34,7 +40,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName}__dd ark-keep-mt--s`,
 		});
-		const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
 			template: [['core/paragraph']],
 			templateLock: false,
 		});

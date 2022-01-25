@@ -9,7 +9,8 @@ import {
 	InnerBlocks,
 	InspectorControls,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { PanelBody, ButtonGroup, Button } from '@wordpress/components';
@@ -31,6 +32,11 @@ import { ArkheMarginControl } from '@components/ArkheMarginControl';
  * style
  */
 import './scss/index.scss';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * 設定
@@ -109,7 +115,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: blockClass,
 		});
-		const innerBlocksProps = useInnerBlocksProps(
+		const innerBlocksProps = compatibleUseInnerBlocksProps(
 			{
 				className: `${blockName}__body ark-keep-mt--s`,
 			},

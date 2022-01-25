@@ -8,7 +8,7 @@ import {
 	// getActiveFormat,
 	applyFormat,
 	removeFormat,
-	useAnchorRef,
+	// useAnchorRef,
 } from '@wordpress/rich-text';
 import { URLPopover, RichTextToolbarButton } from '@wordpress/block-editor';
 import { Button, TextControl, SelectControl } from '@wordpress/components';
@@ -44,12 +44,12 @@ const FormatPopover = (props) => {
 			value={value}
 			anchorRect={anchorRect}
 			onClose={onClose}
-			className='components-inline-color-popover arkb-popover--ls'
+			className='arkb-popover--ls'
 		>
 			<div className='arkb-format-controls--ls'>
 				<TextControl
 					autoComplete='off'
-					value={activeSpaceNum}
+					value={activeSpaceNum || ''}
 					type='number'
 					step={stepNum}
 					min={minNum}
@@ -58,7 +58,7 @@ const FormatPopover = (props) => {
 					}}
 				/>
 				<SelectControl
-					value={activeSpaceUnit}
+					value={activeSpaceUnit || ''}
 					options={['px', 'em'].map((unit) => {
 						return { label: unit, value: unit };
 					})}
@@ -115,7 +115,7 @@ registerFormatType(formatName, {
 
 			// NaNをチェックして返す
 			return {
-				activeSpaceNum: isNaN(spaceNum) ? 0 : spaceNum,
+				activeSpaceNum: isNaN(spaceNum) ? '' : spaceNum,
 				activeSpaceUnit: spaceUnit,
 			};
 		}, [value]);
@@ -127,7 +127,13 @@ registerFormatType(formatName, {
 
 		// フォーマット適用
 		const addFormat = useCallback(
-			(space, unit) => {
+			(space, unit = 'px') => {
+				const spaceNum = parseFloat(space);
+
+				if (isNaN(spaceNum)) {
+					return;
+				}
+
 				onChange(
 					applyFormat(value, {
 						type: formatName,

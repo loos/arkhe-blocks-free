@@ -25,3 +25,14 @@
 		background: var(--wp-admin-theme-color, #000);
 	}
 }
+
+
+.arkb-link-control {
+
+	.block-editor-link-control.-bottom {
+
+		.components-base-control + .components-base-control {
+			margin-top: 1em;
+		}
+	}
+}

@@ -40,16 +40,26 @@ function cb_general( $args ) {
 	'page_cb'   => __NAMESPACE__ . '\cb_core_settings',
 ] );
 function cb_core_settings( $args ) {
-	$settings = [
-		'use_custom_space'  => __( 'Enable the "Custom Space" feature', 'arkhe-blocks' ),
-		'use_fse_blocks'    => __( 'Enable the "Blocks for FSE"', 'arkhe-blocks' ),
-		'use_core_patterns' => __( 'Enable "Core Block Patterns"', 'arkhe-blocks' ),
-	];
-	foreach ( $settings as $key => $label ) {
+
+	if ( IS_ARKHE_THEME ) {
+		$settings = [
+			'use_fse_blocks'    => __( 'Enable the "Blocks for FSE"', 'arkhe-blocks' ),
+			'use_core_patterns' => __( 'Enable "Core Block Patterns"', 'arkhe-blocks' ),
+		];
+		foreach ( $settings as $key => $label ) {
+			\Arkhe_Blocks::output_checkbox([
+				'db'    => $args['db'],
+				'key'   => $key,
+				'label' => $label,
+			]);
+		}
+	} else {
+		// Arkheではデフォルトで有効だが、そうじゃないテーマでもカスタムスペースを利用できるようにする
 		\Arkhe_Blocks::output_checkbox([
 			'db'    => $args['db'],
-			'key'   => $key,
-			'label' => $label,
+			'key'   => 'use_custom_space',
+			'label' => __( 'Enable the "Custom Space" feature', 'arkhe-blocks' ),
+			'desc'  => '※ ' . __( 'If you are already using a Theme that supports this feature, checking it will not change anything.', 'arkhe-blocks' ),
 		]);
 	}
 }

@@ -7,7 +7,8 @@ import {
 	RichText,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
@@ -16,6 +17,11 @@ import {
 import metadata from './block.json';
 import blockIcon from './_icon';
 import { iconColor } from '@blocks/config';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * metadata
@@ -37,7 +43,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName}__item`,
 		});
-		const innerBlocksProps = useInnerBlocksProps(
+		const innerBlocksProps = compatibleUseInnerBlocksProps(
 			{
 				className: `${blockName}__a ark-keep-mt--s`,
 			},

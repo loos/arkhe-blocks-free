@@ -9,13 +9,16 @@ add_action( 'init', function() {
 } );
 
 add_action( 'after_setup_theme', function() {
-	if ( \Arkhe_Blocks::get_data( 'general', 'use_custom_space' ) ) {
-		add_theme_support( 'custom-spacing' );
-	}
+	// Arkhe 用
 	if ( \Arkhe_Blocks::get_data( 'general', 'use_fse_blocks' ) ) {
 		add_filter( 'arkhe_use_fse_blocks', '__return_true' );
 	}
 	if ( \Arkhe_Blocks::get_data( 'general', 'use_core_patterns' ) ) {
 		add_theme_support( 'core-block-patterns' );
+	}
+
+	// Arkhe以外用
+	if ( \Arkhe_Blocks::get_data( 'general', 'use_custom_space' ) ) {
+		add_theme_support( 'custom-spacing' );
 	}
 }, 20 );

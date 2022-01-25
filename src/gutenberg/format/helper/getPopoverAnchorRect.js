@@ -2,6 +2,7 @@ import { getRectangleFromRange } from '@wordpress/dom';
 
 export default function (isAddingFormat = false) {
 	// 選択中の部分
+	// eslint-disable-next-line @wordpress/no-global-get-selection
 	const selection = window.getSelection();
 	if (!selection.rangeCount) {
 		return;

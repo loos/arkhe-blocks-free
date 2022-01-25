@@ -10,7 +10,8 @@ import {
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 	__experimentalBlockAlignmentMatrixToolbar,
 	__experimentalBlockAlignmentMatrixControl,
 } from '@wordpress/block-editor';
@@ -42,6 +43,11 @@ import classnames from 'classnames';
  */
 import './scss/index.scss';
 
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
+
 /**
  * Register Block
  */
@@ -67,17 +73,8 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes, isSelected, clientId }) => {
-		const {
-			align,
-			media,
-			innerSize,
-			height,
-			svgTop,
-			svgBottom,
-			contentPosition,
-			filter,
-			tag,
-		} = attributes;
+		const { align, media, innerSize, height, svgTop, svgBottom, contentPosition, filter, tag } =
+			attributes;
 
 		const { updateBlockAttributes } = useDispatch('core/block-editor');
 		const getChildBlocks = useSelect((select) => select('core/block-editor').getBlocks, []);
@@ -116,7 +113,7 @@ registerBlockType(metadata.name, {
 			'data-inner': innerSize || null,
 		});
 
-		const innerBlocksProps = useInnerBlocksProps(
+		const innerBlocksProps = compatibleUseInnerBlocksProps(
 			{
 				className: `${blockName}__bodyInner ark-keep-mt`,
 			},

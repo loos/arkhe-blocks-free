@@ -62,7 +62,7 @@ const FormatPopover = (props) => {
 			value={value} // いる？
 			anchorRect={anchorRect}
 			onClose={onClose}
-			className='components-inline-color-popover arkb-popover--fz'
+			className='arkb-popover--fz'
 		>
 			<div className='arkb-format-controls--fz'>
 				<ButtonGroup>

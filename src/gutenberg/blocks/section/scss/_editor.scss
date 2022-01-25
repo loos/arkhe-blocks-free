@@ -50,7 +50,7 @@
 
 .ark-block-section__bodyInner {
 
-	& > .wp-block {
+	> .wp-block {
 		max-width: 100%;
 		// margin-right: 0;
 		// margin-left: 0;
@@ -93,32 +93,6 @@
 
 		svg {
 			transform: rotate(-180deg);
-		}
-	}
-}
-
-
-// kesu
-.arkb-tabPanel.-media {
-
-
-	// sectionブロックでタブ部分非表示にする場合
-	&.is-hide {
-
-		.components-tab-panel__tabs {
-			display: none;
-		}
-
-		.components-tab-panel__tab-content {
-			padding-top: 0;
-		}
-	}
-
-	&.has-no-pcimg {
-
-		.components-tab-panel__tabs-item.__sp {
-			opacity: .5;
-			pointer-events: none;
 		}
 	}
 }

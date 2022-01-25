@@ -77,12 +77,12 @@
 
 	&[data-opened="true"] {
 
-		& > .__closed {
+		> .__closed {
 			transform: scale(.5) rotate(180deg);
 			opacity: 0;
 		}
 
-		& > .__opened {
+		> .__opened {
 			transform: scale(.9) rotate(0);
 			opacity: 1;
 		}

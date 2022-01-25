@@ -107,7 +107,7 @@
 }
 
 
-// サイドバーのタブパネル
+// サイドバーの<TabPanel>
 .arkb-tabPanel {
 
 	.components-panel__body-title + & {
@@ -133,8 +133,35 @@
 		padding-top: 0;
 	}
 
-	.components-tab-panel__tab-content {
-		padding-top: 16px;
+	&.-device {
+
+		.components-tab-panel__tab-content {
+			padding-top: 16px;
+		}
+	}
+
+
+	&.-media {
+
+		&.has-no-pcimg {
+
+			.components-tab-panel__tabs-item.__sp {
+				opacity: .5;
+				pointer-events: none;
+			}
+		}
+
+		// sectionブロックでタブ部分非表示にする場合
+		&.is-hide {
+
+			.components-tab-panel__tabs {
+				display: none;
+			}
+
+			.components-tab-panel__tab-content {
+				padding-top: 0;
+			}
+		}
 	}
 }
 

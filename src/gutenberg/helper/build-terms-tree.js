@@ -1,5 +1,6 @@
 'use strict';
 
+// eslint-disable-next-line no-undef
 const { groupBy } = lodash;
 
 /**
@@ -8,7 +9,7 @@ const { groupBy } = lodash;
  * @copyright torounit
  * @see https://github.com/torounit/advanced-posts-blocks/blob/master/src/util/terms.js
  *
- * @param {Array} flatTerms  Array of terms in flat format.
+ * @param {Array} flatTerms Array of terms in flat format.
  * @return {Array} Array of terms in tree format.
  */
 export default function buildTermsTree(flatTerms) {

@@ -58,7 +58,7 @@ export const UnitNumber = (props) => {
 					onChange(val);
 					// onChange(`${parseFloat(val)}${unit}`);
 				}}
-				onUnitChange={(val) => {
+				onUnitChange={() => {
 					// onChange が先に走ってるので、何もする必要ない
 					// onChange(`${num}${val}`);
 				}}

@@ -8,7 +8,8 @@ import {
 	RichText,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import { PanelBody, BaseControl, ButtonGroup, Button, ToggleControl } from '@wordpress/components';
 
@@ -20,6 +21,11 @@ import deprecated from './deprecated';
 import blockIcon from './_icon';
 import { iconColor } from '@blocks/config';
 import { ArkheSVG } from '@components/ArkheSVG';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * 設定
@@ -55,7 +61,7 @@ registerBlockType(metadata.name, {
 			className: `${blockName}__item`,
 			'aria-expanded': 'true',
 		});
-		const innerBlocksProps = useInnerBlocksProps(
+		const innerBlocksProps = compatibleUseInnerBlocksProps(
 			{
 				className: `${blockName}__body ark-keep-mt--s`,
 			},
@@ -74,10 +80,9 @@ registerBlockType(metadata.name, {
 								{__('Box layout', 'arkhe-blocks')}
 							</BaseControl.VisualLabel>
 							<ButtonGroup className='arkb-btns--acc'>
-								{iconSets.map((iconSet) => {
+								{iconSets.map((iconSet, idx) => {
 									return (
 										<Button
-											isLarge
 											isPrimary={iconSet.opened === iconOpened}
 											onClick={() => {
 												setAttributes({
@@ -85,7 +90,7 @@ registerBlockType(metadata.name, {
 													iconClosed: iconSet.closed,
 												});
 											}}
-											key={`iconkey_${iconSet.set}`}
+											key={`iconkey_${idx}`}
 										>
 											<ArkheSVG icon={iconSet.opened} />
 											<span>/</span>
@@ -119,11 +124,11 @@ registerBlockType(metadata.name, {
 							data-opened='true'
 						>
 							<span className='__closed'>
-								<ArkheSVG icon={iconClosed} />
+								<ArkheSVG icon={iconClosed} size='16' />
 							</span>
 							<span className='__slash'>/</span>
 							<span className='__opened'>
-								<ArkheSVG icon={iconOpened} />
+								<ArkheSVG icon={iconOpened} size='16' />
 							</span>
 						</span>
 					</div>

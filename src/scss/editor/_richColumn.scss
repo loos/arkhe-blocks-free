@@ -3,14 +3,14 @@
 	margin-bottom: 0 !important;
 
 
-	& > .block-editor-block-list__layout {
+	> .block-editor-block-list__layout {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		margin-right: calc(-1 * var(--arkb-clmn-mrgn--x));
 		margin-left: calc(-1 * var(--arkb-clmn-mrgn--x));
 
-		& > .block-list-appender {
+		> .block-list-appender {
 			// margin-top: 0;
 			margin: 0 var(--arkb-clmn-mrgn--x) !important;
 		}
@@ -19,7 +19,7 @@
 	&:not(.is-selected):not(.has-child-selected) {
 		margin-bottom: calc(-1 * var(--arkb-clmn-mrgn--bttm)) !important;
 
-		& > .block-editor-block-list__layout > .block-list-appender {
+		> .block-editor-block-list__layout > .block-list-appender {
 			height: 0;
 			visibility: hidden;
 			opacity: 0;

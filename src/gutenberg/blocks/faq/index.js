@@ -7,7 +7,8 @@ import {
 	BlockControls,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
@@ -23,6 +24,11 @@ import { ArkheMarginControl } from '@components/ArkheMarginControl';
  * style
  */
 import './scss/index.scss';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * metadata
@@ -44,7 +50,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
-		const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/faq-item'],
 			template: [['arkhe-blocks/faq-item'], ['arkhe-blocks/faq-item']],
 			templateLock: false,

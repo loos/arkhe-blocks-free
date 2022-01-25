@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arkhe Blocks\n"
-"POT-Creation-Date: 2021-12-19 17:04+0900\n"
-"PO-Revision-Date: 2021-12-19 17:05+0900\n"
+"POT-Creation-Date: 2022-01-24 22:13+0900\n"
+"PO-Revision-Date: 2022-01-24 22:14+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -26,43 +26,43 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: *_icon*\n"
 "X-Poedit-SearchPathExcluded-5: *icon.js\n"
 
-#: src/gutenberg/blocks/accordion-item/index.js:43
+#: src/gutenberg/blocks/accordion-item/index.js:49
 msgid "Accordion item"
 msgstr "アコーディオン項目"
 
-#: src/gutenberg/blocks/accordion-item/index.js:71
+#: src/gutenberg/blocks/accordion-item/index.js:77
 #: src/gutenberg/blocks/blog-card/index.js:143
-#: src/gutenberg/blocks/box-links/index.js:91
-#: src/gutenberg/blocks/column/index.js:157
-#: src/gutenberg/blocks/columns/index.js:121
+#: src/gutenberg/blocks/box-links/index.js:97
+#: src/gutenberg/blocks/column/index.js:156
+#: src/gutenberg/blocks/columns/index.js:127
 #: src/gutenberg/blocks/section-heading/index.js:191
 msgid "Settings"
 msgstr "設定"
 
-#: src/gutenberg/blocks/accordion-item/index.js:74
+#: src/gutenberg/blocks/accordion-item/index.js:80
 msgid "Box layout"
 msgstr "ボックスレイアウト"
 
-#: src/gutenberg/blocks/accordion-item/index.js:99
+#: src/gutenberg/blocks/accordion-item/index.js:104
 msgid "Make it open by default"
 msgstr "デフォルトで開いた状態にする"
 
-#: src/gutenberg/blocks/accordion-item/index.js:112
-#: src/gutenberg/blocks/box-link/edit.js:279
-#: src/gutenberg/blocks/box-link/edit.js:289
+#: src/gutenberg/blocks/accordion-item/index.js:117
+#: src/gutenberg/blocks/box-link/edit.js:285
+#: src/gutenberg/blocks/box-link/edit.js:295
 #: src/gutenberg/blocks/dl-dt/index.js:39
-#: src/gutenberg/blocks/faq-item/index.js:55
-#: src/gutenberg/blocks/notice/index.js:159
-#: src/gutenberg/blocks/step-item/index.js:120
-#: src/gutenberg/blocks/timeline-item/index.js:115
+#: src/gutenberg/blocks/faq-item/index.js:61
+#: src/gutenberg/blocks/notice/index.js:165
+#: src/gutenberg/blocks/step-item/index.js:126
+#: src/gutenberg/blocks/timeline-item/index.js:121
 msgid "Enter text"
 msgstr "テキストを入力"
 
-#: src/gutenberg/blocks/accordion/index.js:33
+#: src/gutenberg/blocks/accordion/index.js:39
 msgid "Accordion"
 msgstr "アコーディオン"
 
-#: src/gutenberg/blocks/accordion/index.js:34
+#: src/gutenberg/blocks/accordion/index.js:40
 msgid "Create content that can be expanded with a click."
 msgstr "クリックで展開できるコンテンツを作成します。"
 
@@ -115,17 +115,15 @@ msgid "Caption at the bottom right of the card"
 msgstr "カード右下のキャプション"
 
 #: src/gutenberg/blocks/blog-card/index.js:188
-#: src/gutenberg/blocks/box-link/_sidebar.js:314
 msgid "Link settings"
 msgstr "リンク設定"
 
 #: src/gutenberg/blocks/blog-card/index.js:191
-#: src/gutenberg/blocks/box-link/_sidebar.js:316
 msgid "Open in new tab"
 msgstr ""
 
 #: src/gutenberg/blocks/blog-card/index.js:202
-#: src/gutenberg/blocks/box-link/_sidebar.js:327
+#: src/gutenberg/components/ArkheLinkControl.js:89
 msgid "Link rel"
 msgstr ""
 
@@ -133,119 +131,111 @@ msgstr ""
 msgid "Specify the page."
 msgstr "ページを指定してください。"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:32
+#: src/gutenberg/blocks/box-link/_sidebar.js:30
 msgid "Vertical"
 msgstr "縦並び"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:36
+#: src/gutenberg/blocks/box-link/_sidebar.js:34
 msgid "Horizontal"
 msgstr "横並び"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:62
+#: src/gutenberg/blocks/box-link/_sidebar.js:60
 #: src/gutenberg/blocks/section/_sidebar.js:46
 #: src/gutenberg/blocks/slider-item/_sidebar.js:28
 msgid "White"
 msgstr "白"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:66
+#: src/gutenberg/blocks/box-link/_sidebar.js:64
 #: src/gutenberg/blocks/section/_sidebar.js:50
 #: src/gutenberg/blocks/slider-item/_sidebar.js:32
 msgid "Black"
 msgstr "黒"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:111
+#: src/gutenberg/blocks/box-link/_sidebar.js:107
 msgid "By default, it has the same ratio as thumbnails in the archive list."
 msgstr "デフォルトではアーカイブリストのサムネイルと同じ比率になります。"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:120
+#: src/gutenberg/blocks/box-link/_sidebar.js:116
 msgid "Fix image ratio"
 msgstr "画像比率を固定する"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:133
+#: src/gutenberg/blocks/box-link/_sidebar.js:129
 msgid "Show the entire image"
 msgstr "画像全体を表示する"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:141
+#: src/gutenberg/blocks/box-link/_sidebar.js:137
 msgid "Image ratio"
 msgstr "画像比率"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:165
+#: src/gutenberg/blocks/box-link/_sidebar.js:161
 msgid "Box Settings"
 msgstr "ボックス設定"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:168
+#: src/gutenberg/blocks/box-link/_sidebar.js:164
 msgid "Layout"
 msgstr "レイアウト"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:195
+#: src/gutenberg/blocks/box-link/_sidebar.js:191
 #: src/gutenberg/blocks/page-list/index.js:228
 #: src/gutenberg/blocks/post-list/panel/_display.js:209
 #: src/gutenberg/blocks/rss/_sidebar.js:180
 msgid "HTML tag for title"
 msgstr "タイトルのHTMLタグ"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:217
+#: src/gutenberg/blocks/box-link/_sidebar.js:213
 #: src/gutenberg/blocks/section/_sidebar.js:276
 #: src/gutenberg/blocks/slider-item/_sidebar.js:199
 msgid "Overlay opacity"
 msgstr "オーバーレイの不透明度"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:227
+#: src/gutenberg/blocks/box-link/_sidebar.js:223
 msgid "\"READ MORE\" text"
 msgstr "「READ MORE」テキスト"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:236
+#: src/gutenberg/blocks/box-link/_sidebar.js:232
 msgid "Show arrow icon"
 msgstr "矢印アイコンを表示する"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:245
+#: src/gutenberg/blocks/box-link/_sidebar.js:241
 msgid "Image settings"
 msgstr "画像設定"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:251
-#: src/gutenberg/blocks/notice/index.js:149
-#: src/gutenberg/blocks/timeline-item/index.js:97
+#: src/gutenberg/blocks/box-link/_sidebar.js:247
+#: src/gutenberg/blocks/notice/index.js:155
+#: src/gutenberg/blocks/timeline-item/index.js:103
 msgid "Icon settings"
 msgstr "アイコン設定"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:253
+#: src/gutenberg/blocks/box-link/_sidebar.js:249
 msgid "Use icon"
 msgstr "アイコンを使用する"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:265
+#: src/gutenberg/blocks/box-link/_sidebar.js:261
 msgid "Write the icon in HTML"
 msgstr "HTMLでアイコンを書く"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:277
+#: src/gutenberg/blocks/box-link/_sidebar.js:273
 msgid "HTML for icons"
 msgstr "アイコン用HTML"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:290
+#: src/gutenberg/blocks/box-link/_sidebar.js:286
 msgid "Icon color"
 msgstr "アイコンカラー"
 
-#: src/gutenberg/blocks/box-link/_sidebar.js:301
+#: src/gutenberg/blocks/box-link/_sidebar.js:297
 msgid "Icon size"
 msgstr "アイコンサイズ"
 
-#: src/gutenberg/blocks/box-link/_toolbar.js:61
+#: src/gutenberg/blocks/box-link/_toolbar.js:60
 msgid "Center the text"
 msgstr "テキストセンター寄せ"
 
-#: src/gutenberg/blocks/box-link/_toolbar.js:75
-msgid "Link"
-msgstr "リンク"
-
-#: src/gutenberg/blocks/box-link/_toolbar.js:84
-msgid "Delete link"
-msgstr "リンクを削除"
-
-#: src/gutenberg/blocks/box-link/_toolbar.js:163
+#: src/gutenberg/blocks/box-link/_toolbar.js:89
 msgid "Delete image"
 msgstr "画像を削除"
 
+#: src/gutenberg/blocks/box-link/components/Figure.js:40
 #: src/gutenberg/blocks/box-link/components/Figure.js:41
-#: src/gutenberg/blocks/box-link/components/Figure.js:42
 msgid "Edit image"
 msgstr "画像を編集"
 
@@ -254,9 +244,9 @@ msgid "Box link"
 msgstr "ボックス"
 
 #: src/gutenberg/blocks/box-link/index.js:30
-#: src/gutenberg/blocks/columns/index.js:57
-#: src/gutenberg/blocks/notice/index.js:73
-#: src/gutenberg/blocks/step/index.js:47 src/gutenberg/blocks/tab/index.js:79
+#: src/gutenberg/blocks/columns/index.js:63
+#: src/gutenberg/blocks/notice/index.js:79
+#: src/gutenberg/blocks/step/index.js:54 src/gutenberg/blocks/tab/index.js:85
 msgid "Default"
 msgstr "デフォルト"
 
@@ -264,70 +254,70 @@ msgstr "デフォルト"
 msgid "Banner"
 msgstr "バナー"
 
-#: src/gutenberg/blocks/box-links/index.js:50
+#: src/gutenberg/blocks/box-links/index.js:56
 msgid "Box links"
 msgstr "ボックスリンク"
 
-#: src/gutenberg/blocks/box-links/index.js:94
-#: src/gutenberg/blocks/columns/index.js:124
+#: src/gutenberg/blocks/box-links/index.js:100
+#: src/gutenberg/blocks/columns/index.js:130
 msgid "Number of columns"
 msgstr "列数"
 
-#: src/gutenberg/blocks/column/index.js:52
+#: src/gutenberg/blocks/column/index.js:58
 #: src/gutenberg/components/PaddingControl.js:18
 msgid "Unlink Sides"
 msgstr "Unlink Sides"
 
-#: src/gutenberg/blocks/column/index.js:52
+#: src/gutenberg/blocks/column/index.js:58
 #: src/gutenberg/components/PaddingControl.js:18
 msgid "Link Sides"
 msgstr "Link Sides"
 
-#: src/gutenberg/blocks/column/index.js:76
+#: src/gutenberg/blocks/column/index.js:82
 msgid "Column item"
 msgstr "カラム項目"
 
-#: src/gutenberg/blocks/column/index.js:162
+#: src/gutenberg/blocks/column/index.js:161
 msgid "Column width"
 msgstr "カラム横幅"
 
-#: src/gutenberg/blocks/column/index.js:252
+#: src/gutenberg/blocks/column/index.js:251
 msgid "Forcibly breaks the character string according to the display range"
 msgstr "表示範囲に合わせて強制的に文字列を改行する"
 
-#: src/gutenberg/blocks/column/index.js:255
+#: src/gutenberg/blocks/column/index.js:254
 msgid "\"word-break: break-all\" is applied."
 msgstr "“word-break: break-all” が適用されます。"
 
-#: src/gutenberg/blocks/column/index.js:262
+#: src/gutenberg/blocks/column/index.js:261
 #: src/gutenberg/blocks/section/_sidebar.js:239
 #: src/gutenberg/blocks/slider-item/_sidebar.js:222
 msgid "Padding settings"
 msgstr "余白設定"
 
-#: src/gutenberg/blocks/column/index.js:264
+#: src/gutenberg/blocks/column/index.js:263
 msgid "Use custome padding"
 msgstr "カスタムパディングを使用する"
 
-#: src/gutenberg/blocks/columns/index.js:51
+#: src/gutenberg/blocks/columns/index.js:57
 msgid "Rich columns"
 msgstr "リッチカラム"
 
-#: src/gutenberg/blocks/columns/index.js:58
+#: src/gutenberg/blocks/columns/index.js:64
 #: src/gutenberg/extension/block_styles.js:12
 msgctxt "style"
 msgid "Shadow"
 msgstr "影付き"
 
-#: src/gutenberg/blocks/columns/index.js:174
+#: src/gutenberg/blocks/columns/index.js:180
 msgid "Margins between columns"
 msgstr "カラム間の余白"
 
-#: src/gutenberg/blocks/dl-dd/index.js:28
+#: src/gutenberg/blocks/dl-dd/index.js:34
 msgid "Description"
 msgstr "説明"
 
-#: src/gutenberg/blocks/dl-div/index.js:33
+#: src/gutenberg/blocks/dl-div/index.js:39
 msgid "Side-by-side items"
 msgstr "横並び項目"
 
@@ -335,40 +325,40 @@ msgstr "横並び項目"
 msgid "Term"
 msgstr "項目"
 
-#: src/gutenberg/blocks/dl/index.js:36
+#: src/gutenberg/blocks/dl/index.js:42
 msgid "Description list"
 msgstr "説明リスト"
 
-#: src/gutenberg/blocks/dl/index.js:37
+#: src/gutenberg/blocks/dl/index.js:43
 msgid "Create a description list using the \"dl\" tag."
 msgstr "“dl”タグを使った説明リストを作成します。"
 
-#: src/gutenberg/blocks/faq-item/index.js:29
+#: src/gutenberg/blocks/faq-item/index.js:35
 msgid "Q&A item"
 msgstr "Q&A項目"
 
-#: src/gutenberg/blocks/faq/index.js:37
+#: src/gutenberg/blocks/faq/index.js:43
 msgid "Create Q & A format content."
 msgstr "Q&A形式のコンテンツを作成します。"
 
-#: src/gutenberg/blocks/notice/index.js:66
+#: src/gutenberg/blocks/notice/index.js:72
 msgid "Notice"
 msgstr "通知"
 
-#: src/gutenberg/blocks/notice/index.js:67
+#: src/gutenberg/blocks/notice/index.js:73
 #: src/gutenberg/blocks/section-heading/index.js:73
 msgid "Create content that is prominently emphasized."
 msgstr "目立つように強調されたコンテンツを作成します。"
 
-#: src/gutenberg/blocks/notice/index.js:74
+#: src/gutenberg/blocks/notice/index.js:80
 msgid "Stronger"
 msgstr "強調"
 
-#: src/gutenberg/blocks/notice/index.js:75
+#: src/gutenberg/blocks/notice/index.js:81
 msgid "Simple"
 msgstr "シンプル"
 
-#: src/gutenberg/blocks/notice/index.js:128
+#: src/gutenberg/blocks/notice/index.js:134
 msgid "Notification type"
 msgstr "通知タイプ"
 
@@ -713,8 +703,8 @@ msgstr "線を表示"
 #: src/gutenberg/blocks/section-heading/index.js:208
 #: src/gutenberg/blocks/section/_sidebar.js:259
 #: src/gutenberg/blocks/slider-item/_sidebar.js:182
-#: src/gutenberg/blocks/step-item/index.js:99
-#: src/gutenberg/blocks/timeline-item/index.js:84
+#: src/gutenberg/blocks/step-item/index.js:105
+#: src/gutenberg/blocks/timeline-item/index.js:90
 msgid "Color settings"
 msgstr "カラー設定"
 
@@ -817,9 +807,9 @@ msgstr "高さレベル"
 
 #: src/gutenberg/blocks/section/_sidebar.js:334
 #: src/gutenberg/blocks/section/_sidebar.js:376
-#: src/gutenberg/blocks/slider/_sidebar.js:367
-#: src/gutenberg/blocks/step-item/index.js:104
-#: src/gutenberg/blocks/timeline-item/index.js:89
+#: src/gutenberg/blocks/slider/_sidebar.js:376
+#: src/gutenberg/blocks/step-item/index.js:110
+#: src/gutenberg/blocks/timeline-item/index.js:95
 msgid "Color"
 msgstr "色"
 
@@ -848,21 +838,21 @@ msgstr "メディアを選択"
 msgid "Delete"
 msgstr "削除"
 
-#: src/gutenberg/blocks/section/index.js:50
+#: src/gutenberg/blocks/section/index.js:56
 msgid "Section"
 msgstr "セクション"
 
-#: src/gutenberg/blocks/section/index.js:51
+#: src/gutenberg/blocks/section/index.js:57
 msgid "Create a content area to use as a section."
 msgstr "セクションとして使うコンテンツエリアを作成します。"
 
-#: src/gutenberg/blocks/section/index.js:174
-#: src/gutenberg/blocks/slider/edit.js:251
+#: src/gutenberg/blocks/section/index.js:171
+#: src/gutenberg/blocks/slider/edit.js:260
 msgid "To full-width content"
 msgstr "コンテンツを全幅にする"
 
-#: src/gutenberg/blocks/section/index.js:185
-#: src/gutenberg/blocks/slider-item/edit.js:140
+#: src/gutenberg/blocks/section/index.js:182
+#: src/gutenberg/blocks/slider-item/edit.js:147
 msgid "Change content position"
 msgstr "Change content position"
 
@@ -870,20 +860,24 @@ msgstr "Change content position"
 msgid "Media setting"
 msgstr "メディア設定"
 
-#: src/gutenberg/blocks/slider-item/edit.js:72
+#: src/gutenberg/blocks/slider-item/edit.js:78
 msgid "Media"
 msgstr "メディア"
 
-#: src/gutenberg/blocks/slider-item/edit.js:74
+#: src/gutenberg/blocks/slider-item/edit.js:80
 msgid "Upload an image or video file, or pick one from your media library."
 msgstr "."
 
-#: src/gutenberg/blocks/slider-item/index.js:46
+#: src/gutenberg/blocks/slider-item/edit.js:168
+msgid "1枚目のコンテンツが表示されます"
+msgstr ""
+
+#: src/gutenberg/blocks/slider-item/index.js:47
 msgid "Slider content"
 msgstr "スライダーコンテンツ"
 
-#: src/gutenberg/blocks/slider-item/index.js:85
-#: src/gutenberg/blocks/slider-item/index.js:91
+#: src/gutenberg/blocks/slider-item/index.js:95
+#: src/gutenberg/blocks/slider-item/index.js:101
 msgid "Delete this slide"
 msgstr "このスライドを削除"
 
@@ -942,28 +936,24 @@ msgstr "自動再生を有効化する"
 msgid "Enable loop"
 msgstr "ループを有効化する"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:190
-msgid "Show arrow navigation"
-msgstr "矢印ナビゲーションを表示する"
-
-#: src/gutenberg/blocks/slider/_sidebar.js:199
+#: src/gutenberg/blocks/slider/_sidebar.js:191
 msgid "Center the slide"
 msgstr "スライドをセンター寄せにする"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:207
+#: src/gutenberg/blocks/slider/_sidebar.js:199
 msgid "Slide transition time"
 msgstr "スライド遷移の時間"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:219
+#: src/gutenberg/blocks/slider/_sidebar.js:211
 msgid "Delay time between transitions"
 msgstr "次の切り替えまでの遅延時間"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:230
+#: src/gutenberg/blocks/slider/_sidebar.js:222
 msgctxt "slider"
 msgid "Transition effect"
 msgstr "トランジション効果"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:233
+#: src/gutenberg/blocks/slider/_sidebar.js:225
 msgid ""
 "When you select Fade/Flip/Cube, the number of slides displayed will be set "
 "to 1."
@@ -971,17 +961,21 @@ msgstr ""
 "フェード/フリップ/キューブのいずれかを選択すると、スライドの表示枚数は 1 にな"
 "ります。"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:268
+#: src/gutenberg/blocks/slider/_sidebar.js:260
 msgid "Media Slider settings"
 msgstr "メディアスライダー設定"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:270
+#: src/gutenberg/blocks/slider/_sidebar.js:262
 msgid "Show thumbnail slider"
 msgstr "サムネイルスライダーを表示する"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:279
+#: src/gutenberg/blocks/slider/_sidebar.js:271
 msgid "Rich Slider settings"
 msgstr "リッチスライダー設定"
+
+#: src/gutenberg/blocks/slider/_sidebar.js:274
+msgid "Fix the content of the first slide"
+msgstr "1枚目のコンテンツを固定する"
 
 #: src/gutenberg/blocks/slider/_sidebar.js:282
 msgid "Slider direction"
@@ -1004,49 +998,57 @@ msgid "Vertical"
 msgstr "垂直"
 
 #: src/gutenberg/blocks/slider/_sidebar.js:309
-msgid "Pagination"
-msgstr "ページネーション"
+msgid "Navigation"
+msgstr "ナビゲーション"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:314
+#: src/gutenberg/blocks/slider/_sidebar.js:311
+msgid "Show arrow button"
+msgstr "矢印ボタンを表示する"
+
+#: src/gutenberg/blocks/slider/_sidebar.js:319
+msgid "Pagination type"
+msgstr "ページネーションのタイプ"
+
+#: src/gutenberg/blocks/slider/_sidebar.js:323
 msgctxt "slider"
 msgid "Off"
 msgstr "オフ"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:318
+#: src/gutenberg/blocks/slider/_sidebar.js:327
 msgctxt "slider"
 msgid "Bullets"
 msgstr "ドット"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:322
+#: src/gutenberg/blocks/slider/_sidebar.js:331
 msgctxt "slider"
 msgid "Progressbar"
 msgstr "プログレスバー"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:326
+#: src/gutenberg/blocks/slider/_sidebar.js:335
 msgctxt "slider"
 msgid "Fraction"
 msgstr "分数"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:330
+#: src/gutenberg/blocks/slider/_sidebar.js:339
 msgctxt "slider"
 msgid "Scrollbar"
 msgstr "スクロールバー"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:345
+#: src/gutenberg/blocks/slider/_sidebar.js:354
 msgctxt "slider"
 msgid "Clickable"
 msgstr "クリック可能にする"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:353
+#: src/gutenberg/blocks/slider/_sidebar.js:362
 msgctxt "slider"
 msgid "DynamicBullets"
 msgstr "ドットに強弱をつける"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:362
+#: src/gutenberg/blocks/slider/_sidebar.js:371
 msgid "Navigation Color"
-msgstr "ナビゲーションの色"
+msgstr "ナビゲーションカラー"
 
-#: src/gutenberg/blocks/slider/_sidebar.js:376
+#: src/gutenberg/blocks/slider/_sidebar.js:385
 msgid "The color of the arrow buttons and pagination will change."
 msgstr "矢印ボタンやページネーションの色が変わります。"
 
@@ -1066,7 +1068,7 @@ msgstr "リッチスライダー"
 msgid "Slider that allows you to place free content"
 msgstr "自由なコンテンツを配置できるスライダー"
 
-#: src/gutenberg/blocks/slider/edit.js:312
+#: src/gutenberg/blocks/slider/edit.js:321
 msgid "Add a slide"
 msgstr "スライドを追加する"
 
@@ -1078,56 +1080,56 @@ msgstr "スライダー"
 msgid "Create slider content."
 msgstr "スライダーのコンテンツを作成します。"
 
-#: src/gutenberg/blocks/step-item/index.js:32
+#: src/gutenberg/blocks/step-item/index.js:38
 msgid "Step item"
 msgstr "ステップ項目"
 
-#: src/gutenberg/blocks/step-item/index.js:68
+#: src/gutenberg/blocks/step-item/index.js:74
 msgid "Text settings"
 msgstr "テキスト設定"
 
-#: src/gutenberg/blocks/step-item/index.js:71
+#: src/gutenberg/blocks/step-item/index.js:77
 msgid "Hide the number"
 msgstr "番号を非表示にする"
 
-#: src/gutenberg/blocks/step-item/index.js:77
+#: src/gutenberg/blocks/step-item/index.js:83
 msgid "Number part text"
 msgstr "番号部分のテキスト"
 
-#: src/gutenberg/blocks/step-item/index.js:85
+#: src/gutenberg/blocks/step-item/index.js:91
 msgid "Hide the text"
 msgstr "テキストを非表示にする"
 
-#: src/gutenberg/blocks/step-item/index.js:91
-#: src/gutenberg/blocks/step/index.js:85
+#: src/gutenberg/blocks/step-item/index.js:97
+#: src/gutenberg/blocks/step/index.js:96
 msgid "Text of \"STEP\" part"
 msgstr "「STEP」部分のテキスト"
 
-#: src/gutenberg/blocks/step/index.js:39
+#: src/gutenberg/blocks/step/index.js:46
 msgid "Step"
 msgstr "ステップ"
 
-#: src/gutenberg/blocks/step/index.js:40
+#: src/gutenberg/blocks/step/index.js:47
 msgid "Create step-by-step content."
 msgstr "ステップ形式のコンテンツを作成します。"
 
-#: src/gutenberg/blocks/step/index.js:48
+#: src/gutenberg/blocks/step/index.js:55
 msgid "Big"
 msgstr "大"
 
-#: src/gutenberg/blocks/step/index.js:49
+#: src/gutenberg/blocks/step/index.js:56
 msgid "Card"
 msgstr "カード"
 
-#: src/gutenberg/blocks/step/index.js:83
+#: src/gutenberg/blocks/step/index.js:94
 msgid "Step settings"
 msgstr "ステップ設定"
 
-#: src/gutenberg/blocks/step/index.js:100
+#: src/gutenberg/blocks/step/index.js:111
 msgid "Start number"
 msgstr "スタート番号"
 
-#: src/gutenberg/blocks/tab-body/index.js:23
+#: src/gutenberg/blocks/tab-body/index.js:29
 msgid "Tab content"
 msgstr "タブコンテンツ"
 
@@ -1170,8 +1172,8 @@ msgstr "スクロール可能にする"
 
 #: src/gutenberg/blocks/tab/components/TabNavList.js:51
 #: src/gutenberg/blocks/tab/deprecated.js:60
-#: src/gutenberg/blocks/tab/index.js:69 src/gutenberg/blocks/tab/index.js:92
-#: src/gutenberg/blocks/tab/index.js:232
+#: src/gutenberg/blocks/tab/index.js:75 src/gutenberg/blocks/tab/index.js:98
+#: src/gutenberg/blocks/tab/index.js:233
 msgid "Tab"
 msgstr "タブ"
 
@@ -1191,32 +1193,32 @@ msgstr "タブを後ろへ移動する"
 msgid "Add tab"
 msgstr "タブを追加"
 
-#: src/gutenberg/blocks/tab/index.js:70
+#: src/gutenberg/blocks/tab/index.js:76
 msgid "Create tab content."
 msgstr "タブコンテンツを作成します。"
 
-#: src/gutenberg/blocks/tab/index.js:84
+#: src/gutenberg/blocks/tab/index.js:90
 msgctxt "style"
 msgid "Box"
 msgstr "ボックス"
 
-#: src/gutenberg/blocks/timeline-item/index.js:32
+#: src/gutenberg/blocks/timeline-item/index.js:38
 msgid "Timeline item"
 msgstr "タイムライン項目"
 
-#: src/gutenberg/blocks/timeline-item/index.js:75
+#: src/gutenberg/blocks/timeline-item/index.js:81
 msgid "Shape settings"
 msgstr "シェイプ設定"
 
-#: src/gutenberg/blocks/timeline-item/index.js:78
+#: src/gutenberg/blocks/timeline-item/index.js:84
 msgid "Fill the shape"
 msgstr "シェイプを塗りつぶす"
 
-#: src/gutenberg/blocks/timeline/index.js:34
+#: src/gutenberg/blocks/timeline/index.js:40
 msgid "Timeline"
 msgstr "タイムライン"
 
-#: src/gutenberg/blocks/timeline/index.js:35
+#: src/gutenberg/blocks/timeline/index.js:41
 msgid "Create timeline format content."
 msgstr "タイムライン形式のコンテンツを作成します。"
 
@@ -1228,11 +1230,19 @@ msgstr "<a>Font Awesome のアイコン</a>も利用可能です。(svgで出力
 msgid "Icon class"
 msgstr "アイコンクラス"
 
+#: src/gutenberg/components/ArkheLinkControl.js:40
+msgid "Link"
+msgstr "リンク"
+
+#: src/gutenberg/components/ArkheLinkControl.js:48
+msgid "Delete link"
+msgstr "リンクを削除"
+
 #: src/gutenberg/components/ArkheMarginControl.js:127
 msgid "Margins on the block"
 msgstr "ブロック上の余白"
 
-#: src/gutenberg/components/ImageSizeSelect.js:70
+#: src/gutenberg/components/ImageSizeSelect.js:71
 msgid "Image size"
 msgstr ""
 
@@ -1388,17 +1398,25 @@ msgstr "ヘッダーツールバーに設置しているページへのリンク
 msgid "Core Functions"
 msgstr "コア機能"
 
-#: inc/admin_menu/tab/general.php:44
-msgid "Enable the \"Custom Space\" feature"
-msgstr "「カスタムスペース」機能を有効化する"
-
-#: inc/admin_menu/tab/general.php:45
+#: inc/admin_menu/tab/general.php:46
 msgid "Enable the \"Blocks for FSE\""
 msgstr "「FSE用のブロック」を有効化する"
 
-#: inc/admin_menu/tab/general.php:46
+#: inc/admin_menu/tab/general.php:47
 msgid "Enable \"Core Block Patterns\""
 msgstr "「コアのブロックパターン」を有効化する"
+
+#: inc/admin_menu/tab/general.php:61
+msgid "Enable the \"Custom Space\" feature"
+msgstr "「カスタムスペース」機能を有効化する"
+
+#: inc/admin_menu/tab/general.php:62
+msgid ""
+"If you are already using a Theme that supports this feature, checking it "
+"will not change anything."
+msgstr ""
+"すでにこの機能をサポートしているテーマを使用している場合、チェックしても何も"
+"変わりません。"
 
 #: inc/admin_menu/tab/shortcode.php:12 inc/admin_menu/tab/shortcode.php:25
 msgid "Custom shortcode"
@@ -1463,6 +1481,9 @@ msgstr "LOOS,Inc."
 #. Author URI of the plugin/theme
 msgid "https://loos.co.jp/"
 msgstr "https://loos.co.jp/"
+
+#~ msgid "Show arrow navigation"
+#~ msgstr "矢印ナビゲーションを表示する"
 
 #~ msgid "RSS feed URL"
 #~ msgstr "RSSフィードのURL"

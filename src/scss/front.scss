@@ -10,14 +10,14 @@
 // 余白をキープするエリア。
 .ark-keep-mt {
 
-	& > * {
+	> * {
 		margin-top: var(--ark-mt, 2rem);
 	}
 }
 
 .ark-keep-mt--s {
 
-	& > * {
+	> * {
 		margin-top: var(--ark-mt--s, 1rem);
 		margin-bottom: 0;
 	}
@@ -27,7 +27,7 @@
 .ark-keep-mt,
 .ark-keep-mt--s {
 
-	& > :first-child {
+	> :first-child {
 		margin-top: 0;
 	}
 }

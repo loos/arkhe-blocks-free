@@ -15,7 +15,7 @@ const setClass = (nowClass, targetClass, classGroup, commonClass = '') => {
 	if (classGroup) {
 		// classnames に一括で false で受け渡して、同グループのクラスをすべて削除する
 		const classInit = {};
-		classGroup.map((classname, idx) => {
+		classGroup.map((classname) => {
 			classInit[classname] = false;
 		});
 		if (commonClass) {

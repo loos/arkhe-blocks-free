@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * フロントで読み込むファイル
  */
-add_action( 'wp_enqueue_scripts', '\Arkhe_Blocks\hook_wp_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\hook_wp_enqueue_scripts' );
 function hook_wp_enqueue_scripts() {
 
 	$deps = IS_ARKHE_THEME ? [ 'arkhe-main-style' ] : [];
@@ -25,7 +25,7 @@ function hook_wp_enqueue_scripts() {
 /**
  * フロントで読み込むファイル (at footer)
  */
-add_action( 'wp_footer', '\Arkhe_Blocks\hook_enqueue_footer', 1 );
+add_action( 'wp_footer', __NAMESPACE__ . '\hook_enqueue_footer', 1 );
 function hook_enqueue_footer() {
 
 	if ( \Arkhe_Blocks::is_use( 'linkbox' ) ) {
@@ -56,7 +56,7 @@ function hook_enqueue_footer() {
 /**
  * Gutenberg用ファイル
  */
-add_action( 'enqueue_block_editor_assets', '\Arkhe_Blocks\hook_enqueue_block_editor_assets', 20 );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\hook_enqueue_block_editor_assets', 20 );
 function hook_enqueue_block_editor_assets( $hook_suffix ) {
 
 	$dist_url = ARKHE_BLOCKS_URL . 'dist/';
@@ -100,7 +100,7 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 /**
  * 管理画面で読み込むファイル
  */
-add_action( 'admin_enqueue_scripts', '\Arkhe_Blocks\hook_admin_enqueue_scripts', 21 );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\hook_admin_enqueue_scripts', 21 );
 function hook_admin_enqueue_scripts( $hook_suffix ) {
 
 	$is_arkb_page = strpos( $hook_suffix, \Arkhe_Blocks::MENU_SLUG ) !== false;
@@ -151,7 +151,7 @@ function hook_admin_enqueue_scripts( $hook_suffix ) {
 /**
  * adminのheadに追加する処理
  */
-add_action( 'admin_head', '\Arkhe_Blocks\hook_admin_head', 20 );
+add_action( 'admin_head', __NAMESPACE__ . '\hook_admin_head', 20 );
 function hook_admin_head() {
 
 	$output_code = get_admin_head_code();
@@ -204,4 +204,21 @@ function get_admin_head_code() {
 	$output_code .= '<script>document.documentElement.setAttribute("data-sidebar", "' . $show_sidebar . '");</script>' . PHP_EOL;
 
 	return $output_code;
+}
+
+
+/**
+ * adminのheadに追加する処理
+ */
+add_action( 'wp_footer', __NAMESPACE__ . '\print_footer_scripts', 20 );
+function print_footer_scripts() {
+	$output_code = '<noscript><style>' .
+		'[data-arkb-linkbox]{cursor:auto}' .
+		'[data-arkb-link][aria-hidden="true"]{visibility:visible;color:transparent;z-index:0;width:100%;height:100%;pointer-events:auto}' .
+		'a.arkb-boxLink__title{text-decoration:underline}' .
+	'</style></noscript>' . PHP_EOL;
+
+	echo PHP_EOL . '<!-- Arkhe Blocks -->' . PHP_EOL;
+	echo $output_code; // phpcs:ignore
+	echo '<!-- / Arkhe Blocks -->' . PHP_EOL;
 }

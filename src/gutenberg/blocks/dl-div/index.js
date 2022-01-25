@@ -6,7 +6,8 @@ import { registerBlockType } from '@wordpress/blocks';
 import {
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
@@ -20,6 +21,11 @@ import metadata from './block.json';
  * @Others dependencies
  */
 // import classnames from 'classnames';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * metadata
@@ -39,7 +45,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName}__div`,
 		});
-		const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/dl-dt', 'arkhe-blocks/dl-dd'],
 			template: [['arkhe-blocks/dl-dt'], ['arkhe-blocks/dl-dd']],
 			templateLock: 'all',

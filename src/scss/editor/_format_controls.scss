@@ -8,6 +8,10 @@
 		min-width: 280px;
 		max-width: 100%;
 		height: auto;
+
+		> div {
+			padding: 20px 18px;
+		}
 	}
 
 }
@@ -17,11 +21,11 @@
 	display: flex;
 	align-items: center;
 
-	& > div {
+	> div {
 		flex-basis: auto;
 	}
 
-	& > div + div {
+	> div + div {
 		flex-shrink: 0;
 		margin-left: 8px;
 	}

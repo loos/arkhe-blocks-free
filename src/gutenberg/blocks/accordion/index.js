@@ -8,7 +8,8 @@ import {
 	BlockControls,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	__experimentalUseInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
@@ -24,6 +25,11 @@ import { ArkheMarginControl } from '@components/ArkheMarginControl';
  * style
  */
 import './scss/index.scss';
+
+const compatibleUseInnerBlocksProps =
+	typeof useInnerBlocksProps === 'function'
+		? useInnerBlocksProps
+		: __experimentalUseInnerBlocksProps;
 
 /**
  * アコーディオン
@@ -45,7 +51,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
-		const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/accordion-item'],
 			template: [['arkhe-blocks/accordion-item']],
 			templateLock: false,

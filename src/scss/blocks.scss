@@ -38,7 +38,7 @@
 // 余白をキープするエリア。
 .ark-keep-mt {
 
-	& > .block-editor-block-list__block {
+	> .block-editor-block-list__block {
 		margin-top: var(--ark-mt, 2rem);
 	}
 }
@@ -46,7 +46,7 @@
 // 余白を小さめにキープするエリア。
 .ark-keep-mt--s {
 
-	& > .block-editor-block-list__block {
+	> .block-editor-block-list__block {
 		margin-top: var(--ark-mt--s, 1rem);
 	}
 }

@@ -8,8 +8,9 @@ import { SelectControl } from '@wordpress/components';
 /**
  * getMedia() と getSettings().imageSizes のデータから、必要な情報だけを取り出す。
  *
- * @param {Array} imageSizeSetting getSettings().imageSizes で取得したメディアサイズの配列
- * @param {Object} mediaSizes getMedia()で取得したメディアデータに含まれるサイズ情報
+ * @param {Array}  imageSizeSetting getSettings().imageSizes で取得したメディアサイズの配列
+ *
+ * @param {Object} mediaSizes       getMedia()で取得したメディアデータに含まれるサイズ情報
  */
 const getResizedImages = (imageSizeSetting, mediaSizes) => {
 	if (!imageSizeSetting || !mediaSizes) return [];
