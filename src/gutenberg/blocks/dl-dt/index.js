@@ -1,7 +1,7 @@
 /**
  * @WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 
@@ -9,22 +9,22 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  * @Internal dependencies
  */
 import { iconColor } from '@blocks/config';
-import blockIcon from './_icon';
 import metadata from './block.json';
-
-/**
- * metadata
- */
-const blockName = 'ark-block-dl';
 
 /**
  * DT ブロック
  */
+const blockName = 'ark-block-dl';
 registerBlockType(metadata.name, {
-	title: __('Term', 'arkhe-blocks'),
+	title: _x('Term', 'block-name', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
-		src: blockIcon,
+		src: (
+			<svg viewBox='0 0 56 56'>
+				<rect x='13' y='26' width='36' height='4' />
+				<rect x='7' y='26' width='2' height='4' />
+			</svg>
+		),
 	},
 	edit: (props) => {
 		const { attributes, setAttributes } = props;

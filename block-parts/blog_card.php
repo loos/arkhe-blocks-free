@@ -33,7 +33,7 @@ if ( 'external' === $args['type'] ) {
 	$favicon = $args['icon'] ? esc_url( $args['icon'] ) : 'https://www.google.com/s2/favicons?domain_url=' . esc_url( $url );
 }
 
-$excerpt_class = 'both' !== $args['show_excerpt'] ? ' u-only-' . $args['show_excerpt'] : '';
+$excerpt_class = 'both' !== $args['show_excerpt'] ? ' arkb-only-' . $args['show_excerpt'] : '';
 
 // ブロックの属性値
 $add_class   = $args['class'] ? ' ' . $args['class'] : '';

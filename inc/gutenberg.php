@@ -152,6 +152,7 @@ function register_arkhe_dynamic_blocks() {
 			$dynamic_blocks_pro[] = 'post-list';
 			$dynamic_blocks_pro[] = 'blog-card';
 			$dynamic_blocks_pro[] = 'rss';
+			$dynamic_blocks_pro[] = 'restricted-area';
 		}
 
 		$dynamic_blocks = array_merge( $dynamic_blocks, $dynamic_blocks_pro );

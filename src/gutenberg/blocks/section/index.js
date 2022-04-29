@@ -4,49 +4,37 @@
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { useMemo, useCallback, RawHTML } from '@wordpress/element';
+import { useMemo, useEffect, useCallback, RawHTML } from '@wordpress/element';
 import {
 	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-	__experimentalBlockAlignmentMatrixToolbar,
-	__experimentalBlockAlignmentMatrixControl,
 } from '@wordpress/block-editor';
-
 import { ToolbarButton } from '@wordpress/components';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
+import BlockAlignmentMatrixControl from '@compatible/BlockAlignmentMatrixControl';
+import FullHeightAlignmentControl from '@compatible/FullHeightAlignmentControl';
 
 /**
  * @Internal dependencies
  */
 import metadata from './block.json';
 import deprecated from './deprecated';
-import blockIcon from './_icon';
-import example from './_example';
+import blockIcon from './icon';
 import TheSidebar from './_sidebar';
-import { iconColor } from '@blocks/config';
-import { SectionSVG } from './components/SectionSVG';
-import { BgMedia } from './components/BgMedia';
-import { ArkheMarginControl } from '@components/ArkheMarginControl';
+import BgMedia from './components/BgMedia';
+import SectionSVG from './components/SectionSVG';
+import ArkbMarginControl from '@components/ArkbMarginControl';
 import { getBlockStyle, getColorStyle, getSvgData } from './_helper';
+import { DEFAULT_MEDIA_ATTRS } from './config';
+import { iconColor } from '@blocks/config';
 
 /**
  * @others dependencies
  */
 import classnames from 'classnames';
 // import hexToRgba from 'hex-to-rgba';
-
-/**
- * style
- */
-import './scss/index.scss';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
 
 /**
  * Register Block
@@ -59,7 +47,6 @@ registerBlockType(metadata.name, {
 		foreground: iconColor,
 		src: blockIcon.block,
 	},
-	example,
 	transforms: {
 		from: [
 			//どのブロックタイプから変更できるようにするか
@@ -73,8 +60,31 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes, isSelected, clientId }) => {
-		const { align, media, innerSize, height, svgTop, svgBottom, contentPosition, filter, tag } =
-			attributes;
+		const {
+			align,
+			media,
+			mediaSP,
+			focalPoint,
+			focalPointSP,
+			isRepeat,
+			innerSize,
+			height,
+			svgTop,
+			svgBottom,
+			contentPosition,
+			filter,
+			tag,
+		} = attributes;
+
+		// PCメディアがないのにSPメディアのデータがある場合、削除。
+		useEffect(() => {
+			if (!media.url && !!mediaSP.url) {
+				setAttributes({
+					mediaSP: DEFAULT_MEDIA_ATTRS,
+					focalPointSP: undefined,
+				});
+			}
+		}, []);
 
 		const { updateBlockAttributes } = useDispatch('core/block-editor');
 		const getChildBlocks = useSelect((select) => select('core/block-editor').getBlocks, []);
@@ -85,35 +95,38 @@ registerBlockType(metadata.name, {
 		});
 
 		// スタイルデータ
-		const style = useMemo(() => getBlockStyle(attributes), [attributes]);
-
-		// カラーレイヤーのスタイル
-		const colorStyle = useMemo(() => getColorStyle(attributes), [attributes]);
-
-		// 背景画像
-		const bgMedia = useMemo(() => <BgMedia attributes={attributes} />, [attributes]);
+		const { blockStyle, colorStyle } = useMemo(() => {
+			return {
+				blockStyle: getBlockStyle(attributes),
+				colorStyle: getColorStyle(attributes),
+			};
+		}, [attributes]);
 
 		// svgデータ
-		const svgDataTop = useMemo(() => getSvgData(svgTop), [svgTop]);
-		const svgDataBottom = useMemo(() => getSvgData(svgBottom), [svgBottom]);
+		const { svgDataTop, svgDataBottom } = useMemo(() => {
+			return {
+				svgDataTop: getSvgData(svgTop),
+				svgDataBottom: getSvgData(svgBottom),
+			};
+		}, [svgTop, svgBottom]);
 
 		// SVG分のpadding
 		if (0 !== svgDataTop.height) {
-			style['--arkb-svg-height--top'] = `${svgDataTop.height}vw`;
+			blockStyle['--arkb-svg-height--top'] = `${svgDataTop.height}vw`;
 		}
 		if (0 !== svgDataBottom.height) {
-			style['--arkb-svg-height--bottom'] = `${svgDataBottom.height}vw`;
+			blockStyle['--arkb-svg-height--bottom'] = `${svgDataBottom.height}vw`;
 		}
 
 		// ブロックProps
 		const blockProps = useBlockProps({
 			className: blockClass,
-			style: style || null,
+			style: blockStyle || null,
 			'data-height': height || null,
 			'data-inner': innerSize || null,
 		});
 
-		const innerBlocksProps = compatibleUseInnerBlocksProps(
+		const innerBlocksProps = useInnerBlocksProps(
 			{
 				className: `${blockName}__bodyInner ark-keep-mt`,
 			},
@@ -135,13 +148,10 @@ registerBlockType(metadata.name, {
 				let textAlign = '';
 				if (-1 !== nextPosition.indexOf(' center')) {
 					textAlign = 'center';
-					// setAttributes({ paddingPC: { ...paddingPC, left: '0px', right: '0px' } });
 				} else if (-1 !== nextPosition.indexOf(' right')) {
 					textAlign = 'right';
-					// setAttributes({ paddingPC: { ...paddingPC, left: '50%', right: '0px' } });
 				} else if (-1 !== nextPosition.indexOf(' left')) {
 					textAlign = 'left';
-					// setAttributes({ paddingPC: { ...paddingPC, left: '0px', right: '50%' } });
 				}
 
 				// 子ブロックにも反映
@@ -154,9 +164,6 @@ registerBlockType(metadata.name, {
 			},
 			[contentPosition]
 		);
-
-		const BlockAlignmentMatrixControl =
-			__experimentalBlockAlignmentMatrixControl || __experimentalBlockAlignmentMatrixToolbar;
 
 		const OuterTag = tag || 'div';
 		return (
@@ -185,19 +192,25 @@ registerBlockType(metadata.name, {
 							/>
 						</>
 					)}
+					<FullHeightAlignmentControl
+						isActive={'full' === height}
+						onToggle={() => {
+							if ('full' !== height) {
+								setAttributes({ height: 'full' });
+							} else {
+								setAttributes({ height: 'custom' });
+							}
+						}}
+					/>
 				</BlockControls>
 				<BlockControls>
-					<ArkheMarginControl {...{ className: attributes.className, setAttributes }} />
+					<ArkbMarginControl {...{ className: attributes.className, setAttributes }} />
 				</BlockControls>
 				<InspectorControls>
-					<TheSidebar
-						attributes={attributes}
-						setAttributes={setAttributes}
-						isSelected={isSelected}
-					/>
+					<TheSidebar {...{ attributes, setAttributes, isSelected }} />
 				</InspectorControls>
 				<OuterTag {...blockProps}>
-					{bgMedia}
+					<BgMedia {...{ media, mediaSP, focalPoint, focalPointSP, isRepeat }} />
 					<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
 					{'off' !== filter && (
 						<div className={`c-filterLayer -filter-${filter} arkb-absLayer`}></div>

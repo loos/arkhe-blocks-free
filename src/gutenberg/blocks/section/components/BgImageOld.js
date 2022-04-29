@@ -65,7 +65,7 @@ export const BgImage = ({ attributes }) => {
 				// controls=''
 				autoPlay
 				loop
-				playsinline
+				playsInline
 				muted
 				src={mediaUrl}
 				className={imgClass}
@@ -94,7 +94,7 @@ export const BgImage = ({ attributes }) => {
 					// controls=''
 					autoPlay
 					loop
-					playsinline
+					playsInline
 					muted
 					src={mediaUrlSP}
 					className={imgClassSP}

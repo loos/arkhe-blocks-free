@@ -128,6 +128,10 @@ ol.is-style-ark-list-note {
 			counter-increment: arkb-ct;
 		}
 	}
+
+	&[reversed] > li::before {
+		counter-increment: arkb-ct -1;
+	}
 }
 
 

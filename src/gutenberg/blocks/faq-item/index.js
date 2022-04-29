@@ -3,47 +3,31 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	RichText,
-	InnerBlocks,
-	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
 
 /**
  * @Internal dependencies
  */
 import metadata from './block.json';
-import blockIcon from './_icon';
+import blockIcon from './icon';
 import { iconColor } from '@blocks/config';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
-
-/**
- * metadata
- */
-const blockName = 'ark-block-faq';
 
 /**
  * Q&A項目ブロック
  */
+const blockName = 'ark-block-faq';
 registerBlockType(metadata.name, {
 	title: __('Q&A item', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	edit: (props) => {
-		const { attributes, setAttributes } = props;
-
+	edit: ({ attributes, setAttributes }) => {
 		const blockProps = useBlockProps({
 			className: `${blockName}__item`,
 		});
-		const innerBlocksProps = compatibleUseInnerBlocksProps(
+		const innerBlocksProps = useInnerBlocksProps(
 			{
 				className: `${blockName}__a ark-keep-mt--s`,
 			},

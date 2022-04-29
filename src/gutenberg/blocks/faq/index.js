@@ -3,41 +3,22 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	BlockControls,
-	InnerBlocks,
-	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { BlockControls, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
 
 /**
  * @Internal dependencies
  */
-import metadata from './block.json';
-import blockIcon from './_icon';
-import example from './_example';
 import { iconColor } from '@blocks/config';
-import { ArkheMarginControl } from '@components/ArkheMarginControl';
-
-/**
- * style
- */
-import './scss/index.scss';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
-
-/**
- * metadata
- */
-const blockName = 'ark-block-faq';
+import metadata from './block.json';
+import blockIcon from './icon';
+import example from './_example';
+import ArkbMarginControl from '@components/ArkbMarginControl';
 
 /**
  * Q&Aブロック
  */
+const blockName = 'ark-block-faq';
 registerBlockType(metadata.name, {
 	title: 'Q&A',
 	description: __('Create Q & A format content.', 'arkhe-blocks'),
@@ -50,7 +31,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
-		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
+		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/faq-item'],
 			template: [['arkhe-blocks/faq-item'], ['arkhe-blocks/faq-item']],
 			templateLock: false,
@@ -61,7 +42,7 @@ registerBlockType(metadata.name, {
 		return (
 			<>
 				<BlockControls>
-					<ArkheMarginControl {...{ className: attributes.className, setAttributes }} />
+					<ArkbMarginControl {...{ className: attributes.className, setAttributes }} />
 				</BlockControls>
 				<div {...innerBlocksProps} />
 			</>

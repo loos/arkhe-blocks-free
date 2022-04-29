@@ -2,18 +2,10 @@
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {
-	ColorPalette as WpColorPalette,
-	// __experimentalUseGradient,
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
-	// MediaPlaceholder,
-} from '@wordpress/block-editor';
+import { ColorPalette } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	ToggleControl,
-	// TextControl,
-	// ColorPicker,
-	ColorPalette,
 	BaseControl,
 	RangeControl,
 	SelectControl,
@@ -23,25 +15,37 @@ import {
 	FlexBlock,
 	FlexItem,
 } from '@wordpress/components';
-
 import { useMemo, useCallback } from '@wordpress/element';
-import { Icon, mobile, desktop } from '@wordpress/icons';
+import PanelColorGradientSettings from '@compatible/PanelColorGradientSettings';
 
 /**
  * @Inner dependencies
  */
-import { ImageTab } from './components/ImageTab';
+import ImageTab from './components/ImageTab';
+import { DEFAULT_MEDIA_ATTRS } from './config';
 import { getButtonSVG } from './components/SectionSVG';
-import { UnitNumber } from '@components/UnitNumber';
-import { ArkDeviceTab } from '@components/ArkDeviceTab';
-import { PaddingControl } from '@components/PaddingControl';
+import ArkbUnitNumber from '@components/ArkbUnitNumber';
+import ArkbDeviceTab from '@components/ArkbDeviceTab';
+import ArkbPaddingControl from '@components/ArkbPaddingControl';
+import ArkbHeightControl from '@components/ArkbHeightControl';
 
 /**
  * 設定
  */
 // const units = ['px', 'rem', 'em', '%', 'vw', 'vh'];
 
-const textColorSet = [
+const TAGS = [
+	{
+		label: '<div>',
+		value: 'div',
+	},
+	{
+		label: '<section>',
+		value: 'section',
+	},
+];
+
+const TEXT_COLORS = [
 	{
 		name: __('White', 'arkhe-blocks'),
 		color: '#fff',
@@ -52,7 +56,7 @@ const textColorSet = [
 	},
 ];
 
-const svgTypes = ['line', 'circle', 'wave', 'zigzag'];
+const SVG_TYPES = ['line', 'circle', 'wave', 'zigzag'];
 
 export default ({ attributes, setAttributes, isSelected }) => {
 	const {
@@ -80,66 +84,73 @@ export default ({ attributes, setAttributes, isSelected }) => {
 
 	const mediaUrl = media.url;
 
+	const setTextColor = useCallback(
+		(newColor) => {
+			setAttributes({ textColor: newColor });
+		},
+		[textColor]
+	);
+
 	const setOverlayColor = useCallback(
 		(newColor) => {
 			setAttributes({ bgColor: newColor });
 		},
-		[bgColor]
+		[setAttributes]
 	);
 
 	const setGradientColor = useCallback(
 		(newGradient) => {
-			// console.log('newGradient', newGradient);
 			setAttributes({ bgGradient: newGradient });
 		},
-		[bgGradient]
+		[setAttributes]
+	);
+
+	// ループ内等で同じ関数複数使うのでuseCallback
+	const setSVG = useCallback(
+		(position, newAttrs) => {
+			if ('top' === position) {
+				setAttributes({ svgTop: { ...svgTop, ...newAttrs } });
+			} else if ('bottom' === position) {
+				setAttributes({ svgBottom: { ...svgBottom, ...newAttrs } });
+			}
+		},
+		[setAttributes, svgTop, svgBottom]
 	);
 
 	// ブロック選択時の初回の状態を記憶
-	const isOpenSvgTop = useMemo(() => {
-		return 0 !== svgTop.level;
+	const { isOpenSvgTop, isOpenSvgBottom } = useMemo(() => {
+		return {
+			isOpenSvgTop: 0 !== svgTop.level,
+			isOpenSvgBottom: 0 !== svgBottom.level,
+		};
 	}, [isSelected]);
-	const isOpenSvgBottom = useMemo(() => {
-		return 0 !== svgBottom.level;
-	}, [isSelected]);
+
+	// 外に出すとarkbVarsセット前になるのでedit内で。
+	const FILTER_HELP = !window.arkbVars?.isArkhe
+		? __('This is only available when the theme is Arkhe.', 'arkhe-blocks')
+		: null;
 
 	return (
 		<>
-			<PanelBody title={__('Tag setting', 'arkhe-blocks')}>
-				<SelectControl
-					value={tag}
-					options={[
-						{
-							label: '<div>',
-							value: 'div',
-						},
-						{
-							label: '<section>',
-							value: 'section',
-						},
-					]}
-					onChange={(val) => {
-						setAttributes({ tag: val });
-					}}
+			<PanelBody title={__('Height settings', 'arkhe-blocks')}>
+				<ArkbHeightControl
+					heightType={height}
+					heightPC={heightPC}
+					heightSP={heightSP}
+					setAttributes={setAttributes}
 				/>
 			</PanelBody>
 			<PanelBody title={__('Background media setting', 'arkhe-blocks')}>
-				{isRepeat && mediaUrl && (
-					<div className='arkb-imgPreview'>
-						<img src={mediaUrl} alt='' />
-					</div>
-				)}
 				<ImageTab
-					{...{
+					attrs={{
 						media,
 						mediaSP,
 						focalPoint,
 						focalPointSP,
 						isRepeat,
 						opacity,
-						bgSize,
-						setAttributes,
 					}}
+					setAttributes={setAttributes}
 				/>
 				<ToggleControl
 					// フィルター設定。あとで数を増やせるように bool ではなく string で管理。
@@ -153,28 +164,29 @@ export default ({ attributes, setAttributes, isSelected }) => {
 						}
 					}}
 					className='arkb-ctrl--mt--s arkb-ctrl--mb--xs'
-					help={
-						!window.arkbVars.isArkhe
-							? __('This is only available when the theme is Arkhe.', 'arkhe-blocks')
-							: null
-					}
+					help={FILTER_HELP}
 				/>
-				<ToggleControl
-					label={__('Repeat the background image', 'arkhe-blocks')}
-					checked={isRepeat}
-					onChange={(val) => {
-						setAttributes({ isRepeat: val });
-						if (val) {
-							setAttributes({ focalPoint: undefined });
-						}
-					}}
-					className='arkb-ctrl--mb--xs'
-				/>
+				{'image' === media.type && (
+					<ToggleControl
+						className='arkb-ctrl--mb--xs'
+						label={__('Repeat the background image', 'arkhe-blocks')}
+						checked={isRepeat}
+						onChange={(val) => {
+							setAttributes({ isRepeat: val });
+							if (val) {
+								setAttributes({
+									mediaSP: DEFAULT_MEDIA_ATTRS,
+									focalPoint: undefined,
+								});
+							}
+						}}
+					/>
+				)}
 				{isRepeat && (
 					<Flex style={{ margin: '0 0 16px' }}>
 						<FlexItem>{__('Background Size', 'arkhe-blocks')} : </FlexItem>
 						<FlexBlock>
-							<UnitNumber
+							<ArkbUnitNumber
 								value={bgSize}
 								onChange={(newVal) => {
 									setAttributes({ bgSize: newVal });
@@ -184,81 +196,25 @@ export default ({ attributes, setAttributes, isSelected }) => {
 					</Flex>
 				)}
 			</PanelBody>
-			<PanelBody title={__('Height settings', 'arkhe-blocks')}>
+			<PanelBody title={__('Tag setting', 'arkhe-blocks')}>
 				<SelectControl
-					value={height}
-					options={[
-						{
-							label: __('Fit to content', 'arkhe-blocks'),
-							value: 'content',
-						},
-						{
-							label: __('Fit screen', 'arkhe-blocks'),
-							value: 'full',
-						},
-						{
-							label: __('Specify by number', 'arkhe-blocks'),
-							value: 'custom',
-						},
-					]}
+					value={tag}
+					options={TAGS}
 					onChange={(val) => {
-						setAttributes({ height: val });
+						setAttributes({ tag: val });
 					}}
-				/>
-				<div data-ark-disabled={'custom' !== height || null} style={{ marginTop: '16px' }}>
-					<Flex>
-						<FlexItem style={{ marginRight: '4px' }}>
-							<Icon icon={desktop} />
-						</FlexItem>
-						<FlexItem style={{ width: '2em' }}>PC</FlexItem>
-						<FlexBlock>
-							<UnitNumber
-								value={heightPC}
-								onChange={(newVal) => {
-									setAttributes({ heightPC: newVal });
-								}}
-							/>
-						</FlexBlock>
-					</Flex>
-					<Flex style={{ marginTop: '8px' }}>
-						<FlexItem style={{ marginRight: '4px' }}>
-							<Icon icon={mobile} />
-						</FlexItem>
-						<FlexItem style={{ width: '2em' }}>SP</FlexItem>
-						<FlexBlock>
-							<UnitNumber
-								value={heightSP}
-								onChange={(newVal) => {
-									setAttributes({ heightSP: newVal });
-								}}
-							/>
-						</FlexBlock>
-					</Flex>
-				</div>
-			</PanelBody>
-			<PanelBody title={__('Padding settings', 'arkhe-blocks')}>
-				<ArkDeviceTab
-					className='-padding'
-					controlPC={
-						<PaddingControl
-							name='paddingPC'
-							value={paddingPC}
-							setAttributes={setAttributes}
-						/>
-					}
-					controlSP={
-						<PaddingControl
-							name='paddingSP'
-							value={paddingSP}
-							setAttributes={setAttributes}
-						/>
-					}
 				/>
 			</PanelBody>
 			<PanelColorGradientSettings
 				title={__('Color settings', 'arkhe-blocks')}
 				initialOpen={true}
 				settings={[
+					{
+						colorValue: textColor,
+						colors: TEXT_COLORS,
+						onColorChange: setTextColor,
+						label: __('Text color', 'arkhe-blocks'),
+					},
 					{
 						colorValue: bgColor,
 						gradientValue: bgGradient,
@@ -278,38 +234,42 @@ export default ({ attributes, setAttributes, isSelected }) => {
 					}
 					value={opacity}
 					onChange={(val) => {
-						setAttributes({
-							opacity: val,
-						});
+						setAttributes({ opacity: val });
 					}}
 					min={0}
 					max={100}
 				/>
-				<BaseControl>
-					<BaseControl.VisualLabel>
-						{__('Text color', 'arkhe-blocks')}
-					</BaseControl.VisualLabel>
-					<ColorPalette
-						value={textColor}
-						colors={textColorSet}
-						onChange={(val) => {
-							setAttributes({ textColor: val });
-						}}
-					/>
-				</BaseControl>
 			</PanelColorGradientSettings>
-
+			<PanelBody title={__('Padding settings', 'arkhe-blocks')}>
+				<ArkbDeviceTab
+					className='-padding'
+					controlPC={
+						<ArkbPaddingControl
+							name='paddingPC'
+							value={paddingPC}
+							setAttributes={setAttributes}
+						/>
+					}
+					controlSP={
+						<ArkbPaddingControl
+							name='paddingSP'
+							value={paddingSP}
+							setAttributes={setAttributes}
+						/>
+					}
+				/>
+			</PanelBody>
 			<PanelBody title={__('Top border', 'arkhe-blocks')} initialOpen={isOpenSvgTop}>
 				<BaseControl>
 					<BaseControl.VisualLabel>{__('Shape', 'arkhe-blocks')}</BaseControl.VisualLabel>
 					<ButtonGroup className='arkb-btns--svg -top'>
-						{svgTypes.map((type) => {
+						{SVG_TYPES.map((type) => {
 							return (
 								<Button
 									isSecondary={type !== svgTop.type}
 									isPrimary={type === svgTop.type}
 									onClick={() => {
-										setAttributes({ svgTop: { ...svgTop, type } });
+										setSVG('top', { type });
 									}}
 									key={`key_${type}`}
 								>
@@ -322,23 +282,23 @@ export default ({ attributes, setAttributes, isSelected }) => {
 				<RangeControl
 					label={__('Height level', 'arkhe-blocks')}
 					value={svgTop.level}
-					onChange={(level) => {
-						setAttributes({ svgTop: { ...svgTop, level } });
-					}}
 					min={-100}
 					max={100}
 					step={1}
+					onChange={(level) => {
+						setSVG('top', { level });
+					}}
 				/>
 				<div className='components-base-control'>
 					<div className='components-base-control__label'>
 						{__('Color', 'arkhe-blocks')}
 					</div>
-					<WpColorPalette
+					<ColorPalette
 						value={svgTop.color}
-						onChange={(color) => {
-							setAttributes({ svgTop: { ...svgTop, color } });
-						}}
 						clearable={true}
+						onChange={(color) => {
+							setSVG('top', { color });
+						}}
 					/>
 				</div>
 			</PanelBody>
@@ -346,13 +306,13 @@ export default ({ attributes, setAttributes, isSelected }) => {
 				<BaseControl>
 					<BaseControl.VisualLabel>{__('Shape', 'arkhe-blocks')}</BaseControl.VisualLabel>
 					<ButtonGroup className='arkb-btns--svg -bottom'>
-						{svgTypes.map((type) => {
+						{SVG_TYPES.map((type) => {
 							return (
 								<Button
 									isSecondary={type !== svgBottom.type}
 									isPrimary={type === svgBottom.type}
 									onClick={() => {
-										setAttributes({ svgBottom: { ...svgBottom, type } });
+										setSVG('bottom', { type });
 									}}
 									key={`key_${type}`}
 								>
@@ -365,21 +325,21 @@ export default ({ attributes, setAttributes, isSelected }) => {
 				<RangeControl
 					label={__('Height level', 'arkhe-blocks')}
 					value={svgBottom.level}
-					onChange={(level) => {
-						setAttributes({ svgBottom: { ...svgBottom, level } });
-					}}
 					min={-100}
 					max={100}
 					step={1}
+					onChange={(level) => {
+						setSVG('bottom', { level });
+					}}
 				/>
 				<BaseControl>
 					<BaseControl.VisualLabel>{__('Color', 'arkhe-blocks')}</BaseControl.VisualLabel>
-					<WpColorPalette
+					<ColorPalette
 						value={svgBottom.color}
-						onChange={(color) => {
-							setAttributes({ svgBottom: { ...svgBottom, color } });
-						}}
 						clearable={true}
+						onChange={(color) => {
+							setSVG('bottom', { color });
+						}}
 					/>
 				</BaseControl>
 			</PanelBody>

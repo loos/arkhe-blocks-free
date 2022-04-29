@@ -2,7 +2,7 @@
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-// import { memo } from '@wordpress/element';
+import { useCallback } from '@wordpress/element';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button, FocalPointPicker } from '@wordpress/components';
 import { Icon, video, image } from '@wordpress/icons';
@@ -10,195 +10,216 @@ import { Icon, video, image } from '@wordpress/icons';
 /**
  * @Inner dependencies
  */
-import { ArkDeviceTab } from '@components/ArkDeviceTab';
+import ArkbDeviceTab from '@components/ArkbDeviceTab';
+import { DEFAULT_MEDIA_ATTRS } from '../config';
+import ArkbImageSizeSelect from '@components/ArkbImageSizeSelect';
 
-/**
- * export
- */
-export const ImageTab = (props) => {
-	const { media, mediaSP, focalPoint, focalPointSP, isRepeat, opacity, setAttributes } = props;
-
-	const mediaUrl = media.url;
-	const mediaUrlSP = mediaSP.url;
-
-	const setImagePC = (newMedia) => {
-		setAttributes({
-			media: {
-				id: newMedia.id,
-				url: newMedia.url,
-				type: newMedia.type,
-				width: newMedia.width,
-				height: newMedia.height,
-				// size: 'full',
-			},
-			...(100 === opacity ? { opacity: 50 } : {}),
-		});
-
-		// セット済みのメディアSPの形式が違う場合は削除する
-		if (mediaSP.url && newMedia.type !== mediaSP.type) {
-			removeImageSP();
-		}
-	};
-
-	const removeImagePC = () => {
-		setAttributes({
-			media: {
-				id: 0,
-				url: '',
-				type: '',
-				// size: 'full',
-			},
-			focalPoint: undefined,
-			...(!mediaSP.url ? { opacity: 100 } : {}), // SP画像もなければ カラー100に。
-		});
-	};
-
-	const setImageSP = (newMedia) => {
-		setAttributes({
-			mediaSP: {
-				id: newMedia.id,
-				url: newMedia.url,
-				type: newMedia.type,
-				width: newMedia.width,
-				height: newMedia.height,
-				// size: 'full',
-			},
-		});
-	};
-
-	const removeImageSP = () => {
-		setAttributes({
-			mediaSP: {
-				id: 0,
-				url: '',
-				type: '',
-				// size: 'full',
-			},
-			focalPointSP: undefined,
-			...(!media.url ? { opacity: 100 } : {}), // PC画像もなければ カラー100に。
-		});
-	};
-
-	let allowedTypes = null;
-	let noImageView = null;
-	if (isRepeat || 'image' === media.type) {
-		noImageView = (
-			<div className='arkb-imgPreview -noimage'>
-				<Icon icon={image} />
-			</div>
-		);
-		allowedTypes = ['image'];
-	} else if ('video' === media.type) {
-		noImageView = (
-			<div className='arkb-imgPreview -noimage'>
-				<Icon icon={video} />
-			</div>
-		);
-		allowedTypes = ['video'];
-	} else {
-		noImageView = (
+const MediaPreview = ({ useFocalPicker, url, type, focalPoint, setFocalPoint }) => {
+	if (!url) {
+		return (
 			<div className='arkb-imgPreview -noimage'>
 				<Icon icon={image} /> / <Icon icon={video} />
 			</div>
 		);
-		allowedTypes = ['image', 'video'];
 	}
 
-	const mediaOnSelect = (newMedia) => {
-		if (newMedia) {
-			setImagePC(newMedia);
-		} else {
-			removeImagePC();
-		}
+	if (useFocalPicker) {
+		return <FocalPointPicker url={url} value={focalPoint} onChange={setFocalPoint} />;
+	}
+	return (
+		<div className='arkb-imgPreview'>
+			{'image' === type && <img src={url} alt='' />}
+			{'video' === type && <video src={url} />}
+		</div>
+	);
+};
+
+const getNewMediaAttrs = (newMedia) => {
+	return {
+		id: newMedia.id,
+		url: newMedia.url,
+		// alt: newMedia.alt,
+		type: newMedia.type,
+		width: newMedia.width,
+		height: newMedia.height,
+		size: undefined,
 	};
-	const mediaOnSelectSP = (newMedia) => {
-		if (newMedia) {
-			setImageSP(newMedia);
-		} else {
-			removeImageSP();
+};
+
+/**
+ * export ImageTab
+ */
+export default ({ attrs, setAttributes }) => {
+	const { media, mediaSP, focalPoint, focalPointSP, isRepeat, opacity } = attrs;
+	const mediaUrl = media.url;
+	const mediaUrlSP = mediaSP.url;
+
+	// mediaデータのアップデート
+	const setMedia = (device, newAttrs) => {
+		if ('pc' === device) {
+			setAttributes({
+				media: {
+					...media,
+					...newAttrs,
+				},
+			});
+		} else if ('sp' === device) {
+			setAttributes({
+				mediaSP: {
+					...mediaSP,
+					...newAttrs,
+				},
+			});
 		}
 	};
 
-	const mediaRender = ({ open }) => (
-		<Button isPrimary onClick={open}>
-			{mediaUrl ? __('Change media', 'arkhe-blocks') : __('Select media', 'arkhe-blocks')}
-		</Button>
+	const removeMedia = (device) => {
+		if ('pc' === device) {
+			setAttributes({
+				media: DEFAULT_MEDIA_ATTRS,
+				focalPoint: undefined,
+			});
+		} else if ('sp' === device) {
+			setAttributes({
+				mediaSP: DEFAULT_MEDIA_ATTRS,
+				focalPointSP: undefined,
+			});
+		}
+	};
+
+	// サイズを変えた時の処理
+	const updateImageSizePC = useCallback(
+		(newSizeSlug, newSizeData) => {
+			setMedia('pc', {
+				size: newSizeSlug,
+				url: newSizeData?.source_url,
+				width: newSizeData?.width,
+				height: newSizeData?.height,
+			});
+		},
+		[media]
 	);
-	const mediaRenderSP = ({ open }) => (
-		<Button isPrimary onClick={open}>
-			{mediaUrlSP ? __('Change media', 'arkhe-blocks') : __('Select media', 'arkhe-blocks')}
-		</Button>
+
+	const updateImageSizeSP = useCallback(
+		(newSizeSlug, newSizeData) => {
+			setMedia('sp', {
+				size: newSizeSlug,
+				url: newSizeData?.source_url,
+				width: newSizeData?.width,
+				height: newSizeData?.height,
+			});
+		},
+		[mediaSP]
 	);
 
 	const imageSettingPC = (
 		<>
-			{mediaUrl && !isRepeat && (
-				<FocalPointPicker
-					url={mediaUrl}
-					value={focalPoint}
-					onChange={(val) => {
-						setAttributes({ focalPoint: val });
-					}}
-				/>
-			)}
-			{!mediaUrl && noImageView}
+			<MediaPreview
+				useFocalPicker={!isRepeat}
+				url={mediaUrl}
+				type={media.type || ''}
+				focalPoint={focalPoint}
+				setFocalPoint={(val) => {
+					setAttributes({ focalPoint: val });
+				}}
+			/>
 			<div className='arkb-btns--media'>
 				<MediaUploadCheck>
 					<MediaUpload
 						value={media.id}
-						onSelect={mediaOnSelect}
-						allowedTypes={['image', 'video']} // 変数の変化が反映されないので、PC側が仕方なく常にどちらも許可。
-						render={mediaRender}
+						onSelect={(newMedia) => {
+							if (newMedia) {
+								setMedia('pc', getNewMediaAttrs(newMedia));
+								if (100 === opacity) {
+									setAttributes({ opacity: 50 });
+								}
+							} else {
+								removeMedia('pc');
+							}
+						}}
+						allowedTypes={['image', 'video']}
+						render={({ open }) => (
+							<Button isPrimary onClick={open}>
+								{mediaUrl
+									? __('Change media', 'arkhe-blocks')
+									: __('Select media', 'arkhe-blocks')}
+							</Button>
+						)}
 					/>
 				</MediaUploadCheck>
 				{mediaUrl && (
 					<Button
+						text={__('Delete', 'arkhe-blocks')}
 						isSecondary
 						className='__delete'
 						onClick={() => {
-							removeImagePC();
+							removeMedia('pc');
 						}}
-					>
-						{__('Delete', 'arkhe-blocks')}
-					</Button>
+					/>
 				)}
 			</div>
+			{'image' === media.type && (
+				<ArkbImageSizeSelect
+					className='arkb-ctrl--mt--s'
+					imgId={media.id}
+					imgSize={media.size}
+					onChange={updateImageSizePC}
+				/>
+			)}
 		</>
 	);
 
-	const imageSettingSP = (
+	const imageSettingSP = isRepeat ? null : (
 		<>
-			{mediaUrlSP && (
-				<FocalPointPicker
-					url={mediaUrlSP}
-					value={focalPointSP}
-					onChange={(val) => {
-						setAttributes({ focalPointSP: val });
-					}}
-				/>
-			)}
-			{!mediaUrlSP && noImageView}
+			<MediaPreview
+				useFocalPicker={false}
+				url={mediaUrlSP}
+				type={mediaSP.type || ''}
+				focalPoint={focalPointSP}
+				setFocalPoint={(val) => {
+					setAttributes({ focalPointSP: val });
+				}}
+			/>
 			<div className='arkb-btns--media'>
 				<MediaUploadCheck>
 					<MediaUpload
 						value={mediaSP.id}
-						onSelect={mediaOnSelectSP}
-						allowedTypes={allowedTypes}
-						render={mediaRenderSP}
+						onSelect={(newMedia) => {
+							if (newMedia) {
+								setMedia('sp', getNewMediaAttrs(newMedia));
+							} else {
+								removeMedia('sp');
+							}
+						}}
+						allowedTypes={['image', 'video']}
+						render={({ open }) => (
+							<Button isPrimary onClick={open}>
+								{mediaUrlSP
+									? __('Change media', 'arkhe-blocks')
+									: __('Select media', 'arkhe-blocks')}
+							</Button>
+						)}
 					/>
 				</MediaUploadCheck>
 				{mediaUrlSP && (
 					<Button
+						text={__('Delete', 'arkhe-blocks')}
 						isSecondary
 						className='__delete'
 						onClick={() => {
-							removeImageSP();
+							removeMedia('sp');
 						}}
-					>
-						{__('Delete', 'arkhe-blocks')}
-					</Button>
+					/>
 				)}
 			</div>
+			{'image' === mediaSP.type && (
+				<ArkbImageSizeSelect
+					className='arkb-ctrl--mt--s'
+					imgId={mediaSP.id}
+					imgSize={mediaSP.size}
+					onChange={updateImageSizeSP}
+				/>
+			)}
 		</>
 	);
 
@@ -208,7 +229,7 @@ export const ImageTab = (props) => {
 	}
 
 	return (
-		<ArkDeviceTab
+		<ArkbDeviceTab
 			className={addClass}
 			controlPC={imageSettingPC}
 			controlSP={imageSettingSP}

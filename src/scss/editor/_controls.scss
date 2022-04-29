@@ -27,6 +27,13 @@
 	}
 }
 
+// チェックボックスが集まったエリア
+.arkb-checkboxes.arkb-checkboxes {
+
+	.components-base-control {
+		margin-bottom: 12px;
+	}
+}
 
 // メディアURL
 .arkb-input--mediaUrl {
@@ -60,6 +67,16 @@
 		height: 32px;
 		padding: 6px 8px;
 		font-size: 12px;
+	}
+}
+
+.arkb-btns--logicalRelation {
+
+	display: flex;
+
+	.components-button {
+		flex-basis: 40%;
+		justify-content: center;
 	}
 }
 
@@ -193,8 +210,8 @@
 }
 
 
-// UnitControl
-.arkb-ctrl--unit {
+// ArkbUnitNumber
+.arkb-unitNumber {
 
 	.components-input-control__container {
 		max-width: 80px;
@@ -202,6 +219,15 @@
 
 	.components-unit-control__select {
 		text-transform: unset !important;
+	}
+
+	&.has-clear {
+		display: flex;
+		align-items: center;
+
+		> .components-button {
+			margin-left: 1em;
+		}
 	}
 
 }
@@ -231,7 +257,7 @@
 		border: solid 1px #ededed !important;
 	}
 
-	.arkb-ctrl--unit {
+	.arkb-unitNumber {
 		margin: 0 auto;
 	}
 
@@ -303,4 +329,133 @@
 		grid-area: bottom;
 		padding-top: 4px;
 	}
+}
+
+// multipleセレクト
+.components-select-control__input[multiple] {
+	min-height: 8em !important;
+	padding: 8px !important;
+
+	+ .components-input-control__suffix {
+		display: none;
+	}
+}
+
+// セレクトコントロールのlabelが長いと隠れてしまうのを防ぐ
+.components-select-control .components-input-control__label {
+	white-space: unset !important;
+}
+
+
+// ターム選択
+.arkb-tabPanel.-terms {
+
+	.components-tab-panel__tabs {
+		margin-bottom: 24px;
+	}
+
+	.arkb-tabPanel__menu {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		padding: 6px 0 8px;
+
+		svg {
+			display: block;
+			flex: 0 0 20px;
+		}
+
+		span {
+			font-size: 10px;
+			letter-spacing: -.5px;
+			white-space: nowrap;
+		}
+	}
+}
+
+// 説明文
+.arkb-helpText {
+	font-size: .9em;
+	font-style: italic;
+	opacity: .8;
+}
+
+
+// ArkbHelpTip
+.arkb-helpPopover {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	// margin: -20px 0 16px;
+	margin: 4px 0;
+	font-size: 12px;
+
+	.components-base-control + & {
+		margin: -20px 0 16px;
+	}
+
+
+	.arkb-helpPopover__label {
+		font-style: italic;
+		opacity: .8;
+	}
+
+	.arkb-helpPopover__icon {
+		margin-left: 4px;
+		cursor: help;
+	}
+
+	.arkb-helpPopover__icon:hover ~ .arkb-helpPopover__desc {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.arkb-helpPopover__desc:hover {
+		visibility: visible;
+		opacity: 1;
+	}
+
+
+	.arkb-helpPopover__desc {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 100;
+		padding: 10px;
+		color: #333;
+		font-size: 12px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility .25s, opacity .25s;
+
+		code {
+			padding: 1px 2px;
+			font-size: 1em;
+			letter-spacing: 1;
+			border-radius: 2px;
+		}
+	}
+}
+
+.has-helptip.components-checkbox-control {
+	position: relative;
+
+	.arkb-helpPopover {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100%;
+		margin: 0;
+		pointer-events: none;
+	}
+
+	.arkb-helpPopover .arkb-helpPopover__icon {
+		pointer-events: auto;
+	}
+
 }

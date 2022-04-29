@@ -1,8 +1,6 @@
 /**
  * extension
  */
-import './extension/headbar.js';
-import { createContext } from '@wordpress/element';
-
-const SliderContext = createContext();
-window.arkbContext = { SliderContext };
+import './extension/headbar';
+import './extension/add_filters';
+import './extension/context';

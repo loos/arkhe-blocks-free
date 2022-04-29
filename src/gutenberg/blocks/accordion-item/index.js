@@ -3,34 +3,23 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	InspectorControls,
-	RichText,
-	InnerBlocks,
-	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { InspectorControls, RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, BaseControl, ButtonGroup, Button, ToggleControl } from '@wordpress/components';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
 
 /**
  * @Internal dependencies
  */
 import metadata from './block.json';
 import deprecated from './deprecated';
-import blockIcon from './_icon';
+import blockIcon from './icon';
+import ArkbSVG from '@components/ArkbSVG';
 import { iconColor } from '@blocks/config';
-import { ArkheSVG } from '@components/ArkheSVG';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
 
 /**
  * 設定
  */
-const iconSets = [
+const ICON_SETS = [
 	{
 		closed: 'arkb-svg-plus',
 		opened: 'arkb-svg-minus',
@@ -61,7 +50,7 @@ registerBlockType(metadata.name, {
 			className: `${blockName}__item`,
 			'aria-expanded': 'true',
 		});
-		const innerBlocksProps = compatibleUseInnerBlocksProps(
+		const innerBlocksProps = useInnerBlocksProps(
 			{
 				className: `${blockName}__body ark-keep-mt--s`,
 			},
@@ -80,7 +69,7 @@ registerBlockType(metadata.name, {
 								{__('Box layout', 'arkhe-blocks')}
 							</BaseControl.VisualLabel>
 							<ButtonGroup className='arkb-btns--acc'>
-								{iconSets.map((iconSet, idx) => {
+								{ICON_SETS.map((iconSet, idx) => {
 									return (
 										<Button
 											isPrimary={iconSet.opened === iconOpened}
@@ -92,9 +81,9 @@ registerBlockType(metadata.name, {
 											}}
 											key={`iconkey_${idx}`}
 										>
-											<ArkheSVG icon={iconSet.opened} />
+											<ArkbSVG icon={iconSet.opened} />
 											<span>/</span>
-											<ArkheSVG icon={iconSet.closed} />
+											<ArkbSVG icon={iconSet.closed} />
 										</Button>
 									);
 								})}
@@ -124,11 +113,11 @@ registerBlockType(metadata.name, {
 							data-opened='true'
 						>
 							<span className='__closed'>
-								<ArkheSVG icon={iconClosed} size='16' />
+								<ArkbSVG icon={iconClosed} size='16' />
 							</span>
 							<span className='__slash'>/</span>
 							<span className='__opened'>
-								<ArkheSVG icon={iconOpened} size='16' />
+								<ArkbSVG icon={iconOpened} size='16' />
 							</span>
 						</span>
 					</div>
@@ -157,10 +146,10 @@ registerBlockType(metadata.name, {
 						data-opened={isDefultOpen ? 'true' : 'false'}
 					>
 						<span className='__closed'>
-							<ArkheSVG icon={iconClosed} size='24' />
+							<ArkbSVG icon={iconClosed} size='24' />
 						</span>
 						<span className='__opened'>
-							<ArkheSVG icon={iconOpened} size='24' />
+							<ArkbSVG icon={iconOpened} size='24' />
 						</span>
 					</span>
 				</div>

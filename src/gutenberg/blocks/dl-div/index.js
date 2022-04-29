@@ -3,49 +3,34 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	InnerBlocks,
-	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
 
 /**
  * @Internal dependencies
  */
 import { iconColor } from '@blocks/config';
-import blockIcon from './_icon';
 import metadata from './block.json';
 
 /**
- * @Others dependencies
- */
-// import classnames from 'classnames';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
-
-/**
- * metadata
+ * dl-div ブロック
  */
 const blockName = 'ark-block-dl';
-
-/**
- * DD ブロック
- */
 registerBlockType(metadata.name, {
 	title: __('Side-by-side items', 'arkhe-blocks'), // 横並び項目
 	icon: {
 		foreground: iconColor,
-		src: blockIcon,
+		src: (
+			<svg viewBox='0 0 56 56'>
+				<path d='M28,20H7H3v16h4h21h25V20H28z M51,34H28V22h23V34z' />
+			</svg>
+		),
 	},
 	edit: () => {
 		const blockProps = useBlockProps({
 			className: `${blockName}__div`,
 		});
-		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
+		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/dl-dt', 'arkhe-blocks/dl-dd'],
 			template: [['arkhe-blocks/dl-dt'], ['arkhe-blocks/dl-dd']],
 			templateLock: 'all',

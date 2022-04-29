@@ -4,28 +4,6 @@
 		z-index: 10 !important;
 	}
 
-	.ark-block-section__bg.u-only-pc {
-
-		@include pc {
-			opacity: 1;
-		}
-
-		@include sp {
-			opacity: 0;
-		}
-	}
-
-	.ark-block-section__bg.u-only-sp {
-
-		@include pc {
-			opacity: 0;
-		}
-
-		@include sp {
-			opacity: 1;
-		}
-	}
-
 	&.has-child-selected,
 	&.is-selected {
 

@@ -27,6 +27,19 @@
             "default": "arkb-svg-point"
         }
     },
+    "example": {
+        "attributes": {
+            "title": "Notice title."
+        },
+        "innerBlocks": [
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+            }
+        ]
+    },
     "editorScript": "file:../../../../dist/gutenberg/blocks/notice/index.js",
     "style": "arkhe-blocks-notice-style",
     "textdomain": "arkhe-blocks"

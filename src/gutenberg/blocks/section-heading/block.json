@@ -1,7 +1,7 @@
 {
     "apiVersion": 2,
     "name": "arkhe-blocks/section-heading",
-    "title": "Notice",
+    "title": "Section Heading",
     "category": "arkhe-blocks",
     "keywords": [
         "title"
@@ -38,18 +38,18 @@
         "color": {
             "type": "string"
         },
-        "colorSlug": {
-            "type": "string"
-        },
         "lineColor": {
-            "type": "string"
-        },
-        "lineColorSlug": {
             "type": "string"
         },
         "useLine": {
             "type": "boolean",
             "default": true
+        }
+    },
+    "example": {
+        "attributes": {
+            "content": "Sectin Heading",
+            "subContent": "sub text"
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/section-heading/index.js",

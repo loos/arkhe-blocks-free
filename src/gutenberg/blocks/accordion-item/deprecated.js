@@ -6,7 +6,7 @@ import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 /**
  * @Internal dependencies
  */
-import { ArkheSVG } from '@components/ArkheSVG';
+import ArkbSVG from '@components/ArkbSVG';
 
 /**
  * export deprecated
@@ -55,10 +55,10 @@ export default [
 							data-opened='false'
 						>
 							<span className='__closed'>
-								<ArkheSVG icon={iconClosed} />
+								<ArkbSVG icon={iconClosed} />
 							</span>
 							<span className='__opened'>
-								<ArkheSVG icon={iconOpened} />
+								<ArkbSVG icon={iconOpened} />
 							</span>
 						</span>
 					</div>

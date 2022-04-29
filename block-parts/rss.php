@@ -23,7 +23,7 @@ $list_count_sp = $list_args['list_count_sp'] ?? 3;
 
 $min        = min( $list_count_pc, $list_count_sp );
 $max        = max( $list_count_pc, $list_count_sp );
-$list_class = $min === $list_count_pc ? 'u-only-sp' : 'u-only-pc';
+$list_class = $min === $list_count_pc ? 'arkb-only-sp' : 'arkb-only-pc';
 
 ?>
 <ul class="p-postList -type-<?php echo esc_attr( $list_type ); ?> is-rss">

@@ -32,3 +32,18 @@
 	height: 100% !important;
 	object-fit: contain;
 }
+
+@include pc {
+
+	.arkb-only-sp {
+		display: none !important;
+	}
+}
+
+@include sp {
+
+	.arkb-only-pc {
+		display: none !important;
+	}
+
+}

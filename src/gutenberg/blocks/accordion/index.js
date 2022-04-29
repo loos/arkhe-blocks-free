@@ -3,33 +3,17 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import {
-	// InspectorControls,
-	BlockControls,
-	InnerBlocks,
-	useBlockProps,
-	__experimentalUseInnerBlocksProps,
-	useInnerBlocksProps,
-} from '@wordpress/block-editor';
+import { BlockControls, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import useInnerBlocksProps from '@compatible/useInnerBlocksProps';
 
 /**
  * @Internal dependencies
  */
+import { iconColor } from '@blocks/config';
 import metadata from './block.json';
 import example from './_example';
-import blockIcon from './_icon';
-import { iconColor } from '@blocks/config';
-import { ArkheMarginControl } from '@components/ArkheMarginControl';
-
-/**
- * style
- */
-import './scss/index.scss';
-
-const compatibleUseInnerBlocksProps =
-	typeof useInnerBlocksProps === 'function'
-		? useInnerBlocksProps
-		: __experimentalUseInnerBlocksProps;
+import blockIcon from './icon';
+import ArkbMarginControl from '@components/ArkbMarginControl';
 
 /**
  * アコーディオン
@@ -51,7 +35,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
-		const innerBlocksProps = compatibleUseInnerBlocksProps(blockProps, {
+		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/accordion-item'],
 			template: [['arkhe-blocks/accordion-item']],
 			templateLock: false,
@@ -61,7 +45,7 @@ registerBlockType(metadata.name, {
 		return (
 			<>
 				<BlockControls>
-					<ArkheMarginControl attributes={attributes} setAttributes={setAttributes} />
+					<ArkbMarginControl attributes={attributes} setAttributes={setAttributes} />
 				</BlockControls>
 				<div {...innerBlocksProps} />
 			</>

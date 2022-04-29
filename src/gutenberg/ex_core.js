@@ -1,2 +1,2 @@
-import './extension/block_styles.js';
-import './extension/hoc.js';
+import './extension/core/block_styles';
+import './extension/core/hoc';

@@ -44,3 +44,14 @@ function render_core_list( $block_content, $block ) {
 	}
 	return $block_content;
 }
+
+// svgの属性値がsaveでおかしくなるバグへの対応
+add_filter( 'render_block_arkhe-blocks/notice', __NAMESPACE__ . '\render_fix_svg_props', 10, 2 );
+add_filter( 'render_block_arkhe-blocks/timeline-item', __NAMESPACE__ . '\render_fix_svg_props', 10, 2 );
+add_filter( 'render_block_arkhe-blocks/box-link', __NAMESPACE__ . '\render_fix_svg_props', 10, 2 );
+function render_fix_svg_props( $block_content, $block ) {
+	$block_content = str_replace( 'strokewidth=', 'stroke-width=', $block_content );
+	$block_content = str_replace( 'strokelinecap=', 'stroke-linecap=', $block_content );
+	$block_content = str_replace( 'strokelinejoin=', 'stroke-linejoin=', $block_content );
+	return $block_content;
+}

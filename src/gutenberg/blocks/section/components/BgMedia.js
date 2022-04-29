@@ -1,4 +1,8 @@
 /**
+ * @WordPress dependencies
+ */
+import { memo } from '@wordpress/element';
+/**
  * @others dependencies
  */
 import classnames from 'classnames';
@@ -6,10 +10,9 @@ import classnames from 'classnames';
 const blockName = 'ark-block-section';
 
 /**
- * 背景画像のソース
+ * <BgMedia />
  */
-export const BgMedia = ({ attributes }) => {
-	const { media, mediaSP, focalPoint, focalPointSP, isRepeat } = attributes;
+export default memo(({ media, mediaSP, focalPoint, focalPointSP, isRepeat }) => {
 	const mediaUrl = media.url;
 	const mediaUrlSP = mediaSP.url;
 
@@ -34,45 +37,70 @@ export const BgMedia = ({ attributes }) => {
 		style['--arkb-object-position--sp'] = `${pX}% ${pY}%`;
 	}
 
-	let mediaSrc = null;
-	if ('video' === media.type && 'image' !== mediaSP.type) {
-		const mediaClass = classnames(`${blockName}__video`, 'arkb-obf-cover');
-		mediaSrc = (
+	let bgMmediaPC = null;
+	if ('video' === media.type) {
+		bgMmediaPC = (
 			<video
-				className={mediaClass}
-				autoPlay
-				loop
-				playsinline
-				muted
+				src={mediaUrl}
+				className={classnames(`${blockName}__video arkb-obf-cover`, {
+					'arkb-only-pc': !!mediaUrlSP,
+				})}
 				width={media.width || null}
 				height={media.height || null}
-				style={style || null}
-			>
-				{mediaUrlSP && <source media='(max-width: 999px)' src={mediaUrlSP} />}
-				<source src={mediaUrl} className={`${blockName}__source`} />
-			</video>
+				autoPlay
+				loop
+				playsInline
+				muted
+			></video>
 		);
-	} else if ('image' === media.type && 'video' !== mediaSP.type) {
-		const mediaClass = classnames(`${blockName}__picture`);
-		mediaSrc = (
-			<picture className={mediaClass} style={style}>
-				{mediaUrlSP && <source media='(max-width: 999px)' srcSet={mediaUrlSP} />}
-				<img
-					src={mediaUrl}
-					alt=''
-					className={classnames(`${blockName}__img arkb-obf-cover`)}
-					width={media.width || null}
-					height={media.height || null}
-				/>
-			</picture>
+	} else if ('image' === media.type) {
+		bgMmediaPC = (
+			<img
+				src={mediaUrl}
+				alt={media.alt || ''}
+				className={classnames(`${blockName}__img arkb-obf-cover`, {
+					'arkb-only-pc': !!mediaUrlSP,
+				})}
+				width={media.width || null}
+				height={media.height || null}
+			/>
 		);
 	}
-	// else if ('video' === media.type && 'image' === mediaSP.type) {
-	// 	mediaClass = classnames(mediaClass, 'u-only-pc');
-	// 	mediaSrc = <></>;
-	// }
 
-	if (!mediaSrc) return '';
+	let bgMmediaSP = null;
+	if (mediaUrlSP) {
+		if ('video' === mediaSP.type) {
+			bgMmediaSP = (
+				<video
+					className={`${blockName}__video arkb-obf-cover arkb-only-sp`}
+					src={mediaUrlSP}
+					width={mediaSP.width || null}
+					height={mediaSP.height || null}
+					autoPlay
+					loop
+					playsInline
+					muted
+				></video>
+			);
+		} else if ('image' === mediaSP.type) {
+			bgMmediaSP = (
+				<img
+					className={`${blockName}__img arkb-obf-cover arkb-only-sp`}
+					src={mediaUrlSP}
+					alt={mediaUrlSP.alt || ''}
+					width={mediaSP.width || null}
+					height={mediaSP.height || null}
+				/>
+			);
+		}
+	}
 
-	return <div className={`${blockName}__media arkb-absLayer`}>{mediaSrc}</div>;
-};
+	// if (!mediaSrc) return '';
+
+	return (
+		<div className={`${blockName}__media arkb-absLayer`} style={style || null}>
+			{bgMmediaPC}
+			{bgMmediaSP}
+		</div>
+	);
+});

@@ -34,7 +34,7 @@ const getPath = (type, isReverse) => {
 /**
  * <SectionSVG />コンポーネント
  */
-export const SectionSVG = ({ position, svgData }) => {
+export default ({ position, svgData }) => {
 	if (0 === svgData.height) return null;
 
 	const svgStyle = {};

@@ -5,36 +5,25 @@
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { useCallback } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
+// import { useSelect } from '@wordpress/data';
 import {
 	BlockControls,
 	RichText,
 	AlignmentToolbar,
 	InspectorControls,
 	useBlockProps,
-	ColorPalette,
-	getColorObjectByColorValue,
+	PanelColorSettings,
 } from '@wordpress/block-editor';
-// import { useCallback } from '@wordpress/element';
-import {
-	PanelBody,
-	BaseControl,
-	RadioControl,
-	ToggleControl,
-	// ButtonGroup,
-	// Button,
-	ToolbarGroup,
-} from '@wordpress/components';
+import { PanelBody, RadioControl, ToggleControl, ToolbarGroup } from '@wordpress/components';
 
 /**
  * @Internal dependencies
  */
 import { iconColor } from '@blocks/config';
 import metadata from './block.json';
-import blockIcon from './_icon';
-import example from './_example';
+import blockIcon from './icon';
 import HeadingLevelDropdown from './components/heading-level-dropdown';
-import { ArkheMarginControl } from '@components/ArkheMarginControl';
+import ArkbMarginControl from '@components/ArkbMarginControl';
 
 /**
  * @others dependencies
@@ -42,19 +31,9 @@ import { ArkheMarginControl } from '@components/ArkheMarginControl';
 import classnames from 'classnames';
 
 /**
- * style
- */
-import './scss/index.scss';
-
-/**
- * metadata
- */
-const blockName = 'ark-block-heading';
-
-/**
  * 設定項目
  */
-const subPositions = [
+const SUB_POSITIONS = [
 	{
 		label: __('Top', 'arkhe-blocks'),
 		value: 'top',
@@ -66,16 +45,15 @@ const subPositions = [
 ];
 
 /**
- * 通知ブロック
+ * registerBlockType
  */
+const blockName = 'ark-block-heading';
 registerBlockType(metadata.name, {
 	title: __('Section Heading', 'arkhe-blocks'),
-	// description: __('Create content that is prominently emphasized.', 'arkhe-blocks'),
 	icon: {
 		foreground: iconColor,
 		src: blockIcon,
 	},
-	example,
 	transforms: {
 		from: [
 			//どのブロックタイプから変更できるようにするか
@@ -96,55 +74,23 @@ registerBlockType(metadata.name, {
 	},
 
 	edit: ({ attributes, setAttributes, mergeBlocks, onReplace }) => {
-		const {
-			textAlign,
-			content,
-			level,
-			subContent,
-			subPosition,
-			color,
-			colorSlug,
-			lineColor,
-			lineColorSlug,
-			useLine,
-		} = attributes;
+		const { textAlign, content, level, subContent, subPosition, color, lineColor, useLine } =
+			attributes;
 
 		// 見出しのタグ
 		const tagName = 'h' + level;
 
-		// カラーパレットの設定を取得
-		const { paletteColors } = useSelect((select) => {
-			const blockEditorSelect = select('core/block-editor');
-			let settings;
-			if (blockEditorSelect && blockEditorSelect.getSettings) {
-				settings = blockEditorSelect.getSettings();
-			} else {
-				settings = {};
-			}
-			return {
-				colors: settings.colors || [],
-				// disableCustomColors: settings.disableCustomColors,
-			};
-		});
-
 		// カラー設定の onChange
 		const onColorChange = useCallback(
-			(newColor, colorAttr, colorSlugAttr) => {
-				if (newColor) {
-					const colorObject = getColorObjectByColorValue(paletteColors, newColor);
-					// console.log(colorObject);
-					const newColorSlug = colorObject?.slug || undefined;
-					setAttributes({ [colorAttr]: newColor, [colorSlugAttr]: newColorSlug });
-				} else {
-					setAttributes({ [colorAttr]: undefined, [colorSlugAttr]: undefined });
-				}
+			(name, newColor) => {
+				setAttributes({ [name]: newColor || undefined });
 			},
-			[paletteColors]
+			[setAttributes]
 		);
 
 		// ブロックstyle
 		const blockStyle = {};
-		if (!colorSlug) {
+		if (color) {
 			blockStyle.color = color;
 		}
 
@@ -153,22 +99,36 @@ registerBlockType(metadata.name, {
 			className: classnames(`${blockName}`, {
 				[`has-text-align-${textAlign}`]: textAlign && 'center' !== textAlign,
 				'has-text-color': !!color,
-				[`has-${colorSlug}-color`]: !!colorSlug,
 			}),
 			'data-sub': subPosition,
 			style: blockStyle || null,
 		});
 
-		// サブテキストclass
-		const subTextClass = classnames(`${blockName}__sub`, {
-			'is-empty': RichText.isEmpty(subContent),
-		});
-
 		// ラインstyle
 		const lineStyle = {};
-		if (!lineColorSlug) {
+		if (lineColor) {
 			lineStyle.color = lineColor;
 		}
+
+		// ラインprops
+		const lineProps = {
+			className: classnames(`${blockName}__line`, {
+				'has-text-color': !!lineColor,
+			}),
+			style: lineStyle || null,
+		};
+
+		// サブテキストprops
+		const subtextProps = {
+			tagName: 'div',
+			className: classnames(`${blockName}__sub`, {
+				'is-empty': RichText.isEmpty(subContent),
+			}),
+			value: subContent,
+			onChange: (value) => setAttributes({ subContent: value }),
+			placeholder: __('Write sub title…', 'arkhe-blocks'),
+			textAlign,
+		};
 
 		return (
 			<>
@@ -185,14 +145,14 @@ registerBlockType(metadata.name, {
 							setAttributes({ textAlign: nextAlign });
 						}}
 					/>
-					<ArkheMarginControl attributes={attributes} setAttributes={setAttributes} />
+					<ArkbMarginControl attributes={attributes} setAttributes={setAttributes} />
 				</BlockControls>
 				<InspectorControls>
 					<PanelBody title={__('Settings', 'arkhe-blocks')} initialOpen={true}>
 						<RadioControl
 							label={__('Subtext position', 'arkhe-blocks')}
 							selected={subPosition}
-							options={subPositions}
+							options={SUB_POSITIONS}
 							onChange={(val) => {
 								setAttributes({ subPosition: val });
 							}}
@@ -205,42 +165,29 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 					</PanelBody>
-					<PanelBody title={__('Color settings', 'arkhe-blocks')} initialOpen={true}>
-						<BaseControl>
-							<BaseControl.VisualLabel>
-								{__('Text Color', 'arkhe-blocks')}
-							</BaseControl.VisualLabel>
-							<ColorPalette
-								value={color}
-								onChange={(newColor) => {
-									onColorChange(newColor, 'color', 'colorSlug');
-								}}
-							/>
-						</BaseControl>
-						<BaseControl>
-							<BaseControl.VisualLabel>
-								{__('Line Color', 'arkhe-blocks')}
-							</BaseControl.VisualLabel>
-							<ColorPalette
-								value={lineColor}
-								onChange={(newColor) => {
-									onColorChange(newColor, 'lineColor', 'lineColorSlug');
-								}}
-							/>
-						</BaseControl>
-					</PanelBody>
+					<PanelColorSettings
+						title={__('Color settings', 'arkhe-blocks')}
+						initialOpen={true}
+						colorSettings={[
+							{
+								value: color,
+								label: __('Text Color', 'arkhe-blocks'),
+								onChange: (newColor) => {
+									onColorChange('color', newColor);
+								},
+							},
+							{
+								value: lineColor,
+								label: __('Line Color', 'arkhe-blocks'),
+								onChange: (newColor) => {
+									onColorChange('lineColor', newColor);
+								},
+							},
+						]}
+					></PanelColorSettings>
 				</InspectorControls>
 				<div {...blockProps}>
-					{'top' === subPosition && (
-						<RichText
-							tagName={'div'}
-							className={subTextClass}
-							value={subContent}
-							onChange={(value) => setAttributes({ subContent: value })}
-							placeholder={__('Write sub title…', 'arkhe-blocks')}
-							textAlign={textAlign}
-						/>
-					)}
+					{'top' === subPosition && <RichText {...subtextProps} />}
 					<RichText
 						identifier='content'
 						tagName={tagName}
@@ -249,7 +196,6 @@ registerBlockType(metadata.name, {
 						onChange={(value) => setAttributes({ content: value })}
 						onMerge={mergeBlocks}
 						onSplit={(value) => {
-							// console.log(value);
 							if (!value) {
 								return createBlock('core/paragraph');
 							}
@@ -263,50 +209,23 @@ registerBlockType(metadata.name, {
 						placeholder={__('Write heading…')}
 						textAlign={textAlign}
 					/>
-					{useLine && (
-						<span
-							className={classnames(`${blockName}__line`, {
-								'has-text-color': !!lineColor,
-								[`has-${lineColorSlug}-color`]: !!lineColorSlug,
-							})}
-							style={lineStyle || null}
-						></span>
-					)}
-					{'bottom' === subPosition && (
-						<RichText
-							tagName={'div'}
-							className={subTextClass}
-							value={subContent}
-							onChange={(value) => setAttributes({ subContent: value })}
-							placeholder={__('Write sub title…', 'arkhe-blocks')}
-							textAlign={textAlign}
-						/>
-					)}
+					{useLine && <span {...lineProps}></span>}
+					{'bottom' === subPosition && <RichText {...subtextProps} />}
 				</div>
 			</>
 		);
 	},
 
 	save: ({ attributes }) => {
-		const {
-			textAlign,
-			content,
-			level,
-			subContent,
-			subPosition,
-			useLine,
-			color,
-			colorSlug,
-			lineColor,
-			lineColorSlug,
-		} = attributes;
+		const { textAlign, content, level, subContent, subPosition, useLine, color, lineColor } =
+			attributes;
 
 		// 見出しタグ
 		const TagName = 'h' + level;
 
 		// ブロックstyle
 		const blockStyle = {};
-		if (!colorSlug) {
+		if (color) {
 			blockStyle.color = color;
 		}
 
@@ -315,24 +234,21 @@ registerBlockType(metadata.name, {
 			className: classnames(`${blockName}`, {
 				[`has-text-align-${textAlign}`]: textAlign && 'center' !== textAlign,
 				'has-text-color': !!color,
-				[`has-${colorSlug}-color`]: !!colorSlug,
 			}),
 			'data-sub': subPosition,
 			style: blockStyle || null,
 		});
 
-		const subTextClass = `${blockName}__sub`;
-
 		// ラインstyle
 		const lineStyle = {};
-		if (!lineColorSlug) {
+		if (lineColor) {
 			lineStyle.color = lineColor;
 		}
 
 		return (
 			<div {...blockProps}>
 				{'top' === subPosition && (
-					<div className={subTextClass}>
+					<div className={`${blockName}__sub`}>
 						<RichText.Content value={subContent} />
 					</div>
 				)}
@@ -343,13 +259,12 @@ registerBlockType(metadata.name, {
 					<span
 						className={classnames(`${blockName}__line`, {
 							'has-text-color': !!lineColor,
-							[`has-${lineColorSlug}-color`]: !!lineColorSlug,
 						})}
 						style={lineStyle || null}
 					></span>
 				)}
 				{'bottom' === subPosition && (
-					<div className={subTextClass}>
+					<div className={`${blockName}__sub`}>
 						<RichText.Content value={subContent} />
 					</div>
 				)}
