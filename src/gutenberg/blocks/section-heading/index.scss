@@ -22,7 +22,7 @@
 		display: flex;
 		justify-content: center;
 		// margin-top: .75em;
-		color: var(--ark-color_main, inherit);
+		color: var(--ark-color--main, inherit);
 
 		&::before {
 			display: block;

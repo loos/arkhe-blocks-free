@@ -211,7 +211,13 @@ registerBlockType(metadata.name, {
 				</InspectorControls>
 				<OuterTag {...blockProps}>
 					<BgMedia {...{ media, mediaSP, focalPoint, focalPointSP, isRepeat }} />
-					<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
+					{colorStyle && (
+						<div
+							className={`${blockName}__color arkb-absLayer`}
+							style={colorStyle}
+						></div>
+					)}
+
 					{'off' !== filter && (
 						<div className={`c-filterLayer -filter-${filter} arkb-absLayer`}></div>
 					)}
@@ -227,7 +233,6 @@ registerBlockType(metadata.name, {
 			</>
 		);
 	},
-	// save: deprecated[0].save,
 	save: ({ attributes }) => {
 		const {
 			media,
@@ -273,7 +278,9 @@ registerBlockType(metadata.name, {
 		return (
 			<OuterTag {...blockProps}>
 				{media.url && !isRepeat && <RawHTML>{'<!-- media -->'}</RawHTML>}
-				<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
+				{colorStyle && (
+					<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
+				)}
 				{'off' !== filter && (
 					<div className={`c-filterLayer -filter-${filter} arkb-absLayer`}></div>
 				)}

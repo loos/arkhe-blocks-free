@@ -18,7 +18,7 @@ import {
 	ButtonGroup,
 } from '@wordpress/components';
 import { calendar, pages, file } from '@wordpress/icons';
-import getSettings from '@compatible/useInnerBlocksProps';
+import getSettings from '@compatible/getSettings';
 
 /**
  * @Internal dependencies
@@ -30,6 +30,17 @@ import ArkbTermPickers from '@components/ArkbTermPickers';
 /**
  * 設定
  */
+const LOGIN_STATUS = [
+	{
+		label: __('Non-logged-in users', 'arkhe-blocks'),
+		value: 'noLoggedIn',
+	},
+	{
+		label: __('Logged-in users', 'arkhe-blocks'),
+		value: 'loggedIn',
+	},
+];
+
 const ROLES = [
 	{
 		// 管理者
@@ -58,9 +69,6 @@ const ROLES = [
 	},
 ];
 
-/**
- * 設定
- */
 const PAGE_TYPES = [
 	{
 		label: _x('Front', 'page-type', 'arkhe-blocks'),
@@ -215,16 +223,7 @@ export default ({ attributes, setAttributes }) => {
 							<SelectControl
 								label={__('Users who can view this content', 'arkhe-blocks')}
 								value={isLoggedIn ? 'loggedIn' : 'noLoggedIn'}
-								options={[
-									{
-										label: __('Non-logged-in users', 'arkhe-blocks'),
-										value: 'noLoggedIn',
-									},
-									{
-										label: __('Logged-in users', 'arkhe-blocks'),
-										value: 'loggedIn',
-									},
-								]}
+								options={LOGIN_STATUS}
 								onChange={(val) => {
 									setAttributes({ isLoggedIn: 'loggedIn' === val });
 								}}

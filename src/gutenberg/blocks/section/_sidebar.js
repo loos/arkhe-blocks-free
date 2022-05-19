@@ -93,7 +93,7 @@ export default ({ attributes, setAttributes, isSelected }) => {
 
 	const setOverlayColor = useCallback(
 		(newColor) => {
-			setAttributes({ bgColor: newColor });
+			setAttributes({ bgColor: newColor || '' });
 		},
 		[setAttributes]
 	);

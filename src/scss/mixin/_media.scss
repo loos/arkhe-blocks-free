@@ -5,7 +5,8 @@
 // Mobileサイズ
 @mixin mobile {
 
-	@media screen and (max-width: 599px) {
+	// 600px未満
+	@media not all and (min-width: 600px) {
 		@content;
 	}
 }
@@ -18,7 +19,15 @@
 	}
 }
 
-//pc以上
+@mixin sp {
+
+	// 1000px未満
+	@media not all and (min-width: 1000px) {
+		@content;
+	}
+}
+
+
 @mixin pc {
 
 	@media (min-width: 1000px) {
@@ -26,10 +35,3 @@
 	}
 }
 
-// PC未満
-@mixin sp {
-
-	@media (max-width: 999px) {
-		@content;
-	}
-}

@@ -2,18 +2,35 @@
  * @WordPress dependencies
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
 
 /**
  * @Internal dependencies
  */
-import { SectionSVGOld as SectionSVG } from './components/SectionSVG';
+import SectionSVG, { SectionSVGOld } from './components/SectionSVG';
 import { BgImage } from './components/BgImageOld';
 import { getPositionClassName } from '@helper/getPositionClassName';
 import {
-	getBlockStyleOld as getBlockStyle,
-	getColorStyle,
-	getSvgDataOld as getSvgData,
+	getBlockStyleV2,
+	getBlockStyleV1,
+	// getBlockStyle,
+	// getColorStyle,
+	getSvgDataOld,
+	getSvgData,
 } from './_helper';
+
+const getColorStyle = ({ bgColor, bgGradient, opacity }) => {
+	const style = {};
+
+	// グラデーションかどうか
+	if (bgGradient) {
+		style.background = bgGradient;
+	} else {
+		style.backgroundColor = bgColor || '#f7f7f7';
+	}
+	style.opacity = (opacity * 0.01).toFixed(2);
+	return style;
+};
 
 /**
  */
@@ -30,6 +47,222 @@ const oldSupports = {
 	align: ['wide', 'full'],
 };
 export default [
+	{
+		supports: oldSupports,
+		attributes: {
+			align: {
+				type: 'string',
+				default: 'full',
+			},
+			bgColor: {
+				type: 'string',
+			},
+			bgGradient: {
+				type: 'string',
+			},
+			opacity: {
+				type: 'number',
+				default: 100,
+			},
+			textColor: {
+				type: 'string',
+				default: '',
+			},
+			filter: {
+				type: 'string',
+				default: 'off',
+			},
+			media: {
+				type: 'object',
+				default: {
+					id: 0,
+					url: '',
+				},
+			},
+			mediaSP: {
+				type: 'object',
+				default: {
+					id: 0,
+					url: '',
+				},
+			},
+			focalPoint: {
+				type: 'object',
+			},
+			focalPointSP: {
+				type: 'object',
+			},
+			contentPosition: {
+				type: 'string',
+				default: 'center left',
+			},
+			innerSize: {
+				type: 'string',
+				default: '',
+			},
+			height: {
+				type: 'string',
+				default: 'content',
+			},
+			heightPC: {
+				type: 'string',
+				default: '400px',
+			},
+			heightSP: {
+				type: 'string',
+				default: '50vh',
+			},
+			paddingPC: {
+				type: 'object',
+				default: {
+					top: '4rem',
+					left: '2rem',
+					right: '2rem',
+					bottom: '4rem',
+				},
+			},
+			paddingSP: {
+				type: 'object',
+				default: {
+					top: '4rem',
+					left: '4vw',
+					right: '4vw',
+					bottom: '4rem',
+				},
+			},
+			isRepeat: {
+				type: 'boolean',
+				default: false,
+			},
+			bgSize: {
+				type: 'string',
+				default: '',
+			},
+			tag: {
+				type: 'string',
+				default: 'div',
+			},
+			svgTop: {
+				type: 'object',
+				default: {
+					type: 'line',
+					level: 0,
+					color: '',
+				},
+			},
+			svgBottom: {
+				type: 'object',
+				default: {
+					type: 'line',
+					level: 0,
+					color: '',
+				},
+			},
+		},
+		migrate: (attributes) => {
+			const newAttrs = { ...attributes };
+
+			// if ('' === attributes.innerSize) {
+			// 	if ('2rem' === attributes.paddingPC.left) {
+			// 		newAttrs.paddingPC.left = '0rem';
+			// 	}
+			// 	if ('2rem' === attributes.paddingPC.right) {
+			// 		newAttrs.paddingPC.right = '0rem';
+			// 	}
+			// 	if ('4vw' === attributes.paddingSP.left) {
+			// 		newAttrs.paddingSP.left = '0rem';
+			// 	}
+			// 	if ('4vw' === attributes.paddingSP.right) {
+			// 		newAttrs.paddingSP.right = '0rem';
+			// 	}
+			// }
+
+			if (undefined === attributes.bgColor) {
+				newAttrs.bgColor = '#f7f7f7';
+			}
+
+			/* eslint camelcase: off */
+			const oldDefaultPC = { top: '4rem', left: '2rem', right: '2rem', bottom: '4rem' };
+			const oldDefaultPC_JSON = JSON.stringify(oldDefaultPC);
+			const oldAttrPC_JSON = JSON.stringify(attributes.paddingPC);
+
+			if (oldDefaultPC_JSON === oldAttrPC_JSON) {
+				newAttrs.paddingPC = { top: '4rem', left: '0rem', right: '0rem', bottom: '4rem' };
+			}
+
+			const oldDefaultSP = { top: '4rem', left: '4vw', right: '4vw', bottom: '4rem' };
+			const oldDefaultSP_JSON = JSON.stringify(oldDefaultSP);
+			const oldAttrSP_JSON = JSON.stringify(attributes.paddingSP);
+
+			if (oldDefaultSP_JSON === oldAttrSP_JSON) {
+				newAttrs.paddingSP = { top: '4rem', left: '0rem', right: '0rem', bottom: '4rem' };
+			}
+
+			return newAttrs;
+		},
+		save: ({ attributes }) => {
+			const {
+				media,
+				innerSize,
+				height,
+				svgTop,
+				svgBottom,
+				contentPosition,
+				filter,
+				isRepeat,
+				tag,
+			} = attributes;
+
+			// styleデータ
+			const style = getBlockStyleV2(attributes);
+
+			// svgデータ
+			const svgDataTop = getSvgData(svgTop);
+			const svgDataBottom = getSvgData(svgBottom);
+
+			// SVG分のpadding
+			if (0 !== svgDataTop.height) {
+				style['--arkb-svg-height--top'] = `${svgDataTop.height}vw`;
+			}
+			if (0 !== svgDataBottom.height) {
+				style['--arkb-svg-height--bottom'] = `${svgDataBottom.height}vw`;
+			}
+
+			// カラーレイヤーのスタイル
+			const colorStyle = getColorStyle(attributes);
+
+			// ブロックProps
+			const blockProps = useBlockProps.save({
+				className: classnames(blockName, {
+					'has-bg-img': !!media.url,
+				}),
+				style: style || null,
+				'data-height': height || null,
+				'data-inner': innerSize || null,
+			});
+
+			const OuterTag = tag || 'div';
+			return (
+				<OuterTag {...blockProps}>
+					{media.url && !isRepeat && <RawHTML>{'<!-- media -->'}</RawHTML>}
+					<div className={`${blockName}__color arkb-absLayer`} style={colorStyle}></div>
+					{'off' !== filter && (
+						<div className={`c-filterLayer -filter-${filter} arkb-absLayer`}></div>
+					)}
+					<div
+						className={`${blockName}__body`}
+						data-content={contentPosition.replace(' ', '-')}
+					>
+						<div className={`${blockName}__bodyInner ark-keep-mt`}>
+							<InnerBlocks.Content />
+						</div>
+					</div>
+					<SectionSVG position='top' svgData={svgDataTop} />
+					<SectionSVG position='bottom' svgData={svgDataBottom} />
+				</OuterTag>
+			);
+		},
+	},
 	{
 		supports: oldSupports,
 		attributes: {
@@ -409,14 +642,14 @@ export default [
 			} = attributes;
 
 			// styleデータ
-			const style = getBlockStyle(attributes);
+			const style = getBlockStyleV1(attributes);
 
 			// カラーレイヤーのスタイル
 			const colorStyle = getColorStyle(attributes);
 
 			// svgデータ
-			const svgTop = getSvgData(svgLevelTop);
-			const svgBottom = getSvgData(svgLevelBottom);
+			const svgTop = getSvgDataOld(svgLevelTop);
+			const svgBottom = getSvgDataOld(svgLevelBottom);
 
 			// SVG分のpadding
 			if (0 !== svgLevelTop) {
@@ -449,7 +682,7 @@ export default [
 						<InnerBlocks.Content />
 					</div>
 					{0 !== svgLevelTop && (
-						<SectionSVG
+						<SectionSVGOld
 							position='top'
 							type={svgTypeTop}
 							height={svgTop.height}
@@ -458,7 +691,7 @@ export default [
 						/>
 					)}
 					{0 !== svgLevelBottom && (
-						<SectionSVG
+						<SectionSVGOld
 							position='bottom'
 							type={svgTypeBottom}
 							height={svgBottom.height}

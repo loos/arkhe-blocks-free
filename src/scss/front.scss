@@ -6,6 +6,9 @@
 @import "../gutenberg/**/_common.scss";
 @import "../gutenberg/**/_front.scss";
 
+svg:not([fill]) {
+	fill: currentColor;
+}
 
 // 余白をキープするエリア。
 .ark-keep-mt {

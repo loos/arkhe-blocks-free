@@ -33,14 +33,8 @@ export const getBlockStyle = (attributes) => {
 	// 内部padding用の変数
 	const _varPadPC = `${paddingPC.top} ${paddingPC.right} ${paddingPC.bottom} ${paddingPC.left}`;
 	const _varPadSP = `${paddingSP.top} ${paddingSP.right} ${paddingSP.bottom} ${paddingSP.left}`;
-
-	// 初期値以外であれば
-	if ('4rem 2rem 4rem 2em' !== _varPadPC) {
-		style['--arkb-section-padding'] = _varPadPC;
-	}
-	if ('4rem 2rem 4rem 2em' !== _varPadSP) {
-		style['--arkb-section-padding--sp'] = _varPadSP;
-	}
+	style['--arkb-section-padding'] = _varPadPC;
+	style['--arkb-section-padding--sp'] = _varPadSP;
 
 	// リピート背景画像
 	if (isRepeat && media.url) {
@@ -56,13 +50,14 @@ export const getBlockStyle = (attributes) => {
 };
 
 export const getColorStyle = ({ bgColor, bgGradient, opacity }) => {
+	if (!bgGradient && !bgColor) return null;
 	const style = {};
 
 	// グラデーションかどうか
 	if (bgGradient) {
 		style.background = bgGradient;
 	} else {
-		style.backgroundColor = bgColor || '#f7f7f7';
+		style.backgroundColor = bgColor || null;
 	}
 	style.opacity = (opacity * 0.01).toFixed(2);
 	return style;
@@ -88,9 +83,67 @@ export const getSvgData = (svgData) => {
 };
 
 /**
- * 旧 getBlockStyle
+ *
+ * 旧 getBlockStyle v2
  */
-export const getBlockStyleOld = (attributes) => {
+export const getBlockStyleV2 = (attributes) => {
+	const {
+		textColor,
+		height,
+		heightPC,
+		heightSP,
+		paddingPC,
+		paddingSP,
+		isRepeat,
+		media,
+		bgSize,
+		//
+	} = attributes;
+
+	const style = {};
+
+	// textColorがセットされているか
+	if (textColor) style.color = textColor;
+
+	// 内部minheight
+	if ('custom' === height) {
+		if (heightPC) {
+			style['--arkb-section-minH'] = heightPC;
+		}
+		if (heightSP) {
+			style['--arkb-section-minH--sp'] = heightSP;
+		}
+	}
+
+	// 内部padding用の変数
+	const _varPadPC = `${paddingPC.top} ${paddingPC.right} ${paddingPC.bottom} ${paddingPC.left}`;
+	const _varPadSP = `${paddingSP.top} ${paddingSP.right} ${paddingSP.bottom} ${paddingSP.left}`;
+
+	// 初期値以外であれば
+	if ('4rem 2rem 4rem 2em' !== _varPadPC) {
+		style['--arkb-section-padding'] = _varPadPC;
+	}
+	if ('4rem 2rem 4rem 2em' !== _varPadSP) {
+		style['--arkb-section-padding--sp'] = _varPadSP;
+	}
+
+	// リピート背景画像
+	if (isRepeat && media.url) {
+		style.backgroundImage = `url(${media.url})`;
+		style.backgroundRepeat = 'repeat';
+
+		if (bgSize) {
+			style.backgroundSize = bgSize;
+		}
+	}
+
+	return style;
+};
+
+/**
+ * 旧 getBlockStyle v1
+ */
+export const getBlockStyleV1 = (attributes) => {
 	const {
 		textColor,
 		heightPC,
@@ -128,10 +181,10 @@ export const getBlockStyleOld = (attributes) => {
 	const _varPadPC = `${padPC}${padUnitPC}`;
 	const _varPadSP = `${padSP}${padUnitSP}`;
 
-	if ('4rem' !== _varPadPC) {
+	if ('4rem 2rem 4rem 2em' !== _varPadPC) {
 		style['--arkb-section-pad--pc'] = _varPadPC;
 	}
-	if ('4rem' !== _varPadSP) {
+	if ('4rem 2rem 4rem 2em' !== _varPadSP) {
 		style['--arkb-section-pad--sp'] = _varPadSP;
 	}
 

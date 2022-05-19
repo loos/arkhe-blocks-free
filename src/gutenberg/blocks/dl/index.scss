@@ -20,8 +20,8 @@
 	align-items: stretch;
 	justify-content: space-between;
 	padding: .75em .5em;
-	border-top: solid 1px var(--ark-color_border, rgba(200, 200, 200, .5));
-	border-bottom: solid 1px var(--ark-color_border, rgba(200, 200, 200, .5));
+	border-top: solid 1px var(--ark-color--border, rgba(200, 200, 200, .5));
+	border-bottom: solid 1px var(--ark-color--border, rgba(200, 200, 200, .5));
 
 	+ .ark-block-dl__div {
 		border-top: none;

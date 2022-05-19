@@ -1,6 +1,6 @@
 :root {
-	--arkb-list_color_num: var(--ark-color_main, #000);
-	--arkb-list_color_icon: var(--ark-color_main, #000);
+	--arkb-list_color_num: var(--ark-color--main, #000);
+	--arkb-list_color_icon: var(--ark-color--main, #000);
 }
 
 // ----------------------------------------
@@ -19,7 +19,7 @@
 
 	img,
 	video {
-		border: solid 1px var(--ark-color_border, rgba(200, 200, 200, .5));
+		border: solid 1px var(--ark-color--border, rgba(200, 200, 200, .5));
 	}
 
 }

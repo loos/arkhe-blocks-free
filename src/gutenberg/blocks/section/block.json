@@ -21,7 +21,8 @@
             "default": "full"
         },
         "bgColor": {
-            "type": "string"
+            "type": "string",
+            "default": "#f7f7f7"
         },
         "bgGradient": {
             "type": "string"
@@ -82,8 +83,8 @@
             "type": "object",
             "default": {
                 "top": "4rem",
-                "left": "2rem",
-                "right": "2rem",
+                "left": "0rem",
+                "right": "0rem",
                 "bottom": "4rem"
             }
         },
@@ -91,8 +92,8 @@
             "type": "object",
             "default": {
                 "top": "4rem",
-                "left": "4vw",
-                "right": "4vw",
+                "left": "0rem",
+                "right": "0rem",
                 "bottom": "4rem"
             }
         },

@@ -9,6 +9,9 @@
 @import "../gutenberg/**/_common.scss";
 @import "../gutenberg/**/_editor.scss";
 
+:where(.wp-block) svg:not([fill]) {
+	fill: currentColor;
+}
 
 // 余白をキープするエリア。
 .ark-keep-mt {
