@@ -19,9 +19,9 @@ const UNITS = ['px', 'rem', 'em', '%', 'vw', 'vh'];
 /**
  * attributes を数値と単位に分離する
  */
-const getUnitNum = (val) => {
+const getUnitNum = (val, defaultUnit) => {
 	if (!val) {
-		return { num: '', unit: 'px' };
+		return { num: '', unit: defaultUnit || 'px' };
 	}
 
 	// 念のため、明示的に文字列へ変換。
@@ -37,13 +37,17 @@ const getUnitNum = (val) => {
 export default ({
 	value,
 	units,
+	min,
+	max,
 	onChange,
+	defaultUnit,
+	step = '1',
 	className = '',
 	onClear = null,
 	// idKey = '',
 }) => {
 	const _UNITS = units || UNITS;
-	const { num, unit } = getUnitNum(value);
+	const { num, unit } = getUnitNum(value, defaultUnit);
 
 	const instanceId = useInstanceId(UnitControl);
 	const inputId = instanceId;
@@ -55,8 +59,9 @@ export default ({
 			<UnitControl
 				id={inputId}
 				value={num}
-				min={0}
-				step='1'
+				min={min || 0}
+				max={max || undefined}
+				step={'px' === unit ? '1' : step}
 				unit={unit}
 				units={_UNITS.map((_unit) => {
 					return { label: _unit, value: _unit };

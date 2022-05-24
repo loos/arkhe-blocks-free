@@ -101,6 +101,12 @@ function register_arkhe_blocks() {
 		'dl-div',
 		'notice',
 		'section-heading',
+		'step',
+		'step-item',
+		'tab',
+		'tab-body',
+		'timeline',
+		'timeline-item',
 	];
 
 	// Proブロック
@@ -110,12 +116,6 @@ function register_arkhe_blocks() {
 			'box-links',
 			'column',
 			'columns',
-			'step',
-			'step-item',
-			'tab',
-			'tab-body',
-			'timeline',
-			'timeline-item',
 		];
 
 		// Arkheでのみ利用可能なProブロック
@@ -137,6 +137,7 @@ function register_arkhe_dynamic_blocks() {
 
 	$dynamic_blocks = [
 		'section',
+		'blog-card',
 	];
 
 	if ( \Arkhe_Blocks::IS_PRO ) {
@@ -144,15 +145,14 @@ function register_arkhe_dynamic_blocks() {
 			'box-link',
 			'slider',
 			'slider-item',
+			'restricted-area',
 		];
 
 		// Arkheでのみ利用可能なダイナミックブロック
 		if ( IS_ARKHE_THEME ) {
 			$dynamic_blocks_pro[] = 'page-list';
 			$dynamic_blocks_pro[] = 'post-list';
-			$dynamic_blocks_pro[] = 'blog-card';
 			$dynamic_blocks_pro[] = 'rss';
-			$dynamic_blocks_pro[] = 'restricted-area';
 		}
 
 		$dynamic_blocks = array_merge( $dynamic_blocks, $dynamic_blocks_pro );

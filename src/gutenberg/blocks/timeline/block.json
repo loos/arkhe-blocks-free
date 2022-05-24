@@ -1,0 +1,15 @@
+{
+    "apiVersion": 2,
+    "name": "arkhe-blocks/timeline",
+    "title": "Timeline",
+    "category": "arkhe-blocks",
+    "keywords": [],
+    "supports": {
+        "anchor": true,
+        "className": false
+    },
+    "attributes": {},
+    "editorScript": "file:../../../../dist/gutenberg/blocks/timeline/index.js",
+    "style": "arkhe-blocks-timeline-style",
+    "textdomain": "arkhe-blocks"
+}

@@ -14,7 +14,7 @@
 	}
 
 	&:not(.is-selected)::after {
-		border: dashed 1px #f3dfc7;
+		border: dashed 1px $color_guide;
 	}
 
 	.arkb-parentSelector {
@@ -43,8 +43,6 @@
 			height: 20px;
 			fill: currentColor;
 		}
-
-
 	}
 
 	&.has-child-selected > .arkb-parentSelector {

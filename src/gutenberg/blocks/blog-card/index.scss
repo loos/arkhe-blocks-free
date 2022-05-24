@@ -1,0 +1,69 @@
+@import "../../../scss/mixin/media";
+
+.ark-block-blogCard {
+	--ark-thumb_ratio: 61.8%;
+
+	max-width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 3px;
+	box-shadow: var(--arkb-shadow--s);
+
+	.arkb-boxLink__inner {
+		flex-direction: row;
+		padding: 1.25rem;
+
+		@include mobile {
+			padding: 1rem;
+		}
+	}
+
+	.arkb-boxLink__figure {
+		flex-basis: 25%;
+		align-self: center;
+		max-width: 200px;
+		margin-right: 1rem;
+	}
+
+	.arkb-boxLink__body {
+		padding: 0;
+	}
+
+	.arkb-boxLink__figure + .arkb-boxLink__body {
+
+		@include mobile {
+			font-size: .9rem;
+		}
+	}
+
+	// .arkb-boxLink__content {}
+
+	.arkb-boxLink__more {
+		margin-bottom: -4px;
+		padding-top: 4px;
+	}
+
+	// .arkb-boxLink__caption,
+	.arkb-boxLink__more__text {
+		font-size: 12px;
+		opacity: .8;
+
+		@include mobile {
+			font-size: 10px;
+		}
+	}
+}
+
+.arkb-boxLink__more__favicon {
+	display: block;
+	width: 14px;
+	height: 14px;
+	margin-right: 4px;
+
+	@include mobile {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+// ark-block-blogCard arkb-boxLink

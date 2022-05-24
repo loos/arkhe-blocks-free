@@ -1,5 +1,6 @@
 // ブロック追加ボタン
-.arkb-columns > .block-editor-block-list__layout,
+.ark-block-columns__inner,
+.ark-block-boxLinks__inner,
 .ark-block-accordion,
 .ark-block-step,
 .ark-block-timeline,
@@ -8,17 +9,9 @@
 
 	> .block-list-appender.block-list-appender {
 		position: relative;
-		flex-basis: 100% !important;
-	}
-}
 
-.ark-block-accordion,
-.ark-block-step,
-.ark-block-timeline,
-.ark-block-dl,
-.ark-block-faq {
-
-	&:not(.is-selected):not(.has-child-selected) > .block-list-appender {
-		display: none;
+		.block-editor-button-block-appender {
+			padding: 4px;
+		}
 	}
 }

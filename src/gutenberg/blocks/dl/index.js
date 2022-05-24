@@ -27,7 +27,7 @@ registerBlockType(metadata.name, {
 		src: blockIcon,
 	},
 	example,
-	edit: ({ attributes, setAttributes }) => {
+	edit: ({ attributes, setAttributes, isSelected }) => {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
@@ -40,7 +40,7 @@ registerBlockType(metadata.name, {
 				['arkhe-blocks/dl-dd'],
 			],
 			templateLock: false,
-			renderAppender: InnerBlocks.ButtonBlockAppender,
+			renderAppender: isSelected ? InnerBlocks.ButtonBlockAppender : false,
 		});
 		return (
 			<>

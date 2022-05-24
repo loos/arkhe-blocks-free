@@ -51,3 +51,11 @@ for (const key in mediaTextStyles) {
 		label: mediaTextStyles[key],
 	});
 }
+
+// WordPress6.0から削除された引用ブロックの「大サイズ」スタイルを引き続き使えるように。
+if (window.arkbVars?.isArkhe) {
+	registerBlockStyle('core/quote', {
+		name: 'large',
+		label: _x('Large', 'style', 'arkhe-blocks'),
+	});
+}

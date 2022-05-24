@@ -1,0 +1,13 @@
+// コア側から項目ブロック間の無駄な余白があたるのを阻止
+.ark-block-step:not(.is-style-card) .ark-block-step__item {
+	margin-top: 0;
+}
+
+.ark-block-step__title {
+	width: 100%;
+}
+
+// block-appender がある分
+.ark-block-step__item:nth-last-child(2)::before {
+	content: none !important;
+}

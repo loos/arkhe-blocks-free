@@ -1,0 +1,38 @@
+@keyframes FloatHorizontal {
+
+	0% {
+		transform: translate3d(4px, 0, 0);
+	}
+
+	50% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+.arkb-scrollHint {
+	margin-bottom: 2px !important;
+	text-align: right;
+	animation: FloatHorizontal 2s ease-in-out infinite alternate;
+
+	// + .wp-block-table {
+	// 	margin-top: 0 !important;
+	// }
+}
+
+.arkb-scrollHint__text {
+	display: inline-flex;
+	align-items: center;
+	font-size: 12px;
+	line-height: 1;
+	vertical-align: middle;
+	opacity: .75;
+}
+
+.arkb-scrollHint__svg {
+	margin-left: .25em;
+	font-size: 16px;
+}

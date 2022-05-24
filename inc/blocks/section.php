@@ -137,5 +137,5 @@ function render_media( $attrs ) {
 		] );
 	}
 
-	return apply_filters( 'arkb_section_media_html', $media_html, $attrs );
+	return apply_filters( 'arkb_section__media_html', $media_html, $attrs );
 }

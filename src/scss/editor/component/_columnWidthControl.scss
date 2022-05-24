@@ -1,0 +1,18 @@
+.arkb-columnWidthControl {
+
+	> .components-flex {
+
+		+ .components-flex {
+			margin-top: 8px;
+		}
+
+		> .components-flex-item:first-child {
+			margin-right: 4px;
+		}
+	}
+
+	.arkb-unitNumber .components-input-control__container {
+		min-width: 6em;
+	}
+
+}

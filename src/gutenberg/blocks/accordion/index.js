@@ -31,15 +31,15 @@ registerBlockType(metadata.name, {
 	//     "arkhe-block/accordion/iconClosed": "iconClosed"
 	// },
 	example,
-	edit: ({ attributes, setAttributes }) => {
+	edit: ({ attributes, setAttributes, isSelected }) => {
 		const blockProps = useBlockProps({
 			className: `${blockName} ark-has-guide`,
 		});
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['arkhe-blocks/accordion-item'],
-			template: [['arkhe-blocks/accordion-item']],
+			template: [['arkhe-blocks/accordion-item'], ['arkhe-blocks/accordion-item']],
 			templateLock: false,
-			renderAppender: InnerBlocks.ButtonBlockAppender,
+			renderAppender: isSelected ? InnerBlocks.ButtonBlockAppender : false,
 		});
 
 		return (

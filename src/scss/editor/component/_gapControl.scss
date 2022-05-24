@@ -1,0 +1,18 @@
+// .arkb-gapControl {}
+
+.arkb-gapControl__row {
+
+	+ .arkb-gapControl__row {
+		margin-top: 8px;
+	}
+
+	> .components-flex-item:first-child {
+		min-width: 4em;
+		margin-right: auto;
+	}
+
+	> .components-flex-block {
+		flex: 0 1 auto;
+	}
+
+}

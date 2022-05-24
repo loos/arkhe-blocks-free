@@ -21,7 +21,7 @@
 
 	//   memo: .arkb-boxLinkが単体の時に100%になっているとバグる & 不要なので、カラムの中にある時だけ限定。
 	//         (現状では.arkb-boxLinkブロックを単体で使うことはできないが、5.9のスタイルパネル内のみ。）
-	.arkb-columns & {
+	.ark-block-boxLinks & {
 		height: 100%; // read more の位置を下側に揃えるために必要。
 	}
 }
@@ -30,7 +30,6 @@
 	position: relative;
 	margin: 0;
 	overflow: hidden;
-
 }
 
 .arkb-boxLink__img {
