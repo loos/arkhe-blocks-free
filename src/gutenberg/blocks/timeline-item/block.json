@@ -26,6 +26,14 @@
             "type": "boolean",
             "default": false
         },
+        "isEmphasis": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideContent": {
+            "type": "boolean",
+            "default": false
+        },
         "icon": {
             "type": "string",
             "default": ""

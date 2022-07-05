@@ -1,0 +1,8 @@
+.ark-block-container[data-flex],
+.ark-block-container[data-flex] > .ark-block-container__inner {
+
+	> * {
+		margin: 0 !important;
+	}
+
+}

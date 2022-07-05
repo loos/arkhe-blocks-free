@@ -1,5 +1,4 @@
 .arkb-iconPicker {
-
 	display: flex;
 
 	svg[fill="none"] {
@@ -8,6 +7,10 @@
 
 	>.components-button {
 		height: 40px;
+	}
+
+	>.components-button.-clear {
+		margin-left: 1em;
 	}
 
 	.arkb-iconPicker__placeholder {

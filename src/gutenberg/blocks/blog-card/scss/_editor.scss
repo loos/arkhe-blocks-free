@@ -1,81 +1,11 @@
 @import "../../../../scss/mixin/media";
 
 // 関連記事
-[data-type="arkhe-blocks/blog-card"] {
-
-	&.is-selected {
-		padding: 16px;
-	}
-
-	// プレビューエリア
-	.ark-block-blogCard__preview {
-
-		> div {
-			pointer-events: none;
-		}
-
-		&.-none {
-			padding: 16px;
-			font-size: 14px;
-		}
-	}
-
-	// コントロールエリア
-	.ark-block-blogCard__controls {
-		max-width: 1000px;
-		margin: 1rem auto 0;
-	}
-}
-
-.ark-block-blogCard__inputWrapper {
-	margin-top: .5em;
-
-	.components-base-control__field {
-		margin-bottom: 0;
-	}
-
-	input {
-		min-height: 0 !important;
-		padding: 8px !important;
-		font-size: 13px !important;
-		line-height: 1.5 !important;
-		border: solid 1px #ddd !important;
-		border-radius: 0 !important;
-	}
-
-	.__internalArea {
-		display: flex;
-		align-items: flex-start;
-	}
-
-	.__idInput {
-		width: 8em;
-	}
-
-	.__urlInput { //.block-editor-url-input
-		margin-left: .75em;
-		padding: 0;
-
-		input {
-			width: 100% !important;
-		}
-	}
-
-	.__externalInput {
-		width: 100%;
-	}
-}
-
-// スマホでもURLインプットのサジェスチョンを出す。
-@include mobile {
-
-	.block-editor-url-input__suggestions {
-		display: inherit;
-	}
-}
-
-// 「新しいタブで開く」のコントロール
-.components-toggle-control.-is-external {
-	opacity: .5;
+.ark-block-blogCard__preview .ark-block-blogCard {
 	pointer-events: none;
+}
+
+.ark-block-blogCard__preview.-none {
+	padding: 1.5em;
+	text-align: center;
 }

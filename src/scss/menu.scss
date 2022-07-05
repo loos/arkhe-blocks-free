@@ -5,14 +5,14 @@
  * 管理画面で読み込むCSS
  */
 
-// mixin
-// @import "mixin/**";
+@import "../../node_modules/react-notifications-component/dist/scss/notification";
 
 // 設定ページ
 $bg: #eff0f3;
 $headline:#0d0d0d;
 $text: #2a2a2a;
 $white: #fffffe;
+
 
 #wpwrap {
 	color: $text;
@@ -26,21 +26,6 @@ $white: #fffffe;
 #arkhe-menu {
 	margin: 0;
 	font-size: 14px;
-
-	.notice:not(.updated) {
-		margin: 1em 0;
-		padding: 0;
-		background: none;
-		border: none;
-		box-shadow: none;
-	}
-
-	.notice.updated {
-		margin: 1em 0;
-		border: solid 1px #efefef;
-		border-left: solid 3px #00a32a;
-		border-radius: 1px;
-	}
 
 	.nav-tab-wrapper {
 		padding-top: 1em;
@@ -61,7 +46,6 @@ $white: #fffffe;
 		}
 	}
 
-
 	.arkhe-menu__head {
 		padding: 24px 24px 0;
 		color: $text;
@@ -73,29 +57,94 @@ $white: #fffffe;
 		font-size: 2em;
 	}
 
-	h2 {
+}
+
+.arkhe-menu__body {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+
+	.rnc__base {
+		top: 0;
+		left: 0;
+	}
+
+	.rnc__notification-container--top-left {
+		position: fixed;
+		top: 50px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.arkhe-menu__section {
+
+	margin-top: 3em;
+
+	&[data-disabled="true"] {
+
+		.arkhe-menu__section__inner {
+			position: relative;
+
+			&::before {
+				position: absolute;
+				top: -2px;
+				right: -2px;
+				bottom: -2px;
+				left: -2px;
+				z-index: 99;
+				// display: block;
+				// width: 100%;
+				// height: 100%;
+				background-color: rgba(#fff, .1);
+				// background-image: linear-gradient(-45deg, transparent 25%, rgba(#000, .05) 25%, rgba(#000, .05) 50%, transparent 50%, transparent 75%, rgba(#000, .05) 75%, rgba(#000, .05));
+				background-size: 8px 8px;
+				// filter: blur(8px);
+				backdrop-filter: blur(2px);
+				content: "";
+			}
+		}
+
+		.__onlyProMessage {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 100;
+			padding: .5em 1em;
+			color: #fff;
+			font-size: 16px;
+			line-height: 1;
+			background-color: #000;
+			border-radius: 2em;
+			box-shadow: 0 2px 16px rgba(0, 0, 0, .2);
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
+
+	// h2
+	.arkhe-menu__section__title {
 		position: relative;
-		margin: 2em 0 1em;
+		margin: 0 0 1em;
 		padding: 8px 12px;
 		padding-left: 1.5em;
 		color: $headline;
 		font-size: 1.5em;
+
+		&::before {
+			position: absolute;
+			top: calc(50% - .5em - 1px);
+			left: 0;
+			width: 1em;
+			height: 1em;
+			background: currentColor;
+			border: solid 2px #fff;
+			box-shadow: 0 0 0 1px #000;
+			transform: scale(.6) rotate(45deg);
+			content: "";
+		}
 	}
 
-	h2::before {
-		position: absolute;
-		top: calc(50% - .5em - 1px);
-		left: 0;
-		width: 1em;
-		height: 1em;
-		background: currentColor;
-		border: solid 2px #fff;
-		box-shadow: 0 0 0 1px #000;
-		transform: scale(.6) rotate(45deg);
-		content: "";
-	}
-
-	.h3 {
+	.__h3 {
 		position: relative;
 		padding-left: 1.2em;
 		font-size: 1.2em;
@@ -113,48 +162,28 @@ $white: #fffffe;
 		}
 	}
 
+	// .arkhe-menu__section__help{}
 
-	td > :first-child {
-		margin-top: 0 !important;
-	}
+	.arkhe-menu__section__inner {
 
-	.form-table {
+		&[data-style="box"] {
+			padding: 2em;
+			background: $white;
+			box-shadow: 0 0 8px -2px rgba(0, 0, 0, .1);
+
+		}
 		display: block;
-		padding: 1em;
-		background: $white;
-		box-shadow: 0 0 8px -2px rgba(0, 0, 0, .1);
 
-		th {
-			display: none;
-		}
-
-		tbody,
-		tr,
-		td {
-			display: block;
+		> *:first-child {
+			margin-top: 0 !important;
 		}
 	}
-
-	.arkhe-menu__help {
-		margin-top: 1em;
-	}
-
-
 }
 
-.arkhe-menu__body {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 20px;
-}
 
 .arkhe-menu__field {
 
 	margin-top: 24px;
-
-	&.-checkbox + &.-checkbox {
-		margin-top: 16px;
-	}
 
 	.arkhe-menu__description {
 		margin-top: 8px;
@@ -213,14 +242,14 @@ $white: #fffffe;
 	}
 
 	&.-checkbox {
+		font-size: inherit;
 
-		[type="checkbox"] {
-			margin: 0 4px 0 0;
+		+ .-checkbox {
+			margin-top: 16px;
 		}
 
-		.arkhe-menu__label {
-			display: block;
-			padding: 4px 0;
+		.components-base-control__field {
+			margin-bottom: 0;
 		}
 	}
 }
@@ -254,9 +283,39 @@ $white: #fffffe;
 			margin-right: 1em;
 		}
 
-		input {
-			max-width: 12em;
+		.arkhe-menu__item {
+
+			.components-base-control__field {
+				margin-bottom: 0;
+			}
+
+			input {
+				max-width: 12em;
+			}
 		}
 	}
 }
 
+.arkhe-menu__submit {
+	margin-top: 30px;
+}
+
+.arkhe-menu-savingLayer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: .2;
+
+	.components-spinner {
+		margin: 0;
+		transform: scale(1.5);
+	}
+}

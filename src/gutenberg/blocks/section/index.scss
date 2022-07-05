@@ -2,10 +2,8 @@
 
 .ark-block-section {
 	// セクションを入れ子にした時に、親セクションの影響を受けないようにする
-	--arkb-section-padding: 4rem 2rem;
-	--arkb-section-padding--sp: 4rem 2rem;
-	--arkb-section-minH: "none";
-	--arkb-section-minH--sp: "none";
+	--arkb-padding: 4rem 0;
+	--arkb-min-height: unset;
 	--arkb-svg-height--top: 0;
 	--arkb-svg-height--bottom: 0;
 
@@ -17,17 +15,11 @@
 
 .ark-block-section__media {
 	z-index: 0;
-	--arkb-object-position: "center";
-	--arkb-object-position--sp: "center";
 }
 
 .ark-block-section__img,
 .ark-block-section__video {
-	object-position: var(--arkb-object-position);
-
-	@include sp {
-		object-position: var(--arkb-object-position--sp);
-	}
+	object-position: center;
 }
 
 .ark-block-section__color {
@@ -42,26 +34,22 @@
 	max-width: var(--ark-width--article, 1000px);
 	margin: 0 auto;
 
-	.alignfull:not([data-inner="full"]) > & {
+	.alignfull:not([data-inner="full"])>& {
 		max-width: calc(var(--ark-width--article, 1000px) + var(--ark-padding--container, 0px) * 2);
 		padding-right: var(--ark-padding--container, 0px);
 		padding-left: var(--ark-padding--container, 0px);
 	}
 
-	[data-inner="full"] > & {
+	[data-inner="full"]>& {
 		max-width: 100%;
 	}
 
-	[data-height="full"] > & {
+	[data-height="full"]>& {
 		height: var(--ark-height--full, 100vh);
 	}
 
-	[data-height="custom"] > & {
-		min-height: var(--arkb-section-minH);
-
-		@include sp {
-			min-height: var(--arkb-section-minH--sp);
-		}
+	[data-height="custom"]>& {
+		min-height: var(--arkb-min-height);
 	}
 
 
@@ -119,11 +107,7 @@
 
 .ark-block-section__bodyInner {
 	width: 100%;
-	padding: var(--arkb-section-padding);
-
-	@include sp {
-		padding: var(--arkb-section-padding--sp);
-	}
+	padding: var(--arkb-padding);
 }
 
 // fill の詳細度をあげる

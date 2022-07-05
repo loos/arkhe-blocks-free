@@ -11,6 +11,11 @@
     "parent": [
         "arkhe-blocks/step"
     ],
+    "usesContext": [
+        "arkb/step/isHideLabel",
+        "arkb/step/isHideNum",
+        "arkb/step/stepLabel"
+    ],
     "attributes": {
         "title": {
             "type": "string",
@@ -38,6 +43,10 @@
             "default": false
         },
         "isHideNum": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideContent": {
             "type": "boolean",
             "default": false
         }

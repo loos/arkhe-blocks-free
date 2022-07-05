@@ -40,7 +40,12 @@
 [data-arkb-linkbox]:hover > .arkb-boxLink__inner,
 a.arkb-boxLink__inner:hover {
 
-	box-shadow: 0 4px 32px -8px rgba(0, 0, 0, .1);
+	// box-shadow: 0 4px 32px -8px rgba(0, 0, 0, .1);
+	box-shadow: 0px 4px 24px -8px rgba(0, 0, 0, .08), 0px 16px 40px -16px rgba(0, 0, 0, .15);
+
+	.arkb-boxLink__bg {
+		opacity: .75;
+	}
 
 	.arkb-boxLink__more__svg {
 		transform: translateX(4px);

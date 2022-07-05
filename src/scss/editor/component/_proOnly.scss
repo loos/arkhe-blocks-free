@@ -1,0 +1,35 @@
+.arkb-proOnlyArea {
+	position: relative;
+	min-height: 5em;
+	font-size: 14px;
+
+	&::before {
+		position: absolute;
+		z-index: 99;
+		background-color: rgba(#000, .08);
+		border: solid 1px rgba(#000, .1);
+		backdrop-filter: blur(1px);
+		inset: -8px;
+		content: "";
+	}
+
+	.arkb-proOnlyArea__message {
+		position: absolute;
+		top: 50%;
+		left: 3%;
+		z-index: 100;
+		display: block;
+		width: 94%;
+		margin: 0;
+		padding: 10px 12px;
+		color: #000;
+		line-height: 1.5;
+		background: #fff;
+		border-radius: 4px;
+		transform: translateY(-50%);
+	}
+
+	.arkb-proOnlyArea__link {
+		margin-left: .5em;
+	}
+}

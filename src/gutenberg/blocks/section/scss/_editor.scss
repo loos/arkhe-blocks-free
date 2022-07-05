@@ -1,4 +1,5 @@
 .ark-block-section {
+
 	// ブロック選択時の青線を上に
 	&::after {
 		z-index: 10 !important;
@@ -24,11 +25,39 @@
 
 		}
 	}
+
+	.ark-block-section__selectorPreview {
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		z-index: 99;
+		padding: 6px;
+		color: #000;
+		font-weight: normal;
+		font-size: 10px;
+		font-family: Menlo, Consolas, monaco, monospace;
+		line-height: 1;
+		background-color: rgba(#fcfcfc, .65);
+		border-radius: 5px;
+		box-shadow: 0 0 4px rgba(#000, .1);
+		transition: background-color .25s, font-size .25s;
+
+		&:empty {
+			display: none;
+		}
+
+		&:hover {
+			font-size: 14px;
+			background-color: rgba(#fcfcfc, .85);
+		}
+		// .__id {}
+		// .__class{}
+	}
 }
 
 .ark-block-section__bodyInner {
 
-	> .wp-block {
+	>.wp-block {
 		max-width: 100%;
 		// margin-right: 0;
 		// margin-left: 0;
@@ -41,7 +70,6 @@
 
 
 .arkb-btns--svg {
-
 	display: flex;
 
 	.components-button {
@@ -52,7 +80,7 @@
 		background: #fff !important;
 		border: solid 2px #fff;
 		border-radius: 4px;
-		box-shadow: inset 0 0 0 6px currentColor !important;
+		box-shadow: inset 0 0 0 2px currentColor !important;
 
 		svg {
 			display: block;

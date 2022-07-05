@@ -1,0 +1,40 @@
+{
+    "apiVersion": 2,
+    "name": "arkhe-blocks/custom-code",
+    "title": "Custom Code",
+    "category": "arkhe-blocks",
+    "keywords": [
+        "arkhe",
+        "custom-code",
+        "css",
+        "javascript"
+    ],
+    "supports": {
+        "anchor": false,
+        "className": false,
+        "customClassName": false,
+        "html": false
+    },
+    "attributes": {
+        "variation": {
+            "type": "string",
+            "default": ""
+        },
+        "content": {
+            "type": "object",
+            "default": {
+                "all": ""
+            }
+        },
+        "code": {
+            "type": "string",
+            "source": "html"
+        },
+        "height": {
+            "type": "number",
+            "default": 300
+        }
+    },
+    "editorScript": "file:../../../../dist/gutenberg/blocks/custom-code/index.js",
+    "textdomain": "arkhe-blocks"
+}

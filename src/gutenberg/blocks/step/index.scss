@@ -3,6 +3,8 @@
 // ::before の方が、エディターでのコア側のUIからの影響が少ない。（移動モードの時だけ）
 
 .ark-block-step {
+	--arkb-step-color: currentColor;
+
 	counter-reset: step;
 }
 
@@ -43,11 +45,8 @@
 		counter-increment: step;
 	}
 
-	&[data-num] {
-
-		&::after {
-			content: attr(data-num);
-		}
+	&[data-num]::after {
+		content: attr(data-num);
 	}
 
 	&[data-num=""] {
@@ -65,19 +64,17 @@
 
 .ark-block-step__title {
 	font-weight: bold;
+	font-size: 1.05em;
 	line-height: 1.6;
 }
 
 .ark-block-step__body {
 	margin-top: 1em;
-
-	&:empty {
-		display: none;
-	}
 }
 
 // デフォルトスタイル(1行の時に番号とセンターが合うように)
 .ark-block-step.is-style-default {
+	--arkb-step-color: var(--ark-color--main, #333);
 
 	.ark-block-step__item {
 		padding: 0 0 3em;
@@ -107,12 +104,8 @@
 		height: 48px;
 		margin-right: 16px;
 		color: #fff;
-		background-color: var(--ark-color--main, #333);
+		background-color: var(--arkb-step-color);
 		border-radius: 50%;
-
-		&.-has-color {
-			background: var(--ark-step_color);
-		}
 	}
 
 	.ark-block-step__title {
@@ -166,24 +159,18 @@
 		&:first-child {
 			border-top: dashed 1px var(--ark-color--border, rgba(200, 200, 200, .5));
 		}
-
 	}
 
 	// .ark-block-step__head{}
-
 	.ark-block-step__number {
-
 		margin: 0 0 1em;
+		color: var(--arkb-step-color);
 
 		@include pc {
 
 			&::after {
 				font-size: 24px;
 			}
-		}
-
-		&.-has-color {
-			color: var(--ark-step_color);
 		}
 	}
 
@@ -202,10 +189,7 @@
 	.ark-block-step__item {
 		padding: 2em;
 		background: #fff;
-		// box-shadow: 0 1px 20px -4px rgba(0, 0, 0, .1);
 		box-shadow: var(--arkb-shadow);
-
-		// --arkb-shadow: 0 1px 12px 0 rgba(0, 0, 0, .1);
 
 		@include sp {
 			padding: 1.5em;
@@ -236,6 +220,7 @@
 	.ark-block-step__number {
 		min-width: 2em;
 		margin-right: 1em;
+		color: var(--arkb-step-color);
 
 		@include pc {
 
@@ -244,16 +229,12 @@
 			}
 		}
 
-		&.-has-color {
-			color: var(--ark-step_color);
-		}
 	}
 
 	.__label {
 		min-width: 2em;
 		margin-right: .25em;
 		padding: 2px 0 0;
-		// font-size: 12px;
 	}
 
 }

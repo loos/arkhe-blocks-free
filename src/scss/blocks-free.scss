@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+.arkb-is-pro-block {
+	position: relative;
+	padding: 2em;
+	color: #000 !important;
+	background-color: #fff !important;
+	border: solid 1px;
+
+	.__arkhe_icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 24px;
+		height: 24px;
+		padding: 4px;
+		color: #fff;
+		background-color: #000;
+	}
+
+	// .__title {}
+	.__btnWrap {
+		margin-top: 1.5em;
+	}
+
+	.__btn {
+		display: inline-flex;
+		padding: 1em;
+		// color: inherit;
+		color: #fff;
+		line-height: 1;
+		text-decoration: none;
+		// background-color: #000;
+		background: linear-gradient(135deg, #ffa95d, #f64444);
+		background-position: 64% 50%;
+		background-size: 200% auto;
+		border: solid 1px;
+		border-radius: 2em;
+		box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .25), 0 0 1px 0px rgba(0, 0, 0, .1);
+		transition: background-position .4s, box-shadow .4s;
+
+		svg {
+			margin-left: .25em;
+		}
+
+		&:hover {
+			// background: linear-gradient(135deg, #ffa05d, #f54040);
+			background-position: 32% 50%;
+			box-shadow: 0 2px 16px 0px rgba(0, 0, 0, .1), 0 2px 12px 1px rgba(0, 0, 0, .1);
+		}
+	}
+}
+
+// ブロックボタンにアイコンを付ける
+/* stylelint-disable function-url-quotes */
+// { name: 'columns', title: __('Rich columns', 'arkhe-blocks'), icon: columnsIcon },
+// 	{ name: 'box-links', title: __('Box links', 'arkhe-blocks'), icon: boxLinkIcon },
+// 	{ name: 'slider', title: __('Slider', 'arkhe-blocks'), icon: sliderIcon },
+// 	{ name: 'post-list', title: __('Post list', 'arkhe-blocks'), icon: postListIcon },
+// 	{ name: 'page-list', title: __('Page list', 'arkhe-blocks'), icon: pageListIcon },
+// 	{ name: 'rss', title: __('RSS', 'arkhe-blocks'), icon: rssIcon },
+// 	{
+// 		name: 'restricted-area',
+
+// .components-autocomplete__result[id*="arkhe-blocks-pro"],
+// [class*="editor-block-list-item-arkhe-blocks-pro-"]
+.components-autocomplete__result[id*="arkhe-blocks-columns"],
+.components-autocomplete__result[id*="arkhe-blocks-box-links"],
+.components-autocomplete__result[id*="arkhe-blocks-slider"],
+.components-autocomplete__result[id*="arkhe-blocks-post-list"],
+.components-autocomplete__result[id*="arkhe-blocks-page-list"],
+.components-autocomplete__result[id*="arkhe-blocks-rss"],
+.components-autocomplete__result[id*="arkhe-blocks-restricted-area"],
+.editor-block-list-item-arkhe-blocks-columns,
+.editor-block-list-item-arkhe-blocks-box-links,
+.editor-block-list-item-arkhe-blocks-slider,
+.editor-block-list-item-arkhe-blocks-post-list,
+.editor-block-list-item-arkhe-blocks-page-list,
+.editor-block-list-item-arkhe-blocks-rss,
+.editor-block-list-item-arkhe-blocks-restricted-area {
+
+	&::after {
+		width: auto;
+		height: auto;
+		padding: 2px 4px;
+		color: #fff;
+		font-size: 10px;
+		line-height: 1;
+		background: none;
+		background-color: #000;
+		content: "Pro";
+	}
+}

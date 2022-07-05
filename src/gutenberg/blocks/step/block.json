@@ -8,6 +8,11 @@
         "anchor": true,
         "className": false
     },
+    "providesContext": {
+        "arkb/step/isHideLabel": "isHideLabel",
+        "arkb/step/isHideNum": "isHideNum",
+        "arkb/step/stepLabel": "stepLabel"
+    },
     "attributes": {
         "startNum": {
             "type": "number",
@@ -16,6 +21,14 @@
         "stepLabel": {
             "type": "string",
             "default": "STEP"
+        },
+        "isHideLabel": {
+            "type": "boolean",
+            "default": false
+        },
+        "isHideNum": {
+            "type": "boolean",
+            "default": false
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/step/index.js",

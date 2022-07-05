@@ -51,3 +51,16 @@ function arkb_both_check() {
 		'</p></div>';
 	}
 }
+
+
+/**
+ * Pro版へのリンクを追加
+ */
+add_action( 'plugin_action_links_' . \Arkhe_Blocks::$basename, __NAMESPACE__ . '\hook__plugin_action_links' );
+function hook__plugin_action_links( $links ) {
+	if ( \Arkhe_Blocks::IS_PRO ) return $links;
+
+	return array_merge( $links, [
+		'<a class="arkb-link--toPro" target="_blank" href="https://arkhe-theme.com/ja/product/arkhe-blocks-pro/" style="color: #ff8a46;font-weight: 700;text-shadow: 1px 1px #fff;">' . esc_html__( 'Go Pro', 'arkhe-blocks' ) . '</a>',
+	]);
+}

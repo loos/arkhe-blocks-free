@@ -3,34 +3,35 @@
  * ブログカード
  */
 $args = array_merge([
-	'url'          => '',
-	'excerpt'      => '',
-	'title'        => '',
-	'caption'      => '',
-	'thumb_id'     => 0,
-	'thumb_url'    => '',
-	'icon'         => '',
-	'is_newtab'    => false,
-	'rel'          => '',
-	'type'         => '',
-	'anchor'       => '',
-	'class'        => '',
-	'show_excerpt' => 'both',
-	'show_image'   => true,
+	'url'                => '',
+	'excerpt'            => '',
+	'title'              => '',
+	'caption'            => '',
+	'thumb_id'           => 0,
+	'thumb_url'          => '',
+	'icon'               => '',
+	'is_newtab'          => false,
+	'rel'                => '',
+	'type'               => '',
+	'anchor'             => '',
+	'class'              => '',
+	'show_excerpt'       => 'both',
+	'show_image'         => true,
 ], $args );
+
 
 $url    = $args['url'];
 $target = ( $args['is_newtab'] ) ? ' target="_blank"' : '';
 $rel    = $args['rel'] ? ' rel="' . $args['rel'] . '"' : '';
 
-$img_class = 'arkb-boxLink__img arkb-obf-cover';
+$wp_img_class = '';
 if ( $args['thumb_id'] ) {
-	$img_class .= ' wp-image-' . $args['thumb_id'];
+	$wp_img_class = ' wp-image-' . $args['thumb_id'];
 }
 
 $favicon = '';
 if ( 'external' === $args['type'] ) {
-	$favicon = $args['icon'] ? esc_url( $args['icon'] ) : 'https://www.google.com/s2/favicons?domain_url=' . esc_url( $url );
+	$favicon = $args['icon'] ? esc_url( $args['icon'] ) : ''; // 'https://www.google.com/s2/favicons?domain_url=' . esc_url( $url );
 }
 
 $excerpt_class = 'both' !== $args['show_excerpt'] ? ' arkb-only-' . $args['show_excerpt'] : '';
@@ -46,9 +47,9 @@ if ( $args['anchor'] ) {
 ?>
 <div <?=$block_props?> data-arkb-linkbox>
 	<div class="arkb-boxLink__inner" data-type="<?=$args['type']?>">
-		<?php if ( $args['show_image'] && $args['thumb_url'] ) : ?>
+		<?php if ( $args['thumb_url'] ) : ?>
 			<figure class="arkb-boxLink__figure is-fixed-ratio">
-				<img src="<?=esc_url( $args['thumb_url'] )?>" alt="" class="<?=esc_attr( $img_class )?>">
+				<img src="<?=esc_url( $args['thumb_url'] )?>" alt="" class="arkb-boxLink__img arkb-obf-cover<?=esc_attr( $wp_img_class )?>">
 			</figure>
 		<?php endif; ?>
 		<div class="arkb-boxLink__body">

@@ -15,20 +15,20 @@
     },
     "attributes": {
         "anchor": {
-            "type": "string",
-            "default": ""
+            "type": "string"
         },
         "className": {
-            "type": "string",
-            "default": ""
+            "type": "string"
         },
-        "postTitle": {
-            "type": "string",
-            "default": ""
+        "linkData": {
+            "type": "object"
         },
-        "postId": {
-            "type": "string",
-            "default": ""
+        "isNewTab": {
+            "type": "boolean",
+            "default": false
+        },
+        "rel": {
+            "type": "string"
         },
         "showExerptPC": {
             "type": "boolean",
@@ -38,33 +38,32 @@
             "type": "boolean",
             "default": false
         },
-        "caption": {
-            "type": "string",
-            "default": ""
-        },
-        "isNewTab": {
-            "type": "boolean",
-            "default": false
-        },
-        "externalUrl": {
-            "type": "string",
-            "default": ""
-        },
-        "rel": {
-            "type": "string",
-            "default": ""
-        },
-        "useCache": {
+        "showImage": {
             "type": "boolean",
             "default": true
         },
-        "showImage": {
+        "caption": {
+            "type": "string"
+        },
+        "customTitle": {
+            "type": "string"
+        },
+        "customExcerpt": {
+            "type": "string"
+        },
+        "useCache": {
             "type": "boolean",
             "default": true
         },
         "isPreview": {
             "type": "boolean",
             "default": false
+        },
+        "postId": {
+            "type": "string"
+        },
+        "externalUrl": {
+            "type": "string"
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/blog-card/index.js",

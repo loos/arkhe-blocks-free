@@ -74,9 +74,6 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 	// 基本スクリプト
 	$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/index.asset.php';
 	wp_enqueue_script( 'arkhe-blocks-editor', $dist_url . 'gutenberg/index.js', $asset['dependencies'], $asset['version'], true );
-	wp_localize_script( 'arkhe-blocks-editor', 'arkbVars', [
-		'isArkhe' => IS_ARKHE_THEME,
-	] );
 
 	// @FontAwesom
 	$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/fa.asset.php';
@@ -94,6 +91,14 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 		wp_enqueue_script( 'arkhe-blocks-format', $dist_url . 'gutenberg/format.js', $asset['dependencies'], $asset['version'], true );
 	}
 
+	// 無料版
+	if ( ! \Arkhe_Blocks::IS_PRO ) {
+		wp_enqueue_style( 'arkhe-blocks-editor-free', $dist_url . 'css/blocks-free.css', $deps, \Arkhe_Blocks::$file_ver );
+
+		$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/free.asset.php';
+		wp_enqueue_script( 'arkhe-blocks-editor-free', $dist_url . 'gutenberg/free.js', $asset['dependencies'], $asset['version'], true );
+	}
+
 }
 
 
@@ -107,9 +112,23 @@ function hook_admin_enqueue_scripts( $hook_suffix ) {
 
 	// Arkhe Blocks設定ページのみ
 	if ( $is_arkb_page ) {
-		wp_enqueue_style( 'arkhe-blocks-menu', ARKHE_BLOCKS_URL . 'dist/css/menu.css', [], \Arkhe_Blocks::$file_ver );
 
-		wp_dequeue_style( 'arkhe-toolkit-menu' );
+		// 設定画面用CSS
+		wp_enqueue_style( 'arkhe-blocks-menu', ARKHE_BLOCKS_URL . 'dist/css/menu.css', [ 'wp-components' ], \Arkhe_Blocks::$file_ver );
+
+		// 設定画面用JS
+		$asset = include ARKHE_BLOCKS_PATH . 'dist/menu/index.asset.php';
+		wp_enqueue_script( 'arkhe-blocks-menu', ARKHE_BLOCKS_URL . 'dist/menu/index.js', $asset['dependencies'], $asset['version'], true );
+		wp_localize_script( 'arkhe-blocks-menu', 'arkbMenuVars', [
+			'isArkhe'     => IS_ARKHE_THEME,
+			'isPro'       => \Arkhe_Blocks::IS_PRO,
+			'defaultData' => \Arkhe_Blocks::$defaults,
+		] );
+
+		// JS用翻訳ファイルの読み込み
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'arkhe-blocks-menu', 'arkhe-blocks', ARKHE_BLOCKS_PATH . 'languages' );
+		}
 
 		// codemirror
 		// see: https://codemirror.net/doc/manual.html#config
@@ -134,14 +153,6 @@ function hook_admin_enqueue_scripts( $hook_suffix ) {
 
 		wp_localize_script( 'wp-theme-plugin-editor', 'codeEditorSettings', $settings );
 		wp_enqueue_script( 'wp-theme-plugin-editor' );
-		wp_add_inline_script(
-			'wp-theme-plugin-editor',
-			'jQuery(document).ready(function($) {
-				var arkbCssEditor = $(".arkb-css-editor");
-				if(arkbCssEditor.length < 1) return;
-				wp.codeEditor.initialize($(".arkb-css-editor"), codeEditorSettings );
-			})'
-		);
 		wp_enqueue_style( 'wp-codemirror' );
 	}
 }

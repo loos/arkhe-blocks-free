@@ -12,22 +12,61 @@ register_block_type_from_metadata(
 
 function cb( $attrs, $content ) {
 
-	$sc_props      = '';
-	$post_id       = $attrs['postId'];
-	$caption       = $attrs['caption'];
-	$is_newtab     = $attrs['isNewTab'];
-	$external_url  = $attrs['externalUrl'];
-	$rel           = $attrs['rel'];
+	$sc_props = '';
+
+	// リンクデータ
+	$linkData = $attrs['linkData'] ?? [];
+	$link_id  = $linkData['id'] ?? 0;
+	$url      = $linkData['url'] ?? '';
+	$kind     = $linkData['kind'] ?? '';
+	$type     = $linkData['type'] ?? '';
+
+	// カードデータ
 	$use_cache     = $attrs['useCache'];
+	$customCaption = $attrs['caption'] ?? '';
+	$customTitle   = $attrs['customTitle'] ?? '';
+	$customExcerpt = $attrs['customExcerpt'] ?? '';
 	$show_exerptPC = $attrs['showExerptPC'];
 	$show_exerptSP = $attrs['showExerptSP'];
 	$show_image    = $attrs['showImage'];
 
-	$is_external = ! empty( $external_url );
-	$card_data   = [];
+	if ( ! empty( $linkData ) ) {
+		// v2以降は、linkDataを使う
+		$link_id = $linkData['id'] ?? 0;
+		$url     = $linkData['url'] ?? '';
+		$kind    = $linkData['kind'] ?? '';
+		$type    = $linkData['type'] ?? '';
 
-	// キャッシュがあるか調べる
-	$cache_key = $is_external ? 'arkhe_blogcard_' . md5( $external_url ) : 'arkhe_blogcard_' . $post_id;
+		if ( $link_id && ! $url ) {
+			$sc_props .= "linkData={$link_id}";
+		}
+	} else {
+		// v1
+		$url     = $attrs['externalUrl'] ?? '';
+		$link_id = $attrs['postId'] ?? 0;
+		if ( $link_id ) {
+			$kind = 'post-type';
+		}
+	}
+
+	$is_kind_post = 'post-type' === $kind;
+
+	// idなければ外部リンク。（タクソノミーページヘのリンクもサムネイル問題があるのでとりあえず外部リンクとして扱う )
+	$is_external = ! $link_id || ! $is_kind_post;
+
+	// キャッシュキーをセット
+	$cache_key = '';
+	if ( $link_id && 'post-type' === $kind ) {
+		$cache_key = "arkhe_blogcard_{$link_id}";
+	} elseif ( $link_id && $type ) {
+		$cache_key = "arkhe_blogcard_{$type}_{$link_id}";
+	} elseif ( $url ) {
+		$cache_key = 'arkhe_blogcard_' . md5( $url );
+	}
+
+	// カードデータの生成開始
+	$card_data = [];
+
 	if ( $use_cache ) {
 		$card_data = get_transient( $cache_key ) ?: [];
 	} else {
@@ -36,9 +75,9 @@ function cb( $attrs, $content ) {
 
 	if ( empty( $card_data ) ) {
 		if ( $is_external ) {
-			$card_data = get_external_blog_card( $external_url );
-		} elseif ( $post_id ) {
-			$card_data = get_internal_blog_card( $post_id );
+			$card_data = get_external_blog_card( $url );
+		} elseif ( $link_id ) {
+			$card_data = get_internal_blog_card( $link_id );
 		}
 
 		if ( null === $card_data ) {
@@ -51,15 +90,37 @@ function cb( $attrs, $content ) {
 		}
 	}
 
-	$card_data['is_newtab'] = $is_newtab;
-	$card_data['rel']       = $rel;
-	$card_data['type']      = $is_external ? 'external' : 'internal';
-	$card_data['class']     = $attrs['className'];
-	$card_data['anchor']    = $attrs['anchor'];
+	// 上書き情報
+	if ( $customCaption ) {
+		$card_data['caption'] = $customCaption;
+	}
+	if ( $customTitle ) {
+		$card_data['title'] = $customTitle;
+	}
+	if ( $customExcerpt ) {
+		$card_data['excerpt'] = $customExcerpt;
+	}
+	if ( ! $show_image ) {
+		unset( $card_data['thumb_url'] );
+	}
 
-	// キャプションの設定があれば
-	if ( $caption ) {
-		$card_data['caption'] = $caption;
+	// ここまでのカード化するためのデータが何も取得できていない場合
+	if ( empty( $card_data ) ) {
+		return '<div class="ark-block-blogCard" style="padding:1em">Error: <a href="' . esc_attr( $url ) . '">' . esc_html( $url ) . '</a></div>';
+	}
+
+	// 追加情報
+	$card_data['is_newtab'] = $attrs['isNewTab'] ?? false;
+	$card_data['rel']       = $attrs['rel'] ?? '';
+	$card_data['class']     = $attrs['className'] ?? '';
+	$card_data['anchor']    = $attrs['anchor'] ?? '';
+	$card_data['type']      = $is_external ? 'external' : 'internal';
+
+	// インナーリンクだがogデータ取得している場合
+	if ( $is_external && $kind ) {
+		$card_data['caption'] = '';
+		$card_data['icon']    = '';
+		$card_data['type']    = 'internal';
 	}
 
 	$data_excerpt = '';
@@ -74,13 +135,11 @@ function cb( $attrs, $content ) {
 	}
 
 	$card_data['show_excerpt'] = $data_excerpt;
-	$card_data['show_image']   = $show_image;
 
 	ob_start();
 	\Arkhe_Blocks::get_part( 'blog_card', $card_data );
 	return ob_get_clean();
 }
-
 
 
 /**
@@ -92,11 +151,14 @@ function get_internal_blog_card( $post_id ) {
 	if ( null === $post_data ) return [];
 
 	// 抜粋分の文字数セット
-	$title_length   = apply_filters( 'arkb_blogcard__title_length', 100 );
-	$excerpt_length = apply_filters( 'arkb_blogcard__excerpt_length', 140 );
-	$title          = get_the_title( $post_id );
-	$url            = get_permalink( $post_id );
-	$excerpt        = apply_filters( 'get_the_excerpt', $post_data->post_excerpt, $post_data );
+	$title_length       = apply_filters( 'arkb_blogcard__title_length', 100 );
+	$excerpt_length     = apply_filters( 'arkb_blogcard__excerpt_length', 140 );
+	$title              = get_the_title( $post_id );
+	$url                = get_permalink( $post_id );
+	$excerpt            = apply_filters( 'get_the_excerpt', $post_data->post_excerpt, $post_data );
+	$date_timestamp     = get_post_timestamp( $post_id, 'date' );
+	$modified_timestamp = get_post_timestamp( $post_id, 'modified' );
+	$author_id          = $post_data->post_author;
 
 	// タイトルは最大100文字までに制限
 	if ( mb_strwidth( $title, 'UTF-8' ) > $title_length ) {
@@ -109,10 +171,19 @@ function get_internal_blog_card( $post_id ) {
 	}
 
 	$card_data = [
-		'url'       => $url,
-		'title'     => $title,
-		'excerpt'   => $excerpt,
+		'url'                => $url,
+		'title'              => $title,
+		'excerpt'            => $excerpt,
+		'date_timestamp'     => $date_timestamp,
+		'modified_timestamp' => $modified_timestamp,
+		'author_id'          => $author_id,
 	];
+
+	// カテゴリーデータ
+	$categories = get_the_category( $post_id );
+	if ( ! empty( $categories ) ) {
+		$card_data['cat_id'] = $categories[0]->term_id;
+	}
 
 	// サムネイル画像のデータをセット
 	if ( has_post_thumbnail( $post_id ) ) {

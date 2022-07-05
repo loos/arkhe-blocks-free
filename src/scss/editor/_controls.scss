@@ -1,7 +1,15 @@
 // 操作を不可能にする設定
-[data-ark-disabled] {
-	opacity: .5;
-	pointer-events: none;
+[data-ark-disabled="true"] {
+	position: relative;
+	cursor: not-allowed;
+	opacity: .25;
+
+	&::before {
+		position: absolute;
+		z-index: 99;
+		content: "";
+		inset: 0;
+	}
 }
 
 // マージンを少なくするコントロール
@@ -60,14 +68,26 @@
 }
 
 
-// 小さく表示したいボタン ( isSmall だと小さくなりすぎる時用)
-.arkb-btns--small {
+// 小さく表示したいボタン
+.arkb-btns--small .components-button {
+	height: 28px;
+	padding: 4px 8px;
+	font-size: 12px;
+}
 
-	.components-button {
-		height: 32px;
-		padding: 6px 8px;
-		font-size: 12px;
-	}
+.arkb-btns--flex {
+	display: flex !important;
+	flex-wrap: wrap;
+}
+
+.arkb-btns--50 .components-button {
+	justify-content: center;
+	min-width: 50%;
+}
+
+.arkb-btns--5em .components-button {
+	justify-content: center;
+	min-width: 5em;
 }
 
 .arkb-btns--logicalRelation {
@@ -86,16 +106,12 @@
 
 	.components-range-control__root {
 		flex-wrap: wrap;
-	}
 
-	.css-uojzqi-ActionRightWrapper {
-		width: 100%;
-		margin-top: 8px;
-		text-align: right;
-	}
-
-	&.-colmun .css-uojzqi-ActionRightWrapper {
-		margin-top: 4px;
+		> :last-child {
+			width: 100%;
+			margin-top: 8px;
+			text-align: right;
+		}
 	}
 
 	.components-range-control__reset {
@@ -150,10 +166,24 @@
 		padding-top: 0;
 	}
 
+	&.-section-svg {
+
+		.components-tab-panel__tab-content {
+			padding-top: 16px;
+		}
+	}
+
 	&.-device {
 
 		.components-tab-panel__tab-content {
 			padding-top: 16px;
+		}
+	}
+
+	&.-triple {
+
+		.components-tab-panel__tabs-item > span {
+			display: none;
 		}
 	}
 
@@ -185,7 +215,6 @@
 
 .arkb-imgPreview {
 	max-width: 100%;
-	// margin: 0 auto;
 	margin-bottom: 8px;
 	padding: 8px;
 	border: dashed 1px #e0e0e0;
@@ -212,8 +241,12 @@
 
 // ArkbUnitNumber
 .arkb-unitNumber {
+	display: flex;
+	gap: .75em;
+	align-items: center;
 
 	.components-input-control__container {
+		min-width: 56px;
 		max-width: 80px;
 	}
 
@@ -221,29 +254,90 @@
 		text-transform: unset !important;
 	}
 
-	&.has-clear {
-		display: flex;
-		align-items: center;
+	> .components-range-control {
+		flex: 1;
+		margin: 0;
 
-		> .components-button {
-			margin-left: 1em;
+		> div {
+			margin: 0;
 		}
 	}
 
+	// クリアボタン
+	// >.components-button {}
 }
 
 .arkb-ctrl--paddings {
-	position: relative;
-	display: grid;
-	grid-template-areas:
-		"top top top"
-		"left center right"
-		"bottom bottom bottom";
-	grid-template-rows: auto auto auto;
-	grid-template-columns: 1fr 64px 1fr;
-	// margin: 16px 0 !important;
-	padding: 8px;
-	border: solid 1px #ededed;
+
+	.__inner {
+		position: relative;
+	}
+
+	.__clear {
+		display: block;
+		margin-top: 8px;
+		margin-left: auto;
+	}
+
+	[data-is-linked="true"] {
+		display: flex;
+		align-items: center;
+
+		.__link {
+			order: 99;
+			margin-left: auto;
+		}
+
+		.__top {
+			margin: 0 0 0 8px;
+		}
+
+		.__bottom,
+		.__right,
+		.__left {
+			display: none;
+		}
+	}
+
+	[data-is-linked="false"] {
+		display: grid;
+		grid-template-areas:
+			"top top top"
+			"left center right"
+			"bottom bottom bottom";
+		grid-template-rows: auto auto auto;
+		grid-template-columns: 1fr 64px 1fr;
+		gap: 8px;
+		padding: 8px;
+		border: solid 1px #ededed;
+
+		.__link {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.__center {
+			grid-area: center;
+			margin: auto;
+		}
+
+		.__left {
+			grid-area: left;
+		}
+
+		.__right {
+			grid-area: right;
+		}
+
+		.__top {
+			grid-area: top;
+		}
+
+		.__bottom {
+			grid-area: bottom;
+		}
+	}
 
 	.components-input-control__container {
 		max-width: 64px;
@@ -261,74 +355,55 @@
 		margin: 0 auto;
 	}
 
-	.__link {
-		position: absolute;
-		top: 0;
-		right: 0;
-		// grid-area: center;
-	}
 
 	.__center {
-		grid-area: center;
-		margin: auto;
-		padding: 4px;
-		border: solid 1px #ededed;
-		border-radius: 2px;
-	}
-
-	.__icon {
 		position: relative;
 		display: block;
-		width: 20px;
-		height: 20px;
-		margin: auto;
-		// grid-area: center;
-		&::before {
+		width: 24px;
+		height: 24px;
+
+		.__box--top,
+		.__box--left,
+		.__box--right,
+		.__box--bottom {
 			position: absolute;
-			top: 0;
-			left: 4px;
 			display: block;
-			width: 12px;
-			height: 100%;
-			border-top: 1px solid #333;
-			border-bottom: 1px solid #333;
-			content: "";
+			background-color: currentColor;
+			border-radius: 2px;
 		}
 
-		&::after {
-			position: absolute;
-			top: 4px;
-			left: 0;
-			display: block;
-			width: 100%;
-			height: 12px;
-			border-right: 1px solid #333;
-			border-left: 1px solid #333;
-			content: "";
+		.__box--top,
+		.__box--bottom {
+			left: 6px;
+			width: calc(100% - 12px);
+			height: 2px;
 		}
+
+		.__box--top {
+			top: 3px;
+		}
+
+		.__box--bottom {
+			bottom: 3px;
+		}
+
+		.__box--left,
+		.__box--right {
+			top: 6px;
+			width: 2px;
+			height: calc(100% - 12px);
+		}
+
+		.__box--left {
+			left: 3px;
+		}
+
+		.__box--right {
+			right: 3px;
+		}
+
 	}
 
-	.__left {
-		grid-area: left;
-		margin-top: 8px;
-		margin-bottom: 8px;
-	}
-
-	.__right {
-		grid-area: right;
-		margin-top: 8px;
-		margin-bottom: 8px;
-	}
-
-	.__top {
-		grid-area: top;
-		padding-bottom: 4px;
-	}
-
-	.__bottom {
-		grid-area: bottom;
-		padding-top: 4px;
-	}
 }
 
 // multipleセレクト
@@ -336,7 +411,7 @@
 	min-height: 8em !important;
 	padding: 8px !important;
 
-	+ .components-input-control__suffix {
+	+.components-input-control__suffix {
 		display: none;
 	}
 }

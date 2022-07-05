@@ -1,0 +1,69 @@
+// .ark-block-columns.ark-block-columns {
+// 	// gap用
+// 	--arkb-gap--pc--x: 1.5rem;
+// 	--arkb-gap--pc--y: 1.5rem;
+// 	--arkb-gap--tab--x: var(--arkb-gap--pc--x);
+// 	--arkb-gap--tab--y: var(--arkb-gap--pc--y);
+// 	--arkb-gap--mb--x: var(--arkb-gap--tab--x);
+// 	--arkb-gap--mb--y: var(--arkb-gap--tab--y);
+
+// 	--arkb-gap--x: var(--arkb-gap--pc--x);
+// 	--arkb-gap--y: var(--arkb-gap--pc--y);
+
+// 	@include sp {
+// 		--arkb-gap--x: var(--arkb-gap--tab--x);
+// 		--arkb-gap--y: var(--arkb-gap--tab--y);
+// 	}
+
+// 	@include mobile {
+// 		--arkb-gap--x: var(--arkb-gap--mb--x);
+// 		--arkb-gap--y: var(--arkb-gap--mb--y);
+// 	}
+
+// }
+
+
+.ark-block-columns {
+
+	[data-align="full"]>& {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+	.ark-block-column>.wp-block-image {
+		max-width: 100%;
+	}
+
+	// カラム幅・左右マージンに影響を受けないように、常に幅一杯になるようにする
+	.ark-block-columns__inner>.block-list-appender {
+		flex-basis: calc(100% - var(--arkb-gap--x));
+		margin: 0 0 0 var(--arkb-gap--x);
+	}
+
+
+	&[data-scrollable] {
+
+		&.is-selected {
+			position: relative;
+			padding-bottom: 3em;
+		}
+
+		.ark-block-columns__inner {
+			position: static; // block-list-appenderを親起点にする
+
+			>.block-list-appender {
+				position: absolute;
+				bottom: 4px;
+				left: 0;
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+
+}
+
+// 横幅設定の動きがわかりやすいように、 is-selected 時は青線見せる
+[data-type="arkhe-blocks/column"].is-selected::after {
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+}

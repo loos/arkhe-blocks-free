@@ -1,0 +1,154 @@
+// リンクコントロールがURL長いときにバグることへの対応
+.block-editor-link-control__search-item.is-preview .block-editor-link-control__search-item-header {
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.ark-block-buttons {
+	display: block !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+
+	.ark-block-buttons__inner {
+		position: relative;
+		display: flex;
+		flex-direction: inherit;
+		flex-wrap: inherit;
+		align-items: inherit;
+		justify-content: inherit;
+		column-gap: inherit;
+		row-gap: inherit;
+	}
+
+	&[data-orientation="horizontal"] {
+
+		.ark-block-buttons__inner {
+			margin-left: calc(0px - var(--arkb-gap--x));
+		}
+	}
+
+	// &[data-orientation="vertical"] {}
+
+}
+
+.ark-block-button {
+	flex-wrap: wrap;
+
+	// RawHTML
+	&[data-has-html] {
+
+		>div:not([class]) {
+			position: relative;
+			display: flex;
+			justify-content: inherit;
+			width: 100%;
+			text-align: inherit;
+		}
+
+		.ark-block-button__link {
+			pointer-events: none;
+		}
+	}
+
+	// inline の 1px を上書き
+	.ark-block-button__text.rich-text {
+		min-width: 1em !important;
+	}
+}
+
+// リンク先プレビューボタン
+// .ark-block-button__urlPreview {
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: inherit;
+// 	width: 100%;
+// 	margin-top: 4px;
+// 	padding: 0 1em;
+// 	font-size: 12px;
+
+
+// 	.__label {
+// 		margin-right: .5em;
+// 	}
+
+// 	.__htmlCode {
+// 		padding: 4px;
+// 		font-size: 10px;
+// 		line-height: 1.25;
+// 		white-space: nowrap;
+// 		text-overflow: ellipsis;
+// 	}
+
+// 	.components-button {
+// 		display: block; // flex系は ellipsis 効かなくなる
+// 		max-width: 32em;
+// 		height: auto;
+// 		padding: 4px !important;
+// 		overflow: hidden;
+// 		font-size: inherit;
+// 		line-height: 1;
+// 		white-space: nowrap;
+// 		text-overflow: ellipsis;
+
+// 		svg {
+// 			width: 14px;
+// 			height: 14px;
+// 			transform: translateY(3px);
+// 		}
+// 	}
+// }
+
+.arkb-styleBtns.for-btn-style {
+
+	.ark-block-button {
+		--arkb-btn-width: 100%;
+	}
+}
+
+.arkb-styleBtns.for-btn-hover {
+
+	.ark-block-button__link {
+		padding: 1em 0;
+		font-size: 20px;
+	}
+
+	.arkb-styleBtn__body {
+		padding: 0 12px;
+	}
+
+	.arkb-styleBtn__preview {
+		width: 200%;
+		transform: scale(.5);
+		transform-origin: 0 50%;
+	}
+
+	.ark-block-button {
+		--arkb-btn-width: 100%;
+		--arkb-btn-bg: #3364ad;
+		--arkb-btn-radius: 4px;
+	}
+
+	.ark-block-button__link::before {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	[data-hover="bright"] > .ark-block-button__link::before {
+		background: rgba(#fff, .2);
+	}
+
+	[data-hover="dark"] > .ark-block-button__link::before {
+		background: rgba(#000, .15);
+	}
+
+	[data-hover="float"] > .ark-block-button__link::before {
+		box-shadow: 0px 12px 40px -4px rgba(50, 50, 50, .25), 0px 16px 32px -16px rgba(0, 0, 0, .25);
+	}
+
+	[data-hover="swap"] .ark-block-button__link {
+		color: var(--the-btn-color);
+		background: none;
+		box-shadow: inset 0 0 0 1px var(--the-btn-color);
+	}
+
+}

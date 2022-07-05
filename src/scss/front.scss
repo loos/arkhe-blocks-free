@@ -19,6 +19,7 @@ svg:not([fill]) {
 }
 
 .ark-keep-mt--s {
+	--ark-mt--h: var(--ark-mt--s, 1rem);
 
 	> * {
 		margin-top: var(--ark-mt--s, 1rem);

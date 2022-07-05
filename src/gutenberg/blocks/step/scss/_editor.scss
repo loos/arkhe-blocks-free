@@ -7,7 +7,7 @@
 	width: 100%;
 }
 
-// block-appender がある分
-.ark-block-step__item:nth-last-child(2)::before {
-	content: none !important;
-}
+// block-appender がある分 → 6.0 からはない
+// .ark-block-step__item:nth-last-child(2)::before {
+// 	content: none !important;
+// }

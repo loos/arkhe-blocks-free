@@ -1,0 +1,57 @@
+{
+    "apiVersion": 2,
+    "name": "arkhe-blocks/columns",
+    "title": "Rich Columns",
+    "category": "arkhe-blocks",
+    "keywords": [
+        "rich"
+    ],
+    "supports": {
+        "anchor": true,
+        "className": false,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "providesContext": {
+        "arkb/columns/isScrollable": "isScrollable"
+    },
+    "attributes": {
+        "vAlign": {
+            "type": "string",
+            "default": ""
+        },
+        "columnCount": {
+            "type": "object"
+        },
+        "columnWidth": {
+            "type": "object"
+        },
+        "gap": {
+            "type": "object"
+        },
+        "gapTab": {
+            "type": "object"
+        },
+        "gapMB": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "paddingTab": {
+            "type": "object"
+        },
+        "paddingMB": {
+            "type": "object"
+        },
+        "isScrollable": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "editorScript": "file:../../../../dist/gutenberg/blocks/columns/index.js",
+    "style": "arkhe-blocks-columns-style",
+    "textdomain": "arkhe-blocks"
+}

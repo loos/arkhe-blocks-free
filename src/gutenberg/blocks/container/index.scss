@@ -1,0 +1,33 @@
+@import "../../../scss/mixin/media";
+
+.ark-block-container {
+	--arkb-gap: 1rem;
+	--arkb-padding: 0;
+	display: block;
+	padding: var(--arkb-padding);
+
+	&[data-flex] {
+		display: flex;
+		gap: var(--arkb-gap);
+	}
+
+	&[data-flex="vertical"] {
+		flex-direction: column;
+	}
+
+}
+
+.ark-block-container__inner {
+	// width: 100%;
+
+	[data-flex] > & {
+		display: inherit;
+		flex-direction: inherit;
+		flex-wrap: inherit;
+		gap: inherit;
+		align-items: inherit;
+		justify-content: inherit;
+		width: 100%;
+
+	}
+}

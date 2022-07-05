@@ -3,15 +3,22 @@ namespace Arkhe_Blocks\Render_Block;
 
 defined( 'ABSPATH' ) || exit;
 
-// tab
+
+require_once __DIR__ . '/render_hook/container.php';
+require_once __DIR__ . '/render_hook/button.php';
+require_once __DIR__ . '/render_hook/box_links.php';
+require_once __DIR__ . '/render_hook/rich_columns.php';
+
+// tab ブロック
 add_filter( 'render_block_arkhe-blocks/tab', __NAMESPACE__ . '\render_tab' );
 function render_tab( $block_content ) {
+	// JSの呼び出し
 	\Arkhe_Blocks::$use['tab'] = true;
+	// remove_filter( 'render_block_arkhe-blocks/tab', __NAMESPACE__ . '\render_tab' );
 
 	// memo: 古いデータを置換。いずれ消す
 	$block_content = str_replace( ' data-onclick="tabControl"', '', $block_content );
 
-	// remove_filter( 'render_block_arkhe-blocks/tab', __NAMESPACE__ . '\render_tab' );
 	return $block_content;
 }
 
@@ -45,6 +52,7 @@ function render_core_list( $block_content, $block ) {
 	return $block_content;
 }
 
+
 // svgの属性値がsaveでおかしくなるバグへの対応
 add_filter( 'render_block_arkhe-blocks/notice', __NAMESPACE__ . '\render_fix_svg_props', 10, 2 );
 add_filter( 'render_block_arkhe-blocks/timeline-item', __NAMESPACE__ . '\render_fix_svg_props', 10, 2 );
@@ -57,45 +65,9 @@ function render_fix_svg_props( $block_content, $block ) {
 }
 
 
-
-/**
- * リッチカラムのスクロールヒント
- */
-add_filter( 'render_block_arkhe-blocks/columns', __NAMESPACE__ . '\add_columns_scroll_hint', 10, 2 );
-function add_columns_scroll_hint( $block_content, $block ) {
-	$isScrollable = $block['attrs']['isScrollable'] ?? false;
-	if ( $isScrollable ) {
-		$hook  = '<div class="ark-block-columns__inner';
-		$arrow = '<svg class="arkb-scrollHint__svg" width="1em" height="1em" viewBox="0 0 32 32" role="img" focusable="false" >' .
-				'<path d="M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z" /></svg>';
-		$hint  = apply_filters(
-			'arkb_scroll_hint',
-			'<div class="arkb-scrollHint"><span class="arkb-scrollHint__text">' . __( 'Scrollable', 'arkhe-blocks' ) . $arrow . '</span></div>'
-		);
-
-		$block_content = str_replace( $hook, $hint . $hook, $block_content );
-	}
-	return $block_content;
-}
-
-
-/**
- * CSS変数名の後方互換
- */
-add_filter( 'render_block_arkhe-blocks/columns', __NAMESPACE__ . '\replace_columns_css_prop', 10, 2 );
-function replace_columns_css_prop( $block_content, $block ) {
-	$block_content = str_replace( '--arkb-fb_pc:', '--arkb-clmn-w--pc:', $block_content );
-	$block_content = str_replace( '--arkb-fb_tab:', '--arkb-clmn-w--tab:', $block_content );
-	$block_content = str_replace( '--arkb-fb:', '--arkb-clmn-w--mobile:', $block_content );
-	$block_content = str_replace( '--arkb-clmn-mrgn--x:', '--arkb-gap--x:', $block_content );
-	$block_content = str_replace( '--arkb-clmn-mrgn--bttm:', '--arkb-gap--y:', $block_content );
-	return $block_content;
-}
-
-add_filter( 'render_block_arkhe-blocks/box-links', __NAMESPACE__ . '\replace_box_links_css_prop', 10, 2 );
-function replace_box_links_css_prop( $block_content, $block ) {
-	$block_content = str_replace( '--arkb-fb_pc:', '--arkb-box-w--pc:', $block_content );
-	$block_content = str_replace( '--arkb-fb_tab:', '--arkb-box-w--tab:', $block_content );
-	$block_content = str_replace( '--arkb-fb:', '--arkb-box-w--mb:', $block_content );
+// CSS変数名の後方互換
+add_filter( 'render_block_arkhe-blocks/step-item', __NAMESPACE__ . '\render_step__change_css_name', 10, 2 );
+function render_step__change_css_name( $block_content, $block ) {
+	$block_content = str_replace( '--ark-step_color', '--arkb-step-color', $block_content );
 	return $block_content;
 }

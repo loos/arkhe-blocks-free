@@ -1,0 +1,130 @@
+@import "../../../scss/mixin/media";
+
+.ark-block-columns {
+	--arkb-clmn-w--pc: 50%;
+	--arkb-clmn-w--tab: 50%;
+	--arkb-clmn-w--mb: 100%;
+
+	// --arkb-clmn-pddng: 0;
+	--arkb-padding--default: 0;
+	--arkb-padding: var(--arkb-padding--default);
+
+	// gap用
+	--arkb-gap--x: 1.5rem;
+	--arkb-gap--y: 1.5rem;
+
+	// .ark-block-columns__inner 入れる前
+	&.arkb-columns {
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: var(--arkb-gap--y);
+		justify-content: flex-start;
+		margin-left: calc(-1 * var(--arkb-gap--x));
+	}
+
+	&.alignfull {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+	&.is-style-shadow {
+		--arkb-padding--default: 1rem;
+	}
+}
+
+.ark-block-columns__inner {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: var(--arkb-gap--y);
+	justify-content: flex-start;
+	margin-left: calc(-1 * var(--arkb-gap--x));
+
+	[data-valign="top"]>& {
+		align-items: flex-start;
+	}
+
+	[data-valign="center"]>& {
+		align-items: center;
+	}
+
+	[data-valign="bottom"]>& {
+		align-items: flex-end;
+	}
+
+}
+
+.ark-block-column {
+
+	--arkb-clmn-width: var(--arkb-clmn-w--pc, 50%);
+
+	@include sp {
+		--arkb-clmn-width: var(--arkb-clmn-w--tab, 50%);
+	}
+
+	@include mobile {
+		--arkb-clmn-width: var(--arkb-clmn-w--mb, 100%);
+	}
+
+	// 詳細度上げておく
+	.ark-block-columns & {
+		// flex-basis だと redized画像がエディターではみ出るので、 width使う
+		width: calc(var(--arkb-clmn-width) - var(--arkb-gap--x));
+		max-width: unset;
+		margin: 0 0 0 var(--arkb-gap--x);
+		padding: var(--arkb-padding);
+	}
+
+
+	&[data-valign="top"] {
+		align-self: flex-start;
+	}
+
+	&[data-valign="center"] {
+		align-self: center;
+	}
+
+	&[data-valign="bottom"] {
+		align-self: flex-end;
+	}
+
+	&.is-break-all {
+		word-break: break-all;
+	}
+
+	.is-style-shadow>&,
+	.is-style-shadow>.ark-block-columns__inner>& {
+		background-color: #fff;
+		box-shadow: var(--arkb-shadow);
+	}
+}
+
+
+.ark-block-columns[data-scrollable] {
+	--arkb-gap--y: 0px;
+	overflow: hidden;
+
+	// スクロールバー分
+	>.ark-block-columns__inner {
+		flex-wrap: nowrap;
+		margin-left: 0;
+		padding-bottom: 16px;
+		overflow-x: auto;
+	}
+
+	&.is-style-shadow {
+
+		>.ark-block-columns__inner {
+			padding: 8px 8px 20px;
+		}
+	}
+
+	>.ark-block-columns__inner>.ark-block-column {
+		flex-shrink: 0;
+		width: var(--arkb-clmn-width);
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+}

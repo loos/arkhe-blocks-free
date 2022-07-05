@@ -4,7 +4,7 @@ Donate link: https://arkhe-theme.com/
 Tags: blocks, editor, Guternberg, arkhe
 Requires at least: 5.7
 Tested up to: 6.0
-Stable tag: 1.9.0
+Stable tag: 2.0.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -46,4 +46,4 @@ This plugin can be installed directly from your site.
 
 == Changelog ==
 
-- see: https://github.com/loos/arkhe-blocks-free
+- see: https://github.com/loos/arkhe-blocks-free & https://arkhe-theme.com/ja/?s=&cat=28&tag=arkhe-blocks

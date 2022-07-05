@@ -20,34 +20,19 @@ function register_blocks() {
 	// その他、グローバル変数も紐づけておく
 	wp_localize_script( 'arkhe-blocks-lang', 'arkbSettings', get_localize_arkb_vars() );
 
-	register_arkhe_blocks();
-	register_arkhe_dynamic_blocks();
-	register_arkhe_block_styles();
-}
+	// 通常ブロックの読み込み
+	foreach ( \Arkhe_Blocks::$blocks as $block_name ) {
+		register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
+	}
 
+	// ダイナミックブロックの読み込み
+	foreach ( \Arkhe_Blocks::$dynamic_blocks as $block_name ) {
+		require_once __DIR__ . '/blocks/' . $block_name . '.php';
+	}
 
-/**
- * スタイルの登録
- */
-function register_arkhe_block_styles() {
-	// style切り分け済みのブロック
-	$blocks = [
-		'accordion',
-		'blog-card',
-		'box-links',
-		'columns',
-		'dl',
-		'faq',
-		'notice',
-		'section',
-		'section-heading',
-		'slider',
-		'step',
-		'tab',
-		'timeline',
-	];
-	$deps   = is_admin() ? 'arkhe-blocks-editor' : 'arkhe-blocks-front';
-	foreach ( $blocks as $name ) {
+	// スタイルの登録 ( $depsの指定をしたいのでphpから登録 )
+	$deps = is_admin() ? 'arkhe-blocks-editor' : 'arkhe-blocks-front';
+	foreach ( \Arkhe_Blocks::$blocks_has_style as $name ) {
 		wp_register_style(
 			"arkhe-blocks-{$name}-style",
 			ARKHE_BLOCKS_URL . "dist/gutenberg/blocks/{$name}/index.css",
@@ -58,12 +43,16 @@ function register_arkhe_block_styles() {
 }
 
 
+
 /**
  * ブロックエディターで使うグローバル変数
  */
 function get_localize_arkb_vars() {
-	$custom_formats = [];
+	$custom_formats      = [];
+	$custom_code_options = [];
+
 	if ( \Arkhe_Blocks::IS_PRO ) {
+		// カスタム書式
 		for ( $i = 1; $i < 4; $i++ ) {
 			$format_title = \Arkhe_Blocks::get_data( 'format', 'format_title_' . $i );
 			// $format_class = \Arkhe_Blocks::get_data( 'format', 'format_class_' . $i );
@@ -76,91 +65,40 @@ function get_localize_arkb_vars() {
 				];
 			}
 		}
-	}
+}
 
 	return [
+		'isArkhe'           => IS_ARKHE_THEME,
+		'isPro'             => \Arkhe_Blocks::IS_PRO,
 		'customFormats'     => apply_filters( 'arkhe_blocks_custom_formats', $custom_formats ),
 		'disableHeaderLink' => \Arkhe_Blocks::get_data( 'general', 'disable_header_link' ),
+		// 'customCodeOptions' => apply_filters( 'arkhe_blocks_custom_code_options', $custom_code_options ),
+		'fontFamilies'      => [
+			// カスタムコードブロック フォントファミリーのバリエーション
+			[
+				'label'      => 'Fira Code',
+				'val'        => 'Fira Code',
+				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/fira-code.css',
+			],
+			[
+				'label'      => 'Source Code Pro',
+				'val'        => 'Source Code Pro',
+				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/source-code-pro.css',
+			],
+			[
+				'label'      => 'Ubuntu Mono',
+				'val'        => 'Ubuntu Mono',
+				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/ubuntu-mono.css',
+			],
+			[
+				'label'      => 'Anonymous Pro',
+				'val'        => 'Anonymous Pro',
+				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/anonymous-pro.css',
+			],
+		],
+
+		//'' => 'arkhe', // phpcs:ignore
 	];
-}
-
-
-/**
- * 通常ブロックの読み込み
- */
-function register_arkhe_blocks() {
-
-	$arkhe_blocks = [
-		'accordion',
-		'accordion-item',
-		'faq',
-		'faq-item',
-		'dl',
-		'dl-dt',
-		'dl-dd',
-		'dl-div',
-		'notice',
-		'section-heading',
-		'step',
-		'step-item',
-		'tab',
-		'tab-body',
-		'timeline',
-		'timeline-item',
-	];
-
-	// Proブロック
-	if ( \Arkhe_Blocks::IS_PRO ) {
-		$arkhe_blocks_pro = [
-			// 'box-link',
-			'box-links',
-			'column',
-			'columns',
-		];
-
-		// Arkheでのみ利用可能なProブロック
-		// if ( IS_ARKHE_THEME ) {}
-
-		$arkhe_blocks = array_merge( $arkhe_blocks, $arkhe_blocks_pro );
-	}
-
-	foreach ( $arkhe_blocks as $block_name ) {
-		register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
-	}
-}
-
-
-/**
- * ダイナミックブロックの読み込み
- */
-function register_arkhe_dynamic_blocks() {
-
-	$dynamic_blocks = [
-		'section',
-		'blog-card',
-	];
-
-	if ( \Arkhe_Blocks::IS_PRO ) {
-		$dynamic_blocks_pro = [
-			'box-link',
-			'slider',
-			'slider-item',
-			'restricted-area',
-		];
-
-		// Arkheでのみ利用可能なダイナミックブロック
-		if ( IS_ARKHE_THEME ) {
-			$dynamic_blocks_pro[] = 'page-list';
-			$dynamic_blocks_pro[] = 'post-list';
-			$dynamic_blocks_pro[] = 'rss';
-		}
-
-		$dynamic_blocks = array_merge( $dynamic_blocks, $dynamic_blocks_pro );
-	}
-
-	foreach ( $dynamic_blocks as $block_name ) {
-		require_once __DIR__ . '/blocks/' . $block_name . '.php';
-	}
 }
 
 

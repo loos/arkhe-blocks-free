@@ -23,6 +23,7 @@
 
 // 余白を小さめにキープするエリア。
 .ark-keep-mt--s {
+	--ark-mt--h: var(--ark-mt--s, 1rem);
 
 	> .block-editor-block-list__block {
 		margin-top: var(--ark-mt--s, 1rem);

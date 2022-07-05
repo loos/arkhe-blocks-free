@@ -3,11 +3,12 @@ namespace Arkhe_Blocks\Menu;
 
 defined( 'ABSPATH' ) || exit;
 
+
+
 /**
  * 管理画面に独自メニューを追加
  */
 add_action( 'admin_menu', function () {
-
 	$arkhe_menu_title = 'Arkhe Blocks';
 
 	// 設定ページを追加
@@ -32,34 +33,69 @@ add_action( 'admin_menu', function () {
 	);
 }, 11 );
 
-
 /**
  * 設定ページの内容
  */
 function display_setting_page() {
-	require_once ARKHE_BLOCKS_PATH . 'inc/admin_menu/menu_page.php';
-}
+	// 設定タブのリスト
+	$setting_tabs = \Arkhe_Blocks::$menu_tabs;
 
+	// 現在のタブを取得
+	$now_tab = (string) filter_input( INPUT_GET, 'tab' ) ?: 'general';
+	?>
+	<div id="arkhe-menu" class="arkhe-menu wrap">
+		<div class="arkhe-menu__head">
+			<h1 class="arkhe-menu__title">
+				<?=esc_html__( 'Arkhe Blocks Settings', 'arkhe-blocks' )?>
+			</h1>
+			<div class="nav-tab-wrapper">
+				<?php
+					foreach ( $setting_tabs as $key => $val ) :
+					$tab_url   = admin_url( 'admin.php?page=' . \Arkhe_Blocks::MENU_SLUG ) . '&tab=' . $key;
+					$nav_class = ( $now_tab === $key ) ? 'nav-tab nav-tab-active' : 'nav-tab';
+
+					echo '<a href="' . esc_url( $tab_url ) . '" class="' . esc_attr( $nav_class ) . '">' . esc_html( $val ) . '</a>';
+					endforeach;
+				?>
+			</div>
+		</div>
+		<div
+			id="arkhe-menu-body"
+			class="arkhe-menu__body"
+			data-tab="<?=esc_attr( $now_tab )?>"
+			data-name="<?=esc_attr( \Arkhe_Blocks::DB_NAMES[ $now_tab ] )?>"
+		></div>
+	</div>
+<?php
+}
 
 /**
  * 設定の追加
  */
-add_action( 'admin_init', function() {
+add_action( 'init', function() {
 
-	$menu_tabs = [
-		'general'   => __( 'General settings', 'arkhe-blocks' ),
-	];
-	if ( \Arkhe_Blocks::IS_PRO ) {
-		$menu_tabs['format'] = _x( 'Format', 'tab', 'arkhe-blocks' );
-		// $menu_tabs['shortcode'] = _x( 'Shortcode', 'tab', 'arkhe-blocks' );
-	}
+	$menu_tabs     = \Arkhe_Blocks::$menu_tabs;
+	$settings_data = \Arkhe_Blocks::get_data();
 
-	\Arkhe_Blocks::$menu_tabs = $menu_tabs;
+	foreach ( $menu_tabs as $menu_key => $menu_value ) {
+		$properties = [];
+		foreach ( $settings_data[ $menu_key ] as $setting_key => $setting_value ) {
+			$properties[ $setting_key ] = [ 'type' => 'string' ];
+		}
 
-	foreach ( $menu_tabs as $key => $value ) {
-
-		register_setting( \Arkhe_Blocks::MENU_GROUP_PREFIX . $key, \Arkhe_Blocks::DB_NAMES[ $key ] );
-		require_once ARKHE_BLOCKS_PATH . 'inc/admin_menu/tab/' . $key . '.php';
-
+		register_setting(
+			\Arkhe_Blocks::MENU_SLUG . '_' . $menu_key,
+			\Arkhe_Blocks::DB_NAMES[ $menu_key ],
+			[
+				'type'         => 'object',
+				'show_in_rest' => [
+					'schema' => [
+						'type'       => 'object',
+						'properties' => $properties,
+					],
+				],
+				// 'default' => 後から追加したりした時を考えてJS側でコントロール
+			]
+		);
 	}
 } );
