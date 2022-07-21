@@ -1,0 +1,29 @@
+// ガイド線を表示する
+.ark-has-guide {
+
+	&.has-child-selected::after,
+	&:hover::after {
+		z-index: 1;
+		outline: dashed 1px $color_guide;
+	}
+}
+
+// ガイド線を少し外側にする（一番親ブロック）
+.is-root-container > .ark-has-guide {
+
+	&::after {
+		inset: -4px !important;
+	}
+}
+
+
+// .block-editor-block-list__block:hover .block-editor-block-list__block::after,
+// .block-editor-block-list__layout .block-editor-block-list__block:hover::after {
+// 	inset: -4px !important;
+// 	z-index: 1;
+// 	border-radius: 0;
+// 	// outline: 2px solid transparent;
+// 	box-shadow: 0 0 0 .5px $color_guide;// rgb(0 124 186 / 50%);
+// }
+
+// 1px dashed #7b86a24d

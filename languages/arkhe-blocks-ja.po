@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arkhe Blocks\n"
-"POT-Creation-Date: 2022-07-05 16:15+0900\n"
-"PO-Revision-Date: 2022-07-05 16:15+0900\n"
+"POT-Creation-Date: 2022-07-21 16:51+0900\n"
+"PO-Revision-Date: 2022-07-21 16:51+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -153,7 +153,7 @@ msgid "Box Settings"
 msgstr "ボックス設定"
 
 #: src/gutenberg/blocks/box-link/_sidebar.js:129
-#: src/gutenberg/blocks/buttons/index.js:124
+#: src/gutenberg/blocks/buttons/index.js:126
 #: src/gutenberg/blocks/container/index.js:149
 msgid "Layout"
 msgstr "レイアウト"
@@ -196,8 +196,8 @@ msgid "Image ratio"
 msgstr "画像比率"
 
 #: src/gutenberg/blocks/box-link/_sidebar.js:250
-#: src/gutenberg/blocks/slider-item/components/ImageTab.js:175
-#: src/gutenberg/blocks/slider-item/components/ImageTab.js:244
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:186
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:266
 msgid "Alt text"
 msgstr "Alt テキスト"
 
@@ -259,7 +259,7 @@ msgstr "デフォルト"
 msgid "Banner"
 msgstr "バナー"
 
-#: src/gutenberg/blocks/box-links/index.js:65 src/gutenberg/free.js:32
+#: src/gutenberg/blocks/box-links/index.js:65 src/gutenberg/free.js:31
 msgid "Box links"
 msgstr "ボックスリンク"
 
@@ -389,11 +389,11 @@ msgstr "HTML直接入力"
 msgid "You can paste tags for affiliate advertising."
 msgstr "アフィリエイト広告用のタグをペーストしてご利用いただけます。"
 
-#: src/gutenberg/blocks/buttons/index.js:73
+#: src/gutenberg/blocks/buttons/index.js:75
 msgid "Buttons"
 msgstr "ボタン"
 
-#: src/gutenberg/blocks/buttons/index.js:129
+#: src/gutenberg/blocks/buttons/index.js:131
 msgid "Margin between buttons"
 msgstr "ボタン間の余白"
 
@@ -427,7 +427,7 @@ msgstr "カラム横幅"
 msgid "Padding in cloumn"
 msgstr "カラム内の余白"
 
-#: src/gutenberg/blocks/columns/index.js:52 src/gutenberg/free.js:31
+#: src/gutenberg/blocks/columns/index.js:52
 msgid "Rich columns"
 msgstr "リッチカラム"
 
@@ -479,11 +479,15 @@ msgstr "HTML要素"
 msgid "Padding"
 msgstr "Padding"
 
-#: src/gutenberg/blocks/custom-code/index.js:88
+#: src/gutenberg/blocks/custom-code/index.js:57
+msgid "CSS for Editor"
+msgstr "エディター用CSS"
+
+#: src/gutenberg/blocks/custom-code/index.js:98
 msgid "Custom Code"
 msgstr "カスタムコード"
 
-#: src/gutenberg/blocks/custom-code/index.js:89
+#: src/gutenberg/blocks/custom-code/index.js:99
 msgid "Create advanced code editor"
 msgstr "高機能なコードエディタを作成します"
 
@@ -511,11 +515,11 @@ msgstr "Monokai"
 msgid "Tomorrow"
 msgstr "Tomorrow"
 
-#: src/gutenberg/blocks/custom-code/variations.js:10
+#: src/gutenberg/blocks/custom-code/variations.js:12
 msgid "Custom CSS"
 msgstr "カスタムCSS"
 
-#: src/gutenberg/blocks/custom-code/variations.js:21
+#: src/gutenberg/blocks/custom-code/variations.js:27
 msgid "Custom JS"
 msgstr "カスタムJS"
 
@@ -622,7 +626,7 @@ msgstr "リスト型"
 msgid "Text type"
 msgstr "テキスト型"
 
-#: src/gutenberg/blocks/page-list/index.js:110 src/gutenberg/free.js:35
+#: src/gutenberg/blocks/page-list/index.js:110 src/gutenberg/free.js:34
 msgid "Page list"
 msgstr "固定ページリスト"
 
@@ -680,7 +684,7 @@ msgstr "並び順の設定"
 msgid "What to arrange based on"
 msgstr "何を基準に並べるか"
 
-#: src/gutenberg/blocks/post-list/index.js:25 src/gutenberg/free.js:34
+#: src/gutenberg/blocks/post-list/index.js:25 src/gutenberg/free.js:33
 msgid "Post list"
 msgstr "投稿リスト"
 
@@ -906,7 +910,7 @@ msgid ""
 msgstr ""
 "指定した条件に合致するタームを持つ個別ページでコンテンツを表示します。"
 
-#: src/gutenberg/blocks/restricted-area/index.js:22 src/gutenberg/free.js:39
+#: src/gutenberg/blocks/restricted-area/index.js:22 src/gutenberg/free.js:38
 msgctxt "blcok-name"
 msgid "Restricted Area"
 msgstr "制限エリア"
@@ -1001,26 +1005,28 @@ msgstr "Write heading…"
 #: src/gutenberg/blocks/section/components/ImageTab.js:144
 #: src/gutenberg/blocks/section/components/ImageTab.js:212
 #: src/gutenberg/blocks/slider-item/components/ImageTab.js:145
-#: src/gutenberg/blocks/slider-item/components/ImageTab.js:214
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:225
 msgid "Change media"
 msgstr "メディアを変更"
 
 #: src/gutenberg/blocks/section/components/ImageTab.js:145
 #: src/gutenberg/blocks/section/components/ImageTab.js:213
 #: src/gutenberg/blocks/slider-item/components/ImageTab.js:146
-#: src/gutenberg/blocks/slider-item/components/ImageTab.js:215
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:226
 msgid "Select media"
 msgstr "メディアを選択"
 
 #: src/gutenberg/blocks/section/components/ImageTab.js:152
 #: src/gutenberg/blocks/section/components/ImageTab.js:220
 #: src/gutenberg/blocks/slider-item/components/ImageTab.js:156
-#: src/gutenberg/blocks/slider-item/components/ImageTab.js:225
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:236
 msgid "Delete"
 msgstr "削除"
 
 #: src/gutenberg/blocks/section/components/ImageTab.js:164
 #: src/gutenberg/blocks/section/components/ImageTab.js:232
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:168
+#: src/gutenberg/blocks/slider-item/components/ImageTab.js:248
 msgid "Media URL"
 msgstr "メディアURL"
 
@@ -1038,7 +1044,7 @@ msgid "To full-width content"
 msgstr "コンテンツを全幅にする"
 
 #: src/gutenberg/blocks/section/index.js:216
-#: src/gutenberg/blocks/slider-item/edit.js:146
+#: src/gutenberg/blocks/slider-item/edit.js:158
 msgid "Change content position"
 msgstr "Change content position"
 
@@ -1114,11 +1120,11 @@ msgstr "色"
 msgid "Media setting"
 msgstr "メディア設定"
 
-#: src/gutenberg/blocks/slider-item/edit.js:79
+#: src/gutenberg/blocks/slider-item/edit.js:90
 msgid "Media"
 msgstr "メディア"
 
-#: src/gutenberg/blocks/slider-item/edit.js:170
+#: src/gutenberg/blocks/slider-item/edit.js:182
 msgid "The first slide content will be displayed."
 msgstr "1枚目のスライドコンテンツが表示されます。"
 
@@ -1322,7 +1328,7 @@ msgstr "カバーフロー"
 msgid "Add a slide"
 msgstr "スライドを追加する"
 
-#: src/gutenberg/blocks/slider/index.js:21 src/gutenberg/free.js:33
+#: src/gutenberg/blocks/slider/index.js:21 src/gutenberg/free.js:32
 msgid "Slider"
 msgstr "スライダー"
 
@@ -1586,8 +1592,12 @@ msgid "Reset"
 msgstr "リセット"
 
 #: src/gutenberg/components/ArkbProOnly.js:6
-msgid "This setting is only available in the Pro version."
+msgid "This setting is only available in the PRO version."
 msgstr "この設定はPro版でのみ利用可能です。"
+
+#: src/gutenberg/components/ArkbProOnly.js:20
+msgid "This area can only be edited in the PRO version."
+msgstr "ここはPro版でのみ編集可能です。"
 
 #: src/gutenberg/components/ArkbTermPickers.js:41
 msgid "Matches any one"
@@ -1730,15 +1740,15 @@ msgstr "カーニング"
 msgid "Annotation size"
 msgstr "注釈サイズ"
 
-#: src/gutenberg/free.js:36
+#: src/gutenberg/free.js:35
 msgid "RSS"
 msgstr "RSS"
 
-#: src/gutenberg/free.js:75
+#: src/gutenberg/free.js:74
 msgid "This block is only available in the PRO version."
 msgstr "このブロックはPRO版でのみ利用可能です。"
 
-#: src/gutenberg/free.js:84
+#: src/gutenberg/free.js:83
 msgid "Get Arkhe Blocks Pro"
 msgstr "Arkhe Blocks Proを入手する"
 
@@ -1925,7 +1935,7 @@ msgstr "RSSフィードのURLが正しくありません。"
 msgid "The article was not found."
 msgstr "記事が見つかりませんでした。"
 
-#: inc/gutenberg.php:112
+#: inc/gutenberg.php:114
 msgid "Arkhe Blocks"
 msgstr "Arkhe Blocks"
 

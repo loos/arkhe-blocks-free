@@ -178,6 +178,28 @@ class Style {
 		return $unique_id;
 	}
 
+	/**
+	 * CSSコードの圧縮
+	 */
+	public static function minify_css( $css ) {
+
+		$css_replaces = [];
+
+		// @charsetの除去
+		// $css_replaces[ '/@charset \"(utf|UTF)-8\";/' ] = '';
+
+		// コメントの除去
+		$css_replaces['/(\/\*!.*?\*\/|\"(?:(?!(?<!\\\)\").)*\"|\'(?:(?!(?<!\\\)\').)*\')|\/\*.*?\*\//s'] = '${1}';
+
+		// 1つ以上連続する空白文字列の置換
+		$css_replaces['/(\/\*!.*?\*\/|\"(?:(?!(?<!\\\)\").)*\"|\'(?:(?!(?<!\\\)\').)*\')\s*|\s+/s'] = '${1} ';
+
+		// 一括置換
+		$css = preg_replace( array_keys( $css_replaces ), array_values( $css_replaces ), $css );
+
+		return $css;
+	}
+
 
 	/**
 	 * styleタグで吐き出すCSSを生成
@@ -218,7 +240,8 @@ class Style {
 		if ( ! $css ) {
 			return '';
 		}
-		return '<style id="arkb-dynamic-styles">' . $css . '</style>';
+
+		return '<style id="arkb-dynamic-styles">' . self::minify_css( $css ) . '</style>';
 	}
 
 

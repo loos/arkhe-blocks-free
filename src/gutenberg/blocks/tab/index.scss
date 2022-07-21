@@ -222,13 +222,17 @@
 
 	// & > .arkb-tabBody{}
 
-	.arkb-tabList__button {
-		background-color: var(--ark-color--gray, #f7f7f7);
-		border-bottom: none;
+	> .arkb-tabList {
+
+		.arkb-tabList__button {
+			background-color: var(--ark-color--gray, #f7f7f7);
+			border-bottom: none;
+		}
+
+		.arkb-tabList__button[aria-selected="true"] {
+			color: #fff;
+			background-color: var(--ark-color--text, #000);
+		}
 	}
 
-	.arkb-tabList__button[aria-selected="true"] {
-		color: #fff;
-		background-color: var(--ark-color--text, #000);
-	}
 }

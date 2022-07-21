@@ -4,7 +4,7 @@ Donate link: https://arkhe-theme.com/
 Tags: blocks, editor, Guternberg, arkhe
 Requires at least: 5.7
 Tested up to: 6.0
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,11 +18,20 @@ A plugin that extends Gutenberg, optimized for the "Arkhe" theme.
 The following blocks will be available.
 
 - Accordion
-- Description List ("dl" tag)
+- Button
+- Blog Card
+- Container
+- Custom CSS Code
+- Description List
 - Q&A
 - Notice
+- Rich Columns
 - Section
 - Section Heading
+- Step
+- Tab
+- Timeline
+
 
 The added blocks has a simple design.
 Please customize it to your favorite design using CSS.

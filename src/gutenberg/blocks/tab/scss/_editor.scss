@@ -4,7 +4,6 @@
 
 	position: relative;
 	padding: 32px 24px 24px;
-	border: dashed 1px $color_guide;
 
 	// &.is-selected,
 	// &.has-child-selected {}
@@ -24,7 +23,7 @@
 	// タブ追加ボタン
 	&:not(.is-selected) {
 
-		.arkb-tabList__item--add {
+		> .arkb-tabList > .arkb-tabList__item--add {
 			visibility: hidden;
 			pointer-events: none;
 		}

@@ -1,13 +1,25 @@
 // Gutenberg
 [data-type="arkhe-blocks/custom-code"] {
+	overflow: hidden;
 	border: 1px solid #555;
+	border-radius: 3px;
 
 	&.-css {
-		--arkb-custom_code_label_bg: #185167;
+		--arkb-custom_code_label_bg: #1f789a;
 	}
 
 	&.-javascript {
-		--arkb-custom_code_label_bg: #9a870f;
+		--arkb-custom_code_label_bg: #b6a114;
+	}
+
+
+	.arkb-proOnlyArea,
+	.arkb-proOnlyArea__preview {
+		height: 100%;
+	}
+
+	.arkb-proOnlyArea::before {
+		inset: 0;
 	}
 
 	.ark-block-custom-code__container {
@@ -24,7 +36,7 @@
 		color: #fff;
 		font-size: 12px;
 		background-color: var(--arkb-custom_code_label_bg, #555);
-		background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(#000, .1) 5px, rgba(#000, .1) 10px);
+		background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(#fff, .08) 4px, rgba(#fff, .08) 10px);
 
 		>.__title {
 			display: flex;
@@ -42,14 +54,14 @@
 		>.__now_query {
 			margin-right: 1em;
 			// margin-left: auto;
-			padding: 2px 4px;
+			padding: 3px 6px;
 			color: #f5f5f5;
 			font-size: 12px;
 			font-family: Menlo, Consolas, monaco, monospace;
 			font-style: italic;
 			line-height: 1;
-			background-color: rgba(#000, .2);
-			border-radius: 1px;
+			background-color: rgba(#000, .5);
+			border-radius: 2px;
 		}
 
 		@include mobile {
@@ -61,13 +73,32 @@
 
 		.__deviceBtns {
 			display: flex;
+			gap: 1px;
+			padding-left: 1px;
+			background-color: #000;
+
+			--wp-admin-theme-color: #0082c3;
+			--wp-admin-theme-color-darker-10: #0082c3;
 
 			.components-button {
+				position: relative;
+				justify-content: center;
 				min-width: unset;
+				min-width: 3em;
 				height: auto;
 				padding: 4px;
 				color: #fff;
 				font-size: 12px;
+				border-radius: 0;
+
+				&[data-has-code="true"]:not(.is-primary) {
+					box-shadow: inset 0 -3px 0 0 var(--wp-admin-theme-color, #fff);
+				}
+
+				&:focus {
+					box-shadow: inset 0 0 0 1px #fff !important;
+				}
+
 
 				.__deviceIcon {
 					margin-right: 0;
@@ -85,11 +116,16 @@
 			}
 
 			.components-button:not(.is-primary) {
-				background: rgba(0, 0, 0, .2);
+				background: #3f3f3f;
 
 				.__description {
 					display: none;
 				}
+			}
+
+			.components-button.is-primary {
+				z-index: 1;
+				// box-shadow: inset 0 0 0 1px rgba(#fff, .8);
 			}
 
 		}
@@ -107,14 +143,37 @@
 		justify-content: center;
 		width: 100%;
 		height: 100%;
-		background-color: #000;
-		opacity: .2;
+		background-color: rgba(#000, .25);
+		// opacity: .2;
 
 		.components-spinner {
 			margin: 0;
 			transform: scale(1.5);
 		}
 	}
+
+	.ark-block-custom-code__preview {
+		height: 100%;
+		margin: 0;
+		padding: 10px;
+		overflow-y: auto;
+		color: #fff;
+		font-size: 13px;
+		white-space: pre;
+		background-color: #272626;
+
+		code {
+			display: block;
+			min-height: 100%;
+			margin-left: 48px;
+			padding-left: 4px;
+			font-size: inherit;
+			tab-size: 4;
+			border-left: solid 1px #808080;
+
+		}
+	}
+
 
 	.monaco-editor {
 

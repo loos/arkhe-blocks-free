@@ -30,24 +30,6 @@
 	}
 }
 
-// ガイド線を表示する
-.ark-has-guide {
-
-	&.has-child-selected::after {
-		border: dashed 1px $color_guide;
-	}
-}
-
-// ガイド線を少し外側に
-.is-root-container > .ark-has-guide {
-
-	&::after {
-		top: -8px !important;
-		right: -8px !important;
-		bottom: -8px !important;
-		left: -8px !important;
-	}
-}
 
 // アラートメッセージ
 .arkb-alert--doubleId {
