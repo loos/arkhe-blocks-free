@@ -4,7 +4,10 @@
 	--arkb-gap: 1rem;
 	--arkb-padding: 0;
 	display: block;
-	padding: var(--arkb-padding);
+
+	&:where(.has-background) {
+		--arkb-padding: 1.5rem 1.75em;
+	}
 
 	&[data-flex] {
 		display: flex;
@@ -15,10 +18,26 @@
 		flex-direction: column;
 	}
 
+	&:not(.has-inner) {
+		padding: var(--arkb-padding);
+	}
+
+	&:where(.alignfull) {
+
+		&.has-inner {
+			padding-right: var(--ark-padding--container, 0px);
+			padding-left: var(--ark-padding--container, 0px);
+		}
+
+		> .ark-block-container__inner {
+			max-width: var(--ark-width--article);
+			margin: 0 auto;
+		}
+	}
 }
 
 .ark-block-container__inner {
-	// width: 100%;
+	padding: var(--arkb-padding);
 
 	[data-flex] > & {
 		display: inherit;
@@ -28,6 +47,5 @@
 		align-items: inherit;
 		justify-content: inherit;
 		width: 100%;
-
 	}
 }

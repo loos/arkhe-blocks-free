@@ -43,7 +43,11 @@
 // listブロックのスタイル
 // ----------------------------------------
 [class*="is-style-ark-list-"] {
-	padding-left: 0 !important;
+	padding: var(--arkb-list-padding, 0) !important;
+
+	&.has-background {
+		--arkb-list-padding: 1.5em 1.75em 1.5em 1.5em;
+	}
 
 	> li {
 		position: relative;

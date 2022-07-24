@@ -1,0 +1,21 @@
+// フルワイドのインナーコンテンツ幅が記事幅になるケース
+:where([data-align="full"]) {
+
+	> :not([data-inner="full"]) > .ark-block-section__body {
+		max-width: calc(var(--ark-width--article, 1000px) + var(--ark-padding--container, 0px) * 2);
+		margin: 0 auto;
+		padding-right: var(--ark-padding--container, 0px);
+		padding-left: var(--ark-padding--container, 0px);
+	}
+
+	// サイトに合わせた余白を取る
+	> .ark-block-container.has-inner {
+		padding-right: var(--ark-padding--container, 0px);
+		padding-left: var(--ark-padding--container, 0px);
+
+		> .ark-block-container__inner {
+			max-width: var(--ark-width--article);
+			margin: 0 auto;
+		}
+	}
+}

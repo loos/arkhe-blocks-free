@@ -31,27 +31,25 @@
 	z-index: 2;
 	display: flex;
 	width: 100%;
-	max-width: var(--ark-width--article, 1000px);
-	margin: 0 auto;
 
-	.alignfull:not([data-inner="full"])>& {
+	:where(.alignfull):not([data-inner="full"]) > & {
 		max-width: calc(var(--ark-width--article, 1000px) + var(--ark-padding--container, 0px) * 2);
+		margin: 0 auto;
 		padding-right: var(--ark-padding--container, 0px);
 		padding-left: var(--ark-padding--container, 0px);
 	}
 
-	[data-inner="full"]>& {
-		max-width: 100%;
-	}
+	// [data-inner="full"] > & {
+	// 	max-width: 100%;
+	// }
 
-	[data-height="full"]>& {
+	[data-height="full"] > & {
 		height: var(--ark-height--full, 100vh);
 	}
 
-	[data-height="custom"]>& {
+	[data-height="custom"] > & {
 		min-height: var(--arkb-min-height);
 	}
-
 
 	&[data-content="top-left"] {
 		align-items: flex-start;

@@ -6,7 +6,7 @@
     "keywords": [
         "group",
         "wrapper",
-        "row"
+        "box"
     ],
     "supports": {
         "anchor": true,
