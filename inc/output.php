@@ -5,6 +5,9 @@ use \Arkhe_Blocks\Style as Style;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * ダイナミックCSS出力
+ */
 function render_dynamic_block_styles( $html ) {
 	$style = Style::get_dynamic_style_tag();
 	if ( $style ) {
@@ -12,7 +15,6 @@ function render_dynamic_block_styles( $html ) {
 	}
 	return $html;
 }
-
 add_action( 'wp', function() {
 
 	// headで出力するかどうか
@@ -27,3 +29,20 @@ add_action( 'wp', function() {
 		}, 0);
 	}
 } );
+
+
+/**
+ * <noscript>
+ */
+add_action( 'wp_footer', __NAMESPACE__ . '\print_footer_scripts', 20 );
+function print_footer_scripts() {
+	$output_code = '<noscript><style>' .
+		'[data-arkb-linkbox]{cursor:auto}' .
+		'[data-arkb-link][aria-hidden="true"]{visibility:visible;color:transparent;z-index:0;width:100%;height:100%;pointer-events:auto}' .
+		'a.arkb-boxLink__title{text-decoration:underline}' .
+	'</style></noscript>' . PHP_EOL;
+
+	echo PHP_EOL . '<!-- Arkhe Blocks -->' . PHP_EOL;
+	echo $output_code; // phpcs:ignore
+	echo '<!-- / Arkhe Blocks -->' . PHP_EOL;
+}

@@ -1,0 +1,18 @@
+.ark-block-toc {
+	padding: 2em;
+	// background-color: #f5f5f5;
+
+	.ark-block-toc__description {
+		text-align: center;
+	}
+}
+
+.ark-block-toc__settings {
+	max-width: 400px;
+	margin: 1em auto;
+
+	.components-select-control__input {
+		max-width: 100%;
+	}
+}
+

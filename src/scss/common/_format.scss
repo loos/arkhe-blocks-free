@@ -4,6 +4,13 @@
 	opacity: .75;
 }
 
+.arkb-marker {
+	display: inline;
+	padding: 1px;
+	font-weight: var(--arkb-marker-txt-weight, unset);
+	background: var(--arkb-marker-style);
+}
+
 // フォントサイズ
 .arkb-fz-xs {
 	font-size: .75em !important;

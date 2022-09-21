@@ -9,21 +9,32 @@
 }
 
 // ガイド線を少し外側にする（一番親ブロック）
-.is-root-container > .ark-has-guide {
+.is-root-container > .ark-has-guide,
+.arkb-tabBody__content {
 
 	&::after {
 		inset: -4px !important;
 	}
 }
 
+// 本文エリア
+.block-editor-writing-flow {
 
-// .block-editor-block-list__block:hover .block-editor-block-list__block::after,
-// .block-editor-block-list__layout .block-editor-block-list__block:hover::after {
-// 	inset: -4px !important;
-// 	z-index: 1;
-// 	border-radius: 0;
-// 	// outline: 2px solid transparent;
-// 	box-shadow: 0 0 0 .5px $color_guide;// rgb(0 124 186 / 50%);
-// }
+	// ガイド線を表示する
+	[data-type="arkhe-blocks/dl-dt"],
+	[data-type="arkhe-blocks/dl-dd"],
+	// .ark-block-accordion__body,
+	.ark-block-boxLink .arkb-boxLink__title,
+	.ark-block-boxLink .arkb-boxLink__content,
+	.ark-block-step__title,
+	.ark-block-timeline__label,
+	.ark-block-timeline__title,
+	.ark-block-step__body,
+	.ark-block-timeline__body {
 
-// 1px dashed #7b86a24d
+		&:hover {
+			outline: dashed 1px $color_guide;
+		}
+	}
+
+}

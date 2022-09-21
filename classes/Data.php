@@ -12,14 +12,23 @@ class Data {
 	const DB_NAMES = [
 		'general'     => 'arkhe_blocks_general',
 		'format'      => 'arkhe_blocks_format',
+		'block'       => 'arkhe_blocks_block',
 		'shortcode'   => 'arkhe_blocks_shortcode',
+		'licence_key' => 'arkhe_licence_key', // ライセンスキーはArkheテーマと同じDBレコードを使う
 		// 'custom_code' => 'arkhe_blocks_custom_code',
 	];
 
+	// データ通信先
+	const CDN_URL = 'https://loos-cdn.com/arkhe';
 
 	// 設定ページスラッグ
 	const MENU_SLUG        = 'arkhe_blocks_settings';
 	const MENU_PAGE_PREFIX = 'arkb_menu_page_';
+
+	const CACHE_KEYS = [
+		'licence'           => 'arkhe_licence_data', // ライセンスのキャッシュキーはテーマ側と同じものを使う
+		'get_custom_styles' => 'arkb_get_custom_styles',
+	];
 
 	// basename
 	public static $basename = '';
@@ -33,8 +42,37 @@ class Data {
 	public static $defaults = [];
 
 	// blocksデータ
-	public static $blocks           = [];
-	public static $dynamic_blocks   = [];
+	public static $blocks         = [
+		'accordion',
+		'accordion-item',
+		'button',
+		'buttons',
+		'column',
+		'columns',
+		'container',
+		'faq',
+		'faq-item',
+		'dl',
+		'dl-dt',
+		'dl-dd',
+		'dl-div',
+		'notice',
+		'section-heading',
+		'step',
+		'step-item',
+		'tab',
+		'tab-body',
+		'timeline',
+		'timeline-item',
+	];
+	public static $dynamic_blocks = [
+		'section',
+		'blog-card',
+		'custom-code',
+		'toc',
+	];
+
+	// memo: block.jsonの"style"にハンドル名を指定する
 	public static $blocks_has_style = [
 		'accordion',
 		'blog-card',
@@ -51,6 +89,7 @@ class Data {
 		'step',
 		'tab',
 		'timeline',
+		'toc',
 	];
 
 	// メニューの設定タブ
@@ -67,6 +106,9 @@ class Data {
 
 	// init()
 	public static function init() {
+
+		// ライセンスセット（テーマ本体の @after_setup_theme.1 より後で）
+		add_action( 'after_setup_theme', [ '\Arkhe_Blocks\Licence', 'init' ], 5 );
 
 		// 設定データセット
 		add_action( 'after_setup_theme', [ '\Arkhe_Blocks', 'data_init' ], 9 );
@@ -87,12 +129,32 @@ class Data {
 				'use_core_patterns'   => '',
 				'use_custom_space'    => '',
 				'dynamic_css_to_head' => '',
+				'palette_colors'      => [],
 			],
 			'format'      => [
-				'format_title_1'    => __( 'Custom 01', 'arkhe-blocks' ),
-				'format_title_2'    => '',
-				'format_title_3'    => '',
-				'custom_format_css' => '',
+				'custom_formats'      => [
+					[
+						'name' => __( 'Custom 01', 'arkhe-blocks' ),
+						'slug' => '1',
+						'css'  => '',
+					],
+				],
+				'custom_format_css'   => '',
+				'marker_color'        => '#ffdc40',
+				'marker_style'        => 'fill',
+				'marker_start'        => '1em',
+				'is_marker_txt_bold'  => '',
+			],
+			'block'       => [
+				'block_styles'       => [],
+				'show_spacer_guide'  => '1',
+				'btn_default_radius' => '0',
+				'btn_default_color'  => '',
+				'toc_color'          => '',
+				'toc_title'          => __( 'Table of Contents', 'arkhe-blocks' ),
+				'toc_target'         => 'h3',
+				'toc_threshold'      => '2',
+				'toc_script'         => 'php',
 			],
 			// memo: 任意のショートコードを登録して呼び出せるような機能を作る
 			'shortcode'   => [],
@@ -115,46 +177,28 @@ class Data {
 
 		// 保存済みデータとデフォルト値をマージ
 		foreach ( self::DB_NAMES as $key => $db_name ) {
-			$db_data            = get_option( $db_name ) ?: [];
-			self::$data[ $key ] = array_merge( self::$defaults[ $key ], $db_data );
+			$db_data = get_option( $db_name ) ?: [];
+			// 旧カスタム書式データの変換
+			if ( 'arkhe_blocks_format' === $db_name ) {
+				$db_data = \Arkhe_Blocks::migrate_custom_format( $db_data );
+			}
+
+			// ライセンスデータはデフォルトデータを持たないので除外する
+			if ( isset( self::$defaults[ $key ] ) ) {
+				self::$data[ $key ] = array_merge( self::$defaults[ $key ], $db_data );
+			}
 		}
 
 		// 設定メニューのタブをセット
 		self::$menu_tabs = [
 			'general' => _x( 'General', 'tab', 'arkhe-blocks' ),
 			'format'  => _x( 'Format', 'tab', 'arkhe-blocks' ),
+			'block'   => _x( 'Block', 'tab', 'arkhe-blocks' ),
 		];
 
-		self::$blocks = [
-			'accordion',
-			'accordion-item',
-			'button',
-			'buttons',
-			'column',
-			'columns',
-			'container',
-			'faq',
-			'faq-item',
-			'dl',
-			'dl-dt',
-			'dl-dd',
-			'dl-div',
-			'notice',
-			'section-heading',
-			'step',
-			'step-item',
-			'tab',
-			'tab-body',
-			'timeline',
-			'timeline-item',
-		];
+		// 環境によって使用できるかが変わるブロック
 
-		self::$dynamic_blocks = [
-			'section',
-			'blog-card',
-			'custom-code',
-		];
-
+		// Pro版でのみ利用可
 		if ( self::IS_PRO ) {
 			self::$blocks = array_merge( self::$blocks, [
 				'box-links',
@@ -175,6 +219,11 @@ class Data {
 					'rss',
 				] );
 			}
+		}
+
+		// データの強制セットが必要な場合
+		if ( ! IS_ARKHE_THEME ) {
+			self::set_data( 'block', 'toc_script', 'php' );
 		}
 	}
 
@@ -227,10 +276,12 @@ class Data {
 	/**
 	 * 設定データを強制セット
 	 */
-	// public static function set_data( $name_key = '', $key = '', $val = '' ) {
-	// 	if ( '' === $name_key || '' === $key ) return;
-	// 	self::$data[ $name_key ][ $key ] = $val;
-	// }
+	public static function set_data( $name_key = '', $key = '', $val = '' ) {
+		if ( '' === $name_key || '' === $key ) return;
+		if ( ! isset( self::$data[ $name_key ] ) ) return;
+		self::$data[ $name_key ][ $key ] = $val;
+	}
+
 
 	/**
 	 * 設定データをリセット

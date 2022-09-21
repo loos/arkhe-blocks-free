@@ -200,7 +200,6 @@ class Style {
 		return $css;
 	}
 
-
 	/**
 	 * styleタグで吐き出すCSSを生成
 	 */
@@ -243,6 +242,132 @@ class Style {
 
 		return '<style id="arkb-dynamic-styles">' . self::minify_css( $css ) . '</style>';
 	}
+
+
+	/**
+	 * 設定可能なカスタムスタイル
+	 */
+	public static function get_custom_styles() {
+		// バージョンアップ時にキャッシュキーが変わるようにする。 ajax側と合わせることに注意。
+		$cache_key = \Arkhe_Blocks::CACHE_KEYS['get_custom_styles'] . '_' . \Arkhe_Blocks::$version;
+		$css       = get_transient( $cache_key ) ?: '';
+
+		if ( ! $css ) {
+
+			// CSS変数で管理する値
+			$body_props = [];
+
+			// ボタン
+			$btn_default_radius = \Arkhe_Blocks::get_data( 'block', 'btn_default_radius' ) ?: '0';
+			if ( '0' !== $btn_default_radius ) {
+				$body_props[] = "--arkb-btn-radius:{$btn_default_radius}px";
+				// $css .= 'body{--arkb-btn-radius: ' . $btn_default_radius . 'px}';
+			}
+			$btn_default_color = \Arkhe_Blocks::get_data( 'block', 'btn_default_color' ) ?: '';
+			if ( '' !== $btn_default_color ) {
+				$body_props[] = "--arkb-btn-color--default:{$btn_default_color}";
+				// $css .= 'body{--arkb-btn-color--default: ' . $btn_default_color . '}';
+			}
+
+			$toc_color = \Arkhe_Blocks::get_data( 'block', 'toc_color' ) ?: '';
+			if ( '' !== $toc_color ) {
+				$body_props[] = "--arkb-toc-color:{$toc_color}";
+			}
+
+			// マーカー
+			$marker_color       = \Arkhe_Blocks::get_data( 'format', 'marker_color' ) ?: '';
+			$marker_style       = \Arkhe_Blocks::get_data( 'format', 'marker_style' ) ?: '';
+			$marker_start       = \Arkhe_Blocks::get_data( 'format', 'marker_start' ) ?: '';
+			$is_marker_txt_bold = \Arkhe_Blocks::get_data( 'format', 'is_marker_txt_bold' ) ?: '';
+			$marker_styles      = [
+				'fill' =>
+					'linear-gradient(transparent var(--arkb-marker-start), var(--arkb-marker-color) 0)',
+				'stripe' =>
+					'repeating-linear-gradient(-45deg, var(--arkb-marker-color), var(--arkb-marker-color) 2px, transparent 2px, transparent 3px) no-repeat 0 var(--arkb-marker-start)',
+				// 'stripe-bold' =>
+				// 	'repeating-linear-gradient(-45deg, var(--arkb-marker-color), var(--arkb-marker-color) 3px, transparent 3px, transparent 5px) no-repeat 0 var(--arkb-marker-start)',
+			];
+
+			$body_props[] = '--arkb-marker-color:' . $marker_color;
+			$body_props[] = '--arkb-marker-start:' . $marker_start;
+			$body_props[] = '--arkb-marker-style:' . $marker_styles[ $marker_style ];
+			if ( $is_marker_txt_bold ) {
+				$body_props[] = '--arkb-marker-txt-weight:700';
+			}
+
+			// CSS変数をbodyに展開
+			$css .= 'body{' . implode( ';', $body_props ) . '}';
+
+			// カラーパレット
+			$palette_colors = \Arkhe_Blocks::get_data( 'general', 'palette_colors' );
+			if ( is_array( $palette_colors ) ) {
+				foreach ( $palette_colors as $data ) {
+					if ( ! is_array( $data ) ) continue;
+
+					$slug  = $data['slug'] ?? '';
+					$color = $data['color'] ?? '';
+
+					// カラー、スラッグのいずれかが空の場合はスキップ
+					if ( ! $slug || ! $color  ) continue;
+
+					$css .= ".has-arkb-{$slug}-color {color:{$color} !important;}";
+					$css .= ".has-arkb-{$slug}-background-color {background-color:{$color} !important;}";
+				}
+			}
+
+			// カスタム書式用CSS
+			$custom_formats = \Arkhe_Blocks::get_data( 'format', 'custom_formats' );
+			if ( is_array( $custom_formats ) ) {
+				foreach ( $custom_formats as $data ) {
+					if ( ! is_array( $data ) || ! isset( $data['css'] ) ) continue;
+					$css .= $data['css'];
+				}
+			}
+
+			// 旧 カスタム書式用CSS
+			$custom_format_css = \Arkhe_Blocks::get_data( 'format', 'custom_format_css' );
+			if ( $custom_format_css ) {
+				$css .= $custom_format_css;
+			}
+
+			// カスタムブロックスタイル用CSS
+			$block_styles = \Arkhe_Blocks::get_data( 'block', 'block_styles' );
+			if ( is_array( $block_styles ) ) {
+				foreach ( $block_styles as $data ) {
+					if ( ! is_array( $data ) || ! isset( $data['css'] ) ) continue;
+					$css .= $data['css'];
+				}
+			}
+
+			$css = self::minify_css( $css );
+			set_transient( $cache_key, $css, 7 * DAY_IN_SECONDS );
+		}
+
+		return $css;
+	}
+
+
+	/**
+	 * 設定で追加されるエディター用スタイル
+	 */
+	public static function get_ex_editor_styles() {
+
+		$css = '';
+
+		$show_spacer_guide = \Arkhe_Blocks::get_data( 'block', 'show_spacer_guide' );
+		if ( $show_spacer_guide ) {
+			$css .= '[data-type="core/spacer"]{' .
+				'background-clip: padding-box;' .
+				'background-image: repeating-linear-gradient(-45deg, rgba(160, 170, 180, .15), rgba(160, 170, 180, .15) 2px, transparent 2px, transparent 7px);' .
+				'border: solid 1px rgba(160, 180, 200, .2);' .
+				'border-image: repeating-linear-gradient(45deg, rgba(160, 180, 200, .5), rgba(160, 180, 200, .5) 6px, transparent 6px, transparent 9px) 1;' .
+			'}';
+		}
+
+		$css = self::minify_css( $css );
+		return $css;
+	}
+
 
 
 	/**

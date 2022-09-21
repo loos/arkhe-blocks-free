@@ -1,0 +1,28 @@
+{
+    "apiVersion": 2,
+    "name": "arkhe-blocks/toc",
+    "title": "Table of Contents",
+    "category": "arkhe-blocks",
+    "keywords": [],
+    "supports": {
+        "anchor": true,
+        "className": false,
+        "html": false
+    },
+    "attributes": {
+        "anchor": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "target": {
+            "type": "string"
+        }
+    },
+    "editorScript": "file:../../../../dist/gutenberg/blocks/toc/index.js",
+    "style": "arkhe-blocks-toc-style",
+    "textdomain": "arkhe-blocks"
+}

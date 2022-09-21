@@ -1,0 +1,112 @@
+@import "../../../scss/mixin/media";
+
+:root {
+	--arkb-toc-color: var(--ark-color--main, currentColor);
+}
+
+// タグ自体はolで固定。
+.ark-block-toc {
+
+	// max-width: 800px;
+	// margin-right: auto;
+	// margin-left: auto;
+
+	margin-top: 4rem;
+	padding: 1.5em 1.25em;
+	// background-image: repeating-linear-gradient(-45deg, rgba(180, 180, 180, .1), rgba(180, 180, 180, .1) 1px, transparent 1px, transparent 3px);
+	// background-clip: padding-box;
+	border-top: double 3px;
+	border-bottom: double 3px;
+
+	.l-sidebar & {
+		padding: 1em .75em;
+	}
+
+	@include mobile {
+		padding: 1em .75em;
+	}
+
+	::marker {
+		color: var(--arkb-toc-color, currentColor);
+		// font-size: 1.2em;
+		font-family: helvetica;
+	}
+
+	&[data-target="h2"] {
+
+		[data-level="3"] {
+			display: none;
+		}
+	}
+
+	&[data-target="h3"] {
+
+		[data-level="4"] {
+			display: none;
+		}
+	}
+
+	.ark-block-toc__title {
+		margin-bottom: 1em;
+		// padding: 0 1em 1em;
+		font-weight: 700;
+		line-height: 1.5;
+		text-align: center;
+		// border-bottom: solid 1px;
+	}
+
+	.ark-block-toc__list {
+		position: relative;
+		margin: 0;
+		padding-left: 2em;
+		list-style: decimal;
+		list-style: decimal-leading-zero;
+
+
+		li {
+			// margin: .25em 0;
+			margin: 0;
+			padding: .1em 0;
+			line-height: 1.6;
+		}
+
+		&[data-level="2"] > li:not(:first-child) {
+			margin-top: .2em;
+		}
+
+		// 入れ子のリスト
+		.ark-block-toc__list {
+			margin-top: .2em;
+			padding-left: .75em;
+		}
+
+		&[data-level="3"] {
+			font-size: .95em;
+			list-style: disc;
+
+			&::before {
+				position: absolute;
+				left: -1.2em;
+				width: 1px;
+				height: 100%;
+				background-color: var(--arkb-toc-color, currentColor);
+				opacity: .5;
+				content: "";
+			}
+		}
+
+		&[data-level="4"] {
+			font-size: .925em;
+			list-style: circle;
+		}
+	}
+
+	.ark-block-toc__link {
+		color: inherit;
+
+		&:not(:hover) {
+			text-decoration: none;
+		}
+	}
+
+}

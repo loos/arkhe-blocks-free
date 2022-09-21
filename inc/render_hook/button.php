@@ -43,6 +43,9 @@ function render_button_block( $block_content, $block ) {
 	$the_styles = [];
 	$attrs      = $block['attrs'] ?? [];
 
+	$block_content = str_replace( '--arkb-btn-color:', '--arkb-btn-color--text:', $block_content );
+	$block_content = str_replace( '--arkb-btn-bg:', '--arkb-btn-color--bg:', $block_content );
+
 	// width
 	$width = $attrs['width'] ?? [];
 	if ( ! empty( $width['pc'] ) ) {

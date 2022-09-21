@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arkhe Blocks\n"
-"POT-Creation-Date: 2022-07-21 16:51+0900\n"
-"PO-Revision-Date: 2022-07-21 16:51+0900\n"
+"POT-Creation-Date: 2022-09-20 22:00+0900\n"
+"PO-Revision-Date: 2022-09-20 22:00+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: arkhe-blocks-pro.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
@@ -35,13 +35,15 @@ msgstr "アコーディオン項目"
 #: src/gutenberg/blocks/accordion-item/index.js:62
 #: src/gutenberg/blocks/blog-card/index.js:121
 #: src/gutenberg/blocks/box-links/index.js:97
-#: src/gutenberg/blocks/button/sidebar.js:261
+#: src/gutenberg/blocks/button/sidebar.js:273
 #: src/gutenberg/blocks/column/index.js:133
 #: src/gutenberg/blocks/columns/index.js:154
-#: src/gutenberg/blocks/container/index.js:188
+#: src/gutenberg/blocks/container/index.js:189
 #: src/gutenberg/blocks/restricted-area/controls.js:213
 #: src/gutenberg/blocks/section-heading/index.js:147
 #: src/gutenberg/blocks/timeline-item/index.js:78
+#: src/gutenberg/blocks/toc/index.js:68
+#: src/menu/component/ArkbMenuImportModal.js:28
 msgid "Settings"
 msgstr "設定"
 
@@ -54,9 +56,9 @@ msgid "Make it open by default"
 msgstr "デフォルトで開いた状態にする"
 
 #: src/gutenberg/blocks/accordion-item/index.js:102
-#: src/gutenberg/blocks/box-link/edit.js:326
-#: src/gutenberg/blocks/box-link/edit.js:336
-#: src/gutenberg/blocks/button/index.js:165
+#: src/gutenberg/blocks/box-link/edit.js:328
+#: src/gutenberg/blocks/box-link/edit.js:338
+#: src/gutenberg/blocks/button/index.js:169
 #: src/gutenberg/blocks/dl-dt/index.js:35
 #: src/gutenberg/blocks/faq-item/index.js:41
 #: src/gutenberg/blocks/notice/index.js:156
@@ -154,7 +156,7 @@ msgstr "ボックス設定"
 
 #: src/gutenberg/blocks/box-link/_sidebar.js:129
 #: src/gutenberg/blocks/buttons/index.js:126
-#: src/gutenberg/blocks/container/index.js:149
+#: src/gutenberg/blocks/container/index.js:150
 msgid "Layout"
 msgstr "レイアウト"
 
@@ -236,11 +238,11 @@ msgstr "アイコンサイズ"
 msgid "Edit image"
 msgstr "画像を編集"
 
-#: src/gutenberg/blocks/box-link/edit.js:265
+#: src/gutenberg/blocks/box-link/edit.js:267
 msgid "Center the text"
 msgstr "テキストセンター寄せ"
 
-#: src/gutenberg/blocks/box-link/edit.js:300
+#: src/gutenberg/blocks/box-link/edit.js:302
 msgid "Delete image"
 msgstr "画像を削除"
 
@@ -252,6 +254,7 @@ msgstr "ボックス"
 #: src/gutenberg/blocks/columns/index.js:55
 #: src/gutenberg/blocks/notice/index.js:65
 #: src/gutenberg/blocks/step/index.js:37 src/gutenberg/blocks/tab/index.js:70
+#: src/gutenberg/blocks/toc/index.js:31
 msgid "Default"
 msgstr "デフォルト"
 
@@ -289,62 +292,62 @@ msgstr "PC設定"
 msgid "Tablet setting"
 msgstr "Tablet設定"
 
-#: src/gutenberg/blocks/button/index.js:90
+#: src/gutenberg/blocks/button/index.js:94
 msgid "Button"
 msgstr "ボタン"
 
-#: src/gutenberg/blocks/button/sidebar.js:28
+#: src/gutenberg/blocks/button/sidebar.js:30
 msgctxt "style"
 msgid "Fill"
 msgstr "塗りつぶし"
 
-#: src/gutenberg/blocks/button/sidebar.js:32
+#: src/gutenberg/blocks/button/sidebar.js:34
 msgctxt "style"
 msgid "Outline"
 msgstr "アウトライン"
 
-#: src/gutenberg/blocks/button/sidebar.js:36
+#: src/gutenberg/blocks/button/sidebar.js:38
 msgctxt "style"
 msgid "Text"
 msgstr "テキスト"
 
-#: src/gutenberg/blocks/button/sidebar.js:43
+#: src/gutenberg/blocks/button/sidebar.js:45
 msgctxt "hover"
 msgid "Brighten"
 msgstr "明るく"
 
-#: src/gutenberg/blocks/button/sidebar.js:47
+#: src/gutenberg/blocks/button/sidebar.js:49
 msgctxt "hover"
 msgid "Darken"
 msgstr "暗く"
 
-#: src/gutenberg/blocks/button/sidebar.js:51
+#: src/gutenberg/blocks/button/sidebar.js:53
 msgctxt "hover"
 msgid "Float"
 msgstr "浮かぶ"
 
-#: src/gutenberg/blocks/button/sidebar.js:55
+#: src/gutenberg/blocks/button/sidebar.js:57
 msgctxt "hover"
 msgid "Swap Color"
 msgstr "塗り反転"
 
-#: src/gutenberg/blocks/button/sidebar.js:196
+#: src/gutenberg/blocks/button/sidebar.js:198
 #: src/gutenberg/blocks/section/sidebar.js:225
 #: src/gutenberg/blocks/slider-item/_sidebar.js:95
 msgid "Text color"
 msgstr "文字色"
 
-#: src/gutenberg/blocks/button/sidebar.js:205
+#: src/gutenberg/blocks/button/sidebar.js:207
 #: src/gutenberg/blocks/section/sidebar.js:234
 #: src/gutenberg/blocks/slider-item/_sidebar.js:104
 msgid "Background color"
 msgstr "背景色"
 
-#: src/gutenberg/blocks/button/sidebar.js:232
+#: src/gutenberg/blocks/button/sidebar.js:234
 msgid "Style"
 msgstr "スタイル"
 
-#: src/gutenberg/blocks/button/sidebar.js:256
+#: src/gutenberg/blocks/button/sidebar.js:258
 #: src/gutenberg/blocks/section-heading/index.js:165
 #: src/gutenberg/blocks/section/sidebar.js:218
 #: src/gutenberg/blocks/slider-item/_sidebar.js:88
@@ -353,39 +356,47 @@ msgstr "スタイル"
 msgid "Color settings"
 msgstr "カラー設定"
 
-#: src/gutenberg/blocks/button/sidebar.js:265
+#: src/gutenberg/blocks/button/sidebar.js:267
+msgid "Default colors can be changed from the <a>Settings Page</a>."
+msgstr "<a>設定ページ</a>からデフォルトカラーを変更できます。"
+
+#: src/gutenberg/blocks/button/sidebar.js:277
 msgid "Hover effect"
 msgstr "ホバーエフェクト"
 
-#: src/gutenberg/blocks/button/sidebar.js:287
+#: src/gutenberg/blocks/button/sidebar.js:299
 msgid "Rounded corners"
 msgstr "角丸"
 
-#: src/gutenberg/blocks/button/sidebar.js:306
+#: src/gutenberg/blocks/button/sidebar.js:318
+msgid "Default values can be changed from the <a>Settings Page</a>."
+msgstr "<a>設定ページ</a>からデフォルト値を変更できます。"
+
+#: src/gutenberg/blocks/button/sidebar.js:327
 msgid "Button size"
 msgstr "ボタンサイズ"
 
-#: src/gutenberg/blocks/button/sidebar.js:322
+#: src/gutenberg/blocks/button/sidebar.js:343
 msgid "Icon"
 msgstr "アイコン"
 
-#: src/gutenberg/blocks/button/sidebar.js:328
+#: src/gutenberg/blocks/button/sidebar.js:349
 msgid "Icon position"
 msgstr "アイコンの位置"
 
-#: src/gutenberg/blocks/button/sidebar.js:332
+#: src/gutenberg/blocks/button/sidebar.js:353
 msgid "Left"
 msgstr "左"
 
-#: src/gutenberg/blocks/button/sidebar.js:339
+#: src/gutenberg/blocks/button/sidebar.js:360
 msgid "Right"
 msgstr "右"
 
-#: src/gutenberg/blocks/button/sidebar.js:350
+#: src/gutenberg/blocks/button/sidebar.js:371
 msgid "HTML direct input"
 msgstr "HTML直接入力"
 
-#: src/gutenberg/blocks/button/sidebar.js:353
+#: src/gutenberg/blocks/button/sidebar.js:374
 msgid "You can paste tags for affiliate advertising."
 msgstr "アフィリエイト広告用のタグをペーストしてご利用いただけます。"
 
@@ -459,23 +470,23 @@ msgstr "スクロールできます"
 msgid "Container"
 msgstr "コンテナ"
 
-#: src/gutenberg/blocks/container/index.js:151
+#: src/gutenberg/blocks/container/index.js:152
 msgid "Turn on \"Flex\""
 msgstr "Flexをオンにする"
 
-#: src/gutenberg/blocks/container/index.js:172
+#: src/gutenberg/blocks/container/index.js:173
 msgid "Gap between blocks"
 msgstr "ブロック間のギャップ"
 
-#: src/gutenberg/blocks/container/index.js:190
+#: src/gutenberg/blocks/container/index.js:191
 msgid "Use inner <div>"
 msgstr "インナー<div>を使用する"
 
-#: src/gutenberg/blocks/container/index.js:197
+#: src/gutenberg/blocks/container/index.js:198
 msgid "HTML element"
 msgstr "HTML要素"
 
-#: src/gutenberg/blocks/container/index.js:207
+#: src/gutenberg/blocks/container/index.js:208
 msgid "Padding"
 msgstr "Padding"
 
@@ -896,8 +907,7 @@ msgstr "アーカイブページを対象にする"
 #: src/gutenberg/blocks/restricted-area/controls.js:366
 msgid ""
 "Displays content on Term Archive pages that match the specified criteria."
-msgstr ""
-"指定した条件に合致するタームアーカイブページでコンテンツを表示します。"
+msgstr "指定した条件に合致するタームアーカイブページでコンテンツを表示します。"
 
 #: src/gutenberg/blocks/restricted-area/controls.js:373
 msgid "Target Singular pages"
@@ -907,8 +917,7 @@ msgstr "個別ページを対象にする"
 msgid ""
 "Displays content on Singular pages with terms that match the specified "
 "criteria."
-msgstr ""
-"指定した条件に合致するタームを持つ個別ページでコンテンツを表示します。"
+msgstr "指定した条件に合致するタームを持つ個別ページでコンテンツを表示します。"
 
 #: src/gutenberg/blocks/restricted-area/index.js:22 src/gutenberg/free.js:38
 msgctxt "blcok-name"
@@ -1112,7 +1121,7 @@ msgstr "高さレベル"
 #: src/gutenberg/blocks/section/sidebar.js:388
 #: src/gutenberg/blocks/slider/_sidebar.js:321
 #: src/gutenberg/blocks/step-item/index.js:87
-#: src/gutenberg/blocks/timeline-item/index.js:101
+#: src/gutenberg/blocks/timeline-item/index.js:101 src/menu/_config.js:35
 msgid "Color"
 msgstr "色"
 
@@ -1224,8 +1233,8 @@ msgid ""
 "When you select Fade/Flip/Cube, the number of slides displayed will be set "
 "to 1."
 msgstr ""
-"フェード/フリップ/キューブのいずれかを選択すると、スライドの表示枚数は 1 に"
-"なります。"
+"フェード/フリップ/キューブのいずれかを選択すると、スライドの表示枚数は 1 にな"
+"ります。"
 
 #: src/gutenberg/blocks/slider/_sidebar.js:235
 msgid "Media Slider settings"
@@ -1474,6 +1483,23 @@ msgstr "タイムライン"
 msgid "Create timeline format content."
 msgstr "タイムライン形式のコンテンツを作成します。"
 
+#: src/gutenberg/blocks/toc/index.js:53 src/gutenberg/blocks/toc/index.js:80
+#: classes/Data.php:154
+msgid "Table of Contents"
+msgstr "目次"
+
+#: src/gutenberg/blocks/toc/index.js:83
+msgid "The Table of Contents is displayed here."
+msgstr "ここに目次が表示されます。"
+
+#: src/gutenberg/blocks/toc/index.js:87 src/menu/block.js:130
+msgid "What heading level to display"
+msgstr "どの見出しレベルまで表示するか"
+
+#: src/gutenberg/blocks/toc/index.js:96
+msgid "Headings with the \"arkb-toc-off\" class are not displayed."
+msgstr "“arkb-toc-off”クラスを持つ見出しは表示されません。"
+
 #: src/gutenberg/components/ArkbFlexControls/index.js:10
 msgid "Orientation"
 msgstr "方向"
@@ -1515,8 +1541,8 @@ msgid ""
 "You can select multiple items by holding down the %1$s key on a Mac or the "
 "%2$s key on Windows."
 msgstr ""
-"Macなら%1$sキー、Windowsなら%2$sキーを押しながらクリックすると複数選択でき"
-"ます。"
+"Macなら%1$sキー、Windowsなら%2$sキーを押しながらクリックすると複数選択できま"
+"す。"
 
 #: src/gutenberg/components/ArkbHelpTip.js:24
 msgid "The following icons are available."
@@ -1548,7 +1574,11 @@ msgid "Search Icons"
 msgstr "アイコンを検索"
 
 #: src/gutenberg/components/ArkbIconPicker/index.js:208
-msgid "クリア"
+#: src/gutenberg/components/ArkbPaddingControl.js:157
+#: src/gutenberg/components/ArkbUnitNumber.js:103
+#: src/gutenberg/format/btn/font-size/index.js:98
+#: src/gutenberg/format/btn/letter-spacing/index.js:81
+msgid "Clear"
 msgstr ""
 
 #: src/gutenberg/components/ArkbIconPickerControls.js:22
@@ -1580,14 +1610,9 @@ msgstr "ブロック上の余白"
 msgid "If all are empty, %s will be taken over"
 msgstr "全て空の場合は%sを引き継ぎます"
 
-#: src/gutenberg/components/ArkbPaddingControl.js:157
-#: src/gutenberg/components/ArkbUnitNumber.js:103
-#: src/gutenberg/format/btn/font-size/index.js:98
-#: src/gutenberg/format/btn/letter-spacing/index.js:81
-msgid "Clear"
-msgstr ""
-
 #: src/gutenberg/components/ArkbPaddingControl.js:170
+#: src/menu/component/ArkbMenuColor.js:36
+#: src/menu/component/controls/ArkbCustomDataControls.js:213
 msgid "Reset"
 msgstr "リセット"
 
@@ -1708,19 +1733,19 @@ msgctxt "style"
 msgid "Large"
 msgstr "大"
 
-#: src/gutenberg/extension/headbar.js:39
-msgid "View Post"
-msgstr "投稿を表示"
-
-#: src/gutenberg/extension/headbar.js:41
+#: src/gutenberg/extension/headbar.js:63
 msgid "View Page"
 msgstr "ページを表示"
 
-#: src/gutenberg/format.js:55
+#: src/gutenberg/extension/headbar.js:65
+msgid "View Post"
+msgstr "投稿を表示"
+
+#: src/gutenberg/format.js:45
 msgid "Arkhe Format"
 msgstr "Arkhe書式"
 
-#: src/gutenberg/format.js:61
+#: src/gutenberg/format.js:51
 msgid "Shortcodes"
 msgstr "ショートコード"
 
@@ -1735,6 +1760,10 @@ msgstr "フォントサイズ"
 #: src/gutenberg/format/btn/letter-spacing/index.js:93
 msgid "Kerning"
 msgstr "カーニング"
+
+#: src/gutenberg/format/btn/marker/index.js:14
+msgid "Marker"
+msgstr "マーカー"
 
 #: src/gutenberg/format/btn/mini-note/index.js:14
 msgid "Annotation size"
@@ -1752,172 +1781,525 @@ msgstr "このブロックはPRO版でのみ利用可能です。"
 msgid "Get Arkhe Blocks Pro"
 msgstr "Arkhe Blocks Proを入手する"
 
+#: src/gutenberg/helper/index.js:15
+msgid "Note: "
+msgstr "※ "
+
+#: src/gutenberg/helper/index.js:16
+#, python-format
+msgid "Add %s"
+msgstr "%sを追加する"
+
+#: src/gutenberg/helper/index.js:17
+#, python-format
+msgid "Close %s"
+msgstr "%sを閉じる"
+
+#: src/gutenberg/helper/index.js:18
+#, python-format
+msgid "Open %s"
+msgstr "%sを開く"
+
+#: src/gutenberg/helper/index.js:19
+#, python-format
+msgid "Do you want to reset %s?"
+msgstr "%sをリセットしますか？"
+
+#: src/gutenberg/helper/index.js:20
+#, python-format
+msgid "There is an error in %s"
+msgstr "%sにエラーがあります"
+
+#: src/gutenberg/helper/index.js:21
+#, python-format
+msgid "Select %s"
+msgstr "%sを選択してください"
+
+#: src/gutenberg/helper/index.js:22
+#, python-format
+msgid "Enter %s"
+msgstr "%sを入力してください"
+
+#: src/gutenberg/helper/index.js:23
+#, python-format
+msgid "%s not found."
+msgstr "%sが見つかりません。"
+
+#: src/gutenberg/helper/index.js:24
+#, python-format
+msgid "%s is incorrect."
+msgstr "%sが正しくありません。"
+
+#: src/gutenberg/helper/index.js:25
+#, python-format
+msgid "Currently, %s is not yet registered."
+msgstr "現在、%sはまだ登録されていません。"
+
+#: src/menu/_config.js:32
+msgid "Palette"
+msgstr "パレット"
+
+#: src/menu/_config.js:33 classes/Utility.php:121
+msgid "Color Palette"
+msgstr "カラーパレット"
+
+#: src/menu/_config.js:34
+msgid "Slug"
+msgstr "スラッグ"
+
+#: src/menu/_config.js:36
+msgid "Class name"
+msgstr "クラス名"
+
+#: src/menu/_config.js:37
+msgid "Label"
+msgstr "表示名"
+
+#: src/menu/_config.js:38 classes/Utility.php:124
+msgid "Custom Format"
+msgstr "カスタム書式"
+
+#: src/menu/_config.js:39
+msgid "Preview"
+msgstr "プレビュー"
+
+#: src/menu/_config.js:40
+msgid "Block"
+msgstr "ブロック"
+
+#: src/menu/_config.js:41
+msgid "Block name"
+msgstr "ブロック名"
+
+#: src/menu/_config.js:42
+msgid "Block Style"
+msgstr "ブロックスタイル"
+
+#: src/menu/_config.js:43 classes/Utility.php:127
+msgid "Custom Block Style"
+msgstr "カスタムブロックスタイル"
+
+#: src/menu/_config.js:44
+msgid "Target Block"
+msgstr "対象ブロック"
+
+#: src/menu/_config.js:45
+msgid "CSS Editor"
+msgstr "CSSエディター"
+
+#: src/menu/_config.js:46
+msgid "Import"
+msgstr "インポート"
+
+#: src/menu/_config.js:47
+msgid "Export"
+msgstr "エクスポート"
+
+#: src/menu/block.js:47
+msgid "Arkhe Button Block"
+msgstr "Arkheボタンブロック"
+
+#: src/menu/block.js:51
+msgid "Default Color"
+msgstr "デフォルトカラー"
+
+#: src/menu/block.js:69 src/menu/block.js:117
+msgid "If no color is specified, the theme's main color will be applied."
+msgstr "カラーの指定がない場合は、テーマのメインカラーが適用されます。"
+
+#: src/menu/block.js:79
+msgid "Default value for rounded corners"
+msgstr "角丸のデフォルト値"
+
+#: src/menu/block.js:95
+msgid "TOC Block"
+msgstr "目次ブロック"
+
+#: src/menu/block.js:99
+msgid "Accent color"
+msgstr "アクセントカラー"
+
+#: src/menu/block.js:123
+msgid "Title text"
+msgstr "タイトルのテキスト"
+
+#: src/menu/block.js:143
+msgid "How to extract headings"
+msgstr "見出しの抽出方法"
+
+#: src/menu/block.js:156
+msgid ""
+"Choosing \"PHP\" will allow you to take advantage of the TOC without "
+"compromising your CLS score. However, it may not be displayed properly "
+"depending on the placement location."
+msgstr ""
+"「PHP」を選択すると、CLSスコアを悪化させずに目次を利用できます。しかし、配置"
+"場所によっては正常に表示されないことがあります。"
+
+#: src/menu/block.js:162
+msgid ""
+"Choosing \"JS\" will work wherever you place your TOC. However, some "
+"placements can worsen your CLS score."
+msgstr ""
+"「JS」を選択すると、目次をどこに置いても動作します。しかし、配置場所によって"
+"はCLSスコアを悪化させることがあります。"
+
+#: src/menu/block.js:172
+msgid "Number of headings required"
+msgstr "必要な見出しの数"
+
+#: src/menu/block.js:182
+msgid ""
+"This setting is for when the TOC Block is placed in a common area such as a "
+"sidebar."
+msgstr "サイドバー等の共通エリアに目次ブロックを置いた時のための設定です。"
+
+#: src/menu/block.js:196
+msgid "Spacer Block"
+msgstr "スペーサーブロック"
+
+#: src/menu/block.js:200
+msgid "Always make Spacer Block visible"
+msgstr "スペーサーブロックを常に可視化する"
+
+#: src/menu/block.js:208
+msgid "Applies only on the editor."
+msgstr "エディター上でのみ適用されます。"
+
+#: src/menu/component/ArkbCustomBlockStyles.js:143
+#: src/menu/component/ArkbCustomFormats.js:117
+#: src/menu/component/ArkbCustomPalettes.js:141
+msgid "Enter only half-width characters for slug."
+msgstr "スラッグは半角英数字のみ入力して下さい。"
+
+#: src/menu/component/ArkbCustomBlockStyles.js:168
+msgid "Select a block"
+msgstr "ブロックを選ぶ"
+
+#: src/menu/component/ArkbCustomBlockStyles.js:275
+msgid ""
+"Changing the class name will invalidate any block styles used in the past."
+msgstr "クラス名を変更すると過去に使用したブロックスタイルが無効になります。"
+
+#: src/menu/component/ArkbCustomBlockStyles.js:281
+msgid ""
+"\"Target Block\" must be entered in the \"namespace/block-name\" format. The "
+"namespace and block-name must begin with a letter, and only single-byte "
+"alphanumeric characters and hyphens are allowed."
+msgstr ""
+"「対象ブロック」は「namespace/block-name」の形式で入力して下さい。namespaceと"
+"block-nameはアルファベットから始まる必要があり、半角英数字とハイフンのみが使"
+"用出来ます。"
+
+#: src/menu/component/ArkbCustomFormats.js:225
+msgid ""
+"Changing the class name will invalidate any custom formatting used in the "
+"past."
+msgstr "クラス名を変更すると過去に使用したカスタム書式が無効になります。"
+
+#: src/menu/component/ArkbCustomPalettes.js:226
+msgid ""
+"The \"Slug\" is used for class names, so changing it will invalidate colors "
+"used in the past."
+msgstr ""
+"「スラッグ」はクラス名に利用されるため、変更すると過去に使用したカラーが無効"
+"になります。"
+
+#: src/menu/component/ArkbCustomPalettes.js:232
+msgid ""
+"It is recommended to use a slug name that can continue to be used after "
+"changing the color (e.g., primary, secondary, accent, etc.)."
+msgstr ""
+"色を変えても継続して使用できるスラッグ名（primary, secondary, accent など）に"
+"することをおすすめします。"
+
+#: src/menu/component/ArkbMenuImportModal.js:83
+msgid "Settings imported."
+msgstr "設定をインポートしました。"
+
+#: src/menu/component/ArkbMenuImportModal.js:161
+#, python-format
+msgctxt "modal-title"
+msgid "Import %s"
+msgstr "%sのインポート"
+
+#: src/menu/component/ArkbMenuImportModal.js:166
+msgid "Add the following settings."
+msgstr "以下の設定を追加します。"
+
+#: src/menu/component/ArkbMenuImportModal.js:184
+msgid "Do"
+msgstr "する"
+
+#: src/menu/component/ArkbMenuImportModal.js:191
+msgid "Do not"
+msgstr "しない"
+
+#: src/menu/component/ArkbMenuImportModal.js:202
+msgid "There are no new settings that can be added."
+msgstr "新しく追加できる設定がありません。"
+
+#: src/menu/component/ArkbMenuImportModal.js:209
+msgid "The following settings cannot be imported because they are duplicates."
+msgstr "以下の設定は重複しているため、インポートできません。"
+
+#: src/menu/component/ArkbMenuImportModal.js:229
+msgid "Please select at least one item of data to import."
+msgstr "インポートするデータを1件以上選択して下さい。"
+
+#: src/menu/component/ArkbMenuImportModal.js:234
+msgid "The maximum number of imports allowed has been exceeded."
+msgstr "インポート可能な上限数を超えています。"
+
+#: src/menu/component/ArkbMenuImportModal.js:246
+msgid "Cancel"
+msgstr "キャンセル"
+
 #: src/menu/component/ArkbMenuSection.js:14
 msgid "This is only available in the PRO version."
 msgstr "ここはPro版でのみ利用可能です。"
 
-#: src/menu/format.js:85 src/menu/format.js:110
-msgid "Custom format"
-msgstr "カスタム書式"
+#: src/menu/component/controls/ArkbBlockSearch.js:42
+msgid "Search blocks by slug…"
+msgstr "ブロックをスラッグから検索…"
 
-#: src/menu/format.js:89
+#: src/menu/component/controls/ArkbCssEditBtn.js:26
+msgid "Close"
+msgstr "閉じる"
+
+#: src/menu/component/controls/ArkbCssEditBtn.js:38
+msgid "Edit CSS"
+msgstr "CSSを編集"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:19
+msgid "It's not a JSON file."
+msgstr "JSONファイルではありません。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:32
+msgid "Format of JSON file"
+msgstr "JSONファイルの形式"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:96
+#: src/menu/index.js:71
+msgid "An error occurred."
+msgstr "エラーが発生しました。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:126
+msgid "Exported settings."
+msgstr "設定をエクスポートしました。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:138
+msgid "Save the settings."
+msgstr "設定を保存してください。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:144
+#: src/menu/component/controls/ArkbCustomDataControls.js:161
+msgid "The maximum number of data has been reached."
+msgstr "データ数が上限に達しています。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:149
+#: inc/rest_api.php:38
+msgid "There is no data to export."
+msgstr "エクスポートするデータがありません。"
+
+#: src/menu/component/controls/ArkbCustomDataControls.js:219
+msgid "Settings have been changed. Please save your settings to import/export."
+msgstr ""
+"設定内容に変更がありました。インポート/エクスポートするには設定を保存してくだ"
+"さい。"
+
+#: src/menu/component/controls/ArkbRowControls.js:17
+#, python-format
+msgid "Move up %s"
+msgstr "%sを上へ移動"
+
+#: src/menu/component/controls/ArkbRowControls.js:23
+#, python-format
+msgid "Move down %s"
+msgstr "%sを下に移動"
+
+#: src/menu/component/controls/ArkbRowControls.js:29
+#, python-format
+msgid "Delete %s"
+msgstr "%sを削除"
+
+#: src/menu/component/controls/ArkbRowControls.js:34
+msgid "Do you really want to delete it?"
+msgstr "本当に削除しますか？"
+
+#: src/menu/component/controls/ArkbRowCssEditor.js:21
+msgid "CSS Code"
+msgstr "CSSコード"
+
+#: src/menu/component/controls/ArkbRowCssEditor.js:26
+msgid "Write CSS for <code>%1$s</code>."
+msgstr "<code>%1$s</code> に対してCSSを記述してください。"
+
+#: src/menu/component/controls/ArkbRowCssEditor.js:35
+msgid "If the style is not applied, increase the Selector Specificity."
+msgstr "スタイルが適用されない場合は、セレクタの詳細度を強くして下さい。"
+
+#: src/menu/format.js:27
+msgctxt "marker"
+msgid "Fill"
+msgstr "塗り"
+
+#: src/menu/format.js:32
+msgctxt "marker"
+msgid "Stripe"
+msgstr "ストライプ"
+
+#: src/menu/format.js:37
+msgctxt "marker"
+msgid "Stripe (Bold)"
+msgstr "ストライプ(太め)"
+
+#: src/menu/format.js:42
+msgid "Dot"
+msgstr "ドット"
+
+#: src/menu/format.js:81
+msgid "Marker Settings"
+msgstr "マーカ設定"
+
+#: src/menu/format.js:85
+msgid "Marker Color"
+msgstr "マーカーの色"
+
+#: src/menu/format.js:97
+msgid "Marker Style"
+msgstr "マーカーのスタイル"
+
+#: src/menu/format.js:108
+msgid "Marker Weight"
+msgstr "マーカの太さ"
+
+#: src/menu/format.js:111
+msgid "Thin"
+msgstr "細い"
+
+#: src/menu/format.js:112
+msgid "Bold"
+msgstr "太い"
+
+#: src/menu/format.js:123
+msgid "Bold the text to which the marker is applied"
+msgstr "マーカーを適用したテキストを太字にする"
+
+#: src/menu/format.js:150
 msgid "You can define formats that can be applied from the block toolbar."
 msgstr "ブロックツールバーから適用できる書式フォーマットを定義できます。"
 
-#: src/menu/format.js:94
-msgid ""
-"The tool button will appear in the editor only if the \"Display name\" has "
-"been entered."
-msgstr ""
-"\"表示名\"が入力されているものだけ、エディター上でツールボタンが出現しま"
-"す。"
-
-#: src/menu/format.js:113
-msgid "Class name"
-msgstr "クラス名"
-
-#: src/menu/format.js:117
-msgid "Display name"
-msgstr "表示名"
-
-#: src/menu/format.js:132
+#: src/menu/format.js:165
 msgid "CSS for custom format"
 msgstr "カスタム書式用CSS"
 
-#: src/menu/format.js:134
-msgid ""
-"The CSS written here is loaded on both the front side and the editor side."
-msgstr "ここに書いたCSSは、フロント側とエディター側の両方で読み込まれます。"
+#: src/menu/general.js:20
+msgid "Extensions for Core blocks"
+msgstr "コアブロックに関する拡張機能"
 
-#: src/menu/general copy.js:31
-msgid "Disable core block extensions"
-msgstr "コアブロック拡張機能を無効化する"
+#: src/menu/general.js:22
+msgid "Whether to enable enhancements to the core block."
+msgstr "コアブロックに対する機能拡張を有効にするかどうか。"
 
-#: src/menu/general copy.js:35
-msgid "Disable format extensions"
-msgstr "フォーマット拡張機能を無効化する"
+#: src/menu/general.js:26
+msgid "Extensions for Formatting tools"
+msgstr "書式ツールに関する拡張機能"
 
-#: src/menu/general copy.js:39
-msgid "Hide the link to the page placed on the header toolbar"
-msgstr "ヘッダーツールバーに設置しているページへのリンクを非表示にする"
+#: src/menu/general.js:28
+msgid "Whether to enable proprietary extensions for inline text."
+msgstr "インラインテキスト用の独自拡張機能を有効にするかどうか。"
 
-#: src/menu/general copy.js:47
-msgid "Enable the \"Blocks for FSE\""
-msgstr "「FSE用のブロック」を有効化する"
+#: src/menu/general.js:34
+msgid "Display a link to the post/page being edited in the header toolbar"
+msgstr "編集中の 投稿/ページ へのリンクをヘッダーツールバーに表示する"
 
-#: src/menu/general copy.js:51
-msgid "Enable \"Core Block Patterns\""
-msgstr "「コアのブロックパターン」を有効化する"
+#: src/menu/general.js:44
+msgid "Blocks for FSE"
+msgstr "FSE用のブロック"
 
-#: src/menu/general copy.js:57 src/menu/general.js:56
+#: src/menu/general.js:48
+msgid "Core Block Patterns"
+msgstr "コアのブロックパターン"
+
+#: src/menu/general.js:54
 msgid "Enable the \"Custom Space\" feature"
 msgstr "「カスタムスペース」機能を有効化する"
 
-#: src/menu/general copy.js:61 src/menu/general.js:60
+#: src/menu/general.js:58
 msgid ""
 "If you are already using a Theme that supports this feature, checking it "
 "will not change anything."
 msgstr ""
-"すでにこの機能をサポートしているテーマを使用している場合、チェックしても何"
-"も変わりません。"
+"すでにこの機能をサポートしているテーマを使用している場合、チェックしても何も"
+"変わりません。"
 
-#: src/menu/general copy.js:98 src/menu/index.js:67
-msgid "Settings saved."
-msgstr "設定を保存しました。"
+#: src/menu/general.js:70
+msgid "Color palette settings"
+msgstr "カラーパレット設定"
 
-#: src/menu/general copy.js:105 src/menu/index.js:74
-msgid "An error occurred."
-msgstr "エラーが発生しました。"
-
-#: src/menu/general copy.js:122
-msgid "Disable editor extensions"
-msgstr "エディター拡張機能の無効化"
-
-#: src/menu/general copy.js:137
-msgid "Core Functions"
-msgstr "コア機能"
-
-#: src/menu/general copy.js:154 src/menu/index.js:94
-msgid "Save Changes"
-msgstr "変更を保存する"
-
-#: src/menu/general.js:22
-msgid "Extensions for Core blocks"
-msgstr "コアブロックに関する拡張機能"
-
-#: src/menu/general.js:24
-msgid "Whether to enable enhancements to the core block."
-msgstr "コアブロックに対する機能拡張を有効にするかどうか。"
-
-#: src/menu/general.js:28
-msgid "Extensions for Formatting tools"
-msgstr "書式ツールに関する拡張機能"
-
-#: src/menu/general.js:30
-msgid "Whether to enable proprietary extensions for inline text."
-msgstr "インラインテキスト用の独自拡張機能を有効にするかどうか。"
-
-#: src/menu/general.js:36
-msgid "Display a link to the post/page being edited in the header toolbar"
-msgstr "編集中の 投稿/ページ へのリンクをヘッダーツールバーに表示する"
-
-#: src/menu/general.js:46
-msgid "Blocks for FSE"
-msgstr "FSE用のブロック"
-
-#: src/menu/general.js:50
-msgid "Core Block Patterns"
-msgstr "コアのブロックパターン"
-
-#: src/menu/general.js:72
+#: src/menu/general.js:78
 msgid "Editor extension ON/OFF settings"
 msgstr "エディター拡張機能の ON/OFF 設定"
 
-#: src/menu/general.js:89
+#: src/menu/general.js:96
 msgid "Core Functions ON/OFF settings"
 msgstr "コア機能の ON/OFF設定"
 
-#: src/menu/general.js:105
+#: src/menu/general.js:113
 msgid "Other settings"
 msgstr "その他の設定"
 
-#: src/menu/general.js:109
+#: src/menu/general.js:117
 msgid "Output dynamic CSS into <head>"
 msgstr "動的CSSを<head>内へ出力する"
 
-#: src/menu/general.js:114
+#: src/menu/general.js:124
 msgid ""
 "Where to output <style> tags whose output changes depending on block "
 "settings. The default is near </body>."
 msgstr ""
-"ブロック設定によって出力が変わる<style>タグをどこに出力するか。デフォルトは"
-"</body>付近です。"
+"ブロック設定によって出力が変わる<style>タグをどこに出力するか。デフォルトは</"
+"body>付近です。"
+
+#: src/menu/index.js:63
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: src/menu/index.js:119
+msgid "Save Changes"
+msgstr "変更を保存する"
 
 #: block-parts/page_list.php:53
 msgid "Page not found."
 msgstr "ページが見つかりませんでした。"
 
-#: classes/Data.php:92
+#: classes/Data.php:137 classes/Utility.php:96
 msgid "Custom 01"
 msgstr "カスタム01"
 
-#: classes/Data.php:124
+#: classes/Data.php:194
 msgctxt "tab"
 msgid "General"
 msgstr "一般設定"
 
-#: classes/Data.php:125
+#: classes/Data.php:195
 msgctxt "tab"
 msgid "Format"
 msgstr "書式設定"
 
-#: inc/admin_menu.php:49
+#: classes/Data.php:196
+msgctxt "tab"
+msgid "Block"
+msgstr "ブロック設定"
+
+#: inc/admin_menu.php:45 inc/admin_toolbar.php:66 inc/notice.php:50
+msgid "Licence registration"
+msgstr "ライセンス認証"
+
+#: inc/admin_menu.php:58
 msgid "Arkhe Blocks Settings"
 msgstr "Arkhe Blocks設定"
-
-#: inc/admin_toolbar.php:22 inc/admin_toolbar.php:27
-msgid "License key registration"
-msgstr "ライセンスキー登録"
 
 #: inc/blocks/rss.php:23
 msgid "Please enter the URL of the RSS feed."
@@ -1935,21 +2317,98 @@ msgstr "RSSフィードのURLが正しくありません。"
 msgid "The article was not found."
 msgstr "記事が見つかりませんでした。"
 
-#: inc/gutenberg.php:114
+#: inc/gutenberg.php:60
 msgid "Arkhe Blocks"
 msgstr "Arkhe Blocks"
 
-#: inc/notice.php:48
+#: inc/menu/licence_page.php:46
+msgid "Too many authentication requests. Please try again later."
+msgstr ""
+"認証リクエストの回数が多すぎます。しばらく時間を空けてから再試行してくださ"
+"い。"
+
+#: inc/menu/licence_page.php:59
+msgid "This license key is currently disabled."
+msgstr "このライセンスキーは現在無効になっています。"
+
+#: inc/menu/licence_page.php:65 inc/menu/licence_page.php:77
+msgid "A valid license key has been confirmed."
+msgstr "有効なライセンスキーが確認できました。"
+
+#. translators: %s is email;
+#. translators: %s is owner;
+#: inc/menu/licence_page.php:68 inc/menu/licence_page.php:80
+#, php-format
+msgid "This is \"%1$s\" and is owned by %2$s."
+msgstr "これは「%1$s」で、所有者は %2$s です。"
+
+#: inc/menu/licence_page.php:69
+msgid "Personal License"
+msgstr "個人ライセンス"
+
+#: inc/menu/licence_page.php:81
+msgid "Creator License"
+msgstr "制作ライセンス"
+
+#: inc/menu/licence_page.php:98
+msgid "Check License"
+msgstr "ライセンスを確認"
+
+#. translators: %s is link;
+#: inc/menu/licence_page.php:109
+#, php-format
+msgid ""
+"Purchasing \"%s\" will allow you to update all Arkhe plugins to the latest "
+"version."
+msgstr ""
+"「%s」を購入すると、全てのArkheプラグインを最新版へアップデートできるようにな"
+"ります。"
+
+#: inc/menu/licence_page.php:110
+msgid "Arkhe License"
+msgstr "Arkheライセンス"
+
+#: inc/notice.php:15
+msgid "Go Pro"
+msgstr "Pro版"
+
+#: inc/notice.php:43
+#, php-format
+msgid "<b>%2$s</b> is newer than your version (%1$s)."
+msgstr ""
+"ご利用のバージョン（%1$s）より新しい <b>%2$s</b> がリリースされています。"
+
+#: inc/notice.php:49
+#, php-format
+msgid "You can always use the latest version by executing %s."
+msgstr "%sを行うと常に最新版をご利用いただけます。"
+
+#: inc/notice.php:122
 msgid "Both the free and PRO versions of Arkhe Blocks are running."
 msgstr "Arkhe Blocksの無料版とPRO版の両方が有効化されています。"
 
-#: inc/notice.php:50
+#: inc/notice.php:124
 msgid "If you are using the PRO version, please disable the free version."
 msgstr "PRO版をご利用の方は、無料版は無効化してご利用ください。"
 
-#: inc/notice.php:64
-msgid "Go Pro"
-msgstr "Pro版"
+#: inc/rest_api.php:60
+msgid "Insufficient request parameters."
+msgstr "リクエストパラメータが不足しています。"
+
+#: inc/rest_api.php:70 inc/rest_api.php:73 inc/rest_api.php:78
+#: inc/rest_api.php:94 inc/rest_api.php:165
+msgid "Incorrect data format."
+msgstr "データの形式が正しくありません。"
+
+#. translators: %s: Field name
+#: inc/rest_api.php:89
+#, php-format
+msgid "The specified file is import data for \"%s\"."
+msgstr "指定されたファイルは、「%s」のインポートデータです。"
+
+#: inc/rest_api.php:122 inc/rest_api.php:168
+msgid "There is no data that can be imported."
+msgstr "インポート出来るデータが存在しません。"
 
 #. Plugin Name of the plugin/theme
 msgid "Arkhe Blocks Pro"
@@ -1970,6 +2429,58 @@ msgstr "LOOS,Inc."
 #. Author URI of the plugin/theme
 msgid "https://loos.co.jp/"
 msgstr "https://loos.co.jp/"
+
+#~ msgid "Thin line"
+#~ msgstr "細い線"
+
+#~ msgid "Bold line"
+#~ msgstr "太い線"
+
+#~ msgid "キャンセル"
+#~ msgstr "キャンセル"
+
+#~ msgid "Enter label."
+#~ msgstr "ラベルを入力して下さい。"
+
+#, fuzzy
+#~| msgid "Enter label."
+#~ msgid "Enter class name."
+#~ msgstr "ラベルを入力して下さい。"
+
+#~ msgid "Reset color palette?"
+#~ msgstr "カラーパレットをリセットしますか?"
+
+#~ msgid "There are errors in color palette settings."
+#~ msgstr "カラーパレット設定にエラーがあります。"
+
+#~ msgid "Choose color."
+#~ msgstr "色を選択して下さい。"
+
+#~ msgid "Add a palette"
+#~ msgstr "パレットを追加する"
+
+#~ msgid "Move palette up"
+#~ msgstr "パレットを上に移動"
+
+#~ msgid "Delete palette"
+#~ msgstr "パレットを削除"
+
+#~ msgid ""
+#~ "The tool button will appear in the editor only if the \"Display name\" "
+#~ "has been entered."
+#~ msgstr ""
+#~ "\"表示名\"が入力されているものだけ、エディター上でツールボタンが出現しま"
+#~ "す。"
+
+#~ msgid "Display name"
+#~ msgstr "表示名"
+
+#~ msgid ""
+#~ "The CSS written here is loaded on both the front side and the editor side."
+#~ msgstr "ここに書いたCSSは、フロント側とエディター側の両方で読み込まれます。"
+
+#~ msgid "Add"
+#~ msgstr "追加"
 
 #, fuzzy
 #~| msgid "Color settings"
@@ -1999,9 +2510,6 @@ msgstr "https://loos.co.jp/"
 
 #~ msgid "Hide the text"
 #~ msgstr "テキストを非表示にする"
-
-#~ msgid "Step settings"
-#~ msgstr "ステップ設定"
 
 #~ msgid "Tab block ID"
 #~ msgstr "タブブロックID"

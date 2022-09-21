@@ -1,0 +1,98 @@
+
+.arkb-menu__customBlockStyle {
+
+	.__table {
+		// padding: 0 8px;
+
+		tr {
+			position: relative;
+		}
+
+		td:last-child {
+			position: static;
+		}
+	}
+
+	.__search {
+		display: flex;
+		align-items: center;
+		width: 100%;
+
+		> .components-base-control {
+			flex: 1;
+		}
+
+		> .components-button {
+			align-self: stretch;
+			width: 30px;
+			min-width: 30px;
+			height: auto;
+			margin-left: 8px;
+			padding: 0;
+		}
+
+		.__blocks .components-popover__content {
+			box-sizing: border-box;
+			width: 500px;
+			max-width: 90vw;
+			padding: 16px;
+			overflow: hidden;
+		}
+	}
+
+}
+
+
+.arkb-menu__blockSearch {
+
+	.components-popover__content {
+		overflow: hidden;
+	}
+
+	.__dl {
+		align-items: center;
+		height: 300px;
+		margin: 12px 0 0;
+		overflow-y: scroll;
+
+		.components-button {
+			width: 100%;
+			margin: 0;
+			padding: 4px 0;
+			font-size: inherit;
+		}
+
+		.__div {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+			padding: 2px 0;
+			font-size: 13px;
+		}
+
+		dt {
+			flex-basis: 50%;
+		}
+
+		dd {
+			flex-basis: 50%;
+			margin-bottom: 0;
+		}
+	}
+
+
+	.__div.-header {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		margin-bottom: 4px;
+		font-weight: bold;
+		background: #fff;
+
+		// th {
+		// 	padding: .5em;
+		// 	text-align: left;
+		// }
+	}
+
+}

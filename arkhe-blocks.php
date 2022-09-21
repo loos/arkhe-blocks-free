@@ -3,7 +3,7 @@
  * Plugin Name: Arkhe Blocks
  * Plugin URI: https://arkhe-theme.com
  * Description: A plugin that extends Gutenberg, optimized for the "Arkhe" theme.
- * Version: 2.1.1
+ * Version: 2.2.0
  * Requires at least: 5.7
  * Requires PHP: 7.0
  * Author: LOOS,Inc.
@@ -41,9 +41,8 @@ require_once __DIR__ . '/inc/php_polyfill.php';
  */
 spl_autoload_register(
 	function( $classname ) {
-
 		// 名前に Arkhe_Blocks がなければオートロードしない。
-		if ( strpos( $classname, 'Arkhe_Blocks' ) === false && strpos( $classname, 'Arkhe_Blocks' ) === false) return;
+		if ( strpos( $classname, 'Arkhe_Blocks' ) === false ) return;
 
 		$classname = str_replace( '\\', '/', $classname );
 		$classname = str_replace( 'Arkhe_Blocks/', '', $classname );
@@ -116,6 +115,12 @@ if ( ! class_exists( 'Arkhe_Blocks' ) ) {
 
 			// 出力関係
 			require_once ARKHE_BLOCKS_PATH . 'inc/output.php';
+
+			// REST API
+			require_once ARKHE_BLOCKS_PATH . 'inc/rest_api.php';
+
+			// wpajax
+			require_once ARKHE_BLOCKS_PATH . 'inc/ajax.php';
 
 			if ( is_admin() ) {
 				require_once ARKHE_BLOCKS_PATH . 'inc/notice.php';

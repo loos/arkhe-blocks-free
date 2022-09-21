@@ -87,6 +87,48 @@ trait Utility {
 		return $classname;
 	}
 
+	/**
+	 * カスタム書式セットの旧データからのマイグレーション
+	 */
+	public static function migrate_custom_format( $data ) {
+		// データ1つ目をデフォルトの名前で運用してた時にDBにはない
+		if ( ! isset( $data['format_title_1'] ) && isset( $data['format_title_2'] ) ) {
+			$data['format_title_1'] = __( 'Custom 01', 'arkhe-blocks' );
+		}
+
+		if ( isset( $data['format_title_1'] ) || isset( $data['format_title_2'] ) || isset( $data['format_title_3'] ) ) {
+			$data['custom_formats'] = [];
+
+			for ( $i = 1; $i <= 3; $i++ ) {
+				if ( ! empty( $data[ 'format_title_' . $i ] ) ) {
+					$data['custom_formats'][] = [
+						'name' => $data[ 'format_title_' . $i ],
+						'slug' => strval( $i ),
+					];
+				}
+				unset( $data[ 'format_title_' . $i ] );
+			}
+		}
+
+		return $data;
+	}
+
+	/**
+	 * DB名・フィールド名から、設定画面のタイトルを取得する
+	 */
+	public static function get_settings_title( $name_key, $key ) {
+		if ( 'general' === $name_key && 'palette_colors' === $key ) {
+			return __( 'Color Palette', 'arkhe-blocks' );
+		}
+		if ( 'format' === $name_key && 'custom_formats' === $key ) {
+			return __( 'Custom Format', 'arkhe-blocks' );
+		}
+		if ( 'block' === $name_key && 'block_styles' === $key ) {
+			return __( 'Custom Block Style', 'arkhe-blocks' );
+		}
+
+		return null;
+	}
 
 	/**
 	 * getPositionClassName() のPHP版

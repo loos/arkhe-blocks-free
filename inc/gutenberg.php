@@ -9,17 +9,6 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'init', __NAMESPACE__ . '\register_blocks' );
 function register_blocks() {
 
-	// 翻訳登録用の空ファイル
-	wp_enqueue_script( 'arkhe-blocks-lang', ARKHE_BLOCKS_URL . 'assets/js/translations.js', [], \Arkhe_Blocks::$file_ver, false );
-
-	// JS用翻訳ファイルの読み込み
-	if ( function_exists( 'wp_set_script_translations' ) ) {
-		wp_set_script_translations( 'arkhe-blocks-lang', 'arkhe-blocks', ARKHE_BLOCKS_PATH . 'languages' );
-	}
-
-	// その他、グローバル変数も紐づけておく
-	wp_localize_script( 'arkhe-blocks-lang', 'arkbSettings', get_localize_arkb_vars() );
-
 	// 通常ブロックの読み込み
 	foreach ( \Arkhe_Blocks::$blocks as $block_name ) {
 		register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
@@ -30,7 +19,7 @@ function register_blocks() {
 		require_once __DIR__ . '/blocks/' . $block_name . '.php';
 	}
 
-	// スタイルの登録 ( $depsの指定をしたいのでphpから登録 )
+	// スタイルの登録 ( memo: $depsを指定して共通CSSより後ろで読み込ませたいのでphp側で処理している )
 	$deps = is_admin() ? 'arkhe-blocks-editor' : 'arkhe-blocks-front';
 	foreach ( \Arkhe_Blocks::$blocks_has_style as $name ) {
 		wp_register_style(
@@ -40,65 +29,22 @@ function register_blocks() {
 			\Arkhe_Blocks::$file_ver
 		);
 	}
-}
 
-
-
-/**
- * ブロックエディターで使うグローバル変数
- */
-function get_localize_arkb_vars() {
-	$custom_formats      = [];
-	$custom_code_options = [];
-
-	if ( \Arkhe_Blocks::IS_PRO ) {
-		// カスタム書式
-		for ( $i = 1; $i < 4; $i++ ) {
-			$format_title = \Arkhe_Blocks::get_data( 'format', 'format_title_' . $i );
-			// $format_class = \Arkhe_Blocks::get_data( 'format', 'format_class_' . $i );
-			if ( $format_title ) {
-				$custom_formats[] = [
-					'name'      => 'arkhe-blocks/custom' . $i,
-					'title'     => $format_title,
-					'tagName'   => 'span',
-					'className' => 'arkb-format-' . $i,
-				];
-			}
+	// カスタムブロックスタイルの登録
+	$block_styles = \Arkhe_Blocks::get_data( 'block', 'block_styles' );
+	if ( is_array( $block_styles ) ) {
+		foreach ( $block_styles as $data ) {
+			if ( ! is_array( $data ) ) continue;
+			if ( empty( $data['block'] ) || empty( $data['name'] ) || empty( $data['slug'] ) ) continue;
+			register_block_style(
+				$data['block'],
+				[
+					'name'  => $data['slug'],
+					'label' => $data['name'],
+				]
+			);
 		}
-}
-
-	return [
-		'isArkhe'           => IS_ARKHE_THEME,
-		'isPro'             => \Arkhe_Blocks::IS_PRO,
-		'customFormats'     => apply_filters( 'arkhe_blocks_custom_formats', $custom_formats ),
-		'disableHeaderLink' => \Arkhe_Blocks::get_data( 'general', 'disable_header_link' ),
-		// 'customCodeOptions' => apply_filters( 'arkhe_blocks_custom_code_options', $custom_code_options ),
-		'fontFamilies'      => [
-			// カスタムコードブロック フォントファミリーのバリエーション
-			[
-				'label'      => 'Fira Code',
-				'val'        => 'Fira Code',
-				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/fira-code.css',
-			],
-			[
-				'label'      => 'Source Code Pro',
-				'val'        => 'Source Code Pro',
-				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/source-code-pro.css',
-			],
-			[
-				'label'      => 'Ubuntu Mono',
-				'val'        => 'Ubuntu Mono',
-				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/ubuntu-mono.css',
-			],
-			[
-				'label'      => 'Anonymous Pro',
-				'val'        => 'Anonymous Pro',
-				'stylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/anonymous-pro.css',
-			],
-		],
-
-		//'' => 'arkhe', // phpcs:ignore
-	];
+	}
 }
 
 
