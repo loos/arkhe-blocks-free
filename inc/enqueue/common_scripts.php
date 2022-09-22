@@ -26,11 +26,12 @@ function register_translations() {
 
 /**
  * 管理画面・エディターで使うグローバル変数
+ * 移動時はbinに注意
  */
 function arkb_get_setting_vars() {
 	return [
 		'isArkhe' => IS_ARKHE_THEME,
 		'isPro'   => \Arkhe_Blocks::IS_PRO,
-		'pfkey'   => 'arkhe', // phpcs:ignore
+		//''   => 'arkhe', // phpcs:ignore
 	];
 }

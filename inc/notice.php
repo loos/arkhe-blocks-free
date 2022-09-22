@@ -27,7 +27,7 @@ add_action( 'admin_notices', function () {
 		arkb_check_double_activated();
 	}
 
-	if ( ! \Arkhe_Blocks\Licence::has_licence() ) {
+	if ( \Arkhe_Blocks::IS_PRO && ! \Arkhe_Blocks\Licence::has_licence() ) {
 
 		$now_version    = \Arkhe_Blocks::$version;
 		$latest_version = arkb_get_latest_version();
