@@ -199,6 +199,9 @@
 		}
 	}
 
+	.__textContentInput {
+		width: 550px;
+	}
 
 	.__editCode {
 		width: auto !important;
@@ -225,7 +228,11 @@
 
 		textarea,
 		.CodeMirror {
-			height: 200px;
+			height: 320px;
+		}
+
+		.CodeMirror-wrap pre {
+			word-break: break-word;
 		}
 	}
 
@@ -306,6 +313,10 @@
 			margin-bottom: 0;
 			font-size: 12px;
 			white-space: nowrap;
+		}
+
+		.__textContentInput {
+			width: 100%;
 		}
 
 		.__rowControls {

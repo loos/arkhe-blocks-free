@@ -9,12 +9,23 @@
 }
 
 // ガイド線を少し外側にする（一番親ブロック）
-.is-root-container > .ark-has-guide,
+.ark-has-guide,
 .arkb-tabBody__content {
 
+	// 6.1から after の存在が限定的になったので自分で指定する。
 	&::after {
-		inset: -4px !important;
+		position: absolute;
+		inset: var(--arkb-guide-offset, -4px);
+		border-radius: 2px;
+		content: "";
+		pointer-events: none;
 	}
+}
+
+
+.wp-block .wp-block,
+[data-align="full"] {
+	--arkb-guide-offset: 0;
 }
 
 // 本文エリア

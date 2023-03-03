@@ -24,7 +24,7 @@
         },
         "icon": {
             "type": "string",
-            "default": "arkb-svg-point"
+            "default": "LsLightbulb"
         }
     },
     "example": {

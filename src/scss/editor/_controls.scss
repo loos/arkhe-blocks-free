@@ -121,25 +121,6 @@
 	}
 }
 
-// ヘルプテキスト詰まりすぎなので打ち消し
-.components-base-control .components-base-control__help {
-	margin-top: -4px;
-}
-
-// カラーピッカーの表示が崩れているのを修正
-.arkb-colorPicker {
-
-	.components-color-picker__inputs-wrapper {
-		width: 100%;
-		min-width: 0;
-	}
-
-	.components-color-picker__inputs-field {
-		margin-bottom: 0 !important;
-	}
-}
-
-
 // サイドバーの<TabPanel>
 .arkb-tabPanel {
 
@@ -454,6 +435,17 @@
 	font-size: .9em;
 	font-style: italic;
 	opacity: .8;
+}
+
+.arkb-helpPanel {
+	padding: 16px;
+	border-top: 1px solid #e0e0e0;
+}
+
+.arkb-helpInput {
+	display: block;
+	width: 100%;
+	font-size: 12px;
 }
 
 

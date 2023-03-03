@@ -71,4 +71,18 @@ trait Parts {
 
 		}
 	}
+
+	/**
+	 * スクロールヒントを取得
+	 */
+	public static function get_scroll_hint( $context = '' ) {
+		$svg = '<svg class="arkb-scrollHint__svg" width="1em" height="1em" viewBox="0 0 32 32" role="img" focusable="false" >' .
+				'<path d="M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z" /></svg>';
+
+		return apply_filters(
+			'arkb_scroll_hint',
+			'<div class="arkb-scrollHint"><span class="arkb-scrollHint__text">' . __( 'Scrollable', 'arkhe-blocks' ) . $svg . '</span></div>',
+			$context
+		);
+	}
 }

@@ -1,12 +1,17 @@
 .arkb-iconPicker {
 	display: flex;
 
+	--arkb-the-size: 32px;
+
 	svg[fill="none"] {
 		fill: none;
 	}
 
 	>.components-button {
-		height: 40px;
+		// display: flex;
+		// align-items: center;
+		height: calc(var(--arkb-the-size) + 16px);
+		padding: 12px 8px;
 	}
 
 	>.components-button.-clear {
@@ -14,14 +19,18 @@
 	}
 
 	.arkb-iconPicker__placeholder {
-		margin: 0 .5em;
+
+		display: block;
+		min-width: var(--arkb-the-size);
+		margin: auto 8px;
+		font-size: 14px;
 	}
 
 	.arkb-iconPicker__prev {
-		width: 24px;
-		height: 24px;
-		margin: 0 .5em;
-		font-size: 24px;
+		width: var(--arkb-the-size);
+		height: 100%;
+		margin: 0 8px;
+		font-size: var(--arkb-the-size);
 		line-height: 1;
 	}
 }

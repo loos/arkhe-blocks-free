@@ -107,3 +107,10 @@
 	}
 }
 
+
+.arkb-popover--datetime {
+
+	.components-datetime {
+		padding: 16px; // 6.1からなくなったので6.0までと同じ値を追加
+	}
+}

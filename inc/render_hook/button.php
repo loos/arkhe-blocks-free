@@ -66,17 +66,21 @@ function render_button_block( $block_content, $block ) {
 
 	// html入力時
 	if ( str_contains( $block_content, 'data-has-html="1"' ) ) {
-		$block_content = preg_replace_callback( '/<a(.*?)>/', function( $matches ) {
-			$props = $matches[1];
+		$block_content = preg_replace_callback( '/<a.*?>/', function( $matches ) {
+			$atag = $matches[0];
+
+			// if ( str_contains( $atag, 'ark-block-button__link' ) ) {
+			// 	return $atag;
+			// }
 
 			// クラスの追加
-			if ( str_contains( $props, 'class=' ) ) {
-				$props = preg_replace( '/class=["\'](.*?)["\']/', '/class="ark-block-button__link $1"', $props );
+			if ( str_contains( $atag, 'class=' ) ) {
+				$atag = preg_replace( '/class=["\'](.*?)["\']/', '/class="ark-block-button__link $1"', $atag );
 			} else {
-				$props .= ' class="ark-block-button__link"';
+				$atag = str_replace( '<a', '<a class="ark-block-button__link"', $atag );
 			}
 
-			return '<a' . $props . '>';
+			return $atag;
 		}, $block_content, 1 ); // limit: 1
 	}
 	return $block_content;

@@ -1,17 +1,26 @@
-// ブロック追加ボタン
-.ark-block-columns__inner,
-.ark-block-boxLinks__inner,
-.ark-block-accordion,
-.ark-block-step,
-.ark-block-timeline,
-.ark-block-dl,
-.ark-block-faq {
+
+// インナーブロック内の大きなblock-appenderの調整
+.ark-has-appender {
 
 	> .block-list-appender.block-list-appender {
 		position: relative;
+		margin-top: 1em;
+		margin-bottom: 0;
 
 		.block-editor-button-block-appender {
 			padding: 4px;
 		}
+
 	}
+
+
+	// stepのカードスタイルは余白広くする
+	&.ark-block-step.is-style-card {
+
+		> .block-list-appender.block-list-appender {
+			margin-top: 56px;
+		}
+	}
+
 }
+

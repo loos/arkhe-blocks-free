@@ -38,6 +38,32 @@
         },
         "paddingMB": {
             "type": "object"
+        },
+        "href": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "[data-arkb-link]",
+            "attribute": "href"
+        },
+        "rel": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "[data-arkb-link]",
+            "attribute": "rel"
+        },
+        "ariaLabel": {
+            "type": "string",
+            "source": "attribute",
+            "selector": ".ark-block-column",
+            "attribute": "aria-label"
+        },
+        "isNewTab": {
+            "type": "boolean",
+            "default": false
+        },
+        "useAtag": {
+            "type": "boolean",
+            "default": false
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/column/index.js",

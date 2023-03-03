@@ -134,6 +134,22 @@ add_action( 'init', function() {
 						],
 					],
 				];
+			} elseif ( 'texts' === $setting_key ) {
+				// テキスト呼び出し機能は別途schemaを定義
+				$properties[ $setting_key ] = [
+					'type'  => 'array',
+					'items' => [
+						'type'       => 'object',
+						'properties' => [
+							'label' => [
+								'type' => 'string',
+							],
+							'content' => [
+								'type' => 'string',
+							],
+						],
+					],
+				];
 			} elseif ( 'block_styles' === $setting_key ) {
 				// カスタムブロックスタイルは別途schemaを定義
 				$properties[ $setting_key ] = [

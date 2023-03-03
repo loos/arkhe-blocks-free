@@ -1,13 +1,31 @@
 @import "../../../scss/mixin/media";
 
 // memo: 構造 → .ark-block-tab > .arkb-tabList,.arkb-tabBody
+.ark-block-tab {
+	--arkb-tab-width: unset;
+	--arkb-tab-min-width: unset;
+	--arkb-tab-list-wrap: nowrap;
+
+	position: relative;
+
+	.arkb-scrollHint {
+		display: none;
+	}
+
+	&[data-has-tab-link] {
+
+		.arkb-tabList__button {
+			transition: none;
+		}
+	}
+}
 
 .arkb-tabList {
 	position: relative;
 	display: flex;
+	flex-wrap: var(--arkb-tab-list-wrap);
 	justify-content: center;
 	margin: 0;
-	// padding: 0;
 	list-style: none !important;
 
 	// 詳細度高める
@@ -15,64 +33,19 @@
 		padding: 0;
 	}
 
-
-	&::-webkit-scrollbar {
-		height: 11px;
-		background-color: rgba(200, 200, 200, .15);
-		box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, .15);
+	&[data-justify="left"] {
+		justify-content: flex-start;
 	}
 
-	&::-webkit-scrollbar-thumb {
-		background: rgba(200, 200, 200, .9);
-		background-clip: padding-box;
-		border: solid 3px transparent;
-		border-bottom-width: 4px;
-		border-radius: 8px;
+	&[data-justify="right"] {
+		justify-content: flex-end;
 	}
-
 
 	.arkb-tabList__item {
+		flex-basis: var(--arkb-tab-width);
+		min-width: var(--arkb-tab-min-width);
 		margin: 0; // .c-postContent ul li のmarginを打ち消す
 		text-align: center;
-	}
-
-}
-
-
-[data-tab-width="auto"] {
-
-	.arkb-tabList {
-		flex-wrap: wrap;
-	}
-
-	.arkb-tabList__button {
-		min-width: 5em;
-		padding-right: 1.25em;
-		padding-left: 1.25em;
-	}
-}
-
-[data-tab-width="fix"] {
-
-	.arkb-tabList {
-		flex-wrap: wrap;
-	}
-
-	.arkb-tabList__item {
-		flex-basis: 50%;
-
-		@include pc {
-			flex-basis: 25%;
-		}
-
-	}
-
-}
-
-[data-tab-width="equal"] {
-
-	.arkb-tabList__item {
-		flex-basis: 50%;
 	}
 }
 
@@ -91,7 +64,6 @@
 	border: none;
 	border-bottom: solid 2px transparent;
 	transition: background-color .25s, color .25s;
-
 
 	@include tab {
 		font-size: 14px;
@@ -124,32 +96,25 @@
 
 @include sp {
 
+	[data-tab-w-sp="fix"] {
+		--arkb-tab-width: 50%;
+		--arkb-tab-list-wrap: wrap;
+	}
+
+	[data-tab-w-sp="equal"] {
+		--arkb-tab-width: 50%;
+	}
+
+	[data-tab-w-sp="auto"] {
+		--arkb-tab-width: auto;
+		--arkb-tab-min-width: 5em;
+		--arkb-tab-list-wrap: wrap;
+	}
+
 	.-scrollable-sp {
 
-		&.ark-block-tab {
-			position: relative;
-
-			/* stylelint-disable function-url-quotes */
-			&::after {
-				position: absolute;
-				right: 0;
-				bottom: 100%;
-				display: block;
-				width: 18px;
-				height: 18px;
-				padding: 0;
-				line-height: 1;
-				background-color: #fff;
-				background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="%23000" d="M30.4 16.664l-4.528-4.528-1.128 1.136 3.392 3.392h-26.536v1.6h28.8v-1.6z" /></svg>');
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: 14px 14px;
-				border-radius: 8px;
-				box-shadow: 0 0 0 1px rgba(0, 0, 0, .4);
-				opacity: .75;
-				animation: ArkbFloatHorizontal 2.5s ease-in-out infinite alternate;
-				content: "";
-			}
+		.arkb-scrollHint {
+			display: block;
 		}
 
 		.arkb-tabList {
@@ -165,17 +130,68 @@
 			flex-shrink: 0;
 		}
 
-		[data-tab-width="fix"] .arkb-tabList__item,
-		[data-tab-width="equal"] .arkb-tabList__item {
-			flex-basis: auto;
-			min-width: 30%;
+		[data-tab-w-sp="equal"] {
+			--arkb-tab-width: auto;
+			--arkb-tab-min-width: 30%;
 		}
 	}
 }
 
 @include pc {
 
+	.arkb-tabList {
+
+		&:not(:hover) {
+
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				visibility: hidden;
+				opacity: 0;
+			}
+		}
+
+		&::-webkit-scrollbar {
+			position: absolute;
+			height: 10px;
+			background-color: rgba(200, 200, 200, .1);
+			// box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, .15);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: rgba(200, 200, 200, 1);
+			background-clip: padding-box;
+			border: solid 2px transparent;
+			// border-bottom-width: 4px;
+			border-radius: 8px;
+		}
+	}
+
+	[data-tab-w-pc="fix"] {
+		--arkb-tab-width: 25%;
+		--arkb-tab-list-wrap: wrap;
+	}
+
+	[data-tab-w-pc="equal"] {
+		--arkb-tab-width: 50%;
+	}
+
+	[data-tab-w-pc="auto"] {
+		--arkb-tab-width: auto;
+		--arkb-tab-min-width: 5em;
+		--arkb-tab-list-wrap: wrap;
+
+		// .arkb-tabList__button {
+		// 	padding-right: 1.25em;
+		// 	padding-left: 1.25em;
+		// }
+	}
+
+
 	.-scrollable-pc {
+
+		.arkb-scrollHint {
+			display: block;
+		}
 
 		.arkb-tabList {
 			z-index: 1;
@@ -184,18 +200,18 @@
 			overflow-x: auto;
 			-webkit-overflow-scrolling: touch;
 			scroll-behavior: smooth;
+			// transform: rotateX(180deg); // スクロールバーの位置を上にする
 		}
 
 		.arkb-tabList__item {
 			flex-shrink: 0;
+			// transform: rotateX(180deg); // スクロールバーの位置を上にする
 		}
 
-		[data-tab-width="fix"] .arkb-tabList__item,
-		[data-tab-width="equal"] .arkb-tabList__item {
-			flex-basis: auto;
-			min-width: 20%;
+		[data-tab-w-pc="equal"] {
+			--arkb-tab-width: auto;
+			--arkb-tab-min-width: 20%;
 		}
-
 	}
 }
 

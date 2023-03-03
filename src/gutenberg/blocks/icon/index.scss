@@ -1,0 +1,54 @@
+.ark-block-icon {
+
+	// サイズの指定
+	.ark-block-icon__inner {
+		width: var(--arkb-icon-size, 1em);
+		max-width: 100%;
+		height: var(--arkb-icon-size, 1em);
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	// <span|a>
+	.ark-block-icon__frame {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		color: inherit; // aタグ用
+	}
+
+	a.ark-block-icon__frame:hover {
+		opacity: .75;
+	}
+
+
+	// <svg>
+	.ark-block-icon__svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: var(--arkb-icon-color, currentColor);
+		// font-size: var(--arkb-icon-size, 1em);
+	}
+
+	&.is-style-outline {
+
+		.ark-block-icon__frame {
+			border: 1px solid var(--arkb-icon-color, currentColor);
+		}
+	}
+
+	&.is-style-fill {
+
+		.ark-block-icon__frame {
+			background-color: var(--arkb-icon-color, currentColor);
+		}
+
+		.ark-block-icon__svg {
+			color: #fff;
+		}
+	}
+}

@@ -21,7 +21,11 @@
             "type": "number",
             "default": 0
         },
-        "tabWidth": {
+        "tabWidthPC": {
+            "type": "string",
+            "default": "auto"
+        },
+        "tabWidthSP": {
             "type": "string",
             "default": "auto"
         },
@@ -34,6 +38,10 @@
             "default": false
         },
         "tabColor": {
+            "type": "string",
+            "default": ""
+        },
+        "tabAlign": {
             "type": "string",
             "default": ""
         }

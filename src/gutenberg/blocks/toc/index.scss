@@ -6,15 +6,13 @@
 
 // タグ自体はolで固定。
 .ark-block-toc {
-
-	// max-width: 800px;
-	// margin-right: auto;
-	// margin-left: auto;
-
-	margin-top: 4rem;
-	padding: 1.5em 1.25em;
-	// background-image: repeating-linear-gradient(-45deg, rgba(180, 180, 180, .1), rgba(180, 180, 180, .1) 1px, transparent 1px, transparent 3px);
-	// background-clip: padding-box;
+	--ark-mt: 4rem;
+	max-width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 1.25em 1.25em 1.5em;
+	background-image: repeating-linear-gradient(-45deg, rgba(180, 180, 180, .1), rgba(180, 180, 180, .1) 1px, transparent 1px, transparent 3px);
+	background-clip: padding-box;
 	border-top: double 3px;
 	border-bottom: double 3px;
 
@@ -28,7 +26,6 @@
 
 	::marker {
 		color: var(--arkb-toc-color, currentColor);
-		// font-size: 1.2em;
 		font-family: helvetica;
 	}
 

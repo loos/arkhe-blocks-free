@@ -25,25 +25,37 @@
 
 .ark-block-columns {
 
-	[data-align="full"]>& {
+	[data-align="full"] > & {
 		margin-right: 0;
 		margin-left: 0;
 	}
 
-	.ark-block-column>.wp-block-image {
+	.ark-block-column > .wp-block-image {
 		max-width: 100%;
 	}
 
 	// カラム幅・左右マージンに影響を受けないように、常に幅一杯になるようにする
-	.ark-block-columns__inner>.block-list-appender {
-		flex-basis: calc(100% - var(--arkb-gap--x));
-		margin: 0 0 0 var(--arkb-gap--x);
+	.ark-block-columns__inner > .block-list-appender {
+		--arkb-clmn-width: var(--arkb-clmn-w--pc, 50%);
+
+		@include sp {
+			--arkb-clmn-width: var(--arkb-clmn-w--tab, 50%);
+		}
+
+		@include mobile {
+			--arkb-clmn-width: var(--arkb-clmn-w--mb, 100%);
+		}
+
+		align-self: center;
+		width: calc(var(--arkb-clmn-width) - var(--arkb-gap--x));
+		margin: 0 0 0 var(--arkb-gap--x) !important;
 	}
 
 
 	&[data-scrollable] {
 
-		&.is-selected {
+		&.is-selected,
+		&.has-child-selected {
 			position: relative;
 			padding-bottom: 3em;
 		}
@@ -56,7 +68,7 @@
 				bottom: 4px;
 				left: 0;
 				width: 100%;
-				margin: 0;
+				margin: 0 !important;
 			}
 		}
 	}

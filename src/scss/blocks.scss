@@ -9,24 +9,17 @@
 @import "../gutenberg/**/_common.scss";
 @import "../gutenberg/**/_editor.scss";
 
-:where(.wp-block) svg:not([fill]) {
+:where(.wp-block) svg:not([fill]),
+:where(.arkb-styleBtn) svg:not([fill]) {
 	fill: currentColor;
 }
 
-// 余白をキープするエリア。
-.ark-keep-mt {
 
-	> .block-editor-block-list__block {
-		margin-top: var(--ark-mt, 2rem);
-	}
-}
+[class*="ark-keep-mt"] {
 
-// 余白を小さめにキープするエリア。
-.ark-keep-mt--s {
-	--ark-mt--h: var(--ark-mt--s, 1rem);
-
-	> .block-editor-block-list__block {
-		margin-top: var(--ark-mt--s, 1rem);
+	> .wp-block {
+		margin-top: var(--ark-mt--inner, 2rem);
+		margin-bottom: 0;
 	}
 }
 

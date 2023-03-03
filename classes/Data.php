@@ -42,54 +42,41 @@ class Data {
 	public static $defaults = [];
 
 	// blocksデータ
-	public static $blocks         = [
-		'accordion',
-		'accordion-item',
-		'button',
-		'buttons',
-		'column',
-		'columns',
-		'container',
-		'faq',
-		'faq-item',
-		'dl',
-		'dl-dt',
-		'dl-dd',
-		'dl-div',
-		'notice',
-		'section-heading',
-		'step',
-		'step-item',
-		'tab',
-		'tab-body',
-		'timeline',
-		'timeline-item',
-	];
-	public static $dynamic_blocks = [
-		'section',
-		'blog-card',
-		'custom-code',
-		'toc',
-	];
-
-	// memo: block.jsonの"style"にハンドル名を指定する
-	public static $blocks_has_style = [
-		'accordion',
-		'blog-card',
-		'box-links',
-		'button',
-		'columns',
-		'container',
-		'dl',
-		'faq',
-		'notice',
-		'section',
-		'section-heading',
-		'slider',
-		'step',
-		'tab',
-		'timeline',
-		'toc',
+	public static $blocks = [
+		'accordion'       => [ 'style' ],
+		'accordion-item'  => [],
+		'blog-card'       => [ 'style', 'dynamic' ],
+		'box-links'       => [ 'pro', 'style' ],
+		'box-link'        => [ 'pro', 'dynamic' ],
+		'buttons'         => [],
+		'button'          => [ 'style' ],
+		'columns'         => [ 'style' ],
+		'column'          => [],
+		'container'       => [ 'style' ],
+		'custom-code'     => [ 'dynamic' ],
+		'faq'             => [ 'style' ],
+		'faq-item'        => [],
+		'dl'              => [ 'style' ],
+		'dl-dt'           => [],
+		'dl-dd'           => [],
+		'dl-div'          => [],
+		'icon'            => [ 'style' ],
+		'notice'          => [ 'style' ],
+		'section'         => [ 'style', 'dynamic' ],
+		'section-heading' => [ 'style' ],
+		'step'            => [ 'style' ],
+		'step-item'       => [],
+		'tab'             => [ 'style' ],
+		'tab-body'        => [],
+		'timeline'        => [ 'style' ],
+		'timeline-item'   => [],
+		'toc'             => [ 'style', 'dynamic' ],
+		'slider'          => [ 'pro', 'style', 'dynamic' ],
+		'slider-item'     => [ 'pro', 'dynamic' ],
+		'restricted-area' => [ 'pro', 'dynamic' ],
+		'page-list'       => [ 'pro', 'arkhe', 'dynamic' ],
+		'post-list'       => [ 'pro', 'arkhe', 'dynamic' ],
+		'rss'             => [ 'pro', 'arkhe', 'dynamic' ],
 	];
 
 	// メニューの設定タブ
@@ -144,6 +131,7 @@ class Data {
 				'marker_style'        => 'fill',
 				'marker_start'        => '1em',
 				'is_marker_txt_bold'  => '',
+				'texts'               => [],
 			],
 			'block'       => [
 				'block_styles'       => [],
@@ -196,29 +184,16 @@ class Data {
 			'block'   => _x( 'Block', 'tab', 'arkhe-blocks' ),
 		];
 
-		// 環境によって使用できるかが変わるブロック
-
-		// Pro版でのみ利用可
-		if ( self::IS_PRO ) {
-			self::$blocks = array_merge( self::$blocks, [
-				'box-links',
-			] );
-
-			self::$dynamic_blocks = array_merge( self::$dynamic_blocks, [
-				'box-link',
-				'slider',
-				'slider-item',
-				'restricted-area',
-			] );
-
-			// ProかつArkheでのみ利用可能なダイナミックブロック
-			if ( IS_ARKHE_THEME ) {
-				self::$dynamic_blocks = array_merge( self::$dynamic_blocks, [
-					'page-list',
-					'post-list',
-					'rss',
-				] );
-			}
+		// 環境によって使用可能なブロックをフィルタリング
+		if ( ! self::IS_PRO ) {
+			self::$blocks = array_filter( self::$blocks, function( $block_data ) {
+				return ! in_array( 'pro', $block_data, true );
+			} );
+		}
+		if ( ! IS_ARKHE_THEME ) {
+			self::$blocks = array_filter( self::$blocks, function( $block_data ) {
+				return ! in_array( 'arkhe', $block_data, true );
+			} );
 		}
 
 		// データの強制セットが必要な場合

@@ -18,14 +18,6 @@
             "selector": ".ark-block-accordion__label",
             "default": ""
         },
-        "iconOpened": {
-            "type": "string",
-            "default": "arkb-svg-minus"
-        },
-        "iconClosed": {
-            "type": "string",
-            "default": "arkb-svg-plus"
-        },
         "isDefultOpen": {
             "type": "boolean",
             "default": false

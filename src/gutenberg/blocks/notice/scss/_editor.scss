@@ -2,37 +2,48 @@
 	width: 100%;
 }
 
-.components-button-group.arkb-btns--notice {
+.components-button-group.arkb-btns--noticePresets {
 	display: flex;
-}
+	flex-wrap: nowrap;
+	gap: 6px;
 
-.components-button.ark-block-notice {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 20%;
-	height: auto;
-	margin: 0 -1px 0 0 !important;
-	padding: 12px 8px;
-	background: none;
-	border: none;
+	.components-button.ark-block-notice {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20%;
+		height: auto;
+		margin: 0 !important;
+		padding: 12px 8px;
+		background: var(--arkb-notice_bg) !important;
+		border: solid 1px var(--arkb-notice_border) !important;
+		border-radius: 3px;
+		box-shadow: 0 1px 8px -4px rgba(0, 0, 0, .08);
 
-	svg {
-		width: 16px;
-		height: 16px;
-		fill: var(--arkb-notice_icon);
-
-		path {
-			fill: inherit;
+		&:focus,
+		&:hover {
+			// outline: 3px solid transparent;
+			box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
 		}
-	}
-
-	&.is-primary {
-
-		background: var(--arkb-notice_icon) !important;
 
 		svg {
-			fill: #fff;
+			width: 16px;
+			height: 16px;
+			fill: var(--arkb-notice_icon);
+
+			path {
+				fill: inherit;
+			}
 		}
 	}
+
 }
+
+.arkb-colorPicker.-noticeBlock {
+
+	.__svg {
+		fill: var(--arkb-notice_icon) !important;
+		stroke: var(--arkb-notice_icon) !important;
+	}
+}
+

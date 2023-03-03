@@ -10,28 +10,10 @@ svg:not([fill]) {
 	fill: currentColor;
 }
 
-// 余白をキープするエリア。
-.ark-keep-mt {
+[class*="ark-keep-mt"] {
 
 	> * {
-		margin-top: var(--ark-mt, 2rem);
-	}
-}
-
-.ark-keep-mt--s {
-	--ark-mt--h: var(--ark-mt--s, 1rem);
-
-	> * {
-		margin-top: var(--ark-mt--s, 1rem);
+		margin-top: var(--ark-mt--inner, 2rem);
 		margin-bottom: 0;
-	}
-
-}
-
-.ark-keep-mt,
-.ark-keep-mt--s {
-
-	> :first-child {
-		margin-top: 0;
 	}
 }

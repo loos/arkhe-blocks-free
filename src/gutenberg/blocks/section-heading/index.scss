@@ -1,7 +1,7 @@
 @import "../../../scss/mixin/media";
 
 .ark-block-heading {
-	margin-top: var(--ark-mt--h);
+	--ark-mt: var(--ark-mt--h); // divにかかるのであまり指定する意味ないかも？
 	text-align: center;
 
 	.ark-block-heading__main {

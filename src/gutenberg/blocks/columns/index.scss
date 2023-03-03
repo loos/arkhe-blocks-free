@@ -39,15 +39,15 @@
 	justify-content: flex-start;
 	margin-left: calc(-1 * var(--arkb-gap--x));
 
-	[data-valign="top"]>& {
+	[data-valign="top"] > & {
 		align-items: flex-start;
 	}
 
-	[data-valign="center"]>& {
+	[data-valign="center"] > & {
 		align-items: center;
 	}
 
-	[data-valign="bottom"]>& {
+	[data-valign="bottom"] > & {
 		align-items: flex-end;
 	}
 
@@ -67,6 +67,7 @@
 
 	// 詳細度上げておく
 	.ark-block-columns & {
+		box-sizing: border-box;
 		// flex-basis だと redized画像がエディターではみ出るので、 width使う
 		width: calc(var(--arkb-clmn-width) - var(--arkb-gap--x));
 		max-width: unset;
@@ -74,6 +75,29 @@
 		padding: var(--arkb-padding);
 	}
 
+
+	// カラム自体が a タグの場合
+	&[data-arkb-link] {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	// linkboxの場合
+	&[data-arkb-linkbox] {
+		position: relative;
+	}
+
+	&[data-arkb-link],
+	&[data-arkb-linkbox] {
+
+		&:hover {
+			opacity: .75;
+		}
+
+		.luminous {
+			pointer-events: none;
+		}
+	}
 
 	&[data-valign="top"] {
 		align-self: flex-start;
@@ -91,11 +115,14 @@
 		word-break: break-all;
 	}
 
-	.is-style-shadow>&,
-	.is-style-shadow>.ark-block-columns__inner>& {
+	.is-style-shadow > &,
+	.is-style-shadow > .ark-block-columns__inner > & {
+		color: #000;
 		background-color: #fff;
 		box-shadow: var(--arkb-shadow);
 	}
+
+
 }
 
 
@@ -118,7 +145,7 @@
 		}
 	}
 
-	>.ark-block-columns__inner>.ark-block-column {
+	>.ark-block-columns__inner > .ark-block-column {
 		flex-shrink: 0;
 		width: var(--arkb-clmn-width);
 

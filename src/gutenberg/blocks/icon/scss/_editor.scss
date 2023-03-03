@@ -1,0 +1,26 @@
+.ark-block-icon {
+
+	a.ark-block-icon__frame {
+		pointer-events: none;
+	}
+
+
+}
+
+.arkb-styleControls {
+
+	.ark-block-icon {
+		--arkb-icon-size: 2.5em;
+	}
+
+	.is-style-fill .ark-block-icon__frame,
+	.is-style-outline .ark-block-icon__frame {
+		padding: 16%;
+		border-radius: 50%;
+	}
+
+	svg:not([fill]) {
+		fill: currentColor;
+	}
+}
+

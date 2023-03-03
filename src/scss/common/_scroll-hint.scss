@@ -14,7 +14,9 @@
 }
 
 .arkb-scrollHint {
-	margin-bottom: 2px !important;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
 	text-align: right;
 	animation: FloatHorizontal 2s ease-in-out infinite alternate;
 
@@ -27,7 +29,7 @@
 	display: inline-flex;
 	align-items: center;
 	font-size: 12px;
-	line-height: 1;
+	line-height: 1.5;
 	vertical-align: middle;
 	opacity: .75;
 }

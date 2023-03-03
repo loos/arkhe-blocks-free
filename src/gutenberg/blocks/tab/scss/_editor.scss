@@ -3,10 +3,12 @@
 [data-type="arkhe-blocks/tab"] {
 
 	position: relative;
-	padding: 32px 24px 24px;
+	padding-top: 1px;
 
-	// &.is-selected,
-	// &.has-child-selected {}
+	&.is-selected,
+	&.has-child-selected {
+		padding-top: 32px;
+	}
 
 	// tab-bodyを追加するボタンは非表示に。
 	.arkb-tabBody > .block-list-appender {
@@ -71,19 +73,22 @@
 	// タブ追加ボタン
 	.arkb-tabList__item--add {
 		position: relative;
-		left: 8px;
+		// left: 8px;
 		z-index: 1;
 		display: flex;
+		flex-basis: auto;
 		align-items: center;
-		width: 0;
+		justify-content: center;
+		// width: 0;
 		margin: 0;
 		margin-right: 0;
+		padding: 4px;
 		list-style: none !important;
 
 		// デバイスプレビュー時に横にはみ出してしまうのを防ぐ
-		@include sp {
-			left: 6px;
-		}
+		// @include sp {
+		// 	left: 6px;
+		// }
 
 		.arkb-tabBtn--add {
 			padding: 2px;
@@ -94,6 +99,13 @@
 			display: block;
 			width: 20px;
 			height: 20px;
+		}
+	}
+
+	&:not(.is-selected):not(.has-child-selected) {
+
+		.arkb-tabList__item--add {
+			display: none;
 		}
 	}
 
@@ -148,6 +160,19 @@
 	border: solid 1px #000;
 	cursor: pointer;
 	transition: border-color .25s, opacity .25s;
+}
+
+.arkb-tabBtn--add {
+
+	&:hover {
+		color: #fff;
+		background: #000;
+	}
+}
+
+.arkb-tabBtn--remove,
+.arkb-tabBtn--moveUp,
+.arkb-tabBtn--moveDown {
 
 	&:not(:hover) {
 		border-color: transparent;
@@ -158,7 +183,7 @@
 // 各種ボタン
 .arkb-tab__tooltips {
 	position: absolute;
-	top: -30px;
+	top: -28px;
 	left: 50%;
 	z-index: 1;
 	display: flex;

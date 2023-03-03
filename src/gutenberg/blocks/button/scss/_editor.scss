@@ -98,28 +98,18 @@
 // 	}
 // }
 
-.arkb-styleBtns.for-btn-style {
+.arkb-styleControls.for-arkb-button {
 
 	.ark-block-button {
 		--arkb-btn-width: 100%;
+		--arkb-btn-radius: 4px;
 	}
 }
 
-.arkb-styleBtns.for-btn-hover {
+.arkb-styleControls.for-arkb-button--hover {
 
-	.ark-block-button__link {
-		padding: 1em 0;
-		font-size: 20px;
-	}
-
-	.arkb-styleBtn__body {
-		padding: 0 12px;
-	}
-
-	.arkb-styleBtn__preview {
-		width: 200%;
-		transform: scale(.5);
-		transform-origin: 0 50%;
+	.arkb-styleControl__title {
+		display: none;
 	}
 
 	.ark-block-button {

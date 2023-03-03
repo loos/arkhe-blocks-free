@@ -9,25 +9,24 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'init', __NAMESPACE__ . '\register_blocks' );
 function register_blocks() {
 
-	// 通常ブロックの読み込み
-	foreach ( \Arkhe_Blocks::$blocks as $block_name ) {
-		register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
-	}
-
-	// ダイナミックブロックの読み込み
-	foreach ( \Arkhe_Blocks::$dynamic_blocks as $block_name ) {
-		require_once __DIR__ . '/blocks/' . $block_name . '.php';
-	}
-
-	// スタイルの登録 ( memo: $depsを指定して共通CSSより後ろで読み込ませたいのでphp側で処理している )
+	// ブロックの読み込み
 	$deps = is_admin() ? 'arkhe-blocks-editor' : 'arkhe-blocks-front';
-	foreach ( \Arkhe_Blocks::$blocks_has_style as $name ) {
-		wp_register_style(
-			"arkhe-blocks-{$name}-style",
-			ARKHE_BLOCKS_URL . "dist/gutenberg/blocks/{$name}/index.css",
-			[ $deps ],
-			\Arkhe_Blocks::$file_ver
-		);
+	foreach ( \Arkhe_Blocks::$blocks as $block_name => $block_data ) {
+		if ( in_array( 'dynamic', $block_data, true ) ) {
+			require_once __DIR__ . '/blocks/' . $block_name . '.php';
+		} else {
+			register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
+		}
+
+		// スタイルの読み込み ( memo: $depsを指定して共通CSSより後ろで読み込ませたいのでphp側で処理している )
+		if ( in_array( 'style', $block_data, true ) ) {
+			wp_register_style(
+				"arkhe-blocks-{$block_name}-style",
+				ARKHE_BLOCKS_URL . "dist/gutenberg/blocks/{$block_name}/index.css",
+				[ $deps ],
+				\Arkhe_Blocks::$file_ver
+			);
+		}
 	}
 
 	// カスタムブロックスタイルの登録

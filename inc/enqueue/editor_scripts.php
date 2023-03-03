@@ -22,7 +22,7 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 	$custom_css = Style::get_custom_styles();
 	if ( $custom_css ) {
 		// ユーザー入力があるので esc_ しておく。
-		wp_add_inline_style( 'arkhe-blocks-editor', esc_attr( $custom_css ) );
+		wp_add_inline_style( 'arkhe-blocks-editor', $custom_css );
 	}
 
 	// その他設定によって追加されるエディター用のCSS
@@ -37,9 +37,13 @@ function hook_enqueue_block_editor_assets( $hook_suffix ) {
 
 	wp_localize_script( 'arkhe-blocks-editor', 'arkbBlockVars', arkb_get_block_vars() );
 
-	// @FontAwesom
-	$asset = include ARKHE_BLOCKS_PATH . 'dist/gutenberg/fa.asset.php';
-	wp_enqueue_script( 'arkhe-blocks-fa', $dist_url . 'gutenberg/fa.js', $asset['dependencies'], $asset['version'], true );
+	// アイコン
+	$icon_deps = [ 'wp-element' ];
+	wp_enqueue_script( 'arkhe-blocks-icon-ls', $dist_url . 'icons/index.js', $icon_deps, \Arkhe_Blocks::$file_ver, true );
+	wp_enqueue_script( 'arkhe-blocks-icon-ph', $dist_url . 'icons/ph/index.js', $icon_deps, \Arkhe_Blocks::$file_ver, true );
+	wp_enqueue_script( 'arkhe-blocks-icon-fi', $dist_url . 'icons/fi/index.js', $icon_deps, \Arkhe_Blocks::$file_ver, true );
+	wp_enqueue_script( 'arkhe-blocks-icon-io', $dist_url . 'icons/io/index.js', $icon_deps, \Arkhe_Blocks::$file_ver, true );
+	wp_enqueue_script( 'arkhe-blocks-icon-fa', $dist_url . 'icons/fa/index.js', $icon_deps, \Arkhe_Blocks::$file_ver, true );
 
 	// コアブロックの拡張
 	if ( ! \Arkhe_Blocks::get_data( 'general', 'disable_ex_core' ) ) {
@@ -90,10 +94,35 @@ function arkb_get_block_vars() {
 		}
 	}
 
+	$callTexts = \Arkhe_Blocks::get_data( 'format', 'texts' ) ?: [];
+
+	// Toolkit が有効な場合
+	if ( defined( 'ARKHE_TOOLKIT_URL' ) ) {
+		$callTexts = array_merge( [
+			[
+				'label'   => __( 'Line breaks only on PC', 'arkhe-blocks' ),
+				'content' => '[pcbr]',
+			],
+			[
+				'label'   => __( 'Line breaks only on SP', 'arkhe-blocks' ),
+				'content' => '[spbr]',
+			],
+			[
+				'label'   => __( 'Insert HTML', 'arkhe-blocks' ),
+				'content' => '[html]ここにHTMLを入力[/html]',
+			],
+			// [
+			// 	'label'   => __( 'Call Reusable Block', 'arkhe-blocks' ),
+			// 	'content' => '[reuse_block id="0"]',
+			// ],
+		], $callTexts );
+	}
+
 	return [
 		'assetsUrl'         => ARKHE_BLOCKS_URL . 'assets',
 		'customFormats'     => apply_filters( 'arkhe_blocks_custom_formats', $custom_formats ),
 		'disableHeaderLink' => \Arkhe_Blocks::get_data( 'general', 'disable_header_link' ),
+		'callTexts'         => $callTexts,
 		'fontFamilies'      => [
 			// カスタムコードブロック フォントファミリーのバリエーション
 			[

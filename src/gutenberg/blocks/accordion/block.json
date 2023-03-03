@@ -8,7 +8,12 @@
         "anchor": true,
         "className": false
     },
-    "attributes": {},
+    "attributes": {
+        "iconType": {
+            "type": "string",
+            "default": "plus"
+        }
+    },
     "editorScript": "file:../../../../dist/gutenberg/blocks/accordion/index.js",
     "style": "arkhe-blocks-accordion-style",
     "textdomain": "arkhe-blocks"

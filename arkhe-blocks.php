@@ -3,8 +3,8 @@
  * Plugin Name: Arkhe Blocks
  * Plugin URI: https://arkhe-theme.com
  * Description: A plugin that extends Gutenberg, optimized for the "Arkhe" theme.
- * Version: 2.2.0
- * Requires at least: 5.7
+ * Version: 2.20.1
+ * Requires at least: 5.9
  * Requires PHP: 7.0
  * Author: LOOS,Inc.
  * Author URI: https://loos.co.jp/
@@ -81,12 +81,7 @@ if ( ! class_exists( 'Arkhe_Blocks' ) ) {
 
 			// テーマチェック : IS_ARKHE_THEME は Arkheプラグインで共通
 			if ( ! defined( 'IS_ARKHE_THEME' ) ) {
-				$theme_data     = wp_get_theme();
-				$theme_name     = $theme_data->get( 'Name' );
-				$theme_template = $theme_data->get( 'Template' );
-
-				$is_arkhe_theme = ( 'Arkhe' === $theme_name || 'arkhe' === $theme_template );
-				define( 'IS_ARKHE_THEME', $is_arkhe_theme );
+				define( 'IS_ARKHE_THEME', 'arkhe' === get_template() );
 			}
 
 			// 翻訳ファイルを登録

@@ -150,7 +150,9 @@ class Style {
 			return '';
 		}
 		$colmunNum = (int) $colmunNum;
-		$percent   = round( 100 / $colmunNum, 2 );
+
+		// floorで切り捨て。桁数指定できないので100倍してから戻す
+		$percent = floor( 100 * 100 / $colmunNum ) / 100;
 		return $percent . '%';
 	}
 

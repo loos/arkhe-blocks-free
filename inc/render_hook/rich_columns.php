@@ -26,14 +26,8 @@ add_filter( 'render_block_arkhe-blocks/columns', __NAMESPACE__ . '\add_columns_s
 function add_columns_scroll_hint( $block_content, $block ) {
 	$isScrollable = $block['attrs']['isScrollable'] ?? false;
 	if ( $isScrollable ) {
-		$hook  = '<div class="ark-block-columns__inner';
-		$arrow = '<svg class="arkb-scrollHint__svg" width="1em" height="1em" viewBox="0 0 32 32" role="img" focusable="false" >' .
-				'<path d="M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z" /></svg>';
-		$hint  = apply_filters(
-			'arkb_scroll_hint',
-			'<div class="arkb-scrollHint"><span class="arkb-scrollHint__text">' . __( 'Scrollable', 'arkhe-blocks' ) . $arrow . '</span></div>'
-		);
-
+		$hook          = '<div class="ark-block-columns__inner';
+		$hint          = \Arkhe_Blocks::get_scroll_hint( 'columns' );
 		$block_content = str_replace( $hook, $hint . $hook, $block_content );
 	}
 	return $block_content;
@@ -113,6 +107,11 @@ function render_column_child_styles( $block_content, $block ) {
 
 	$the_styles = [];
 	$attrs      = $block['attrs'];
+
+	// linkbox使うかどうか
+	if ( ! \Arkhe_Blocks::is_use( 'linkbox' ) && str_contains( $block_content, 'data-arkb-linkbox' ) ) {
+		\Arkhe_Blocks::$use['linkbox'] = true;
+	}
 
 	// 余白
 	$padding = $attrs['padding'] ?? null;
