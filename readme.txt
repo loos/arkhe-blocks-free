@@ -4,7 +4,7 @@ Donate link: https://arkhe-theme.com/
 Tags: blocks, editor, Guternberg, arkhe
 Requires at least: 5.9
 Tested up to: 6.1
-Stable tag: 2.20.1
+Stable tag: 2.20.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
