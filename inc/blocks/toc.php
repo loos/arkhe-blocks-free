@@ -98,7 +98,7 @@ function arkb_generate_toc( $content ) {
 	foreach ( $matches as $i => $match ) {
 		// var_dump( $match );
 
-		$mathed0  = $match[0];
+		$matched0 = $match[0];
 		$the_htag = $match[1];
 		$level    = (int) $match[2];
 		$text     = $match[3];
@@ -136,8 +136,8 @@ function arkb_generate_toc( $content ) {
 			$htagID = 'arkb-toc-' . $i;
 
 			// コンテンツ側にもidを付与
-			$new_htag = str_replace( '<h' . $level, '<h' . $level . ' id="' . $htagID . '"', $mathed0 );
-			$content  = str_replace( $mathed0, $new_htag, $content );
+			$new_htag = str_replace( '<h' . $level, '<h' . $level . ' id="' . $htagID . '"', $matched0 );
+			$content  = preg_replace( "%$matched0%", $new_htag, $content, 1 ); // 同じ見出しテキストが複数あっても大丈夫なように回数指定して置換
 		} else {
 			$htagID = $matched_id[1];
 		}

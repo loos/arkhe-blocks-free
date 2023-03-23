@@ -41,7 +41,6 @@
 	left: calc(0px - var(--arkb-body-padding--left));
 	display: block;
 	// flex-shrink: 0;
-	box-sizing: border-box; // エディター用
 	width: var(--arkb-shape-size);
 	height: var(--arkb-shape-size);
 	color: var(--ark-color--main, inherit);

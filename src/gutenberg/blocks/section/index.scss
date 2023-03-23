@@ -9,7 +9,6 @@
 
 	// 普通のCSS
 	position: relative;
-	box-sizing: border-box;
 	padding-top: var(--arkb-svg-height--top);
 	padding-bottom: var(--arkb-svg-height--bottom);
 }
@@ -31,7 +30,6 @@
 	position: relative;
 	z-index: 2;
 	display: flex;
-	box-sizing: border-box;
 	width: 100%;
 
 	:where(.alignfull):not([data-inner="full"]) > & {
@@ -106,7 +104,6 @@
 }
 
 .ark-block-section__bodyInner {
-	box-sizing: border-box;
 	width: 100%;
 	padding: var(--arkb-padding);
 }

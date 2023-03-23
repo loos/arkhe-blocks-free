@@ -67,7 +67,6 @@
 
 	// 詳細度上げておく
 	.ark-block-columns & {
-		box-sizing: border-box;
 		// flex-basis だと redized画像がエディターではみ出るので、 width使う
 		width: calc(var(--arkb-clmn-width) - var(--arkb-gap--x));
 		max-width: unset;

@@ -54,21 +54,20 @@ $hookname = \Arkhe_Blocks::wpver_is_above( '5.8' ) ? 'block_categories_all' : 'b
 add_filter( $hookname, __NAMESPACE__ . '\add_block_categories', 5 );
 function add_block_categories( $categories ) {
 	$my_category = [
-		[
-			'slug'  => 'arkhe-blocks',
-			'title' => __( 'Arkhe Blocks', 'arkhe-blocks' ),
-			'icon'  => null,
-		],
+		'slug'  => 'arkhe-blocks',
+		'title' => __( 'Arkhe Blocks', 'arkhe-blocks' ),
+		'icon'  => null,
 	];
 
 	// ウィジェットの前にカテゴリーを追加する
-	foreach ( $categories as $index => $data ) {
-		$slug = $data['slug'] ?? '';
-		if ( 'widgets' === $slug ) {
-			array_splice( $categories, $index, 0, $my_category );
-			break;
-		}
-	}
+	// foreach ( $categories as $index => $data ) {
+	// 	$slug = $data['slug'] ?? '';
+	// 	if ( 'widgets' === $slug ) {
+	// 		array_splice( $categories, $index, 0, [ $my_category ] );
+	// 		break;
+	// 	}
+	// }
 
+	array_unshift( $categories, $my_category );
 	return $categories;
 }

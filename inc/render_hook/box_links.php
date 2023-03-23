@@ -49,7 +49,7 @@ function render_box_links_styles( $block_content, $block ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-boxlinks--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-boxlinks--' ] );
 	if ( $unique_id ) {
 		$block_content = preg_replace( '/class=\"/', 'class="' . esc_attr( $unique_id ) . ' ', $block_content, 1 );
 	}

@@ -110,7 +110,7 @@ function render_style( $attrs ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-section--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-section--' ] );
 	return $unique_id;
 }
 

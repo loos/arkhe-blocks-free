@@ -90,7 +90,7 @@ function render_columns_styles( $block_content, $block ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-columns--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-columns--' ] );
 	if ( $unique_id ) {
 		$block_content = preg_replace( '/class=\"/', 'class="' . esc_attr( $unique_id ) . ' ', $block_content, 1 );
 	}
@@ -140,7 +140,10 @@ function render_column_child_styles( $block_content, $block ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-column--', $the_styles, '.ark-block-column' );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [
+		'prefix' => 'arkb-column--',
+		'with'   => '.ark-block-column',
+	] );
 	if ( $unique_id ) {
 		$block_content = preg_replace( '/class=\"/', 'class="' . esc_attr( $unique_id ) . ' ', $block_content, 1 );
 	}

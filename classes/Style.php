@@ -158,27 +158,38 @@ class Style {
 
 
 	/**
-	 * 各ブロックスタイルを共通の変数へ仕分けする
+	 * 各ブロックスタイルを共通の変数へ仕分けし、生成したunique_idを返す
 	 */
-	public static function sort_dynamic_block_styles( $id_prefix, $styles, $width = '' ) {
+	public static function generate_dynamic_block_styles( $styles, $args = [] ) {
+
 		if ( empty( $styles ) ) return false;
 
-		$unique_id = '';
+		$args = array_merge([
+			'unique_id' => '',
+			'prefix'    => '',
+			'with'      => '',
+			'after'     => '',
+		], $args );
 
+		$unique_id = $args['unique_id'];
 		foreach ( ['all', 'pc', 'sp', 'tab', 'mb' ] as $size ) {
 			$_styles = $styles[ $size ] ?? null;
 			if ( $_styles ) {
 				$_css = \Arkhe_Blocks::convert_style_props( $_styles );
 				if ( $_css ) {
 					// wp_unique_id() は実際にCSSがある場合に初めて呼び出す
-					$unique_id = $unique_id ?: wp_unique_id( $id_prefix );
+					$unique_id = $unique_id ?: wp_unique_id( $args['prefix'] );
 
-					self::$dynamic_styles[ $size ] .= ".{$unique_id}{$width}" . '{' . $_css . '}';
+					$with  = $args['with'];
+					$after = $args['after'] ? ' ' . $args['after'] : '';
+
+					self::$dynamic_styles[ $size ] .= ".{$unique_id}{$with}{$after}" . '{' . $_css . '}';
 				}
 			}
 		}
 		return $unique_id;
 	}
+
 
 	/**
 	 * CSSコードの圧縮
@@ -346,6 +357,18 @@ class Style {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * 設定で追加されるエディター用スタイル
+	 */
+	public static function get_toolbar_styles() {
+		return '#wpadminbar .ab-icon.-arkhe {' .
+			'display: flex;align-items: center;box-sizing: border-box;height: 100%;' .
+		'}' .
+		'#wpadminbar .ab-icon.-arkhe svg{' .
+			'width: 20px !important;fill: currentColor;' .
+		'}';
 	}
 
 

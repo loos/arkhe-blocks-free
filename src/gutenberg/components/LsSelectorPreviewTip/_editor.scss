@@ -1,0 +1,62 @@
+.lsSelectorPreview {
+	position: absolute;
+	top: -6px;
+	// bottom: calc(2px + 100%);
+	right: -6px;
+	z-index: 100; // ツールバーより上にはいかないくらい
+	display: inline-flex;
+	align-items: center;
+	padding: 5px;
+	color: #000;
+	font-weight: normal;
+	font-size: 10px;
+	font-family: Menlo, Consolas, monaco, monospace;
+	line-height: 1;
+	background-color: #f7f7f7;
+	border-radius: 4px;
+	box-shadow: 0 0 4px rgba(#000, .12);
+	// transition: background-color .25s, font-size .25s, max-width .25s;
+
+	// .wp-block .wp-block > &,,
+	[data-align="full"] > .block-editor-block-list__block > & {
+		top: 2px;
+		right: 2px;
+	}
+
+	.has-child-selected > & {
+		z-index: 10; // ツールバーより下に。
+	}
+
+	.arkb-scrollHint + & {
+		display: none;
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	&:not(:hover) {
+		opacity: .65;
+
+		.__selectors {
+			max-width: 12em;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	@include sp {
+		display: none;
+	}
+
+	.__icon {
+		width: 12px;
+		height: 12px;
+		margin-right: 2px;
+	}
+
+
+	// .__id {}
+	// .__class{}
+}

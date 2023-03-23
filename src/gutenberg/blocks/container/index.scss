@@ -1,27 +1,59 @@
 @import "../../../scss/mixin/media";
 
+
+// 後方互換
+.ark-block-container:where([data-ver="1"]) {
+	--arkb-padding: 0;
+
+	&:not(.has-inner),
+	&.has-inner > .ark-block-container__inner {
+		padding: var(--arkb-padding);
+	}
+}
+
+.arkb-has-margin {
+	--arkb-margin--top: var(--ark-mt);
+	--arkb-margin--left: auto;
+	--arkb-margin--right: auto;
+	--arkb-margin--bottom: 0;
+
+	margin: var(--arkb-margin--top) var(--arkb-margin--right) var(--arkb-margin--bottom) var(--arkb-margin--left) !important;
+
+	&:where([class*="ark-keep-mt"]) > & {
+		--arkb-margin--top: var(--ark-mt--inner);
+	}
+
+	&:where(:first-child),
+	&:where(.ark-block-container__inner) {
+		--arkb-margin--top: 0;
+	}
+}
+
+
 .ark-block-container {
 	--arkb-gap: 1rem;
-	--arkb-padding: 0;
 	display: block;
-	box-sizing: border-box;
 
 	&:where(.has-background) {
 		--arkb-padding: 1.5rem 1.75em;
 	}
 
+
 	&[data-flex] {
 		display: flex;
 		gap: var(--arkb-gap);
+
+		&:not(.has-inner) > *,
+		> .ark-block-container__inner > * {
+			margin: 0;
+		}
+
 	}
 
 	&[data-flex="vertical"] {
 		flex-direction: column;
 	}
 
-	&:not(.has-inner) {
-		padding: var(--arkb-padding);
-	}
 
 	&:where(.alignfull) {
 
@@ -30,7 +62,7 @@
 			padding-left: var(--ark-padding--container, 0px);
 		}
 
-		> .ark-block-container__inner {
+		>.ark-block-container__inner {
 			max-width: var(--ark-width--article);
 			margin: 0 auto;
 		}
@@ -38,8 +70,8 @@
 }
 
 .ark-block-container__inner {
-	padding: var(--arkb-padding);
 
+	// 親のflexを継承
 	[data-flex] > & {
 		display: inherit;
 		flex-direction: inherit;

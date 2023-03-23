@@ -43,3 +43,9 @@
 	}
 
 }
+
+
+.arkb-has-padding {
+	// --arkb-padding: 0;
+	padding: var(--arkb-padding, 0) !important;
+}

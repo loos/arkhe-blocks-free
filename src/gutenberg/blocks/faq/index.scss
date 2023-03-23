@@ -6,6 +6,11 @@
 	// --arkb-a_color: #295e9b;
 }
 
+// Arkhe 以外で、ddへのブラウザのデフォルトスタイルがあたってしまうのを防ぐ
+:where(.ark-block-faq__a) {
+	margin: 0;
+}
+
 .ark-block-faq__item + .ark-block-faq__item {
 	margin-top: 1.25em;
 	padding-top: 1.25em;

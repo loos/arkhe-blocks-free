@@ -1,11 +1,11 @@
 
 // 余白をキープするエリア
 // memo: margin-topの指定部分はセレクタ強度の都合上、blocks.sccとfront.scssに分けてる
-.ark-keep-mt {
+.ark-keep-mt > :not(:first-child) {
 	--ark-mt--inner: var(--ark-mt, 2rem);
 }
 
-.ark-keep-mt--s {
+.ark-keep-mt--s > :not(:first-child) {
 	--ark-mt--inner: var(--ark-mt--s, 1rem);
 }
 

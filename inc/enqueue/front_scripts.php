@@ -19,6 +19,11 @@ function hook_wp_enqueue_scripts() {
 	if ( $custom_css ) {
 		wp_add_inline_style( 'arkhe-blocks-front', $custom_css );
 	}
+
+	// ツールバーのCSSが
+	if ( is_user_logged_in() ) {
+		wp_add_inline_style( 'arkhe-blocks-front', Style::get_toolbar_styles() );
+	}
 }
 
 

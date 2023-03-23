@@ -24,6 +24,9 @@
         }
     },
     "attributes": {
+        "version": {
+            "type": "string"
+        },
         "layout": {
             "type": "object"
         },
@@ -51,6 +54,25 @@
         },
         "padding": {
             "type": "object"
+        },
+        "paddingTAB": {
+            "type": "object"
+        },
+        "paddingMB": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "marginTAB": {
+            "type": "object"
+        },
+        "marginMB": {
+            "type": "object"
+        },
+        "hasInnerSpace": {
+            "type": "boolean",
+            "default": true
         }
     },
     "editorScript": "file:../../../../dist/gutenberg/blocks/container/index.js",

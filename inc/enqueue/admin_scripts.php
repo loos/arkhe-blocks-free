@@ -97,6 +97,8 @@ function arkb_get_admin_head_code() {
 
 	$output_code = '';
 
+	$output_code .= '<style>' . \Arkhe_Blocks\Style::get_toolbar_styles() . '</style>' . PHP_EOL;
+
 	// 管理メニュー用CSS
 	$output_code .= '<style>.toplevel_page_arkhe_blocks_settings .wp-menu-image img {' .
 		'width: 20px; height: 20px; padding-top: 6px!important;' .

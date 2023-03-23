@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arkhe Blocks\n"
-"POT-Creation-Date: 2023-02-21 17:04+0900\n"
-"PO-Revision-Date: 2023-02-21 17:05+0900\n"
+"POT-Creation-Date: 2023-03-15 22:37+0900\n"
+"PO-Revision-Date: 2023-03-15 22:37+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -38,8 +38,8 @@ msgstr "アコーディオン項目"
 #: src/gutenberg/blocks/box-links/index.js:106
 #: src/gutenberg/blocks/button/sidebar.js:280
 #: src/gutenberg/blocks/column/index.js:197
-#: src/gutenberg/blocks/columns/index.js:165
-#: src/gutenberg/blocks/container/index.js:187
+#: src/gutenberg/blocks/columns/index.js:166
+#: src/gutenberg/blocks/container/controls.js:142
 #: src/gutenberg/blocks/icon/index.js:311
 #: src/gutenberg/blocks/restricted-area/controls.js:222
 #: src/gutenberg/blocks/section-heading/index.js:166
@@ -162,14 +162,14 @@ msgid "Box Settings"
 msgstr "ボックス設定"
 
 #: src/gutenberg/blocks/box-link/_sidebar.js:119
-#: src/gutenberg/blocks/buttons/index.js:125
-#: src/gutenberg/blocks/container/index.js:149
+#: src/gutenberg/blocks/buttons/index.js:126
+#: src/gutenberg/blocks/container/controls.js:104
 msgid "Layout"
 msgstr "レイアウト"
 
 #: src/gutenberg/blocks/box-link/_sidebar.js:146
 #: src/gutenberg/blocks/page-list/index.js:221
-#: src/gutenberg/blocks/post-list/panel/_display.js:174
+#: src/gutenberg/blocks/post-list/panel/_display.js:175
 #: src/gutenberg/blocks/rss/_sidebar.js:180
 msgid "HTML tag for title"
 msgstr "タイトルのHTMLタグ"
@@ -252,7 +252,7 @@ msgid "Box link"
 msgstr "ボックス"
 
 #: src/gutenberg/blocks/box-link/index.js:26
-#: src/gutenberg/blocks/columns/index.js:58
+#: src/gutenberg/blocks/columns/index.js:59
 #: src/gutenberg/blocks/notice/index.js:71
 #: src/gutenberg/blocks/step/index.js:37 src/gutenberg/blocks/tab/index.js:70
 #: src/gutenberg/blocks/toc/index.js:31
@@ -268,19 +268,19 @@ msgid "Box links"
 msgstr "ボックスリンク"
 
 #: src/gutenberg/blocks/box-links/index.js:109
-#: src/gutenberg/blocks/columns/index.js:194
+#: src/gutenberg/blocks/columns/index.js:195
 msgid "Number of columns"
 msgstr "列数"
 
 #: src/gutenberg/blocks/box-links/index.js:115
-#: src/gutenberg/blocks/columns/index.js:203
+#: src/gutenberg/blocks/columns/index.js:204
 msgid "Margin between columns"
 msgstr "カラム間の余白"
 
 #: src/gutenberg/blocks/box-links/index.js:133
 #: src/gutenberg/blocks/column/index.js:255
-#: src/gutenberg/blocks/columns/index.js:220
-#: src/gutenberg/blocks/columns/index.js:253
+#: src/gutenberg/blocks/columns/index.js:221
+#: src/gutenberg/blocks/columns/index.js:254
 #: src/gutenberg/blocks/section/sidebar.js:277
 #: src/gutenberg/blocks/slider-item/_sidebar.js:144
 msgid "PC setting"
@@ -288,8 +288,8 @@ msgstr "PC設定"
 
 #: src/gutenberg/blocks/box-links/index.js:141
 #: src/gutenberg/blocks/column/index.js:264
-#: src/gutenberg/blocks/columns/index.js:228
-#: src/gutenberg/blocks/columns/index.js:262
+#: src/gutenberg/blocks/columns/index.js:229
+#: src/gutenberg/blocks/columns/index.js:263
 msgid "Tablet setting"
 msgstr "Tablet設定"
 
@@ -348,7 +348,7 @@ msgstr "背景色"
 
 #: src/gutenberg/blocks/button/sidebar.js:235
 #: src/gutenberg/blocks/icon/index.js:272
-#: src/gutenberg/components/LsIconModal/index.js:37
+#: src/gutenberg/components/LsIconModal/index.js:39
 msgid "Style"
 msgstr "Style"
 
@@ -404,21 +404,21 @@ msgstr "HTML直接入力"
 msgid "You can paste tags for affiliate advertising."
 msgstr "アフィリエイト広告用のタグをペーストしてご利用いただけます。"
 
-#: src/gutenberg/blocks/buttons/index.js:74
+#: src/gutenberg/blocks/buttons/index.js:75
 msgid "Buttons"
 msgstr "ボタン"
 
-#: src/gutenberg/blocks/buttons/index.js:130
+#: src/gutenberg/blocks/buttons/index.js:131
 msgid "Margin between buttons"
 msgstr "ボタン間の余白"
 
 #: src/gutenberg/blocks/column/index.js:59
-#: src/gutenberg/components/ArkbPaddingControl.js:18
+#: src/gutenberg/components/LsSpaceControl/index.js:18
 msgid "Unlink Sides"
 msgstr "Unlink Sides"
 
 #: src/gutenberg/blocks/column/index.js:59
-#: src/gutenberg/components/ArkbPaddingControl.js:18
+#: src/gutenberg/components/LsSpaceControl/index.js:18
 msgid "Link Sides"
 msgstr "Link Sides"
 
@@ -442,57 +442,69 @@ msgstr "カラム横幅"
 msgid "Padding in cloumn"
 msgstr "カラム内の余白"
 
-#: src/gutenberg/blocks/columns/index.js:55
+#: src/gutenberg/blocks/columns/index.js:56
 msgid "Rich columns"
 msgstr "リッチカラム"
 
-#: src/gutenberg/blocks/columns/index.js:59
+#: src/gutenberg/blocks/columns/index.js:60
 #: src/gutenberg/extension-core/block_styles.js:12
 msgctxt "style"
 msgid "Shadow"
 msgstr "影付き"
 
-#: src/gutenberg/blocks/columns/index.js:167
+#: src/gutenberg/blocks/columns/index.js:168
 msgid "Scroll horizontally"
 msgstr "横にスクロール表示する"
 
-#: src/gutenberg/blocks/columns/index.js:184
+#: src/gutenberg/blocks/columns/index.js:185
 msgid "Column Width"
 msgstr "カラムの横幅"
 
-#: src/gutenberg/blocks/columns/index.js:235
+#: src/gutenberg/blocks/columns/index.js:236
 msgid "Padding in cloumns"
 msgstr "カラム内の余白"
 
-#: src/gutenberg/blocks/columns/index.js:275 classes/Parts.php:84
+#: src/gutenberg/blocks/columns/index.js:276 classes/Parts.php:84
 msgid "Scrollable"
 msgstr "スクロールできます"
 
 #: src/gutenberg/blocks/container/__variations.js:10
-#: src/gutenberg/blocks/container/index.js:65
+#: src/gutenberg/blocks/container/index.js:39
 msgid "Container"
 msgstr "コンテナ"
 
-#: src/gutenberg/blocks/container/index.js:151
+#: src/gutenberg/blocks/container/controls.js:106
 msgid "Turn on \"Flex\""
 msgstr "Flexをオンにする"
 
-#: src/gutenberg/blocks/container/index.js:172
+#: src/gutenberg/blocks/container/controls.js:127
 msgid "Gap between blocks"
 msgstr "ブロック間のギャップ"
 
-#: src/gutenberg/blocks/container/index.js:189
+#: src/gutenberg/blocks/container/controls.js:144
 msgid "Use inner <div>"
 msgstr "インナー<div>を使用する"
 
-#: src/gutenberg/blocks/container/index.js:196
+#: src/gutenberg/blocks/container/controls.js:152
 msgid "HTML element"
 msgstr "HTML要素"
 
-#: src/gutenberg/blocks/container/index.js:206
+#: src/gutenberg/blocks/container/controls.js:161
+msgid "Space Settings"
+msgstr "余白設定"
+
+#: src/gutenberg/blocks/container/controls.js:164
+msgid "Apply space settings to the inner"
+msgstr "余白設定をインナーに適用する"
+
+#: src/gutenberg/blocks/container/controls.js:173
 #: src/gutenberg/blocks/icon/index.js:352
 msgid "Padding"
 msgstr "Padding"
+
+#: src/gutenberg/blocks/container/controls.js:184
+msgid "Margin"
+msgstr "Margin"
 
 #: src/gutenberg/blocks/custom-code/index.js:57
 msgid "CSS for Editor"
@@ -696,28 +708,28 @@ msgid "Display settings"
 msgstr "表示設定"
 
 #: src/gutenberg/blocks/page-list/index.js:197
-#: src/gutenberg/blocks/post-list/panel/_display.js:130
+#: src/gutenberg/blocks/post-list/panel/_display.js:131
 #: src/gutenberg/blocks/rss/_sidebar.js:143
 msgid "List layout"
 msgstr "リストレイアウト"
 
 #: src/gutenberg/blocks/page-list/index.js:205
-#: src/gutenberg/blocks/post-list/panel/_display.js:157
+#: src/gutenberg/blocks/post-list/panel/_display.js:158
 msgid "Number of characters in the excerpt"
 msgstr "抜粋文の文字数"
 
 #: src/gutenberg/blocks/page-list/index.js:207
-#: src/gutenberg/blocks/post-list/panel/_display.js:160
+#: src/gutenberg/blocks/post-list/panel/_display.js:161
 msgid "If \"Excerpt\" is entered, its contents will be displayed."
 msgstr "「抜粋」が入力されている場合は、その内容が表示されます。"
 
 #: src/gutenberg/blocks/page-list/index.js:243
-#: src/gutenberg/blocks/post-list/panel/_display.js:195
+#: src/gutenberg/blocks/post-list/panel/_display.js:196
 msgid "Sorting order setting"
 msgstr "並び順の設定"
 
 #: src/gutenberg/blocks/page-list/index.js:247
-#: src/gutenberg/blocks/post-list/panel/_display.js:197
+#: src/gutenberg/blocks/post-list/panel/_display.js:198
 msgid "What to arrange based on"
 msgstr "何を基準に並べるか"
 
@@ -766,22 +778,22 @@ msgid "Show sticky posts"
 msgstr "先頭固定表示の記事を表示する"
 
 #: src/gutenberg/blocks/post-list/panel/_display.js:111
-#: src/gutenberg/blocks/post-list/panel/_display.js:120
+#: src/gutenberg/blocks/post-list/panel/_display.js:121
 #: src/gutenberg/blocks/rss/_sidebar.js:125
 #: src/gutenberg/blocks/rss/_sidebar.js:134
 msgid "Number of posts to display"
 msgstr "表示する投稿数"
 
-#: src/gutenberg/blocks/post-list/panel/_display.js:127
+#: src/gutenberg/blocks/post-list/panel/_display.js:128
 msgid "Set to 0 to display all"
 msgstr "0にすると全件表示します"
 
-#: src/gutenberg/blocks/post-list/panel/_display.js:140
+#: src/gutenberg/blocks/post-list/panel/_display.js:141
 #: src/gutenberg/blocks/rss/_sidebar.js:153
 msgid "What to display"
 msgstr "何を表示するか"
 
-#: src/gutenberg/blocks/post-list/panel/_display.js:205
+#: src/gutenberg/blocks/post-list/panel/_display.js:206
 msgid "Descending or Ascending"
 msgstr "降順か昇順か"
 
@@ -1081,12 +1093,12 @@ msgstr "セクション"
 msgid "Create a content area to use as a section."
 msgstr "セクションとして使うコンテンツエリアを作成します。"
 
-#: src/gutenberg/blocks/section/index.js:205
+#: src/gutenberg/blocks/section/index.js:193
 #: src/gutenberg/blocks/slider/edit.js:225
 msgid "To full-width content"
 msgstr "コンテンツを全幅にする"
 
-#: src/gutenberg/blocks/section/index.js:217
+#: src/gutenberg/blocks/section/index.js:205
 #: src/gutenberg/blocks/slider-item/edit.js:156
 msgid "Change content position"
 msgstr "コンテンツの位置を変更"
@@ -1564,7 +1576,7 @@ msgid "Allow to wrap to multiple lines"
 msgstr "複数行に折り返す"
 
 #: src/gutenberg/components/ArkbGapControls.js:42
-#: src/gutenberg/components/ArkbPaddingControl.js:76
+#: src/gutenberg/components/LsSpaceControl/index.js:77
 #, python-format
 msgid "If empty, %s is taken over"
 msgstr "空の場合は%sを引き継ぎます"
@@ -1631,27 +1643,6 @@ msgstr "ブロック上の余白"
 msgid "Orientation"
 msgstr "方向"
 
-#: src/gutenberg/components/ArkbPaddingControl.js:79
-#, python-format
-msgid "If all are empty, %s will be taken over"
-msgstr "全て空の場合は%sを引き継ぎます"
-
-#: src/gutenberg/components/ArkbPaddingControl.js:156
-#: src/gutenberg/components/ArkbStyleControls/index.js:84
-#: src/gutenberg/components/ArkbUnitNumber.js:112
-#: src/gutenberg/components/LsIconPicker/index.js:20
-#: src/gutenberg/components/__ArkbIconPicker/index.js:208
-#: src/gutenberg/format/btns/font-size/index.js:97
-#: src/gutenberg/format/btns/letter-spacing/index.js:75
-msgid "Clear"
-msgstr "クリア"
-
-#: src/gutenberg/components/ArkbPaddingControl.js:169
-#: src/menu/component/ArkbMenuColor.js:36
-#: src/menu/component/controls/ArkbCustomDataControls.js:226
-msgid "Reset"
-msgstr "リセット"
-
 #: src/gutenberg/components/ArkbProOnly.js:6
 msgid "This setting is only available in the PRO version."
 msgstr "この設定はPro版でのみ利用可能です。"
@@ -1659,6 +1650,16 @@ msgstr "この設定はPro版でのみ利用可能です。"
 #: src/gutenberg/components/ArkbProOnly.js:20
 msgid "This area can only be edited in the PRO version."
 msgstr "ここはPro版でのみ編集可能です。"
+
+#: src/gutenberg/components/ArkbStyleControls/index.js:84
+#: src/gutenberg/components/ArkbUnitNumber.js:112
+#: src/gutenberg/components/LsIconPicker/index.js:20
+#: src/gutenberg/components/LsSpaceControl/index.js:161
+#: src/gutenberg/components/__ArkbIconPicker/index.js:208
+#: src/gutenberg/format/btns/font-size/index.js:97
+#: src/gutenberg/format/btns/letter-spacing/index.js:75
+msgid "Clear"
+msgstr "クリア"
 
 #: src/gutenberg/components/ArkbTermPickers.js:40
 msgid "Matches any one"
@@ -1804,25 +1805,25 @@ msgctxt "icon-category"
 msgid "Others"
 msgstr "その他"
 
-#: src/gutenberg/components/LsIconModal/index.js:38
+#: src/gutenberg/components/LsIconModal/index.js:40
 msgid "Select icon"
 msgstr "アイコンを選択"
 
-#: src/gutenberg/components/LsIconModal/index.js:39
+#: src/gutenberg/components/LsIconModal/index.js:41
 msgid "Search icon"
 msgstr "アイコンを検索"
 
-#: src/gutenberg/components/LsIconModal/index.js:40
+#: src/gutenberg/components/LsIconModal/index.js:42
 #: src/gutenberg/components/__ArkbIconPicker/index.js:56
 msgid "Icon not found."
 msgstr "アイコンが見つかりませんでした。"
 
-#: src/gutenberg/components/LsIconModal/index.js:41
+#: src/gutenberg/components/LsIconModal/index.js:43
 msgctxt "svg"
 msgid "Insert"
 msgstr "決定"
 
-#: src/gutenberg/components/LsIconModal/index.js:43
+#: src/gutenberg/components/LsIconModal/index.js:45
 msgid "You can enter SVG tags directly here. (script tags are removed)"
 msgstr "ここにSVGタグを直接入力できます。（scriptタグは除去されます）"
 
@@ -1830,6 +1831,17 @@ msgstr "ここにSVGタグを直接入力できます。（scriptタグは除去
 #: src/gutenberg/components/__ArkbIconPicker/index.js:173
 msgid "Search"
 msgstr "検索"
+
+#: src/gutenberg/components/LsSpaceControl/index.js:80
+#, python-format
+msgid "If all are empty, %s will be taken over"
+msgstr "全て空の場合は%sを引き継ぎます"
+
+#: src/gutenberg/components/LsSpaceControl/index.js:174
+#: src/menu/component/ArkbMenuColor.js:36
+#: src/menu/component/controls/ArkbCustomDataControls.js:226
+msgid "Reset"
+msgstr "リセット"
 
 #: src/gutenberg/components/__ArkbIconPicker/index.js:191
 msgid "Search Icons"
@@ -2029,7 +2041,7 @@ msgstr "現在、%sはまだ登録されていません。"
 msgid "Palette"
 msgstr "パレット"
 
-#: src/menu/_config.js:33 classes/Utility.php:121
+#: src/menu/_config.js:33 classes/Utility.php:132
 msgid "Color Palette"
 msgstr "カラーパレット"
 
@@ -2045,7 +2057,7 @@ msgstr "クラス名"
 msgid "Label"
 msgstr "表示名"
 
-#: src/menu/_config.js:38 classes/Utility.php:124
+#: src/menu/_config.js:38 classes/Utility.php:135
 msgid "Custom Format"
 msgstr "カスタム書式"
 
@@ -2073,7 +2085,7 @@ msgstr "ブロック名"
 msgid "Block Style"
 msgstr "ブロックスタイル"
 
-#: src/menu/_config.js:46 classes/Utility.php:127
+#: src/menu/_config.js:46 classes/Utility.php:138
 msgid "Custom Block Style"
 msgstr "カスタムブロックスタイル"
 
@@ -2476,7 +2488,7 @@ msgstr "変更を保存する"
 msgid "Page not found."
 msgstr "ページが見つかりませんでした。"
 
-#: classes/Data.php:124 classes/Utility.php:96
+#: classes/Data.php:124 classes/Utility.php:107
 msgid "Custom 01"
 msgstr "カスタム01"
 
@@ -2535,41 +2547,41 @@ msgstr "HTML挿入"
 msgid "Arkhe Blocks"
 msgstr "Arkhe Blocks"
 
-#: inc/menu/licence_page.php:46
+#: inc/menu/licence_page.php:74
 msgid "Too many authentication requests. Please try again later."
 msgstr ""
 "認証リクエストの回数が多すぎます。しばらく時間を空けてから再試行してくださ"
 "い。"
 
-#: inc/menu/licence_page.php:59
+#: inc/menu/licence_page.php:87
 msgid "This license key is currently disabled."
 msgstr "このライセンスキーは現在無効になっています。"
 
-#: inc/menu/licence_page.php:65 inc/menu/licence_page.php:77
+#: inc/menu/licence_page.php:93 inc/menu/licence_page.php:105
 msgid "A valid license key has been confirmed."
 msgstr "有効なライセンスキーが確認できました。"
 
 #. translators: %s is email;
 #. translators: %s is owner;
-#: inc/menu/licence_page.php:68 inc/menu/licence_page.php:80
+#: inc/menu/licence_page.php:96 inc/menu/licence_page.php:108
 #, php-format
 msgid "This is \"%1$s\" and is owned by %2$s."
 msgstr "これは「%1$s」で、所有者は %2$s です。"
 
-#: inc/menu/licence_page.php:69
+#: inc/menu/licence_page.php:97
 msgid "Personal License"
 msgstr "個人ライセンス"
 
-#: inc/menu/licence_page.php:81
+#: inc/menu/licence_page.php:109
 msgid "Creator License"
 msgstr "制作ライセンス"
 
-#: inc/menu/licence_page.php:98
+#: inc/menu/licence_page.php:130
 msgid "Check License"
 msgstr "ライセンスを確認"
 
 #. translators: %s is link;
-#: inc/menu/licence_page.php:109
+#: inc/menu/licence_page.php:136
 #, php-format
 msgid ""
 "Purchasing \"%s\" will allow you to update all Arkhe plugins to the latest "
@@ -2578,9 +2590,13 @@ msgstr ""
 "「%s」を購入すると、全てのArkheプラグインを最新版へアップデートできるようにな"
 "ります。"
 
-#: inc/menu/licence_page.php:110
+#: inc/menu/licence_page.php:137
 msgid "Arkhe License"
 msgstr "Arkheライセンス"
+
+#: inc/menu/licence_page.php:144
+msgid "Deauthorize"
+msgstr "認証解除"
 
 #: inc/notice.php:15
 msgid "Go Pro"
@@ -2750,9 +2766,6 @@ msgstr "https://loos.co.jp/"
 #~| msgid "Color settings"
 #~ msgid "Color Settings"
 #~ msgstr "カラー設定"
-
-#~ msgid "Shape settings"
-#~ msgstr "シェイプ設定"
 
 #~ msgid "Specify the page."
 #~ msgstr "ページを指定してください。"

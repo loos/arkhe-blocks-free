@@ -3,6 +3,17 @@ namespace Arkhe_Blocks;
 
 trait Utility {
 
+	/**
+	 * データをサニタイズ
+	 */
+	public static function get_cleaned_data( $var ) {
+		if ( is_array( $var ) ) {
+			return array_map( [ __CLASS__, 'get_cleaned_data' ], $var );
+		} else {
+			return is_scalar( $var ) ? sanitize_text_field( wp_unslash( $var ) ) : $var;
+		}
+	}
+
 
 	/**
 	 * WodPressのバージョンチェック

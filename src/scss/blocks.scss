@@ -18,8 +18,15 @@
 [class*="ark-keep-mt"] {
 
 	> .wp-block {
-		margin-top: var(--ark-mt--inner, 2rem);
 		margin-bottom: 0;
+	}
+
+	> .wp-block:not(:first-child) {
+		margin-top: var(--ark-mt--inner, 2rem);
+	}
+
+	> .lsSelectorPreview + .wp-block {
+		margin-top: 0;
 	}
 }
 

@@ -1,0 +1,139 @@
+
+.arkb-ctrl--space {
+
+	.__inner {
+		position: relative;
+	}
+
+	.__clear {
+		display: block;
+		margin-top: 8px;
+		margin-left: auto;
+	}
+
+	[data-is-linked="true"] {
+		display: flex;
+		align-items: center;
+
+		.__link {
+			order: 99;
+			margin-left: auto;
+		}
+
+		.__top {
+			margin: 0 0 0 8px;
+		}
+
+		.__bottom,
+		.__right,
+		.__left {
+			display: none;
+		}
+	}
+
+	[data-is-linked="false"] {
+		display: grid;
+		grid-template-areas:
+			"top top top"
+			"left center right"
+			"bottom bottom bottom";
+		grid-template-rows: auto auto auto;
+		grid-template-columns: 1fr 64px 1fr;
+		gap: 8px;
+		padding: 8px;
+		border: solid 1px #ededed;
+
+		.__link {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.__center {
+			grid-area: center;
+			margin: auto;
+		}
+
+		.__left {
+			grid-area: left;
+		}
+
+		.__right {
+			grid-area: right;
+		}
+
+		.__top {
+			grid-area: top;
+		}
+
+		.__bottom {
+			grid-area: bottom;
+		}
+	}
+
+	.components-input-control__container {
+		max-width: 64px;
+	}
+
+	.components-flex.components-unit-control {
+		border-radius: 0;
+	}
+
+	.components-input-control__backdrop {
+		border: solid 1px #ededed !important;
+	}
+
+	.arkb-unitNumber {
+		margin: 0 auto;
+	}
+
+
+	.__center {
+		position: relative;
+		display: block;
+		width: 24px;
+		height: 24px;
+
+		.__box--top,
+		.__box--left,
+		.__box--right,
+		.__box--bottom {
+			position: absolute;
+			display: block;
+			background-color: currentColor;
+			border-radius: 2px;
+		}
+
+		.__box--top,
+		.__box--bottom {
+			left: 6px;
+			width: calc(100% - 12px);
+			height: 2px;
+		}
+
+		.__box--top {
+			top: 3px;
+		}
+
+		.__box--bottom {
+			bottom: 3px;
+		}
+
+		.__box--left,
+		.__box--right {
+			top: 6px;
+			width: 2px;
+			height: calc(100% - 12px);
+		}
+
+		.__box--left {
+			left: 3px;
+		}
+
+		.__box--right {
+			right: 3px;
+		}
+
+	}
+
+}

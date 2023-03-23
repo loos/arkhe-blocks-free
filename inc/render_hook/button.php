@@ -30,7 +30,7 @@ function render_buttons_block( $block_content, $block ) {
 	$the_styles = Style::add_the_gap_styles( $the_styles, $gap );
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-buttons--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-buttons--' ] );
 	if ( $unique_id ) {
 		$block_content = preg_replace( '/class=\"/', 'class="' . esc_attr( $unique_id ) . ' ', $block_content, 1 );
 	}
@@ -59,7 +59,7 @@ function render_button_block( $block_content, $block ) {
 	}
 
 	// 動的スタイルの処理
-	$unique_id = Style::sort_dynamic_block_styles( 'arkb-button--', $the_styles );
+	$unique_id = Style::generate_dynamic_block_styles( $the_styles, [ 'prefix' => 'arkb-button--' ] );
 	if ( $unique_id ) {
 		$block_content = preg_replace( '/class=\"/', 'class="' . esc_attr( $unique_id ) . ' ', $block_content, 1 );
 	}
