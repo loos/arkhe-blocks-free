@@ -79,17 +79,19 @@ function render_container_block( $block_content, $block ) {
 	$unique_id = Style::generate_dynamic_block_styles( $theStyles, [ 'prefix' => 'arkb-container--' ] );
 
 	// 余白スタイルは inner に適用するかどうかで切り変える
-	if ( $hasInner && $hasInnerSpace ) {
-		$unique_id = Style::generate_dynamic_block_styles( $spaceStyles, [
-			'unique_id' => $unique_id,
-			'prefix'    => 'arkb-container--',
-			'after'     => ' > .ark-block-container__inner',
-		] );
-	} else {
-		$unique_id = Style::generate_dynamic_block_styles( $spaceStyles, [
-			'unique_id' => $unique_id,
-			'prefix'    => 'arkb-container--',
-		] );
+	if ( $spaceStyles ) {
+		if ( $hasInner && $hasInnerSpace ) {
+			$unique_id = Style::generate_dynamic_block_styles( $spaceStyles, [
+				'unique_id' => $unique_id,
+				'prefix'    => 'arkb-container--',
+				'after'     => ' > .ark-block-container__inner',
+			] );
+		} else {
+			$unique_id = Style::generate_dynamic_block_styles( $spaceStyles, [
+				'unique_id' => $unique_id,
+				'prefix'    => 'arkb-container--',
+			] );
+		}
 	}
 
 	if ( $unique_id ) {
