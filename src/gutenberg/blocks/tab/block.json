@@ -46,7 +46,7 @@
             "default": ""
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/tab/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-tab-style",
     "textdomain": "arkhe-blocks"
 }

@@ -14,7 +14,7 @@
             "default": "plus"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/accordion/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-accordion-style",
     "textdomain": "arkhe-blocks"
 }

@@ -30,11 +30,14 @@
             "type": "string",
             "source": "html"
         },
+        "script": {
+            "type": "string"
+        },
         "height": {
             "type": "number",
             "default": 300
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/custom-code/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

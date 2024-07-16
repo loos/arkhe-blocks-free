@@ -1,0 +1,91 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/restricted-area",
+  "title": "Restricted Area",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "restricted",
+    "conditional",
+    "limit",
+    "login"
+  ],
+  "supports": {
+    "anchor": false,
+    "className": false,
+    "customClassName": false,
+    "html": false,
+    "align": [
+      "full"
+    ]
+  },
+  "attributes": {
+    "roles": {
+      "type": "object",
+      "default": {
+        "administrator": true,
+        "editor": true,
+        "author": true,
+        "contributor": true,
+        "subscriber": true
+      }
+    },
+    "isRole": {
+      "type": "boolean",
+      "default": false
+    },
+    "isLoggedIn": {
+      "type": "boolean",
+      "default": true
+    },
+    "isDateTime": {
+      "type": "boolean",
+      "default": false
+    },
+    "startDateTime": {
+      "type": "string"
+    },
+    "endDateTime": {
+      "type": "string"
+    },
+    "isPage": {
+      "type": "boolean",
+      "default": false
+    },
+    "pageLimitType": {
+      "type": "string",
+      "default": "page_type"
+    },
+    "pageTypes": {
+      "type": "object",
+      "default": {
+        "404": false,
+        "front": false,
+        "home": false,
+        "singular": false,
+        "archive": false,
+        "search": false
+      }
+    },
+    "allowedPostTypes": {
+      "type": "string",
+      "default": ""
+    },
+    "terms": {
+      "type": "object",
+      "default": {
+        "isArchive": false,
+        "isSingular": false,
+        "catID": "",
+        "tagID": "",
+        "termID": "",
+        "taxName": "",
+        "catRelation": "IN",
+        "tagRelation": "IN",
+        "termRelation": "IN",
+        "queryRelation": "OR"
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "arkhe-blocks"
+}

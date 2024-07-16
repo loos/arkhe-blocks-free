@@ -1,0 +1,72 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/blog-card",
+  "title": "Blog card",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "arkhe",
+    "blog",
+    "card",
+    "link"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "linkData": {
+      "type": "object"
+    },
+    "isNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "rel": {
+      "type": "string"
+    },
+    "showExerptPC": {
+      "type": "boolean",
+      "default": true
+    },
+    "showExerptSP": {
+      "type": "boolean",
+      "default": false
+    },
+    "showImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "caption": {
+      "type": "string"
+    },
+    "customTitle": {
+      "type": "string"
+    },
+    "customExcerpt": {
+      "type": "string"
+    },
+    "useCache": {
+      "type": "boolean",
+      "default": true
+    },
+    "isPreview": {
+      "type": "boolean",
+      "default": false
+    },
+    "postId": {
+      "type": "string"
+    },
+    "externalUrl": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-blog-card-style",
+  "textdomain": "arkhe-blocks"
+}

@@ -1,0 +1,82 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/button",
+  "title": "ボタン",
+  "category": "arkhe-blocks",
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "reusable": false
+  },
+  "parent": [
+    "arkhe-blocks/buttons"
+  ],
+  "example": {
+    "attributes": {
+      "content": "Button",
+      "hrefUrl": "###"
+    }
+  },
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-button__link > span"
+    },
+    "style": {
+      "type": "string",
+      "default": "fill"
+    },
+    "href": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "href"
+    },
+    "isNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "rel"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string"
+    },
+    "bgGradient": {
+      "type": "string"
+    },
+    "hover": {
+      "type": "string",
+      "default": "bright"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconPos": {
+      "type": "string",
+      "default": "left"
+    },
+    "radius": {
+      "type": "string"
+    },
+    "width": {
+      "type": "object"
+    },
+    "htmlTags": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-button[data-has-html]",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-button-style",
+  "textdomain": "arkhe-blocks"
+}

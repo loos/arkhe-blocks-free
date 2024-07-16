@@ -23,6 +23,6 @@
             "default": false
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/accordion-item/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

@@ -1,0 +1,70 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/icon",
+  "title": "Container",
+  "category": "arkhe-blocks",
+  "keywords": [],
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "default": "LsStarFull"
+    },
+    "label": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".ark-block-icon__svg",
+      "attribute": "aria-label"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "style": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string",
+      "default": "5em"
+    },
+    "radius": {
+      "type": "string"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "position": {
+      "type": "string"
+    },
+    "isContentBox": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconHtml": {
+      "type": "string",
+      "source": "html",
+      "selector": "[data-html=\"1\"]"
+    },
+    "href": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a.ark-block-icon__frame",
+      "attribute": "href"
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a.ark-block-icon__frame",
+      "attribute": "rel"
+    },
+    "isNewTab": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-icon-style",
+  "textdomain": "arkhe-blocks"
+}

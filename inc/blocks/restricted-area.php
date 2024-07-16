@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\Restricted_Area;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/restricted-area',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/restricted-area',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Restricted_Area\cb',
 	]

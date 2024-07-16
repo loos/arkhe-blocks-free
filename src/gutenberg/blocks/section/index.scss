@@ -11,6 +11,9 @@
 	position: relative;
 	padding-top: var(--arkb-svg-height--top);
 	padding-bottom: var(--arkb-svg-height--bottom);
+
+	// fix #138
+	overflow: hidden;
 }
 
 .ark-block-section__media {

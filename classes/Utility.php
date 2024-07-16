@@ -44,7 +44,7 @@ trait Utility {
 			if ( '' === $value ) {
 				continue;
 			}
-			$style .= "${key}:${value};";
+			$style .= "{$key}:{$value};";
 		}
 
 		return $style;

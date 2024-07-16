@@ -7,7 +7,7 @@ use \Arkhe_Blocks\Style as Style;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/section',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/section',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Section\cb',
 	]

@@ -11,6 +11,6 @@
         "arkhe-blocks/dl"
     ],
     "attributes": {},
-    "editorScript": "file:../../../../dist/gutenberg/blocks/dl-div/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

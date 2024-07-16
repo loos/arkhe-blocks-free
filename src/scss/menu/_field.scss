@@ -199,15 +199,61 @@
 	}
 }
 
+.arkb-menu__codeEditor {
+	position: relative;
+	height: 320px;
+	border: 1px solid #ddd;
 
-.arkb-menu__codemirror {
+	.components-spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+		margin: 0;
+		transform: translate(-50%, -50%);
+	}
 
-	textarea,
-	.CodeMirror {
-		box-sizing: border-box;
+	.monaco-editor {
 		width: 100%;
-		font-size: 14px;
-		border: 1px solid #ddd;
+
+		.find-widget {
+
+			.button {
+				color: inherit;
+				background: none;
+				border: none;
+
+				&:focus {
+					box-shadow: none;
+				}
+
+				&.disabled {
+					color: inherit !important;
+					background: none !important;
+				}
+			}
+
+			textarea:focus {
+				box-shadow: none;
+			}
+		}
+
+		.inputarea {
+			padding: 0;
+			color: inherit;
+			box-shadow: none;
+		}
+
+		.monaco-icon-label-container > .monaco-icon-name-container > .label-name {
+			text-decoration: none;
+		}
+
+		.monaco-highlighted-label .highlight {
+			display: inline;
+			margin: 0;
+			padding: 0;
+			background: transparent;
+		}
 	}
 }
 

@@ -40,7 +40,7 @@
             }
         ]
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/notice/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-notice-style",
     "textdomain": "arkhe-blocks"
 }

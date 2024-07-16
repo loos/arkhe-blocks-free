@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 // mixin
-@import "mixin/**";
-@import "./common/**";
+@import "./mixin/**/*.scss";
+@import "./common/**/*.scss";
 @import "../gutenberg/**/_common.scss";
 @import "../gutenberg/**/_front.scss";
 

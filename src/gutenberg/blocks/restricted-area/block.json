@@ -86,6 +86,6 @@
             }
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/restricted-area/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

@@ -38,40 +38,16 @@ function hook_admin_enqueue_scripts( $hook_suffix ) {
 			wp_set_script_translations( 'arkhe-blocks-menu', 'arkhe-blocks', ARKHE_BLOCKS_PATH . 'languages' );
 		}
 
-		// codemirror
-		// see: https://codemirror.net/doc/manual.html#config
-		$codemirror = [
-			'tabSize'           => 4,
-			'indentUnit'        => 4,
-			'indentWithTabs'    => true,
-			'inputStyle'        => 'contenteditable',
-			'lineNumbers'       => true,
-			'smartIndent'       => true,
-			'lineWrapping'      => true, // 横長のコードを折り返すかどうか
-			'autoCloseBrackets' => true,
-			'styleActiveLine'   => true,
-			'continueComments'  => true,
-			// 'extraKeys'         => [],
-		];
-
-		$settings = wp_enqueue_code_editor( [
-			'type'       => 'text/css',
-			'codemirror' => $codemirror,
-		] );
-
-		wp_localize_script( 'wp-theme-plugin-editor', 'codeEditorSettings', $settings );
-		wp_enqueue_script( 'wp-theme-plugin-editor' );
-		wp_enqueue_style( 'wp-codemirror' );
-
 		// 設定画面に投げるグローバル変数
 		wp_localize_script( 'arkhe-blocks-menu', 'arkbMenuVars', [
-			'isArkhe'          => IS_ARKHE_THEME,
-			'isPro'            => \Arkhe_Blocks::IS_PRO,
-			'defaultData'      => \Arkhe_Blocks::$defaults,
-			'data'             => \Arkhe_Blocks::get_data(),
-			'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
-			'ajaxNonce'        => wp_create_nonce( 'arkb-nonce' ),
-			'searchableBlocks' => 'block' === $now_tab ? arkb_get_searchable_blocks() : [],
+			'isArkhe'              => IS_ARKHE_THEME,
+			'isPro'                => \Arkhe_Blocks::IS_PRO,
+			'defaultData'          => \Arkhe_Blocks::$defaults,
+			'data'                 => \Arkhe_Blocks::get_data(),
+			'ajaxUrl'              => admin_url( 'admin-ajax.php' ),
+			'ajaxNonce'            => wp_create_nonce( 'arkb-nonce' ),
+			'searchableBlocks'     => 'block' === $now_tab ? arkb_get_searchable_blocks() : [],
+			'codeEditorStylesheet' => ARKHE_BLOCKS_URL . 'assets/css/fonts/fira-code.css',
 		] );
 	}
 }

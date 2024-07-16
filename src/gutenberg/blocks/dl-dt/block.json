@@ -18,6 +18,6 @@
             "selector": ".ark-block-dl__dt span"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/dl-dt/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

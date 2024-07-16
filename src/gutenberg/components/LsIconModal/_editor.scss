@@ -42,7 +42,12 @@
 		.components-modal__header-heading {
 			font-size: 16px;
 		}
+	}
 
+
+	// wp6.3から<Modal>内にdivが1つ増えた
+	.components-modal__header + div:not(.ls-iconModal__inner) {
+		height: 100%;
 	}
 
 	.ls-iconModal__inner {
@@ -51,8 +56,6 @@
 		grid-template-columns: auto;
 		gap: 12px;
 		height: 100%;
-
-
 	}
 
 	.ls-iconModal__top,

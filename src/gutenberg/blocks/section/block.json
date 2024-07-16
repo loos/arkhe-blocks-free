@@ -140,7 +140,7 @@
             }
         ]
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/section/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-section-style",
     "textdomain": "arkhe-blocks"
 }

@@ -64,7 +64,7 @@
             "default": false
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/icon/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-icon-style",
     "textdomain": "arkhe-blocks"
 }

@@ -1,6 +1,6 @@
 // Gutenberg
 [data-type="arkhe-blocks/custom-code"] {
-	overflow: hidden;
+	// overflow: hidden;
 	border: 1px solid #555;
 	border-radius: 3px;
 
@@ -22,9 +22,9 @@
 		inset: 0;
 	}
 
-	.ark-block-custom-code__container {
-		overflow: hidden;
-	}
+	// .ark-block-custom-code__container {
+	// 	overflow: hidden;
+	// }
 
 	// 言語ラベル
 	.ark-block-custom-code__label {

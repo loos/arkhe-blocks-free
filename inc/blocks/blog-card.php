@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\Blog_Card;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/blog-card',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/blog-card',
 	[
 		'render_callback'  => '\Arkhe_Blocks\Block\Blog_Card\cb',
 	]
@@ -106,7 +106,7 @@ function cb( $attrs, $content ) {
 
 	// ここまでのカード化するためのデータが何も取得できていない場合
 	if ( empty( $card_data ) ) {
-		return '<div class="ark-block-blogCard" style="padding:1em">Error: <a href="' . esc_attr( $url ) . '">' . esc_html( $url ) . '</a></div>';
+		return '<div class="ark-block-blogCard" style="padding:1em">Error: <a href="' . esc_url( $url ) . '">' . esc_html( $url ) . '</a></div>';
 	}
 
 	// 追加情報
@@ -216,24 +216,6 @@ function get_external_blog_card( $url ) {
 	$title       = $card_data['title'];
 	$description = $card_data['description'];
 	$site_name   = $card_data['site_name'];
-
-	/**
-	 * はてなブログの文字化け対策
-	 */
-	$title_decoded = utf8_decode( $title );  // utf8でのデコード
-	if ( mb_detect_encoding( $title_decoded ) === 'UTF-8' ) {
-		$title = $title_decoded;
-
-		$description_decoded = utf8_decode( $description );
-		if ( mb_detect_encoding( $description_decoded ) === 'UTF-8' ) {
-			$description = $description_decoded;
-		}
-
-		$site_name_decoded = utf8_decode( $site_name );
-		if ( mb_detect_encoding( $site_name_decoded ) === 'UTF-8' ) {
-			$site_name = $site_name_decoded;
-		}
-	}
 
 	// 最大文字数
 	$title_length   = apply_filters( 'arkb_blogcard__title_length', 100 );

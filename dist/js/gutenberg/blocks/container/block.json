@@ -1,0 +1,81 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/container",
+  "title": "Container",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "group",
+    "wrapper",
+    "box"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "gradients": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    }
+  },
+  "attributes": {
+    "version": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "object"
+    },
+    "templateLock": {
+      "type": [
+        "string",
+        "boolean"
+      ],
+      "enum": [
+        "all",
+        "insert",
+        false
+      ]
+    },
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "hasInner": {
+      "type": "boolean",
+      "default": false
+    },
+    "gap": {
+      "type": "object"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "paddingTAB": {
+      "type": "object"
+    },
+    "paddingMB": {
+      "type": "object"
+    },
+    "margin": {
+      "type": "object"
+    },
+    "marginTAB": {
+      "type": "object"
+    },
+    "marginMB": {
+      "type": "object"
+    },
+    "hasInnerSpace": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-container-style",
+  "textdomain": "arkhe-blocks"
+}

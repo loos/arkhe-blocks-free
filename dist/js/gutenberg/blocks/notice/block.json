@@ -1,0 +1,46 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/notice",
+  "title": "Notice",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "arkhe",
+    "notice"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-notice__title",
+      "default": ""
+    },
+    "type": {
+      "type": "string",
+      "default": "point"
+    },
+    "icon": {
+      "type": "string",
+      "default": "LsLightbulb"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Notice title."
+    },
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-notice-style",
+  "textdomain": "arkhe-blocks"
+}

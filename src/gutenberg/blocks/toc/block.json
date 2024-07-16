@@ -22,7 +22,7 @@
             "type": "string"
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/toc/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-toc-style",
     "textdomain": "arkhe-blocks"
 }

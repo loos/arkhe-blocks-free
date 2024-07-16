@@ -29,6 +29,6 @@
             ]
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/buttons/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

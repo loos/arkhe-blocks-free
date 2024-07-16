@@ -43,6 +43,6 @@
             "default": ""
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/timeline-item/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

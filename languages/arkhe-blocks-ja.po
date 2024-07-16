@@ -1738,7 +1738,7 @@ msgstr "コミュニケーション"
 #: src/gutenberg/components/LsIconModal/config.js:26
 msgctxt "icon-category"
 msgid "Media/File"
-msgstr "メディアメディア・ファイル"
+msgstr "メディア・ファイル"
 
 #: src/gutenberg/components/LsIconModal/config.js:27
 msgctxt "icon-category"

@@ -1,0 +1,37 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/step",
+  "title": "Step",
+  "category": "arkhe-blocks",
+  "keywords": [],
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "providesContext": {
+    "arkb/step/isHideLabel": "isHideLabel",
+    "arkb/step/isHideNum": "isHideNum",
+    "arkb/step/stepLabel": "stepLabel"
+  },
+  "attributes": {
+    "startNum": {
+      "type": "number",
+      "default": 1
+    },
+    "stepLabel": {
+      "type": "string",
+      "default": "STEP"
+    },
+    "isHideLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "isHideNum": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-step-style",
+  "textdomain": "arkhe-blocks"
+}

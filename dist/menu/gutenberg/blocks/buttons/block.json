@@ -1,0 +1,34 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/buttons",
+  "title": "ボタン",
+  "category": "arkhe-blocks",
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "attributes": {
+    "layout": {
+      "type": "object"
+    },
+    "gap": {
+      "type": "object"
+    },
+    "templateLock": {
+      "type": [
+        "string",
+        "boolean"
+      ],
+      "enum": [
+        "all",
+        "insert",
+        false
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "arkhe-blocks"
+}

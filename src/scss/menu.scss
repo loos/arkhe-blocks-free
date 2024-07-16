@@ -4,7 +4,7 @@
 /*
  * 管理画面で読み込むCSS
  */
-@import "mixin/**";
+@import "./mixin/**/*.scss";
 @import "../../node_modules/react-notifications-component/dist/scss/notification";
 
 // 設定ページ
@@ -17,7 +17,6 @@ $help_color: #555;
 
 @import "./menu/controls";
 @import "./menu/palette";
-@import "./menu/format";
 @import "./menu/block_style";
 @import "./menu/license";
 @import "./menu/field";

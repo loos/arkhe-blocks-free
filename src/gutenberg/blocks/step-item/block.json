@@ -51,6 +51,6 @@
             "default": false
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/step-item/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

@@ -1,0 +1,146 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/section",
+  "title": "Section",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "arkhe",
+    "section"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#f7f7f7"
+    },
+    "bgGradient": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "filter": {
+      "type": "string",
+      "default": "off"
+    },
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": ""
+      }
+    },
+    "mediaSP": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": ""
+      }
+    },
+    "focalPoint": {
+      "type": "object"
+    },
+    "focalPointSP": {
+      "type": "object"
+    },
+    "contentPosition": {
+      "type": "string",
+      "default": "center left"
+    },
+    "innerSize": {
+      "type": "string",
+      "default": ""
+    },
+    "height": {
+      "type": "string",
+      "default": "content"
+    },
+    "heightPC": {
+      "type": "string",
+      "default": "400px"
+    },
+    "heightSP": {
+      "type": "string",
+      "default": "50vh"
+    },
+    "paddingPC": {
+      "type": "object",
+      "default": {
+        "top": "4rem",
+        "left": "0rem",
+        "right": "0rem",
+        "bottom": "4rem"
+      }
+    },
+    "paddingSP": {
+      "type": "object"
+    },
+    "isRepeat": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgSize": {
+      "type": "string",
+      "default": ""
+    },
+    "tag": {
+      "type": "string",
+      "default": "div"
+    },
+    "svgTop": {
+      "type": "object",
+      "default": {
+        "type": "line",
+        "level": 0,
+        "color": ""
+      }
+    },
+    "svgBottom": {
+      "type": "object",
+      "default": {
+        "type": "line",
+        "level": 0,
+        "color": ""
+      }
+    }
+  },
+  "example": {
+    "attributes": {
+      "bgColor": "#f7f7f7"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/heading",
+        "attributes": {
+          "level": 2,
+          "content": "Section Block"
+        }
+      },
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-section-style",
+  "textdomain": "arkhe-blocks"
+}

@@ -51,7 +51,7 @@
             "default": false
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/columns/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-columns-style",
     "textdomain": "arkhe-blocks"
 }

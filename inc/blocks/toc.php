@@ -4,7 +4,7 @@ namespace Arkhe_Blocks\Block\Toc;
 defined( 'ABSPATH' ) || exit;
 
 register_block_type_from_metadata(
-	ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/toc',
+	ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/toc',
 	[
 		'render_callback'  => __NAMESPACE__ . '\cb',
 	]
@@ -137,7 +137,8 @@ function arkb_generate_toc( $content ) {
 
 			// コンテンツ側にもidを付与
 			$new_htag = str_replace( '<h' . $level, '<h' . $level . ' id="' . $htagID . '"', $matched0 );
-			$content  = preg_replace( "%$matched0%", $new_htag, $content, 1 ); // 同じ見出しテキストが複数あっても大丈夫なように回数指定して置換
+			$matched0 = preg_quote( $matched0, '/' );
+			$content  = preg_replace( "/$matched0/", $new_htag, $content, 1 ); // 同じ見出しテキストが複数あっても大丈夫なように回数指定して置換
 		} else {
 			$htagID = $matched_id[1];
 		}

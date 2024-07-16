@@ -44,6 +44,8 @@
 
 
 .arkb-menu__blockSearch {
+	min-width: 20rem;
+	padding: .75rem;
 
 	.components-popover__content {
 		overflow: hidden;
@@ -52,7 +54,7 @@
 	.__dl {
 		align-items: center;
 		height: 300px;
-		margin: 12px 0 0;
+		margin: 1rem 0 0;
 		overflow-y: scroll;
 
 		.components-button {
@@ -72,11 +74,13 @@
 
 		dt {
 			flex-basis: 50%;
+			word-break: break-all;
 		}
 
 		dd {
 			flex-basis: 50%;
 			margin-bottom: 0;
+			margin-inline-start: 0;
 		}
 	}
 

@@ -1,0 +1,71 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/column",
+  "title": "Column",
+  "category": "arkhe-blocks",
+  "keywords": [
+    "arkhe",
+    "column"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "reusable": false
+  },
+  "parent": [
+    "arkhe-blocks/columns"
+  ],
+  "usesContext": [
+    "arkb/columns/isScrollable"
+  ],
+  "attributes": {
+    "vAlign": {
+      "type": "string",
+      "default": ""
+    },
+    "columnWidth": {
+      "type": "object"
+    },
+    "isBreakAll": {
+      "type": "boolean",
+      "default": false
+    },
+    "padding": {
+      "type": "object"
+    },
+    "paddingTab": {
+      "type": "object"
+    },
+    "paddingMB": {
+      "type": "object"
+    },
+    "href": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "[data-arkb-link]",
+      "attribute": "href"
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "[data-arkb-link]",
+      "attribute": "rel"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".ark-block-column",
+      "attribute": "aria-label"
+    },
+    "isNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "useAtag": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "arkhe-blocks"
+}

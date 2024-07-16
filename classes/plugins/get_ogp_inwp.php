@@ -94,13 +94,13 @@ class Get_OGP_InWP {
 		// Data to be finally returned
 		$ogp_data = [];
 
-		// Avoid getting a loadHTML () parsing error
-		$old_libxml_error = libxml_use_internal_errors( true );
+		// 非推奨な mb_convert_encoding の代わりに mb_encode_numericentity を使ってhtmlエンコード
+		$response_body = mb_encode_numericentity( $response_body, [0x80, 0x10FFFF, 0, 0x1FFFFF ], 'UTF-8' );
 
 		// Load HTML
+		$old_libxml_error = libxml_use_internal_errors( true ); // Avoid getting a loadHTML () parsing error
 		$doc = new DOMDocument();
 		$doc->loadHTML( $response_body );
-
 		libxml_use_internal_errors( $old_libxml_error );
 
 		// Get title tag

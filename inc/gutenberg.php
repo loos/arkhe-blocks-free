@@ -15,7 +15,7 @@ function register_blocks() {
 		if ( in_array( 'dynamic', $block_data, true ) ) {
 			require_once __DIR__ . '/blocks/' . $block_name . '.php';
 		} else {
-			register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'src/gutenberg/blocks/' . $block_name );
+			register_block_type_from_metadata( ARKHE_BLOCKS_PATH . 'dist/gutenberg/blocks/' . $block_name );
 		}
 
 		// スタイルの読み込み ( memo: $depsを指定して共通CSSより後ろで読み込ませたいのでphp側で処理している )

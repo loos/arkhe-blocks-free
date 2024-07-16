@@ -373,10 +373,16 @@
 			border-radius: 2px;
 		}
 	}
+
+	.components-base-control__help:has(&) {
+		height: 0;
+		margin: 0;
+	}
 }
 
 .has-helptip.components-checkbox-control {
 	position: relative;
+	padding-right: 24px;
 
 	.arkb-helpPopover {
 		position: absolute;

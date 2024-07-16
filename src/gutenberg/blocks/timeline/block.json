@@ -9,7 +9,7 @@
         "className": false
     },
     "attributes": {},
-    "editorScript": "file:../../../../dist/gutenberg/blocks/timeline/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-timeline-style",
     "textdomain": "arkhe-blocks"
 }

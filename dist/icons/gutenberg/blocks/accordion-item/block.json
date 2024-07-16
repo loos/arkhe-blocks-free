@@ -1,0 +1,28 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/accordion-item",
+  "title": "Accordion Item",
+  "category": "arkhe-blocks",
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "reusable": false
+  },
+  "parent": [
+    "arkhe-blocks/accordion"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-accordion__label",
+      "default": ""
+    },
+    "isDefultOpen": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "arkhe-blocks"
+}

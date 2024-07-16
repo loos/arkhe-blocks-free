@@ -75,7 +75,7 @@
             "default": true
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/container/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-container-style",
     "textdomain": "arkhe-blocks"
 }

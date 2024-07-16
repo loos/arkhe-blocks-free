@@ -31,7 +31,7 @@
             "default": false
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/step/index.js",
+    "editorScript": "file:./index.js",
     "style": "arkhe-blocks-step-style",
     "textdomain": "arkhe-blocks"
 }

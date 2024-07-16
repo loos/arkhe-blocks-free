@@ -27,6 +27,6 @@
             "default": 0
         }
     },
-    "editorScript": "file:../../../../dist/gutenberg/blocks/tab-body/index.js",
+    "editorScript": "file:./index.js",
     "textdomain": "arkhe-blocks"
 }

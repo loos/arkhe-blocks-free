@@ -1,0 +1,20 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/accordion",
+  "title": "Accordion",
+  "category": "arkhe-blocks",
+  "keywords": [],
+  "supports": {
+    "anchor": true,
+    "className": false
+  },
+  "attributes": {
+    "iconType": {
+      "type": "string",
+      "default": "plus"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "arkhe-blocks-accordion-style",
+  "textdomain": "arkhe-blocks"
+}

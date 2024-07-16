@@ -1,0 +1,48 @@
+{
+  "apiVersion": 2,
+  "name": "arkhe-blocks/timeline-item",
+  "title": "Timeline item",
+  "category": "arkhe-blocks",
+  "supports": {
+    "anchor": true,
+    "className": false,
+    "reusable": false
+  },
+  "parent": [
+    "arkhe-blocks/timeline"
+  ],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-timeline__title"
+    },
+    "label": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ark-block-timeline__label"
+    },
+    "isFill": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEmphasis": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideContent": {
+      "type": "boolean",
+      "default": false
+    },
+    "icon": {
+      "type": "string",
+      "default": ""
+    },
+    "color": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "textdomain": "arkhe-blocks"
+}
