@@ -53,7 +53,7 @@ if ( $args['anchor'] ) {
 			</figure>
 		<?php endif; ?>
 		<div class="arkb-boxLink__body">
-			<a href="<?=esc_url( $url )?>" class="arkb-boxLink__title" data-arkb-link<?=$target . $rel?>>
+			<a href="<?=esc_url( $url )?>" class="arkb-boxLink__title" data-arkb-link<?=esc_attr($target . $rel)?>>
 				<?=esc_html( $args['title'] )?>
 			</a>
 			<?php if ( 'none' !== $args['show_excerpt'] ) : ?>
