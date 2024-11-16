@@ -22,7 +22,7 @@ $args = array_merge([
 
 $url    = $args['url'];
 $target = ( $args['is_newtab'] ) ? ' target="_blank"' : '';
-$rel    = $args['rel'] ? ' rel="' . $args['rel'] . '"' : '';
+$rel    = $args['rel'] ? ' rel="' . esc_attr($args['rel']) . '"' : '';
 
 $wp_img_class = '';
 if ( $args['thumb_id'] ) {
@@ -53,7 +53,7 @@ if ( $args['anchor'] ) {
 			</figure>
 		<?php endif; ?>
 		<div class="arkb-boxLink__body">
-			<a href="<?=esc_url( $url )?>" class="arkb-boxLink__title" data-arkb-link<?=esc_attr($target . $rel)?>>
+			<a href="<?=esc_url( $url )?>" class="arkb-boxLink__title"<?=$target . $rel?> data-arkb-link>
 				<?=esc_html( $args['title'] )?>
 			</a>
 			<?php if ( 'none' !== $args['show_excerpt'] ) : ?>
